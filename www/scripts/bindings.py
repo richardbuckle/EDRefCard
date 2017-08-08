@@ -2271,6 +2271,7 @@ def createBlockImage(supportedDeviceKey):
   # Set up the path for our file
   templateName = supportedDevice['Template']
   config = Config(templateName)
+  config.makeDir()
   filePath = config.pathWithSuffix('.jpg')
   
   with Image(filename='../res/' + supportedDevice['Template'] + '.jpg') as sourceImg:
@@ -2631,6 +2632,7 @@ else:
   else:
     mode = 'Generate'
     config = Config.newRandom()
+    config.makeDir()
     runId = config.name
     displayGroups = []
     public = False
