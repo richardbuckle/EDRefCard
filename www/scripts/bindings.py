@@ -2640,7 +2640,8 @@ else:
       xml = '<root></root>'
     else:
       xml = xml.decode(encoding='utf-8')
-      with codecs.open('%s/configs/%s/%s.binds' % (basedir, runId[:2], runId), 'w', 'utf-8') as xmlOutput:
+      bindsPath = config.pathWithSuffix('.binds')
+      with codecs.open(bindsPath, 'w', 'utf-8') as xmlOutput:
         xmlOutput.write(xml)
     if form.getvalue('showgalaxymap'):
       displayGroups.append('Galaxy map')
