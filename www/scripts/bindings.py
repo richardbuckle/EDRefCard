@@ -45,6 +45,14 @@ class Config:
     path = self.basedir / 'configs' / self.name[:2] / self.name
     return path.resolve()
   
+  def pathWithNameAndSuffix(self, name, suffix):
+    newName = '-'.join([self.name, name])
+    p = self.path().with_name(newName)
+    return p.with_suffix(suffix)
+  
+  def pathWithSuffix(self, suffix):
+    return self.path().with_suffix(suffix)
+    
   def exists(self):
     return self.path().exists()
     
