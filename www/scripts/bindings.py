@@ -9,7 +9,6 @@ from wand.image import Image
 from wand.font import Font
 from wand.color import Color
 
-
 import base64
 import cgi
 import cgitb
@@ -23,6 +22,7 @@ import pickle
 import re
 from pathlib import Path
 from urllib.parse import urljoin
+
 
 class Config:
   dirRoot = Path('..')
