@@ -21,11 +21,44 @@ import datetime
 import codecs
 import pickle
 import re
+from pathlib import Path
+from urllib.parse import urljoin
+
+class Config:
+  basedir = Path('..')
+  baseurl = 'https://edrefcard.info/'
+  
+  def newRandom():
+    config = Config(Config.randomName())
+    while(config.exists()):
+      config = Config(Config.randomName())
+    return config
+  
+  def __init__(self, name):
+    self.name = name
+  
+  def randomName():
+    name = ''.join(random.choice(string.ascii_lowercase) for x in range(6))
+    return name
+  
+  def path(self):
+    path = self.basedir / 'configs' / self.name[:2] / self.name
+    return path.resolve()
+  
+  def exists(self):
+    return self.path().exists()
+    
+  def makeDir(self):
+    fullPath = self.path()
+    dirPath = fullPath.parent
+    dirPath.mkdir(parents=True, exist_ok=True)
+    
+  def url(self):
+    url = urljoin(self.baseurl, self.name)
+
 
 cgitb.enable()
 
-basedir = '..'
-baseurl = 'https://edrefcard.info'
 
 unhandledDevicesWarnings = ''
 deviceWarnings = ''
