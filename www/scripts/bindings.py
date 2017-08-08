@@ -2608,12 +2608,15 @@ else:
     mode = 'Replay'
     fileitem = {}
     runId = replay
+    config = Config(runId)
     public = True
     try:
-      with codecs.open('%s/configs/%s/%s.binds' % (basedir, runId[:2], runId), 'r', 'utf-8') as fileInput:
+      bindsPath = config.pathWithSuffix('.binds')
+      replayPath = config.pathWithSuffix('.replay')
+      with codecs.open(bindsPath, 'r', 'utf-8') as fileInput:
         xml = fileInput.read()
       try:
-        replayInfo = pickle.load(open('%s/configs/%s/%s.replay' % (basedir, runId[:2], runId), "rb" ))
+        replayInfo = pickle.load(open(replayPath, "rb" ))
         displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
         showKeyboard = replayInfo.get('showKeyboard', True)
         misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
@@ -2758,7 +2761,9 @@ if mode == 'Generate':
   replayInfo['styling'] = styling
   replayInfo['description'] = ''
   replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
-  pickle.dump(replayInfo, open('%s/configs/%s/%s.replay' % (basedir, runId[:2], runId), "wb" ))
+  config = Config(runId)
+  replayPath = config.pathWithSuffix('.replay')
+  pickle.dump(replayInfo, open(replayPath, "wb" ))
 
 # Display the output
 sys.stdout.write('Content-Type: text/html\r\n\r\n')
