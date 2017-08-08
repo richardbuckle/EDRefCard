@@ -2134,12 +2134,12 @@ def parseBindings(runId, tree, displayGroups):
 
 # Create a keyboard image from the template plus bindings
 def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize, displayGroups, runId, public):
-  url = '/configs/%s/%s-%s.jpg' % (runId[:2], runId, source)
-  filename = '%s%s' % (basedir, url)
+  config = Config(runId)
+  filePath = config.pathWithNameAndSuffix(source, '.jpg')
 
   # See if it already exists or if we need to recreate it
   try:
-    file = open(filename, 'rb')
+    file = open(filepath, 'rb')
   except FileNotFoundError:
     with Image(filename='../res/' + source + '.jpg') as sourceImg:
       with Drawing() as context:
@@ -2218,7 +2218,7 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             writeText(context, sourceImg, bind.get('Control').get('Name'), screenState, font, False, True)
 
         context.draw(sourceImg)
-        sourceImg.save(filename=filename)
+        sourceImg.save(filename=filePath)
   return True
 
 # Write text, possible wrapping
