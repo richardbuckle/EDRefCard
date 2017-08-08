@@ -24,8 +24,8 @@ import re
 
 cgitb.enable()
 
-basedir = '/home/www/www.mcdee.net/elite'
-baseurl = 'http://www.mcdee.net/elite'
+basedir = '..'
+baseurl = 'https://edrefcard.info'
 
 unhandledDevicesWarnings = ''
 deviceWarnings = ''
