@@ -2593,7 +2593,11 @@ styling = 'None'
 blocks = form.getvalue('blocks')
 if blocks is not None:
   mode = 'Blocks'
-  createBlockImage(blocks)
+  try:
+    createBlockImage(blocks)
+  except KeyError:
+    errors = '<h1>%s is not a supported controller.</h1>' % blocks
+    xml = '<root></root>'
   createdImages = []
 else:
   replay = form.getvalue('replay')
