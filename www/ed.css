@@ -1,0 +1,66 @@
+/* Size and positioning */
+
+#container {
+  width: 740px;
+  margin: 0 auto;
+}
+
+#banner {
+  width: 740px;
+  vertical-align: top;
+  clear: both;
+}
+
+/* General */
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Domine', serif;
+  font-size: 1em;
+  color: #000;
+  background: #fff;
+  min-width: 740px;
+}
+
+
+a {
+  color: #00f;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #77f;
+}
+
+/* Banner */
+#banner h1 {
+  text-align: center;
+  font-size: 2em;
+}
+
+#content ul {
+  list-style: inside;
+}
+
+/* Content */
+
+#content h1 {
+  text-align: center;
+  font-size: 2em;
+}
+
+#content h2 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+form input[type='submit']  {
+  width: 740px;
+  text-align: center;
+  font-size: 1em;
+  display: inline-block;
+}
+
+

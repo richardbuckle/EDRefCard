@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta name="author" content="Jim McDonald" />
+    <meta name="robots" content="all" />
+    <title>Elite: Dangerous Tools</title>
+    <link href='http://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet' type='text/css'>
+    <style type="text/css" media="all">@import"ed.css";</style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="banner">
+        <h1>Elite: Dangerous Reference Sheet Generator</h1>
+      </div>
+      <div id="content">
+        Obtain a graphical reference sheet for your keyboard and controller bindings.  Once you have set up your bindings you will find them as a 'Custom.2.0.binds' file in your local data directory (%LOCALAPPDATA%\Frontier Developments\Elite Dangerous\Options\Bindings).  You can upload this file below and obtain your reference sheet.
+        <p/>
+        <form id="uploadbindings" enctype="multipart/form-data" method="post" action="scripts/bindings.py">
+          <input id="fileupload" name="bindings" type="file" />
+          <p />
+          <input type="submit" value="Generate reference sheet" />
+          <h2>Advanced Options</h2>
+          You can select which types of control you want to see on the reference:
+          <p />
+          <input type="checkbox" checked name="showship" value="on" />Ship controls
+          <br />
+          <input type="checkbox" checked name="showsrv" value="on" />SRV (buggy) controls
+          <br />
+          <input type="checkbox" checked name="showfighter" value="on" />Fighter controls
+          <br />
+          <input type="checkbox" checked name="showmulticrew" value="on" />Multicrew controls
+          <br />
+          <input type="checkbox" checked name="showheadlook" value="on" />Head look controls
+          <br />
+          <input type="checkbox" checked name="showui" value="on" />UI controls
+          <br />
+          <input type="checkbox" checked name="showgalaxymap" value="on" />Galaxy map controls
+          <br />
+          <input type="checkbox" checked name="showcamera" value="on" />Camera controls
+          <br />
+          <input type="checkbox" checked name="showmisc" value="on" />Miscellaneous controls
+          <br />
+          <p />
+          You can use colours to highlight different controls:
+          <p />
+          <input type="radio" checked name="styling" value="modifier" />Use colours to show different modifiers
+          <br />
+          <input type="radio" name="styling" value="group" />Use colours to show different types of control
+<!--
+          <br />
+          <input type="radio" name="styling" value="category" />Use colours to show different categories of control (combat, navigation, <em>etc.</em>)
+-->
+          <br />
+          <input type="radio" name="styling" value="none" />Don't use colours
+          <p />
+          If you leave the box below checked then then others can obtain a copy of your custom binds, and your reference sheets will contain the relevant URL for them to do so.  If you uncheck the box then no such URL will be published.
+          <p />
+          <input type="checkbox" checked name="public" value="on" />Make these bindings available to everyone
+          <p />
+          <input type="submit" value="Generate reference sheet" />
+          <p />
+          Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
