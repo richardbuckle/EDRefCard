@@ -2301,11 +2301,12 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, ru
   global misconfigurationWarnings
 
   # Set up the path for our file
+  config = Config(runId)
   if deviceIndex == 0:
-    url = '/configs/%s/%s-%s.jpg' % (runId[:2], runId, source)
+    name = '%s-%s' % (runId, source)
   else:
-    url = '/configs/%s/%s-%s-%s.jpg' % (runId[:2], runId, source, deviceIndex)
-  filename = '%s%s' % (basedir, url)
+    name = '%s-%s-%s' % (runId, source, deviceIndex)
+  filename = config.pathWithNameAndSuffix(name, '.jpg')
 
   # See if it already exists or if we need to recreate it
   try:
