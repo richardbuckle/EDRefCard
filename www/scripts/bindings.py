@@ -2786,7 +2786,8 @@ else:
   if blocks is not None:
     sys.stdout.write('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
   if blocks is None and public is True:
-    sys.stdout.write('<p/>Link directly to this page with the URL <a href="%s/binds/%s">%s/binds/%s</a>' % (baseurl, runId, baseurl, runId))
+    linkURL = config.url()
+    sys.stdout.write('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
     sys.stdout.write('<p/>You can download the custom binds file for the configuration shown above at <a href="%s/configs/%s.binds">%s/configs/%s.binds</a>.  Replace your existing custom binds file with this file to use these controls.' % (baseurl, runId, baseurl, runId))
 sys.stdout.write('<p/>')
 sys.stdout.write('Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
