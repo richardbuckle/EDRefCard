@@ -25,8 +25,8 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 class Config:
-  basedir = Path('..')
-  baseurl = 'https://edrefcard.info/'
+  dirRoot = Path('..')
+  webRoot = 'https://edrefcard.info/'
   
   def newRandom():
     config = Config(Config.randomName())
@@ -42,7 +42,7 @@ class Config:
     return name
   
   def path(self):
-    path = self.basedir / 'configs' / self.name[:2] / self.name
+    path = self.dirRoot / 'configs' / self.name[:2] / self.name
     return path.resolve()
   
   def pathWithNameAndSuffix(self, name, suffix):
@@ -62,7 +62,7 @@ class Config:
     dirPath.mkdir(parents=True, exist_ok=True)
     
   def url(self):
-    url = urljoin(self.baseurl, self.name)
+    url = urljoin(self.webRoot, self.name)
 
 
 cgitb.enable()
