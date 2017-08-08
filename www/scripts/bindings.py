@@ -17,7 +17,7 @@ import pydoc
 import sys
 import string
 import random
-import time
+import datetime
 import codecs
 import pickle
 import re
@@ -2572,6 +2572,9 @@ else:
         deviceWarnings = replayInfo.get('deviceWarnings', '')
         unhandledDevicesWarnings = ''
         styling = replayInfo.get('styling', 'None')
+        description = replayInfo.get('description', '')
+        timestamp = replayInfo.get('timestamp')
+
       except FileNotFoundError:
         displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
         showKeyboard = True
@@ -2702,6 +2705,8 @@ if mode == 'Generate':
   replayInfo['unhandledDevicesWarnings'] = unhandledDevicesWarnings
   replayInfo['deviceWarnings'] = deviceWarnings
   replayInfo['styling'] = styling
+  replayInfo['description'] = ''
+  replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
   pickle.dump(replayInfo, open('%s/configs/%s/%s.replay' % (basedir, runId[:2], runId), "wb" ))
 
 # Display the output
