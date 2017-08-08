@@ -2269,8 +2269,9 @@ def writeText(context, img, text, screenState, font, surround, newLine):
 def createBlockImage(supportedDeviceKey):
   supportedDevice = supportedDevices[supportedDeviceKey]
   # Set up the path for our file
-  url = '/configs/%s/%s.jpg' % (supportedDevice['Template'][:2], supportedDevice['Template'])
-  filename = '%s%s' % (basedir, url)
+  templateName = supportedDevice['Template']
+  config = Config(templateName)
+  filePath = config.pathWithSuffix('.jpg')
   
   with Image(filename='../res/' + supportedDevice['Template'] + '.jpg') as sourceImg:
     with Drawing() as context:
@@ -2283,7 +2284,7 @@ def createBlockImage(supportedDeviceKey):
           context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
 
       context.draw(sourceImg)
-      sourceImg.save(filename=filename)
+      sourceImg.save(filename=filePath)
 
 # We have a limited number of modifier styles so balance them out across the modifier number
 def getModifierStyle(num):
