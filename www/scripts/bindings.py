@@ -2822,7 +2822,7 @@ def printList():
         %s
       </td>
     </tr>
-    ''') % (refcardURL, name, dateStr)
+    ''' % (refcardURL, name, dateStr))
   print ('</table>')
 
 def printBody():
