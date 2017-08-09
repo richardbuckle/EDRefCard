@@ -79,7 +79,8 @@ class Config:
         object['runID'] = path.stem
         return object
     objs = [loader(path) for path in picklePaths]
-    objs.sort(key=sortKey)
+    if sortKey is not None:
+      objs.sort(key=sortKey)
     return objs
 
 
