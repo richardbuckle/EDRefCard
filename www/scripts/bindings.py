@@ -9,10 +9,8 @@ from wand.image import Image
 from wand.font import Font
 from wand.color import Color
 
-import base64
 import cgi
 import cgitb
-import pydoc
 import sys
 import string
 import random
