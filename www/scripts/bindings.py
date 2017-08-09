@@ -2795,12 +2795,38 @@ if mode == 'Generate':
     pickle.dump(replayInfo, pickleFile)
 
 def printList():
-  print('listing here')
+  print('<p>Full search support is coming soon</p>')
+  objs = Config.allConfigs()
+  print('<table>')
+  print('''
+    <tr>
+      <th>Descripton</th>
+      <th>Date</th>
+    </tr>
+  ''')
+  for obj in objs:
+    config = Config(obj['runID'])
+    refcardURL = config.refcardURL()
+    dateStr = obj['timestamp'].ctime()
+    name = obj['description']
+    if name is '': 
+      # if the uploader didn't bother to name their config, skip it
+      continue
+    print('''
+    <tr>
+      <td>
+        <a href=%s>%s</a>
+      </td>
+      <td>
+        %s
+      </td>
+    </tr>
+    ''') % (refcardURL, name, dateStr)
+  print ('</table>')
 
 def printBody():
   if mode is 'list':
     printList()
-    printSupportPara()
     return
   if unhandledDevicesWarnings != '':
     print('%s<br/>' % unhandledDevicesWarnings)
