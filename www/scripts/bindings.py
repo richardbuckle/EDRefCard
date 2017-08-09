@@ -62,7 +62,7 @@ class Config:
     dirPath.mkdir(parents=True, exist_ok=True)
     
   def refcardURL(self):
-    url = urljoin(self.webRoot, self.name)
+    url = urljoin(self.webRoot, "binds/%s" % self.name)
     return url
     
   def bindsURL(self):
