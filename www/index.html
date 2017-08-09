@@ -11,17 +11,23 @@
   <body>
     <div id="container">
       <div id="banner">
-        <h1>Elite: Dangerous Reference Sheet Generator</h1>
+        <h1>Elite: Dangerous Reference Card Generator</h1>
       </div>
       <div id="content">
-        Obtain a graphical reference sheet for your keyboard and controller bindings.  Once you have set up your bindings you will find them as a 'Custom.2.0.binds' file in your local data directory (%LOCALAPPDATA%\Frontier Developments\Elite Dangerous\Options\Bindings).  You can upload this file below and obtain your reference sheet.
+        Create and/or share a graphical reference card for your keyboard and controller bindings.
+        <p />
+        Once you have set up your bindings in the game you will find them as a 'Custom.2.0.binds' file in your local data directory (typically %LOCALAPPDATA%\Frontier Developments\Elite Dangerous\Options\Bindings).
+        <p />
+        You can then input this file below to create and/or share a reference card.
         <p/>
         <form id="uploadbindings" enctype="multipart/form-data" method="post" action="scripts/bindings.py">
           <input id="fileupload" name="bindings" type="file" />
           <p />
-          <input type="submit" value="Generate reference sheet" />
-          <h2>Advanced Options</h2>
-          You can select which types of control you want to see on the reference:
+		  <div class="button">
+			<button type="submit"><h4>Generate reference card</h4></button>
+		  </div>         
+          <h3>Filtering</h3>
+          Select which types of control you want to see on the reference card:
           <p />
           <input type="checkbox" checked name="showship" value="on" />Ship controls
           <br />
@@ -42,6 +48,7 @@
           <input type="checkbox" checked name="showmisc" value="on" />Miscellaneous controls
           <br />
           <p />
+          <h3>Colour</h3>
           You can use colours to highlight different controls:
           <p />
           <input type="radio" checked name="styling" value="modifier" />Use colours to show different modifiers
@@ -54,12 +61,17 @@
           <br />
           <input type="radio" name="styling" value="none" />Don't use colours
           <p />
-          If you leave the box below checked then then others can obtain a copy of your custom binds, and your reference sheets will contain the relevant URL for them to do so.  If you uncheck the box then no such URL will be published.
+          <h3>Publishing</h3>
+          <input type="checkbox" checked name="public" value="on" />Publish these bindings on this site
           <p />
-          <input type="checkbox" checked name="public" value="on" />Make these bindings available to everyone
+          Optional description (we save a timestamp and which controllers you are using, so no need to mention those)
+          <br>
+          <input type="text" name="description" size="256"  maxlength="256" style="width: 600px;/">
           <p />
-          <input type="submit" value="Generate reference sheet" />
-          <p />
+		  <div class="button">
+			<button type="submit"><h4>Generate reference card</h4></button>
+		  </div>     
+		  <hr>  
           Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>
         </form>
       </div>
