@@ -2796,8 +2796,8 @@ if mode == 'Generate':
     pickle.dump(replayInfo, pickleFile)
 
 def printList():
-  print('<p>Full search support is coming soon</p>')
-  objs = Config.allConfigs()
+  print('<h1>Yes, we know this is very basic. Proper search support is coming soon.</h1>')
+  objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']))
   print('<table>')
   print('''
     <tr>
@@ -2808,7 +2808,7 @@ def printList():
   for obj in objs:
     config = Config(obj['runID'])
     refcardURL = str(config.refcardURL())
-    dateStr = str(obj['timestamp'].strftime("%d/%m/%y %H:%M %Z"))
+    dateStr = str(obj['timestamp'].strftime("%YYYY-%MM-%DD %H:%M %Z"))
     name = str(obj['description'])
     if name is '': 
       # if the uploader didn't bother to name their config, skip it
