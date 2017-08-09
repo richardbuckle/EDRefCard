@@ -45,7 +45,7 @@ class Config:
     return Config.dirRoot / 'configs'
     
   def path(self):
-    path = self.configsPath() / self.name[:2] / self.name
+    path = Config.configsPath() / self.name[:2] / self.name
     return path
   
   def pathWithNameAndSuffix(self, name, suffix):
