@@ -21,7 +21,7 @@
         You can then input this file below to create and/or share a reference card.
         <p/>
         <form id="uploadbindings" enctype="multipart/form-data" method="post" action="scripts/bindings.py">
-          <input id="fileupload" name="bindings" type="file" />
+          <input id="fileupload" name="bindings" type="file" accept=".binds" required />
           <p />
 		  <div class="button">
 			<button type="submit"><h4>Generate reference card</h4></button>
@@ -31,7 +31,7 @@
           <p />
           <input type="checkbox" checked name="showship" value="on" />Ship controls
           <br />
-          <input type="checkbox" checked name="showsrv" value="on" />SRV (buggy) controls
+          <input type="checkbox" checked name="showsrv" value="on" />SRV controls
           <br />
           <input type="checkbox" checked name="showfighter" value="on" />Fighter controls
           <br />
@@ -66,13 +66,13 @@
           <p />
           Optional description (we save a timestamp and which controllers you are using, so no need to mention those)
           <br>
-          <input type="text" name="description" size="256"  maxlength="256" style="width: 600px;/">
+          <input type="text" name="description" autofocus size="256"  maxlength="256" style="width: 600px;/">
           <p />
 		  <div class="button">
 			<button type="submit"><h4>Generate reference card</h4></button>
 		  </div>     
 		  <hr>  
-          Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>
+          Please direct questions, suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>
         </form>
       </div>
     </div>
