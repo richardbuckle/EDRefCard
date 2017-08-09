@@ -2832,7 +2832,6 @@ def printBody():
       print('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
       print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
   print('<p/>')
-  printSupportPara()
 
 def printSupportPara():
   print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>')
