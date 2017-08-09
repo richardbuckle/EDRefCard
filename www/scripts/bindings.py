@@ -2794,18 +2794,19 @@ if mode == 'Generate':
     pickle.dump(replayInfo, pickleFile)
 
 # Display the output
-sys.stdout.write('Content-Type: text/html\r\n\r\n')
-sys.stdout.write('<html>')
-sys.stdout.write('<head><title>Elite: Dangerous bindings</title></head>\r\n')
-sys.stdout.write('<body>')
+print('Content-Type: text/html')
+print()
+print('<html>')
+print('<head><title>Elite: Dangerous bindings</title></head>')
+print('<body>')
 if unhandledDevicesWarnings != '':
-  sys.stdout.write('%s<br/>' % unhandledDevicesWarnings)
+  print('%s<br/>' % unhandledDevicesWarnings)
 if misconfigurationWarnings != '':
-  sys.stdout.write('%s<br/>' % misconfigurationWarnings)
+  print('%s<br/>' % misconfigurationWarnings)
 if deviceWarnings != '':
-  sys.stdout.write('%s<br/>' % deviceWarnings)
+  print('%s<br/>' % deviceWarnings)
 if errors != '':
-  sys.stdout.write('%s<br/>' % errors)
+  print('%s<br/>' % errors)
 else:
   for createdImage in createdImages:
     if '::' in createdImage:
@@ -2817,18 +2818,18 @@ else:
       device = createdImage
       deviceIndex = 0
     if deviceIndex == 0:
-      sys.stdout.write('<img width="100%%" src="../configs/%s/%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
+      print('<img width="100%%" src="../configs/%s/%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
     else:
-      sys.stdout.write('<img width="100%%" src="../configs/%s/%s-%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
+      print('<img width="100%%" src="../configs/%s/%s-%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
   if blocks is not None:
-    sys.stdout.write('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
+    print('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
   if blocks is None and public is True:
     linkURL = config.refcardURL()
     bindsURL = config.bindsURL()
-    sys.stdout.write('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
-    sys.stdout.write('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
-sys.stdout.write('<p/>')
-sys.stdout.write('Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
-sys.stdout.write('</body>')
-sys.stdout.write('</html>')
+    print('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
+    print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
+print('<p/>')
+print('Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
+print('</body>')
+print('</html>')
 
