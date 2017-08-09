@@ -2796,7 +2796,7 @@ if mode == 'Generate':
     pickle.dump(replayInfo, pickleFile)
 
 def printList():
-  print('<h1>Yes, we know this is very basic. Proper search support is coming soon.</h1>')
+  print('<h2>Yes, we know this is very basic. Proper search support is coming soon.</h2>')
   objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']))
   print('<table>')
   print('''
