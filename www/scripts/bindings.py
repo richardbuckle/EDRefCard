@@ -2791,43 +2791,48 @@ if mode == 'Generate':
   with replayPath.open('wb') as pickleFile:
     pickle.dump(replayInfo, pickleFile)
 
-# Display the output
-print('Content-Type: text/html')
-print()
-print('<html>')
-print('<head><title>Elite: Dangerous bindings</title></head>')
-print('<body>')
-if unhandledDevicesWarnings != '':
-  print('%s<br/>' % unhandledDevicesWarnings)
-if misconfigurationWarnings != '':
-  print('%s<br/>' % misconfigurationWarnings)
-if deviceWarnings != '':
-  print('%s<br/>' % deviceWarnings)
-if errors != '':
-  print('%s<br/>' % errors)
-else:
-  for createdImage in createdImages:
-    if '::' in createdImage:
-      # Split the created image in to device and device index
-      m = re.search(r'(.*)\:\:([01])', createdImage)
-      device = m.group(1)
-      deviceIndex = int(m.group(2))
-    else:
-      device = createdImage
-      deviceIndex = 0
-    if deviceIndex == 0:
-      print('<img width="100%%" src="../configs/%s/%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
-    else:
-      print('<img width="100%%" src="../configs/%s/%s-%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
-  if blocks is not None:
-    print('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
-  if blocks is None and public is True:
-    linkURL = config.refcardURL()
-    bindsURL = config.bindsURL()
-    print('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
-    print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
-print('<p/>')
-print('Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
-print('</body>')
-print('</html>')
+def printBody():
+  if unhandledDevicesWarnings != '':
+    print('%s<br/>' % unhandledDevicesWarnings)
+  if misconfigurationWarnings != '':
+    print('%s<br/>' % misconfigurationWarnings)
+  if deviceWarnings != '':
+    print('%s<br/>' % deviceWarnings)
+  if errors != '':
+    print('%s<br/>' % errors)
+  else:
+    for createdImage in createdImages:
+      if '::' in createdImage:
+        # Split the created image in to device and device index
+        m = re.search(r'(.*)\:\:([01])', createdImage)
+        device = m.group(1)
+        deviceIndex = int(m.group(2))
+      else:
+        device = createdImage
+        deviceIndex = 0
+      if deviceIndex == 0:
+        print('<img width="100%%" src="../configs/%s/%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
+      else:
+        print('<img width="100%%" src="../configs/%s/%s-%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
+    if blocks is not None:
+      print('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
+    if blocks is None and public is True:
+      linkURL = config.refcardURL()
+      bindsURL = config.bindsURL()
+      print('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
+      print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
+  print('<p/>')
+  print('Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
+
+def printHTML():
+  print('Content-Type: text/html')
+  print()
+  print('<html>')
+  print('<head><title>Elite: Dangerous bindings</title></head>')
+  print('<body>')
+  printBody()
+  print('</body>')
+  print('</html>')
+
+printHTML()
 
