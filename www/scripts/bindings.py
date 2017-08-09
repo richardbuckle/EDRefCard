@@ -41,8 +41,11 @@ class Config:
     name = ''.join(random.choice(string.ascii_lowercase) for x in range(6))
     return name
   
+  def configsPath():
+    return Config.dirRoot / 'configs'
+    
   def path(self):
-    path = self.dirRoot / 'configs' / self.name[:2] / self.name
+    path = self.configsPath() / self.name[:2] / self.name
     return path
   
   def pathWithNameAndSuffix(self, name, suffix):
