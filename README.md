@@ -18,8 +18,8 @@ Currently hosted at [https://edrefcard.info/](https://edrefcard.info/).
 * Add redirects as follows (in Apache 2 notation):
 
 ```
-RewriteRule ^/elite/binds/(.+)$ /elite/scripts/bindings.py?replay=$1
-RewriteRule ^/elite/configs/([a-z][a-z])([^/]+)$ /elite/configs/$1/$1$2
+RewriteRule ^/binds/(.+)$ /scripts/bindings.py?replay=$1
+RewriteRule ^/configs/([a-z][a-z])([^/]+)$ /configs/$1/$1$2
 ```
 
 # Credits
