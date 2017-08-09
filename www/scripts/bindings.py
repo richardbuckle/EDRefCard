@@ -2649,7 +2649,7 @@ else:
           styling = replayInfo.get('styling', 'None')
           description = replayInfo.get('description', '')
           timestamp = replayInfo.get('timestamp')
-
+          # devices = replayInfo['devices']
       except FileNotFoundError:
         displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
         showKeyboard = True
@@ -2787,6 +2787,7 @@ if mode == 'Generate':
   replayInfo['styling'] = styling
   replayInfo['description'] = description
   replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
+  replayInfo['devices'] = devices
   config = Config(runId)
   replayPath = config.pathWithSuffix('.replay')
   with replayPath.open('wb') as pickleFile:
