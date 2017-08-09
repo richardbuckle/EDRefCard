@@ -25,7 +25,7 @@ from urllib.parse import urljoin
 
 
 class Config:
-  dirRoot = Path('..')
+  dirRoot = Path('/home/edrefcardinfoi7/www').resolve()
   webRoot = 'https://edrefcard.info/'
   
   def newRandom():
@@ -43,7 +43,7 @@ class Config:
   
   def path(self):
     path = self.dirRoot / 'configs' / self.name[:2] / self.name
-    return path.resolve()
+    return path
   
   def pathWithNameAndSuffix(self, name, suffix):
     newName = '-'.join([self.name, name])
