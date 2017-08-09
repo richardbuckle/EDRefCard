@@ -2591,7 +2591,9 @@ def calculateBestFontSize(context, text, hotasDetail, biggestFontSize):
 # Obtain form input and set up our variables
 form = cgi.FieldStorage()
 
+# TODO get rid if these globals
 styling = 'None'
+description = ''
 
 blocks = form.getvalue('blocks')
 if blocks is not None:
@@ -2682,7 +2684,7 @@ else:
       styling = 'Category'
     if form.getvalue('styling') == 'modifier':
       styling = 'Modifier'
-
+    description = form.getvalue('description')
 
   # Obtain the bindings from the configuration file
   parser = etree.XMLParser(encoding='utf-8')
@@ -2759,7 +2761,7 @@ if mode == 'Generate':
   replayInfo['unhandledDevicesWarnings'] = unhandledDevicesWarnings
   replayInfo['deviceWarnings'] = deviceWarnings
   replayInfo['styling'] = styling
-  replayInfo['description'] = ''
+  replayInfo['description'] = description
   replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
   config = Config(runId)
   replayPath = config.pathWithSuffix('.replay')
