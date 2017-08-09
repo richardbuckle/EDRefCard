@@ -2310,13 +2310,13 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, ru
   # Set up the path for our file
   config = Config(runId)
   if deviceIndex == 0:
-    name = '%s-%s' % (runId, source)
+    name = source
   else:
-    name = '%s-%s-%s' % (runId, source, deviceIndex)
+    name = '%s-%s' % (source, deviceIndex)
   filePath = config.pathWithNameAndSuffix(name, '.jpg')
-
+  
   # See if it already exists or if we need to recreate it
-  if filePath.exists:
+  if filePath.exists():
     return True
   with Image(filename='../res/' + source + '.jpg') as sourceImg:
     with Drawing() as context:
