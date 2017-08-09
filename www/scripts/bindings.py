@@ -2615,6 +2615,7 @@ styling = 'None'
 description = ''
 
 blocks = form.getvalue('blocks')
+wantList = form.getvalue('list')
 if blocks is not None:
   mode = 'Blocks'
   try:
@@ -2623,6 +2624,8 @@ if blocks is not None:
     errors = '<h1>%s is not a supported controller.</h1>' % blocks
     xml = '<root></root>'
   createdImages = []
+elif wantList is not None:
+  mode = 'list'
 else:
   replay = form.getvalue('replay')
   if replay is not None:
