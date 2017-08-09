@@ -2138,87 +2138,86 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
   filePath = config.pathWithNameAndSuffix(source, '.jpg')
 
   # See if it already exists or if we need to recreate it
-  try:
-    file = open(filepath, 'rb')
-  except FileNotFoundError:
-    with Image(filename='../res/' + source + '.jpg') as sourceImg:
-      with Drawing() as context:
+  if filePath.exists():
+    return True
+  with Image(filename='../res/' + source + '.jpg') as sourceImg:
+    with Drawing() as context:
 
-        # Defaults for the font
-        context.font = getFontPath('Regular', 'Normal')
-        context.text_antialias = True
-        context.font_style = 'normal'
-        context.stroke_width = 0
-        context.fill_color = Color('#000')
-        context.fill_opacity = 1
+      # Defaults for the font
+      context.font = getFontPath('Regular', 'Normal')
+      context.text_antialias = True
+      context.font_style = 'normal'
+      context.stroke_width = 0
+      context.fill_color = Color('#000')
+      context.fill_opacity = 1
 
-        # Add the ID to the title
-        if public is True:
-          context.push()
-          context.font = getFontPath('SemiBold', 'Normal')
-          context.font_size = 72
-          context.text(x=966,y=252,body='binds/%s' % runId)
-          context.pop()
+      # Add the ID to the title
+      if public is True:
+        context.push()
+        context.font = getFontPath('SemiBold', 'Normal')
+        context.font_size = 72
+        context.text(x=966,y=252,body='binds/%s' % runId)
+        context.pop()
 
-        outputs = {}
-        for group in displayGroups:
-          outputs[group] = {}
+      outputs = {}
+      for group in displayGroups:
+        outputs[group] = {}
 
-        # Find the correct bindings and order them appropriately
-        for key, item in items.items():
-          itemDevice = item.get('Device')
-          itemKey = item.get('Key')
+      # Find the correct bindings and order them appropriately
+      for key, item in items.items():
+        itemDevice = item.get('Device')
+        itemKey = item.get('Key')
 
-          # Only show it if we are handling the appropriate image at this time
-          if itemDevice not in imageDevices:
-            continue
+        # Only show it if we are handling the appropriate image at this time
+        if itemDevice not in imageDevices:
+          continue
 
-          for modifier, bind in item.get('Binds').items():
-            for controlKey, control in bind.get('Controls').items():
-              bind = {}
-              bind['Control'] = control
-              bind['Key'] = itemKey
-              bind['Modifiers'] = []
+        for modifier, bind in item.get('Binds').items():
+          for controlKey, control in bind.get('Controls').items():
+            bind = {}
+            bind['Control'] = control
+            bind['Key'] = itemKey
+            bind['Modifiers'] = []
 
-              if modifier != 'Unmodified':
-                for modifierKey, modifierControls in modifiers.items():
-                  for modifierControl in modifierControls:
-                    if modifierControl.get('ModifierKey') == modifier and modifierControl.get('Key') is not None:
-                      bind['Modifiers'].append(modifierControl.get('Key'))
+            if modifier != 'Unmodified':
+              for modifierKey, modifierControls in modifiers.items():
+                for modifierControl in modifierControls:
+                  if modifierControl.get('ModifierKey') == modifier and modifierControl.get('Key') is not None:
+                    bind['Modifiers'].append(modifierControl.get('Key'))
 
-              outputs[control['Group']][control['Name']] = bind
+            outputs[control['Group']][control['Name']] = bind
 
-        # Set up a screen state to handle output
-        screenState = {}
-        screenState['baseX'] = 60
-        screenState['baseY'] = 320
-        screenState['maxWidth'] = 0
-        screenState['thisWidth'] = 0
-        screenState['currentX'] = screenState['baseX']
-        screenState['currentY'] = screenState['baseY']
+      # Set up a screen state to handle output
+      screenState = {}
+      screenState['baseX'] = 60
+      screenState['baseY'] = 320
+      screenState['maxWidth'] = 0
+      screenState['thisWidth'] = 0
+      screenState['currentX'] = screenState['baseX']
+      screenState['currentY'] = screenState['baseY']
 
-        font = Font(getFontPath('Regular', 'Normal'), antialias=True, size=biggestFontSize)
-        groupTitleFont = Font(getFontPath('Regular', 'Normal'), antialias=True, size=biggestFontSize*2)
-        context.stroke_width=2
-        context.stroke_color=Color('#000')
-        context.fill_opacity=0
+      font = Font(getFontPath('Regular', 'Normal'), antialias=True, size=biggestFontSize)
+      groupTitleFont = Font(getFontPath('Regular', 'Normal'), antialias=True, size=biggestFontSize*2)
+      context.stroke_width=2
+      context.stroke_color=Color('#000')
+      context.fill_opacity=0
 
-        # Go through once for each display group
-        for displayGroup in displayGroups:
-          if outputs[displayGroup] == {}:
-            continue
+      # Go through once for each display group
+      for displayGroup in displayGroups:
+        if outputs[displayGroup] == {}:
+          continue
 
-          writeText(context, sourceImg, displayGroup, screenState, groupTitleFont, False, True)
+        writeText(context, sourceImg, displayGroup, screenState, groupTitleFont, False, True)
 
-          orderedOutputs = OrderedDict(sorted(outputs[displayGroup].items(), key=lambda x: x[1].get('Control').get('Order')))
-          for bindKey, bind in orderedOutputs.items():
-            for modifier in bind.get('Modifiers', []):
-              writeText(context, sourceImg, transKey(modifier), screenState, font, True, False)
-            writeText(context, sourceImg, transKey(bind.get('Key')), screenState, font, True, False)
-            writeText(context, sourceImg, bind.get('Control').get('Name'), screenState, font, False, True)
+        orderedOutputs = OrderedDict(sorted(outputs[displayGroup].items(), key=lambda x: x[1].get('Control').get('Order')))
+        for bindKey, bind in orderedOutputs.items():
+          for modifier in bind.get('Modifiers', []):
+            writeText(context, sourceImg, transKey(modifier), screenState, font, True, False)
+          writeText(context, sourceImg, transKey(bind.get('Key')), screenState, font, True, False)
+          writeText(context, sourceImg, bind.get('Control').get('Name'), screenState, font, False, True)
 
-        context.draw(sourceImg)
-        sourceImg.save(filename=filePath)
+      context.draw(sourceImg)
+      sourceImg.save(filename=str(filePath))
   return True
 
 # Write text, possible wrapping
@@ -2285,7 +2284,7 @@ def createBlockImage(supportedDeviceKey):
           context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
 
       context.draw(sourceImg)
-      sourceImg.save(filename=filePath)
+      sourceImg.save(filename=str(filePath))
 
 # We have a limited number of modifier styles so balance them out across the modifier number
 def getModifierStyle(num):
@@ -2306,178 +2305,177 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, ru
     name = '%s-%s' % (runId, source)
   else:
     name = '%s-%s-%s' % (runId, source, deviceIndex)
-  filename = config.pathWithNameAndSuffix(name, '.jpg')
+  filePath = config.pathWithNameAndSuffix(name, '.jpg')
 
   # See if it already exists or if we need to recreate it
-  try:
-    file = open(filename, 'rb')
-  except FileNotFoundError:
-    with Image(filename='../res/' + source + '.jpg') as sourceImg:
-      with Drawing() as context:
+  if filePath.exists:
+    return True
+  with Image(filename='../res/' + source + '.jpg') as sourceImg:
+    with Drawing() as context:
 
-        # Defaults for the font
-        context.font = getFontPath('Regular', 'Normal')
-        context.text_antialias = True
-        context.font_style = 'normal'
-        context.stroke_width = 0
-        context.fill_color = Color('#000')
-        context.fill_opacity = 1
+      # Defaults for the font
+      context.font = getFontPath('Regular', 'Normal')
+      context.text_antialias = True
+      context.font_style = 'normal'
+      context.stroke_width = 0
+      context.fill_color = Color('#000')
+      context.fill_opacity = 1
 
-        # Add the ID to the title
-        if public is True:
-          context.push()
-          context.font = getFontPath('SemiBold', 'Normal')
-          context.font_size = 72
-          context.text(x=966,y=252,body='binds/%s' % runId)
-          context.pop()
+      # Add the ID to the title
+      if public is True:
+        context.push()
+        context.font = getFontPath('SemiBold', 'Normal')
+        context.font_size = 72
+        context.text(x=966,y=252,body='binds/%s' % runId)
+        context.pop()
 
-        for key, item in items.items():
-          itemDevice = item.get('Device')
-          itemDeviceIndex = int(item.get('DeviceIndex'))
-          itemKey = item.get('Key')
+      for key, item in items.items():
+        itemDevice = item.get('Device')
+        itemDeviceIndex = int(item.get('DeviceIndex'))
+        itemKey = item.get('Key')
 
-          # Only show it if we are handling the appropriate image at this time
-          if itemDevice not in imageDevices:
-            continue
+        # Only show it if we are handling the appropriate image at this time
+        if itemDevice not in imageDevices:
+          continue
 
-          # Only show it if we are handling the appropriate index at this time
-          if itemDeviceIndex != deviceIndex: 
-            continue
+        # Only show it if we are handling the appropriate index at this time
+        if itemDeviceIndex != deviceIndex: 
+          continue
 
-          # Find the details for the control
-          texts = []
-          hotasDetail = hotasDetails.get(itemDevice).get(itemKey)
-          if hotasDetail is None:
-            sys.stderr.write('%s: No control detail for %s\n' % (runId, key))
-            continue
+        # Find the details for the control
+        texts = []
+        hotasDetail = hotasDetails.get(itemDevice).get(itemKey)
+        if hotasDetail is None:
+          sys.stderr.write('%s: No control detail for %s\n' % (runId, key))
+          continue
 
-          # First obtain the modifiers if there are any
-          for keyModifier in modifiers.get(key, []):
+        # First obtain the modifiers if there are any
+        for keyModifier in modifiers.get(key, []):
+          if styling == 'Modifier':
+            style = modifierStyles[keyModifier.get('Number') % 13]
+          else:
+            style = groupStyles.get('Modifier')
+          texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
+        if '::Joy' in key:
+          # Same again but for positive modifier
+          for keyModifier in modifiers.get(key.replace('::Joy', '::Pos_Joy'), []):
             if styling == 'Modifier':
               style = modifierStyles[keyModifier.get('Number') % 13]
             else:
               style = groupStyles.get('Modifier')
             texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
-          if '::Joy' in key:
-            # Same again but for positive modifier
-            for keyModifier in modifiers.get(key.replace('::Joy', '::Pos_Joy'), []):
-              if styling == 'Modifier':
-                style = modifierStyles[keyModifier.get('Number') % 13]
-              else:
-                style = groupStyles.get('Modifier')
-              texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
-            # Same again but for negative modifier
-            for keyModifier in modifiers.get(key.replace('::Joy', '::Neg_Joy'), []):
-              if styling == 'Modifier':
-                style = modifierStyles[keyModifier.get('Number') % 13]
-              else:
-                style = groupStyles.get('Modifier')
-              texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
+          # Same again but for negative modifier
+          for keyModifier in modifiers.get(key.replace('::Joy', '::Neg_Joy'), []):
+            if styling == 'Modifier':
+              style = modifierStyles[keyModifier.get('Number') % 13]
+            else:
+              style = groupStyles.get('Modifier')
+            texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
 
-          # Next obtain unmodified bindings
+        # Next obtain unmodified bindings
+        for modifier, bind in item.get('Binds').items():
+          if modifier == 'Unmodified':
+            for controlKey, control in bind.get('Controls').items():
+              overridden = False
+              for overrideKey in bind.get('Controls').keys():
+                if overrideKey in control.get('OverriddenBy'):
+                  overridden = True
+              if overridden is True:
+                continue
+              # Check if this is a digital control on an analogue stick with an analogue equivalent
+              if control.get('Type') == 'Digital' and control.get('HasAnalogue') is True and hotasDetail.get('Type') == 'Analogue':
+                if misconfigurationWarnings == '':
+                  misconfigurationWarnings = '<h1>Misconfiguration detected</h1>You have one or more analogue controls configured incorrectly.  Please see <a href="https://forums.frontier.co.uk/showthread.php?t=209792">this thread</a> for details of the problem and how to correct it.<br/> <b>Your misconfigured controls:</b> <b>%s</b> ' % control['Name']
+                else:
+                  misconfigurationWarnings = '%s, <b>%s</b>' % (misconfigurationWarnings, control['Name'])
+                #sys.stderr.write('%s: Digital command %s found on hotas control %s::%s\n' % (runId, control['Name'], itemDevice, itemKey))
+
+              if styling == 'Modifier':
+                texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': modifierStyles[0]})
+              elif styling == 'Category':
+                texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
+              else:
+                texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': groupStyles.get(control.get('Group'))})
+
+        # Next obtain bindings with modifiers
+        # Lazy approach to do this but covers us for now
+        for curModifierNum in range(1, 200):
           for modifier, bind in item.get('Binds').items():
-            if modifier == 'Unmodified':
+            if modifier != 'Unmodified':
+              keyModifiers = modifiers.get(modifier)
+              modifierNum = 0
+              for keyModifier in keyModifiers:
+                if keyModifier['ModifierKey'] == modifier:
+                  modifierNum = keyModifier['Number']
+                  break
+              if modifierNum != curModifierNum:
+                continue
               for controlKey, control in bind.get('Controls').items():
                 overridden = False
                 for overrideKey in bind.get('Controls').keys():
                   if overrideKey in control.get('OverriddenBy'):
                     overridden = True
-                if overridden is True:
+                if overridden == True:
                   continue
-                # Check if this is a digital control on an analogue stick with an analogue equivalent
-                if control.get('Type') == 'Digital' and control.get('HasAnalogue') is True and hotasDetail.get('Type') == 'Analogue':
-                  if misconfigurationWarnings == '':
-                    misconfigurationWarnings = '<h1>Misconfiguration detected</h1>You have one or more analogue controls configured incorrectly.  Please see <a href="https://forums.frontier.co.uk/showthread.php?t=209792">this thread</a> for details of the problem and how to correct it.<br/> <b>Your misconfigured controls:</b> <b>%s</b> ' % control['Name']
-                  else:
-                    misconfigurationWarnings = '%s, <b>%s</b>' % (misconfigurationWarnings, control['Name'])
-                  #sys.stderr.write('%s: Digital command %s found on hotas control %s::%s\n' % (runId, control['Name'], itemDevice, itemKey))
-
-                if styling == 'Modifier':
-                  texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': modifierStyles[0]})
-                elif styling == 'Category':
-                  texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
                 else:
-                  texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': groupStyles.get(control.get('Group'))})
-
-          # Next obtain bindings with modifiers
-          # Lazy approach to do this but covers us for now
-          for curModifierNum in range(1, 200):
-            for modifier, bind in item.get('Binds').items():
-              if modifier != 'Unmodified':
-                keyModifiers = modifiers.get(modifier)
-                modifierNum = 0
-                for keyModifier in keyModifiers:
-                  if keyModifier['ModifierKey'] == modifier:
-                    modifierNum = keyModifier['Number']
-                    break
-                if modifierNum != curModifierNum:
-                  continue
-                for controlKey, control in bind.get('Controls').items():
-                  overridden = False
-                  for overrideKey in bind.get('Controls').keys():
-                    if overrideKey in control.get('OverriddenBy'):
-                      overridden = True
-                  if overridden == True:
-                    continue
+                  if styling == 'Modifier':
+                    texts.append({'Text': '%s' % control.get('Name'), control.get('Group'): 'Modifier', 'Style': getModifierStyle(curModifierNum)})
+                    # sys.stderr.write('Writing %s with style %s\n' % (control.get('Name'), getModifierStyle(curModifierNum)));
+                  elif styling == 'Category':
+                    texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
                   else:
-                    if styling == 'Modifier':
-                      texts.append({'Text': '%s' % control.get('Name'), control.get('Group'): 'Modifier', 'Style': getModifierStyle(curModifierNum)})
-                      # sys.stderr.write('Writing %s with style %s\n' % (control.get('Name'), getModifierStyle(curModifierNum)));
-                    elif styling == 'Category':
-                      texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
-                    else:
-                      texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': groupStyles.get(control.get('Group'))})
-        
-          # Obtain the layout of the texts and write them
-          texts = layoutText(sourceImg, context, texts, hotasDetail, biggestFontSize)
-          for text in texts:
+                    texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': groupStyles.get(control.get('Group'))})
+      
+        # Obtain the layout of the texts and write them
+        texts = layoutText(sourceImg, context, texts, hotasDetail, biggestFontSize)
+        for text in texts:
+          context.font_size = text['Size']
+          context.font = text['Style']['Font']
+          if styling != 'None':
+            context.fill_color = text['Style']['Color']
+          context.text(x=text['X'], y=text['Y'], body=text['Text'])
+
+      # Also need to add standalone modifiers (those without other binds)
+      for key, keyModifiers in modifiers.items():
+        modifierTexts = []
+        for keyModifier in keyModifiers:
+          if keyModifier.get('Device') not in imageDevices:
+            # We don't have an image for this device
+            continue
+          if int(keyModifier.get('DeviceIndex')) != deviceIndex:
+            # This is not four our current device
+            continue
+          if '/' in key:
+            # This is a logical modifier so ignore it
+            continue
+          if items.get(key) is not None or items.get(key.replace('::Pos_Joy', '::Joy')) is not None or items.get(key.replace('::Neg_Joy', '::Joy')) is not None:
+            # This has already been handled because it has other binds
+            continue
+
+          modifierKey = keyModifier.get('Key')
+          hotasDetail = hotasDetails.get(keyModifier.get('Device')).get(modifierKey)
+          if hotasDetail is None:
+            sys.stderr.write('%s: No location for %s\n' % (runId, key))
+            continue
+
+          if styling == 'Modifier':
+            style = getModifierStyle(keyModifier.get('Number'))
+          else:
+            style = groupStyles.get('Modifier')
+          modifierTexts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
+
+        if modifierTexts != []:
+          # Obtain the layout of the modifier text and write it
+          modifierTexts = layoutText(sourceImg, context, modifierTexts, hotasDetail, biggestFontSize)
+          for text in modifierTexts:
             context.font_size = text['Size']
             context.font = text['Style']['Font']
             if styling != 'None':
               context.fill_color = text['Style']['Color']
             context.text(x=text['X'], y=text['Y'], body=text['Text'])
 
-        # Also need to add standalone modifiers (those without other binds)
-        for key, keyModifiers in modifiers.items():
-          modifierTexts = []
-          for keyModifier in keyModifiers:
-            if keyModifier.get('Device') not in imageDevices:
-              # We don't have an image for this device
-              continue
-            if int(keyModifier.get('DeviceIndex')) != deviceIndex:
-              # This is not four our current device
-              continue
-            if '/' in key:
-              # This is a logical modifier so ignore it
-              continue
-            if items.get(key) is not None or items.get(key.replace('::Pos_Joy', '::Joy')) is not None or items.get(key.replace('::Neg_Joy', '::Joy')) is not None:
-              # This has already been handled because it has other binds
-              continue
-
-            modifierKey = keyModifier.get('Key')
-            hotasDetail = hotasDetails.get(keyModifier.get('Device')).get(modifierKey)
-            if hotasDetail is None:
-              sys.stderr.write('%s: No location for %s\n' % (runId, key))
-              continue
-
-            if styling == 'Modifier':
-              style = getModifierStyle(keyModifier.get('Number'))
-            else:
-              style = groupStyles.get('Modifier')
-            modifierTexts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
-
-          if modifierTexts != []:
-            # Obtain the layout of the modifier text and write it
-            modifierTexts = layoutText(sourceImg, context, modifierTexts, hotasDetail, biggestFontSize)
-            for text in modifierTexts:
-              context.font_size = text['Size']
-              context.font = text['Style']['Font']
-              if styling != 'None':
-                context.fill_color = text['Style']['Color']
-              context.text(x=text['X'], y=text['Y'], body=text['Text'])
-
-        context.draw(sourceImg)
-        sourceImg.save(filename=filename)
+      context.draw(sourceImg)
+      sourceImg.save(filename=str(filePath))
   return True
 
 def layoutText(img, context, texts, hotasDetail, biggestFontSize):
@@ -2615,18 +2613,19 @@ else:
     try:
       bindsPath = config.pathWithSuffix('.binds')
       replayPath = config.pathWithSuffix('.replay')
-      with codecs.open(bindsPath, 'r', 'utf-8') as fileInput:
+      with codecs.open(str(bindsPath), 'r', 'utf-8') as fileInput:
         xml = fileInput.read()
       try:
-        replayInfo = pickle.load(open(replayPath, "rb" ))
-        displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
-        showKeyboard = replayInfo.get('showKeyboard', True)
-        misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
-        deviceWarnings = replayInfo.get('deviceWarnings', '')
-        unhandledDevicesWarnings = ''
-        styling = replayInfo.get('styling', 'None')
-        description = replayInfo.get('description', '')
-        timestamp = replayInfo.get('timestamp')
+        with replayPath.open("rb") as pickleFile:
+          replayInfo = pickle.load(pickleFile)
+          displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
+          showKeyboard = replayInfo.get('showKeyboard', True)
+          misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
+          deviceWarnings = replayInfo.get('deviceWarnings', '')
+          unhandledDevicesWarnings = ''
+          styling = replayInfo.get('styling', 'None')
+          description = replayInfo.get('description', '')
+          timestamp = replayInfo.get('timestamp')
 
       except FileNotFoundError:
         displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
@@ -2765,7 +2764,8 @@ if mode == 'Generate':
   replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
   config = Config(runId)
   replayPath = config.pathWithSuffix('.replay')
-  pickle.dump(replayInfo, open(replayPath, "wb" ))
+  with replayPath.open('wb') as pickleFile:
+    pickle.dump(replayInfo, pickleFile)
 
 # Display the output
 sys.stdout.write('Content-Type: text/html\r\n\r\n')
