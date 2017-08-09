@@ -2026,10 +2026,11 @@ def parseBindings(runId, tree, displayGroups):
 
     key = xmlBinding.get('Key')
     # Remove the Neg_ and Pos_ headers to put digital buttons on analogue devices
-    if key.startswith('Neg_'):
-      key = key.replace('Neg_', '')
-    if key.startswith('Pos_'):
-      key = key.replace('Pos_', '')
+    if key is not None:
+      if key.startswith('Neg_'):
+        key = key.replace('Neg_', '', 1)
+      if key.startswith('Pos_'):
+        key = key.replace('Pos_', '', 1)
 
     modifiersInfo = xmlBinding.findall('Modifier')
     modifiersKey = 'Unmodified'
