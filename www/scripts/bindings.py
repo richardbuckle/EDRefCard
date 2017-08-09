@@ -2648,7 +2648,7 @@ else:
     else:
       xml = xml.decode(encoding='utf-8')
       bindsPath = config.pathWithSuffix('.binds')
-      with codecs.open(bindsPath, 'w', 'utf-8') as xmlOutput:
+      with codecs.open(str(bindsPath), 'w', 'utf-8') as xmlOutput:
         xmlOutput.write(xml)
     if form.getvalue('showgalaxymap'):
       displayGroups.append('Galaxy map')
