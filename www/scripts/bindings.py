@@ -2695,6 +2695,8 @@ else:
     if form.getvalue('styling') == 'modifier':
       styling = 'Modifier'
     description = form.getvalue('description')
+    if description is None:
+      description = ''
 
   # Obtain the bindings from the configuration file
   parser = etree.XMLParser(encoding='utf-8')
