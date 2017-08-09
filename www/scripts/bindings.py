@@ -61,8 +61,13 @@ class Config:
     dirPath = fullPath.parent
     dirPath.mkdir(parents=True, exist_ok=True)
     
-  def url(self):
+  def refcardURL(self):
     url = urljoin(self.webRoot, self.name)
+    return url
+    
+  def bindsURL(self):
+    url = urljoin(self.webRoot, "configs/%s.binds" % self.name)
+    return url
 
 
 cgitb.enable()
@@ -2800,8 +2805,8 @@ else:
   if blocks is not None:
     sys.stdout.write('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
   if blocks is None and public is True:
-    linkURL = config.url()
-    bindsURL = config.pathWithSuffix('.binds')
+    linkURL = config.refcardURL()
+    bindsURL = config.bindsURL()
     sys.stdout.write('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
     sys.stdout.write('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
 sys.stdout.write('<p/>')
