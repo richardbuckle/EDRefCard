@@ -71,6 +71,18 @@ class Config:
   def bindsURL(self):
     url = urljoin(self.webRoot, "configs/%s.binds" % self.name)
     return url
+  
+  def allConfigs(sortKey=None):
+    configsPath = Config.configsPath()
+    picklePaths = list(configsPath.glob('**/*.replay'))
+    def loader(path):
+      with path.open('rb') as file:
+        object = pickle.load(file)
+        object['runID'] = path.stem
+        return object
+    objs = [loader(path) for path in picklePaths]
+    objs.sort(key=sortKey)
+    return objs
 
 
 cgitb.enable()
