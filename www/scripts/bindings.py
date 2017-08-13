@@ -2609,6 +2609,85 @@ def calculateBestFontSize(context, text, hotasDetail, biggestFontSize):
 
     return (fitText, fontSize, metrics)
 
+def printList():
+    print('<h2>Yes, we know this is very basic. Proper search support is coming soon.</h2>')
+    objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']))
+    print('<table>')
+    print('''
+        <tr>
+            <th>Descripton</th>
+            <th>Date</th>
+        </tr>
+    ''')
+    for obj in objs:
+        config = Config(obj['runID'])
+        refcardURL = str(config.refcardURL())
+        dateStr = str(obj['timestamp'].strftime("%Y-%m-%d %H:%M %Z"))
+        name = str(obj['description'])
+        if name is '': 
+            # if the uploader didn't bother to name their config, skip it
+            continue
+        print('''
+        <tr>
+            <td>
+                <a href=%s>%s</a>
+            </td>
+            <td>
+                %s
+            </td>
+        </tr>
+        ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
+    print ('</table>')
+
+def printBody():
+    if mode is 'list':
+        printList()
+        return
+    if unhandledDevicesWarnings != '':
+        print('%s<br/>' % unhandledDevicesWarnings)
+    if misconfigurationWarnings != '':
+        print('%s<br/>' % misconfigurationWarnings)
+    if deviceWarnings != '':
+        print('%s<br/>' % deviceWarnings)
+    if errors != '':
+        print('%s<br/>' % errors)
+    else:
+        for createdImage in createdImages:
+            if '::' in createdImage:
+                # Split the created image in to device and device index
+                m = re.search(r'(.*)\:\:([01])', createdImage)
+                device = m.group(1)
+                deviceIndex = int(m.group(2))
+            else:
+                device = createdImage
+                deviceIndex = 0
+            if deviceIndex == 0:
+                print('<img width="100%%" src="../configs/%s/%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
+            else:
+                print('<img width="100%%" src="../configs/%s/%s-%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
+        if blocks is not None:
+            print('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
+        if blocks is None and public is True:
+            linkURL = config.refcardURL()
+            bindsURL = config.bindsURL()
+            print('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
+            print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
+    print('<p/>')
+
+def printSupportPara():
+    print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>')
+
+def printHTML():
+    print('Content-Type: text/html')
+    print()
+    print('<html>')
+    print('<head><title>Elite: Dangerous bindings</title></head>')
+    print('<body>')
+    printBody()
+    print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
+    print('</body>')
+    print('</html>')
+
 # Obtain form input and set up our variables
 form = cgi.FieldStorage()
 
@@ -2795,85 +2874,6 @@ if mode == 'Generate':
     replayPath = config.pathWithSuffix('.replay')
     with replayPath.open('wb') as pickleFile:
         pickle.dump(replayInfo, pickleFile)
-
-def printList():
-    print('<h2>Yes, we know this is very basic. Proper search support is coming soon.</h2>')
-    objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']))
-    print('<table>')
-    print('''
-        <tr>
-            <th>Descripton</th>
-            <th>Date</th>
-        </tr>
-    ''')
-    for obj in objs:
-        config = Config(obj['runID'])
-        refcardURL = str(config.refcardURL())
-        dateStr = str(obj['timestamp'].strftime("%Y-%m-%d %H:%M %Z"))
-        name = str(obj['description'])
-        if name is '': 
-            # if the uploader didn't bother to name their config, skip it
-            continue
-        print('''
-        <tr>
-            <td>
-                <a href=%s>%s</a>
-            </td>
-            <td>
-                %s
-            </td>
-        </tr>
-        ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
-    print ('</table>')
-
-def printBody():
-    if mode is 'list':
-        printList()
-        return
-    if unhandledDevicesWarnings != '':
-        print('%s<br/>' % unhandledDevicesWarnings)
-    if misconfigurationWarnings != '':
-        print('%s<br/>' % misconfigurationWarnings)
-    if deviceWarnings != '':
-        print('%s<br/>' % deviceWarnings)
-    if errors != '':
-        print('%s<br/>' % errors)
-    else:
-        for createdImage in createdImages:
-            if '::' in createdImage:
-                # Split the created image in to device and device index
-                m = re.search(r'(.*)\:\:([01])', createdImage)
-                device = m.group(1)
-                deviceIndex = int(m.group(2))
-            else:
-                device = createdImage
-                deviceIndex = 0
-            if deviceIndex == 0:
-                print('<img width="100%%" src="../configs/%s/%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
-            else:
-                print('<img width="100%%" src="../configs/%s/%s-%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
-        if blocks is not None:
-            print('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
-        if blocks is None and public is True:
-            linkURL = config.refcardURL()
-            bindsURL = config.bindsURL()
-            print('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
-            print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
-    print('<p/>')
-
-def printSupportPara():
-    print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>')
-
-def printHTML():
-    print('Content-Type: text/html')
-    print()
-    print('<html>')
-    print('<head><title>Elite: Dangerous bindings</title></head>')
-    print('<body>')
-    printBody()
-    print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
-    print('</body>')
-    print('</html>')
 
 printHTML()
 
