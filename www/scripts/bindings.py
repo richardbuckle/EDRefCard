@@ -2691,192 +2691,195 @@ def printHTML():
     print('</body>')
     print('</html>')
 
-# Obtain form input and set up our variables
-form = cgi.FieldStorage()
+def main():
+    # Obtain form input and set up our variables
+    form = cgi.FieldStorage()
 
-# TODO get rid if these globals
-styling = 'None'
-description = ''
+    # TODO get rid if these globals
+    styling = 'None'
+    description = ''
 
-blocks = form.getvalue('blocks')
-wantList = form.getvalue('list')
-if blocks is not None:
-    mode = 'Blocks'
-    try:
-        createBlockImage(blocks)
-    except KeyError:
-        errors = '<h1>%s is not a supported controller.</h1>' % blocks
-        xml = '<root></root>'
-    createdImages = []
-elif wantList is not None:
-    mode = 'list'
-else:
-    replay = form.getvalue('replay')
-    if replay is not None:
-        mode = 'Replay'
-        fileitem = {}
-        runId = replay
-        config = Config(runId)
-        public = True
+    blocks = form.getvalue('blocks')
+    wantList = form.getvalue('list')
+    if blocks is not None:
+        mode = 'Blocks'
         try:
-            bindsPath = config.pathWithSuffix('.binds')
-            replayPath = config.pathWithSuffix('.replay')
-            with codecs.open(str(bindsPath), 'r', 'utf-8') as fileInput:
-                xml = fileInput.read()
-            try:
-                with replayPath.open("rb") as pickleFile:
-                    replayInfo = pickle.load(pickleFile)
-                    displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
-                    showKeyboard = replayInfo.get('showKeyboard', True)
-                    misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
-                    deviceWarnings = replayInfo.get('deviceWarnings', '')
-                    unhandledDevicesWarnings = ''
-                    styling = replayInfo.get('styling', 'None')
-                    description = replayInfo.get('description', '')
-                    timestamp = replayInfo.get('timestamp')
-                    # devices = replayInfo['devices']
-            except FileNotFoundError:
-                displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
-                showKeyboard = True
-        except FileNotFoundError:
-            errors = '<h1>Unknown configuration %s</h1>' % (runId)
-            displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
+            createBlockImage(blocks)
+        except KeyError:
+            errors = '<h1>%s is not a supported controller.</h1>' % blocks
             xml = '<root></root>'
+        createdImages = []
+    elif wantList is not None:
+        mode = 'list'
     else:
-        mode = 'Generate'
-        config = Config.newRandom()
-        config.makeDir()
-        runId = config.name
-        displayGroups = []
-        public = False
-        xml = form.getvalue('bindings')
-        if xml is None or xml is b'':
-            errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
-            xml = '<root></root>'
-        else:
-            xml = xml.decode(encoding='utf-8')
-            bindsPath = config.pathWithSuffix('.binds')
-            with codecs.open(str(bindsPath), 'w', 'utf-8') as xmlOutput:
-                xmlOutput.write(xml)
-        if form.getvalue('showgalaxymap'):
-            displayGroups.append('Galaxy map')
-        if form.getvalue('showheadlook'):
-            displayGroups.append('Head look')
-        if form.getvalue('showsrv'):
-            displayGroups.append('SRV')
-        if form.getvalue('showship'):
-            displayGroups.append('Ship')
-        if form.getvalue('showui'):
-            displayGroups.append('UI')
-        if form.getvalue('showfighter'):
-            displayGroups.append('Fighter')
-        if form.getvalue('showmulticrew'):
-            displayGroups.append('Multicrew')
-        if form.getvalue('showcamera'):
-            displayGroups.append('Camera')
-        if form.getvalue('showcommandercreator'):
-            displayGroups.append('Commander creator')
-        if form.getvalue('showmisc'):
-            displayGroups.append('Misc')
-        if form.getvalue('public'):
+        replay = form.getvalue('replay')
+        if replay is not None:
+            mode = 'Replay'
+            fileitem = {}
+            runId = replay
+            config = Config(runId)
             public = True
-        if form.getvalue('keyboard'):
-            showKeyboard = True
+            try:
+                bindsPath = config.pathWithSuffix('.binds')
+                replayPath = config.pathWithSuffix('.replay')
+                with codecs.open(str(bindsPath), 'r', 'utf-8') as fileInput:
+                    xml = fileInput.read()
+                try:
+                    with replayPath.open("rb") as pickleFile:
+                        replayInfo = pickle.load(pickleFile)
+                        displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
+                        showKeyboard = replayInfo.get('showKeyboard', True)
+                        misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
+                        deviceWarnings = replayInfo.get('deviceWarnings', '')
+                        unhandledDevicesWarnings = ''
+                        styling = replayInfo.get('styling', 'None')
+                        description = replayInfo.get('description', '')
+                        timestamp = replayInfo.get('timestamp')
+                        # devices = replayInfo['devices']
+                except FileNotFoundError:
+                    displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
+                    showKeyboard = True
+            except FileNotFoundError:
+                errors = '<h1>Unknown configuration %s</h1>' % (runId)
+                displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
+                xml = '<root></root>'
         else:
-            showKeyboard = False
+            mode = 'Generate'
+            config = Config.newRandom()
+            config.makeDir()
+            runId = config.name
+            displayGroups = []
+            public = False
+            xml = form.getvalue('bindings')
+            if xml is None or xml is b'':
+                errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
+                xml = '<root></root>'
+            else:
+                xml = xml.decode(encoding='utf-8')
+                bindsPath = config.pathWithSuffix('.binds')
+                with codecs.open(str(bindsPath), 'w', 'utf-8') as xmlOutput:
+                    xmlOutput.write(xml)
+            if form.getvalue('showgalaxymap'):
+                displayGroups.append('Galaxy map')
+            if form.getvalue('showheadlook'):
+                displayGroups.append('Head look')
+            if form.getvalue('showsrv'):
+                displayGroups.append('SRV')
+            if form.getvalue('showship'):
+                displayGroups.append('Ship')
+            if form.getvalue('showui'):
+                displayGroups.append('UI')
+            if form.getvalue('showfighter'):
+                displayGroups.append('Fighter')
+            if form.getvalue('showmulticrew'):
+                displayGroups.append('Multicrew')
+            if form.getvalue('showcamera'):
+                displayGroups.append('Camera')
+            if form.getvalue('showcommandercreator'):
+                displayGroups.append('Commander creator')
+            if form.getvalue('showmisc'):
+                displayGroups.append('Misc')
+            if form.getvalue('public'):
+                public = True
+            if form.getvalue('keyboard'):
+                showKeyboard = True
+            else:
+                showKeyboard = False
 
-        if form.getvalue('styling') == 'group':
-            styling = 'Group'
-        if form.getvalue('styling') == 'category':
-            styling = 'Category'
-        if form.getvalue('styling') == 'modifier':
-            styling = 'Modifier'
-        description = form.getvalue('description')
-        if description is None:
-            description = ''
+            if form.getvalue('styling') == 'group':
+                styling = 'Group'
+            if form.getvalue('styling') == 'category':
+                styling = 'Category'
+            if form.getvalue('styling') == 'modifier':
+                styling = 'Modifier'
+            description = form.getvalue('description')
+            if description is None:
+                description = ''
 
-    # Obtain the bindings from the configuration file
-    parser = etree.XMLParser(encoding='utf-8')
-    try:
-        tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-    except etree.XMLSyntaxError:
-        errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
-        xml = '<root></root>'
-        tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-    (items, modifiers, devices) = parseBindings(runId, tree, displayGroups)
+        # Obtain the bindings from the configuration file
+        parser = etree.XMLParser(encoding='utf-8')
+        try:
+            tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
+        except etree.XMLSyntaxError:
+            errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
+            xml = '<root></root>'
+            tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
+        (items, modifiers, devices) = parseBindings(runId, tree, displayGroups)
 
-    alreadyHandledDevices = []
-    createdImages = []
-    for supportedDeviceKey, supportedDevice in supportedDevices.items():
-        if supportedDeviceKey == 'Keyboard':
-            # We handle the keyboard separately below
-            continue
+        alreadyHandledDevices = []
+        createdImages = []
+        for supportedDeviceKey, supportedDevice in supportedDevices.items():
+            if supportedDeviceKey == 'Keyboard':
+                # We handle the keyboard separately below
+                continue
 
-        for deviceIndex in [0, 1]:
-            # See if we handle this device
-            handled = False
-            for handledDevice in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
-                if devices.get('%s::%s' % (handledDevice, deviceIndex)) is not None:
-                    handled = True
-                    break
-
-            if handled is True:
-                # See if we have any new bindings for this device
-                hasNewBindings = False
-                for device in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
-                    deviceKey = '%s::%s' % (device, deviceIndex)
-                    if deviceKey not in alreadyHandledDevices:
-                        hasNewBindings = True
+            for deviceIndex in [0, 1]:
+                # See if we handle this device
+                handled = False
+                for handledDevice in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
+                    if devices.get('%s::%s' % (handledDevice, deviceIndex)) is not None:
+                        handled = True
                         break
-                if hasNewBindings is True:
-                    createHOTASImage(items, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, runId, public, styling, deviceIndex)
-                    createdImages.append('%s::%s' % (supportedDeviceKey, deviceIndex))
-                    for handledDevice in supportedDevice['HandledDevices']:
-                        alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
 
-    if devices.get('Keyboard::0') is not None:
-        keyboardItems = 0
-        for  item in items.values():
-            if item.get('Device') == 'Keyboard':
-                for bind in item.get('Binds').values():
-                    keyboardItems = keyboardItems + len(bind.get('Controls'))
-        if keyboardItems > 48:
-            fontSize = 40 - int(((keyboardItems - 48)/20)*4)
-            if fontSize < 24:
-                fontSize = 24
-        else:
-            fontSize = 40
-        createKeyboardImage(items, modifiers, 'keyboard', ['Keyboard'], fontSize, displayGroups, runId, public)
-        createdImages.append('Keyboard')
+                if handled is True:
+                    # See if we have any new bindings for this device
+                    hasNewBindings = False
+                    for device in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
+                        deviceKey = '%s::%s' % (device, deviceIndex)
+                        if deviceKey not in alreadyHandledDevices:
+                            hasNewBindings = True
+                            break
+                    if hasNewBindings is True:
+                        createHOTASImage(items, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, runId, public, styling, deviceIndex)
+                        createdImages.append('%s::%s' % (supportedDeviceKey, deviceIndex))
+                        for handledDevice in supportedDevice['HandledDevices']:
+                            alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
 
-    for deviceKey, device in devices.items():
-        # Arduino Leonardo is used for head tracking so ignore it, along with vJoy (Tobii Eyex) and 16D00AEA (EDTracker)
-        if device is None and deviceKey != 'Mouse::0' and deviceKey != 'ArduinoLeonardo::0' and deviceKey != 'vJoy::0' and deviceKey != 'vJoy::1' and deviceKey != '16D00AEA::0':
-            sys.stderr.write('%s: found unsupported device %s\n' % (runId, deviceKey))
-            if unhandledDevicesWarnings  == '':
-                unhandledDevicesWarnings = '<h1>Unknown controller detected</h1>You have a device that is not supported at this time. Please report details of your device by following the link at the bottom of this page supplying the reference "%s" and we will attempt to add support for it.' % runId
-        if device is not None and 'ThrustMasterWarthogCombined' in device['HandledDevices'] and deviceWarnings == '':
-            deviceWarnings = '<h2>Mapping Software Detected</h2>You are using the ThrustMaster TARGET software.  As a result it is possible that not all of the controls will show up.  If you have missing controls then you should remove the mapping from TARGET and map them using Elite\'s own configuration UI.'
+        if devices.get('Keyboard::0') is not None:
+            keyboardItems = 0
+            for  item in items.values():
+                if item.get('Device') == 'Keyboard':
+                    for bind in item.get('Binds').values():
+                        keyboardItems = keyboardItems + len(bind.get('Controls'))
+            if keyboardItems > 48:
+                fontSize = 40 - int(((keyboardItems - 48)/20)*4)
+                if fontSize < 24:
+                    fontSize = 24
+            else:
+                fontSize = 40
+            createKeyboardImage(items, modifiers, 'keyboard', ['Keyboard'], fontSize, displayGroups, runId, public)
+            createdImages.append('Keyboard')
+
+        for deviceKey, device in devices.items():
+            # Arduino Leonardo is used for head tracking so ignore it, along with vJoy (Tobii Eyex) and 16D00AEA (EDTracker)
+            if device is None and deviceKey != 'Mouse::0' and deviceKey != 'ArduinoLeonardo::0' and deviceKey != 'vJoy::0' and deviceKey != 'vJoy::1' and deviceKey != '16D00AEA::0':
+                sys.stderr.write('%s: found unsupported device %s\n' % (runId, deviceKey))
+                if unhandledDevicesWarnings  == '':
+                    unhandledDevicesWarnings = '<h1>Unknown controller detected</h1>You have a device that is not supported at this time. Please report details of your device by following the link at the bottom of this page supplying the reference "%s" and we will attempt to add support for it.' % runId
+            if device is not None and 'ThrustMasterWarthogCombined' in device['HandledDevices'] and deviceWarnings == '':
+                deviceWarnings = '<h2>Mapping Software Detected</h2>You are using the ThrustMaster TARGET software.  As a result it is possible that not all of the controls will show up.  If you have missing controls then you should remove the mapping from TARGET and map them using Elite\'s own configuration UI.'
         
-    if len(createdImages) == 0 and misconfigurationWarnings == '' and unhandledDevicesWarnings == '' and errors == '':
-        errors = '<h1>The file supplied does not have any bindings for a supported HOTAS or keyboard.</h1>'
+        if len(createdImages) == 0 and misconfigurationWarnings == '' and unhandledDevicesWarnings == '' and errors == '':
+            errors = '<h1>The file supplied does not have any bindings for a supported HOTAS or keyboard.</h1>'
 
-# Save variables for later replays
-if mode == 'Generate':
-    replayInfo = {}
-    replayInfo['displayGroups'] = displayGroups
-    replayInfo['showKeyboard'] = showKeyboard
-    replayInfo['misconfigurationWarnings'] = misconfigurationWarnings
-    replayInfo['unhandledDevicesWarnings'] = unhandledDevicesWarnings
-    replayInfo['deviceWarnings'] = deviceWarnings
-    replayInfo['styling'] = styling
-    replayInfo['description'] = description
-    replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
-    replayInfo['devices'] = devices
-    config = Config(runId)
-    replayPath = config.pathWithSuffix('.replay')
-    with replayPath.open('wb') as pickleFile:
-        pickle.dump(replayInfo, pickleFile)
+    # Save variables for later replays
+    if mode == 'Generate':
+        replayInfo = {}
+        replayInfo['displayGroups'] = displayGroups
+        replayInfo['showKeyboard'] = showKeyboard
+        replayInfo['misconfigurationWarnings'] = misconfigurationWarnings
+        replayInfo['unhandledDevicesWarnings'] = unhandledDevicesWarnings
+        replayInfo['deviceWarnings'] = deviceWarnings
+        replayInfo['styling'] = styling
+        replayInfo['description'] = description
+        replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
+        replayInfo['devices'] = devices
+        config = Config(runId)
+        replayPath = config.pathWithSuffix('.replay')
+        with replayPath.open('wb') as pickleFile:
+            pickle.dump(replayInfo, pickleFile)
 
-printHTML()
+    printHTML()
 
+if __name__ == '__main__':
+    main()
