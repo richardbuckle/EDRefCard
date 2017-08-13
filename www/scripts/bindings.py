@@ -770,8 +770,8 @@ hotasDetails = {
         'Joy_30': {'Type': 'Digital', 'x': 3134, 'y': 1884, 'width': 692}, # Pinky spin up
         'Joy_31': {'Type': 'Digital', 'x': 3134, 'y': 1940, 'width': 692}, # Pinky spin down
         'Joy_XAxis': {'Type': 'Analogue', 'x': 164, 'y': 680, 'width': 572}, # Throttle
-        'Joy_UAxis': {'Type': 'Analogue', 'x': 1194, 'y': 870, 'width': 732}, # Mouse left/right
-        'Joy_VAxis': {'Type': 'Analogue', 'x': 1194, 'y': 814, 'width': 732}, # Mouse up/down
+        'Joy_UAxis': {'Type': 'Analogue', 'x': 1194, 'y': 870, 'width': 732}, # Mouse left/right
+        'Joy_VAxis': {'Type': 'Analogue', 'x': 1194, 'y': 814, 'width': 732}, # Mouse up/down
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 1874, 'y': 1604, 'width': 672}, # F spin
         'Joy_RXAxis': {'Type': 'Analogue', 'x': 1534, 'y': 1754, 'width': 672}, # G spin
         'Joy_RYAxis': {'Type': 'Analogue', 'x': 1014, 'y': 1574, 'width': 692}, # RTY2 axis
@@ -803,7 +803,7 @@ hotasDetails = {
         'Joy_XAxis': {'Type': 'Analogue', 'x': 3194, 'y': 1110, 'width': 632}, # x
         'Joy_YAxis': {'Type': 'Analogue', 'x': 3194, 'y': 1054, 'width': 632} # y
     },
-    '07382221': # Old name for Saitek X56 joystick
+    '07382221': # Old name for Saitek X56 joystick
     {
         'Joy_1': {'Type': 'Digital', 'x': 1964, 'y': 618, 'width': 642, 'height': 108}, # Primary trigger
         'Joy_2': {'Type': 'Digital', 'x': 2084, 'y': 208, 'width': 792}, # 'R' button
@@ -872,7 +872,7 @@ hotasDetails = {
         'Joy_UAxis': {'Type': 'Analogue', 'x': 1014, 'y': 1588, 'width': 692}, # RTY3 axis
         'Joy_VAxis': {'Type': 'Analogue', 'x': 854, 'y': 1668, 'width': 692}, # RTY4 axis
     },
-    '0738A221': # Old name for Saitek X56 throttle
+    '0738A221': # Old name for Saitek X56 throttle
     {
         'Joy_1': {'Type': 'Digital', 'x': 24, 'y': 604, 'width': 752},  # E button
         'Joy_2': {'Type': 'Digital', 'x': 1874, 'y': 1660, 'width': 672}, # F push
@@ -1897,7 +1897,7 @@ hotasDetails = {
         'Joy_25': {'Type': 'Digital', 'x': 274, 'y': 1150, 'width': 1112, 'height': 66}, # POV hat right (mode 2, shifted)
         'Joy_XAxis': {'Type': 'Analogue', 'x': 2164, 'y': 910, 'width': 1532, 'height': 54},
         'Joy_YAxis': {'Type': 'Analogue', 'x': 2164, 'y': 854, 'width': 1532, 'height': 54},
-        'Joy_RXAxis': {'Type': 'Analogue', 'x': 2164, 'y': 966, 'width': 1532, 'height': 54}, # Yaw
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 2164, 'y': 966, 'width': 1532, 'height': 54}, # Yaw
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 564, 'y': 1402, 'width': 832, 'height': 54}, # Throttle
         'Joy_6': {'Type': 'Digital', 'x': 204, 'y': 1524, 'width': 992, 'height': 54}, # Flaps up
         'Joy_7': {'Type': 'Digital', 'x': 254, 'y': 1624, 'width': 992, 'height': 54}, # Flaps down
