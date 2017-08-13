@@ -2823,7 +2823,7 @@ def printList():
                 %s
             </td>
         </tr>
-        ''' % (refcardURL, name, dateStr))
+        ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
     print ('</table>')
 
 def printBody():
