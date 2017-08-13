@@ -16,6 +16,7 @@ import string
 import random
 import datetime
 import codecs
+import os
 import pickle
 import re
 from pathlib import Path
@@ -23,8 +24,8 @@ from urllib.parse import urljoin
 
 
 class Config:
-    dirRoot = Path('/home/edrefcardinfoi7/www').resolve()
-    webRoot = 'https://edrefcard.info/'
+    dirRoot = Path(os.environ.get('CONTEXT_DOCUMENT_ROOT', '..')).resolve()
+    webRoot = urljoin(os.environ.get('SCRIPT_URI', 'https://edrefcard.info/'), '/')
     
     def newRandom():
         config = Config(Config.randomName())
