@@ -2639,10 +2639,7 @@ def printList():
         ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
     print ('</table>')
 
-def printBody():
-    if mode is 'list':
-        printList()
-        return
+def printRefCard():
     if unhandledDevicesWarnings != '':
         print('%s<br/>' % unhandledDevicesWarnings)
     if misconfigurationWarnings != '':
@@ -2673,6 +2670,12 @@ def printBody():
             print('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
             print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
     print('<p/>')
+
+def printBody():
+    if mode is 'list':
+        printList()
+    else:
+        printRefCard()
 
 def printSupportPara():
     print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>')
