@@ -2876,7 +2876,7 @@ def main():
         
         (displayGroups, showKeyboard, styling, description) = parseForm(form)
         public = len(description) > 0
-            
+        
     if mode is Mode.replay or mode is Mode.generate:
         (items, modifiers, devices) = parseBindings(runId, xml, displayGroups)
         
@@ -2925,9 +2925,7 @@ def main():
             errors.errors = '<h1>The file supplied does not have any bindings for a supported controller or keyboard.</h1>'
     
     # Save variables for later replays
-    if mode is Mode.generate:
-        if description == '':
-            description = 'untitled %s config' % ', '.join([key.split('::')[0] for key in devices.keys()])
+    if (mode is Mode.generate and public):
         saveReplayInfo(config, description, styling, displayGroups, devices, showKeyboard, errors)
     
     printHTML(mode, config, public, createdImages, deviceForBlockImage, errors)
