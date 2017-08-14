@@ -2757,7 +2757,7 @@ def main():
                 displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
                 showKeyboard = True
         except FileNotFoundError:
-            errors.errors = '<h1>Unknown configuration %s</h1>' % (runId)
+            errors.errors = '<h1>Configuration %s not found</h1>' % runId
             displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
             xml = '<root></root>'
     elif mode is Mode.generate:
