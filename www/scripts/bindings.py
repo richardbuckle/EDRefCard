@@ -2706,101 +2706,107 @@ def main():
     
     blocks = form.getvalue('blocks')
     wantList = form.getvalue('list')
+    replay = form.getvalue('replay')
     if blocks is not None:
         mode = 'Blocks'
+    elif wantList is not None:
+        mode = 'list'
+    elif replay is not None:
+        mode = 'Replay'
+    else:
+        mode = 'Generate'
+    
+    if mode == 'Blocks':
         try:
             createBlockImage(blocks)
         except KeyError:
             errors.errors = '<h1>%s is not a supported controller.</h1>' % blocks
             xml = '<root></root>'
         createdImages = []
-    elif wantList is not None:
-        mode = 'list'
-    else:
-        replay = form.getvalue('replay')
-        if replay is not None:
-            mode = 'Replay'
-            fileitem = {}
-            runId = replay
-            config = Config(runId)
-            public = True
+    elif mode == 'Replay':
+        fileitem = {}
+        runId = replay
+        config = Config(runId)
+        public = True
+        try:
+            bindsPath = config.pathWithSuffix('.binds')
+            replayPath = config.pathWithSuffix('.replay')
+            with codecs.open(str(bindsPath), 'r', 'utf-8') as fileInput:
+                xml = fileInput.read()
             try:
-                bindsPath = config.pathWithSuffix('.binds')
-                replayPath = config.pathWithSuffix('.replay')
-                with codecs.open(str(bindsPath), 'r', 'utf-8') as fileInput:
-                    xml = fileInput.read()
-                try:
-                    with replayPath.open("rb") as pickleFile:
-                        replayInfo = pickle.load(pickleFile)
-                        displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
-                        showKeyboard = replayInfo.get('showKeyboard', True)
-                        errors.misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
-                        errors.deviceWarnings = replayInfo.get('deviceWarnings', '')
-                        errors.unhandledDevicesWarnings = ''
-                        styling = replayInfo.get('styling', 'None')
-                        description = replayInfo.get('description', '')
-                        timestamp = replayInfo.get('timestamp')
-                        # devices = replayInfo['devices']
-                except FileNotFoundError:
-                    displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
-                    showKeyboard = True
+                with replayPath.open("rb") as pickleFile:
+                    replayInfo = pickle.load(pickleFile)
+                    displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
+                    showKeyboard = replayInfo.get('showKeyboard', True)
+                    errors.misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
+                    errors.deviceWarnings = replayInfo.get('deviceWarnings', '')
+                    errors.unhandledDevicesWarnings = ''
+                    styling = replayInfo.get('styling', 'None')
+                    description = replayInfo.get('description', '')
+                    timestamp = replayInfo.get('timestamp')
+                    # devices = replayInfo['devices']
             except FileNotFoundError:
-                errors.errors = '<h1>Unknown configuration %s</h1>' % (runId)
                 displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
-                xml = '<root></root>'
-        else:
-            mode = 'Generate'
-            config = Config.newRandom()
-            config.makeDir()
-            runId = config.name
-            displayGroups = []
-            public = False
-            xml = form.getvalue('bindings')
-            if xml is None or xml is b'':
-                errors.errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
-                xml = '<root></root>'
-            else:
-                xml = xml.decode(encoding='utf-8')
-                bindsPath = config.pathWithSuffix('.binds')
-                with codecs.open(str(bindsPath), 'w', 'utf-8') as xmlOutput:
-                    xmlOutput.write(xml)
-            if form.getvalue('showgalaxymap'):
-                displayGroups.append('Galaxy map')
-            if form.getvalue('showheadlook'):
-                displayGroups.append('Head look')
-            if form.getvalue('showsrv'):
-                displayGroups.append('SRV')
-            if form.getvalue('showship'):
-                displayGroups.append('Ship')
-            if form.getvalue('showui'):
-                displayGroups.append('UI')
-            if form.getvalue('showfighter'):
-                displayGroups.append('Fighter')
-            if form.getvalue('showmulticrew'):
-                displayGroups.append('Multicrew')
-            if form.getvalue('showcamera'):
-                displayGroups.append('Camera')
-            if form.getvalue('showcommandercreator'):
-                displayGroups.append('Commander creator')
-            if form.getvalue('showmisc'):
-                displayGroups.append('Misc')
-            if form.getvalue('public'):
-                public = True
-            if form.getvalue('keyboard'):
                 showKeyboard = True
-            else:
-                showKeyboard = False
+        except FileNotFoundError:
+            errors.errors = '<h1>Unknown configuration %s</h1>' % (runId)
+            displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
+            xml = '<root></root>'
+    elif mode == 'Generate':
+        config = Config.newRandom()
+        config.makeDir()
+        runId = config.name
+        displayGroups = []
+        public = False
+        xml = form.getvalue('bindings')
+        if xml is None or xml is b'':
+            errors.errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
+            xml = '<root></root>'
+        else:
+            xml = xml.decode(encoding='utf-8')
+            bindsPath = config.pathWithSuffix('.binds')
+            with codecs.open(str(bindsPath), 'w', 'utf-8') as xmlOutput:
+                xmlOutput.write(xml)
+        if form.getvalue('showgalaxymap'):
+            displayGroups.append('Galaxy map')
+        if form.getvalue('showheadlook'):
+            displayGroups.append('Head look')
+        if form.getvalue('showsrv'):
+            displayGroups.append('SRV')
+        if form.getvalue('showship'):
+            displayGroups.append('Ship')
+        if form.getvalue('showui'):
+            displayGroups.append('UI')
+        if form.getvalue('showfighter'):
+            displayGroups.append('Fighter')
+        if form.getvalue('showmulticrew'):
+            displayGroups.append('Multicrew')
+        if form.getvalue('showcamera'):
+            displayGroups.append('Camera')
+        if form.getvalue('showcommandercreator'):
+            displayGroups.append('Commander creator')
+        if form.getvalue('showmisc'):
+            displayGroups.append('Misc')
+        if form.getvalue('public'):
+            public = True
+        if form.getvalue('keyboard'):
+            showKeyboard = True
+        else:
+            showKeyboard = False
 
-            if form.getvalue('styling') == 'group':
-                styling = 'Group'
-            if form.getvalue('styling') == 'category':
-                styling = 'Category'
-            if form.getvalue('styling') == 'modifier':
-                styling = 'Modifier'
-            description = form.getvalue('description')
-            if description is None:
-                description = ''
-        
+        if form.getvalue('styling') == 'group':
+            styling = 'Group'
+        if form.getvalue('styling') == 'category':
+            styling = 'Category'
+        if form.getvalue('styling') == 'modifier':
+            styling = 'Modifier'
+        description = form.getvalue('description')
+        if description is None:
+            description = ''
+        else:
+            pass
+            
+    if mode == 'Replay' or mode == 'Generate':
         # Obtain the bindings from the configuration file
         parser = etree.XMLParser(encoding='utf-8')
         try:
