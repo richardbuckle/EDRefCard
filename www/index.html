@@ -13,13 +13,13 @@
         <h1>EDRefCard</h1>
       </div>
       <div id="content">
-        Create and/or share a graphical reference card for your keyboard and controller bindings.
+        Create and/or share a graphical reference card for your keyboard and controller bindings for Elite: Dangerous.
         <p />
-        Once you have set up your bindings in the game you will find them as a 'Custom.2.0.binds' file in your local data directory (typically %LOCALAPPDATA%\Frontier Developments\Elite Dangerous\Options\Bindings).
-        <p />
-        You can then input this file below to create and/or share a reference card.
-        <p/>
         <a href="/list">View a list of published bindings</a>. Searching by criteria such as date range, controller type etc is coming soon.
+        <p/>
+        You can find your bindings file as a '.binds' file in your local data directory (typically %LOCALAPPDATA%\Frontier Developments\Elite Dangerous\Options\Bindings).
+        <p />
+        You can then upload this file below to create and/or share a reference card.
         <p/>
         <form id="uploadbindings" enctype="multipart/form-data" method="post" action="scripts/bindings.py">
           <input id="fileupload" name="bindings" type="file" accept=".binds" required />
@@ -28,44 +28,38 @@
 			<button type="submit"><h4>Generate reference card</h4></button>
 		  </div>         
           <h3>Filtering</h3>
-          Select which types of control you want to see on the reference card:
+          Choose the categories of control you want to include:
           <p />
-          <input type="checkbox" checked name="showship" value="on" />Ship controls
+          <input type="checkbox" checked name="showship" value="on" />Ship
           <br />
-          <input type="checkbox" checked name="showsrv" value="on" />SRV controls
+          <input type="checkbox" checked name="showsrv" value="on" />SRV
           <br />
-          <input type="checkbox" checked name="showfighter" value="on" />Fighter controls
+          <input type="checkbox" checked name="showfighter" value="on" />Fighter
           <br />
-          <input type="checkbox" checked name="showmulticrew" value="on" />Multicrew controls
+          <input type="checkbox" checked name="showmulticrew" value="on" />Multicrew
           <br />
-          <input type="checkbox" checked name="showheadlook" value="on" />Head look controls
+          <input type="checkbox" checked name="showheadlook" value="on" />Head look
           <br />
-          <input type="checkbox" checked name="showui" value="on" />UI controls
+          <input type="checkbox" checked name="showui" value="on" />UI
           <br />
-          <input type="checkbox" checked name="showgalaxymap" value="on" />Galaxy map controls
+          <input type="checkbox" checked name="showgalaxymap" value="on" />Galaxy map
           <br />
-          <input type="checkbox" checked name="showcamera" value="on" />Camera controls
+          <input type="checkbox" checked name="showcamera" value="on" />Camera
           <br />
-          <input type="checkbox" checked name="showmisc" value="on" />Miscellaneous controls
+          <input type="checkbox" checked name="showmisc" value="on" />Miscellaneous
           <br />
           <p />
           <h3>Colour</h3>
-          You can use colours to highlight different controls:
+          You can use colours to highlight modifier buttons or the control categories listed above:
           <p />
-          <input type="radio" checked name="styling" value="modifier" />Use colours to show different modifiers
+          <input type="radio" checked name="styling" value="modifier" />Colour by modifier
           <br />
-          <input type="radio" name="styling" value="group" />Use colours to show different types of control
-<!--
+          <input type="radio" name="styling" value="group" />Colour by Category
           <br />
-          <input type="radio" name="styling" value="category" />Use colours to show different categories of control (combat, navigation, <em>etc.</em>)
--->
-          <br />
-          <input type="radio" name="styling" value="none" />Don't use colours
+          <input type="radio" name="styling" value="none" />Black and white
           <p />
           <h3>Publishing</h3>
-          <input type="checkbox" checked name="public" value="on" />Publish these bindings on this site
-          <p />
-          Optional description (we save a timestamp and which controllers you are using, so no need to mention those)
+          To publish your bindings, give a description below (we save a timestamp and which controllers you are using, so no need to mention those):
           <br>
           <input type="text" name="description" autofocus size="256"  maxlength="256" style="width: 600px;/">
           <p />

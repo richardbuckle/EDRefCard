@@ -2757,8 +2757,6 @@ def parseForm(form):
         displayGroups.append('Commander creator')
     if form.getvalue('showmisc'):
         displayGroups.append('Misc')
-    if form.getvalue('public'):
-        public = True
     if form.getvalue('keyboard'):
         showKeyboard = True
     else:
@@ -2866,7 +2864,6 @@ def main():
         config.makeDir()
         runId = config.name
         displayGroups = []
-        public = False
         xml = form.getvalue('bindings')
         if xml is None or xml is b'':
             errors.errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
@@ -2878,6 +2875,7 @@ def main():
                 xmlOutput.write(xml)
         
         (displayGroups, showKeyboard, styling, description) = parseForm(form)
+        public = len(description) > 0
             
     if mode is Mode.replay or mode is Mode.generate:
         (items, modifiers, devices) = parseBindings(runId, xml, displayGroups)
