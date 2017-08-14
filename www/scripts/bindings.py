@@ -85,13 +85,14 @@ class Config:
         return objs
 
 
-cgitb.enable()
+class Errors:
+    
+    def __init__(self):
+        self.unhandledDevicesWarnings = ''
+        self.deviceWarnings = ''
+        self.misconfigurationWarnings = ''
+        self.errors = ''
 
-
-unhandledDevicesWarnings = ''
-deviceWarnings = ''
-misconfigurationWarnings = ''
-errors = ''
 
 supportedDevices = OrderedDict([
     ('LogitechExtreme3DPro', {'Template': 'extreme3dpro', 'HandledDevices': ['LogitechExtreme3DPro']}),
@@ -2639,15 +2640,16 @@ def printList():
         ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
     print ('</table>')
 
-def printRefCard():
-    if unhandledDevicesWarnings != '':
-        print('%s<br/>' % unhandledDevicesWarnings)
-    if misconfigurationWarnings != '':
-        print('%s<br/>' % misconfigurationWarnings)
-    if deviceWarnings != '':
-        print('%s<br/>' % deviceWarnings)
-    if errors != '':
-        print('%s<br/>' % errors)
+def printRefCard(config, public, createdImages, blocks, errors):
+    runId = config.name
+    if errors.unhandledDevicesWarnings != '':
+        print('%s<br/>' % errors.unhandledDevicesWarnings)
+    if errors.misconfigurationWarnings != '':
+        print('%s<br/>' % errors.misconfigurationWarnings)
+    if errors.deviceWarnings != '':
+        print('%s<br/>' % errors.deviceWarnings)
+    if errors.errors != '':
+        print('%s<br/>' % errors.errors)
     else:
         for createdImage in createdImages:
             if '::' in createdImage:
@@ -2671,34 +2673,37 @@ def printRefCard():
             print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
     print('<p/>')
 
-def printBody():
+def printBody(mode, config, public, createdImages, blocks, errors):
     if mode is 'list':
         printList()
     else:
-        printRefCard()
+        printRefCard(config, public, createdImages, blocks, errors)
 
 def printSupportPara():
     print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>')
 
-def printHTML():
+def printHTML(mode, config, public, createdImages, blocks, errors):
     print('Content-Type: text/html')
     print()
     print('<html>')
     print('<head><title>Elite: Dangerous bindings</title></head>')
     print('<body>')
-    printBody()
+    printBody(mode, config, public, createdImages, blocks, errors)
     print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
     print('</body>')
     print('</html>')
 
 def main():
+    cgitb.enable()
+    
+    errors = Errors()
+    
     # Obtain form input and set up our variables
     form = cgi.FieldStorage()
-
-    # TODO get rid if these globals
+    
     styling = 'None'
     description = ''
-
+    
     blocks = form.getvalue('blocks')
     wantList = form.getvalue('list')
     if blocks is not None:
@@ -2706,7 +2711,7 @@ def main():
         try:
             createBlockImage(blocks)
         except KeyError:
-            errors = '<h1>%s is not a supported controller.</h1>' % blocks
+            errors.errors = '<h1>%s is not a supported controller.</h1>' % blocks
             xml = '<root></root>'
         createdImages = []
     elif wantList is not None:
@@ -2729,9 +2734,9 @@ def main():
                         replayInfo = pickle.load(pickleFile)
                         displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
                         showKeyboard = replayInfo.get('showKeyboard', True)
-                        misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
-                        deviceWarnings = replayInfo.get('deviceWarnings', '')
-                        unhandledDevicesWarnings = ''
+                        errors.misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
+                        errors.deviceWarnings = replayInfo.get('deviceWarnings', '')
+                        errors.unhandledDevicesWarnings = ''
                         styling = replayInfo.get('styling', 'None')
                         description = replayInfo.get('description', '')
                         timestamp = replayInfo.get('timestamp')
@@ -2740,7 +2745,7 @@ def main():
                     displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
                     showKeyboard = True
             except FileNotFoundError:
-                errors = '<h1>Unknown configuration %s</h1>' % (runId)
+                errors.errors = '<h1>Unknown configuration %s</h1>' % (runId)
                 displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
                 xml = '<root></root>'
         else:
@@ -2752,7 +2757,7 @@ def main():
             public = False
             xml = form.getvalue('bindings')
             if xml is None or xml is b'':
-                errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
+                errors.errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
                 xml = '<root></root>'
             else:
                 xml = xml.decode(encoding='utf-8')
@@ -2795,17 +2800,17 @@ def main():
             description = form.getvalue('description')
             if description is None:
                 description = ''
-
+        
         # Obtain the bindings from the configuration file
         parser = etree.XMLParser(encoding='utf-8')
         try:
             tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
         except etree.XMLSyntaxError:
-            errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
+            errors.errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
             xml = '<root></root>'
             tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
         (items, modifiers, devices) = parseBindings(runId, tree, displayGroups)
-
+        
         alreadyHandledDevices = []
         createdImages = []
         for supportedDeviceKey, supportedDevice in supportedDevices.items():
@@ -2834,7 +2839,7 @@ def main():
                         createdImages.append('%s::%s' % (supportedDeviceKey, deviceIndex))
                         for handledDevice in supportedDevice['HandledDevices']:
                             alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
-
+        
         if devices.get('Keyboard::0') is not None:
             keyboardItems = 0
             for  item in items.values():
@@ -2849,27 +2854,27 @@ def main():
                 fontSize = 40
             createKeyboardImage(items, modifiers, 'keyboard', ['Keyboard'], fontSize, displayGroups, runId, public)
             createdImages.append('Keyboard')
-
+        
         for deviceKey, device in devices.items():
             # Arduino Leonardo is used for head tracking so ignore it, along with vJoy (Tobii Eyex) and 16D00AEA (EDTracker)
             if device is None and deviceKey != 'Mouse::0' and deviceKey != 'ArduinoLeonardo::0' and deviceKey != 'vJoy::0' and deviceKey != 'vJoy::1' and deviceKey != '16D00AEA::0':
                 sys.stderr.write('%s: found unsupported device %s\n' % (runId, deviceKey))
-                if unhandledDevicesWarnings  == '':
-                    unhandledDevicesWarnings = '<h1>Unknown controller detected</h1>You have a device that is not supported at this time. Please report details of your device by following the link at the bottom of this page supplying the reference "%s" and we will attempt to add support for it.' % runId
-            if device is not None and 'ThrustMasterWarthogCombined' in device['HandledDevices'] and deviceWarnings == '':
-                deviceWarnings = '<h2>Mapping Software Detected</h2>You are using the ThrustMaster TARGET software.  As a result it is possible that not all of the controls will show up.  If you have missing controls then you should remove the mapping from TARGET and map them using Elite\'s own configuration UI.'
+                if errors.unhandledDevicesWarnings  == '':
+                    errors.unhandledDevicesWarnings = '<h1>Unknown controller detected</h1>You have a device that is not supported at this time. Please report details of your device by following the link at the bottom of this page supplying the reference "%s" and we will attempt to add support for it.' % runId
+            if device is not None and 'ThrustMasterWarthogCombined' in device['HandledDevices'] and errors.deviceWarnings == '':
+                errors.deviceWarnings = '<h2>Mapping Software Detected</h2>You are using the ThrustMaster TARGET software. As a result it is possible that not all of the controls will show up. If you have missing controls then you should remove the mapping from TARGET and map them using Elite\'s own configuration UI.'
         
-        if len(createdImages) == 0 and misconfigurationWarnings == '' and unhandledDevicesWarnings == '' and errors == '':
-            errors = '<h1>The file supplied does not have any bindings for a supported HOTAS or keyboard.</h1>'
-
+        if len(createdImages) == 0 and errors.misconfigurationWarnings == '' and errors.unhandledDevicesWarnings == '' and errors.errors == '':
+            errors.errors = '<h1>The file supplied does not have any bindings for a supported controller or keyboard.</h1>'
+    
     # Save variables for later replays
     if mode == 'Generate':
         replayInfo = {}
         replayInfo['displayGroups'] = displayGroups
         replayInfo['showKeyboard'] = showKeyboard
-        replayInfo['misconfigurationWarnings'] = misconfigurationWarnings
-        replayInfo['unhandledDevicesWarnings'] = unhandledDevicesWarnings
-        replayInfo['deviceWarnings'] = deviceWarnings
+        replayInfo['misconfigurationWarnings'] = errors.misconfigurationWarnings
+        replayInfo['unhandledDevicesWarnings'] = errors.unhandledDevicesWarnings
+        replayInfo['deviceWarnings'] = errors.deviceWarnings
         replayInfo['styling'] = styling
         replayInfo['description'] = description
         replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
@@ -2878,8 +2883,8 @@ def main():
         replayPath = config.pathWithSuffix('.replay')
         with replayPath.open('wb') as pickleFile:
             pickle.dump(replayInfo, pickleFile)
-
-    printHTML()
+    
+    printHTML(mode, config, public, createdImages, blocks, errors)
 
 if __name__ == '__main__':
     main()
