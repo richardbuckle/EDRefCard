@@ -2815,6 +2815,8 @@ def main():
     config = Config.newRandom()
     styling = 'None'
     description = ''
+    public = False
+    createdImages = []
     errors = Errors()
     
     deviceForBlockImage = form.getvalue('blocks')
