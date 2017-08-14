@@ -2648,7 +2648,7 @@ def printList():
         ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
     print ('</table>')
 
-def printRefCard(config, public, createdImages, blocks, errors):
+def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
     runId = config.name
     if errors.unhandledDevicesWarnings != '':
         print('%s<br/>' % errors.unhandledDevicesWarnings)
@@ -2672,31 +2672,31 @@ def printRefCard(config, public, createdImages, blocks, errors):
                 print('<img width="100%%" src="../configs/%s/%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
             else:
                 print('<img width="100%%" src="../configs/%s/%s-%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
-        if blocks is not None:
-            print('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[blocks]['Template'][:2], supportedDevices[blocks]['Template']))
-        if blocks is None and public is True:
+        if deviceForBlockImage is not None:
+            print('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[deviceForBlockImage]['Template'][:2], supportedDevices[deviceForBlockImage]['Template']))
+        if deviceForBlockImage is None and public is True:
             linkURL = config.refcardURL()
             bindsURL = config.bindsURL()
             print('<p/>Link directly to this page with the URL <a href="%s">%s</a>' % (linkURL, linkURL))
             print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
     print('<p/>')
 
-def printBody(mode, config, public, createdImages, blocks, errors):
+def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
     if mode is Mode.list:
         printList()
     else:
-        printRefCard(config, public, createdImages, blocks, errors)
+        printRefCard(config, public, createdImages, deviceForBlockImage, errors)
 
 def printSupportPara():
     print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>')
 
-def printHTML(mode, config, public, createdImages, blocks, errors):
+def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('Content-Type: text/html')
     print()
     print('<html>')
     print('<head><title>Elite: Dangerous bindings</title></head>')
     print('<body>')
-    printBody(mode, config, public, createdImages, blocks, errors)
+    printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
     print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
     print('</body>')
     print('</html>')
@@ -2711,11 +2711,11 @@ def main():
     
     styling = 'None'
     description = ''
-    
-    blocks = form.getvalue('blocks')
+
+    deviceForBlockImage = form.getvalue('blocks')
     wantList = form.getvalue('list')
     replay = form.getvalue('replay')
-    if blocks is not None:
+    if deviceForBlockImage is not None:
         mode = Mode.blocks
     elif wantList is not None:
         mode = Mode.list
@@ -2726,9 +2726,9 @@ def main():
     
     if mode is Mode.blocks:
         try:
-            createBlockImage(blocks)
+            createBlockImage(deviceForBlockImage)
         except KeyError:
-            errors.errors = '<h1>%s is not a supported controller.</h1>' % blocks
+            errors.errors = '<h1>%s is not a supported controller.</h1>' % deviceForBlockImage
             xml = '<root></root>'
         createdImages = []
     elif mode is Mode.replay:
@@ -2896,7 +2896,7 @@ def main():
         with replayPath.open('wb') as pickleFile:
             pickle.dump(replayInfo, pickleFile)
     
-    printHTML(mode, config, public, createdImages, blocks, errors)
+    printHTML(mode, config, public, createdImages, deviceForBlockImage, errors)
 
 if __name__ == '__main__':
     main()
