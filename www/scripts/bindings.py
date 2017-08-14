@@ -2027,7 +2027,15 @@ def transKey(key):
         trans = key.replace('Key_', '')
     return trans
 
-def parseBindings(runId, tree, displayGroups):
+def parseBindings(runId, xml, displayGroups):
+    parser = etree.XMLParser(encoding='utf-8')
+    try:
+        tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
+    except etree.XMLSyntaxError:
+        errors.errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
+        xml = '<root></root>'
+        tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
+    
     items = {}
     modifiers = {}
     hotasModifierNum = 1
@@ -2840,15 +2848,7 @@ def main():
         (displayGroups, showKeyboard, styling, description) = parseForm(form)
             
     if mode is Mode.replay or mode is Mode.generate:
-        # Obtain the bindings from the configuration file
-        parser = etree.XMLParser(encoding='utf-8')
-        try:
-            tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-        except etree.XMLSyntaxError:
-            errors.errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
-            xml = '<root></root>'
-            tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-        (items, modifiers, devices) = parseBindings(runId, tree, displayGroups)
+        (items, modifiers, devices) = parseBindings(runId, xml, displayGroups)
         
         alreadyHandledDevices = []
         createdImages = []
@@ -2886,7 +2886,7 @@ def main():
                     for bind in item.get('Binds').values():
                         keyboardItems = keyboardItems + len(bind.get('Controls'))
             if keyboardItems > 48:
-                fontSize = 40 - int(((keyboardItems - 48)/20)*4)
+                fontSize = 40 - int(((keyboardItems - 48) / 20) * 4)
                 if fontSize < 24:
                     fontSize = 24
             else:
