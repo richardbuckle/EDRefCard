@@ -19,7 +19,7 @@ import codecs
 import os
 import pickle
 import re
-from enum import Enum, auto
+from enum import Enum
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -89,10 +89,10 @@ class Config:
 
 
 class Mode(Enum):
-    blocks = auto()
-    list = auto()
-    replay = auto()
-    generate = auto()
+    blocks = 1
+    list = 2
+    replay = 3
+    generate = 4
 
 
 class Errors:
