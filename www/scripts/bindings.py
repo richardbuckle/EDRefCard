@@ -2258,6 +2258,29 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             sourceImg.save(filename=str(filePath))
     return True
 
+def appendKeyboardImage(createdImages, items, modifiers, fontSize, displayGroups, runId, public):
+    def countKeyboardItems(items):
+        keyboardItems = 0
+        for  item in items.values():
+            if item.get('Device') == 'Keyboard':
+                for bind in item.get('Binds').values():
+                    keyboardItems = keyboardItems + len(bind.get('Controls'))
+        return keyboardItems
+    
+    def fontSizeForKeyBoardItems(items):
+        keyboardItems = countKeyboardItems(items)
+        if keyboardItems > 48:
+            fontSize = 40 - int(((keyboardItems - 48) / 20) * 4)
+            if fontSize < 24:
+                fontSize = 24
+        else:
+            fontSize = 40
+        return fontSize
+    
+    fontSize = fontSizeForKeyBoardItems(items)
+    createKeyboardImage(items, modifiers, 'keyboard', ['Keyboard'], fontSize, displayGroups, runId, public)
+    createdImages.append('Keyboard')
+
 # Write text, possible wrapping
 def writeText(context, img, text, screenState, font, surround, newLine):
     if text is None:
@@ -2882,19 +2905,7 @@ def main():
                             alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
         
         if devices.get('Keyboard::0') is not None:
-            keyboardItems = 0
-            for  item in items.values():
-                if item.get('Device') == 'Keyboard':
-                    for bind in item.get('Binds').values():
-                        keyboardItems = keyboardItems + len(bind.get('Controls'))
-            if keyboardItems > 48:
-                fontSize = 40 - int(((keyboardItems - 48) / 20) * 4)
-                if fontSize < 24:
-                    fontSize = 24
-            else:
-                fontSize = 40
-            createKeyboardImage(items, modifiers, 'keyboard', ['Keyboard'], fontSize, displayGroups, runId, public)
-            createdImages.append('Keyboard')
+            appendKeyboardImage(createdImages, items, modifiers, fontSize, displayGroups, runId, public)
         
         for deviceKey, device in devices.items():
             # Arduino Leonardo is used for head tracking so ignore it, along with vJoy (Tobii Eyex) and 16D00AEA (EDTracker)
