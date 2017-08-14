@@ -2361,9 +2361,9 @@ def getModifierStyle(num):
         return modifierStyles[(113 - num) % 13]
 
 # Create a HOTAS image from the template plus bindings
-def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, runId, public, styling, deviceIndex, misconfigurationWarnings):
+def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, config, public, styling, deviceIndex, misconfigurationWarnings):
     # Set up the path for our file
-    config = Config(runId)
+    runId = config.name
     if deviceIndex == 0:
         name = source
     else:
@@ -2902,7 +2902,7 @@ def main():
                             hasNewBindings = True
                             break
                     if hasNewBindings is True:
-                        createHOTASImage(items, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, runId, public, styling, deviceIndex, errors.misconfigurationWarnings)
+                        createHOTASImage(items, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, config, public, styling, deviceIndex, errors.misconfigurationWarnings)
                         createdImages.append('%s::%s' % (supportedDeviceKey, deviceIndex))
                         for handledDevice in supportedDevice['HandledDevices']:
                             alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
