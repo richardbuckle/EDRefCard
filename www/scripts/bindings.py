@@ -2751,8 +2751,10 @@ def parseForm(form):
     return (displayGroups, showKeyboard, styling, description)
     
 def determineMode(form):
+    deviceForBlockImage = form.getvalue('blocks')
     wantList = form.getvalue('list')
     runIdToReplay = form.getvalue('replay')
+    
     if deviceForBlockImage is not None:
         mode = Mode.blocks
     elif wantList is not None:
