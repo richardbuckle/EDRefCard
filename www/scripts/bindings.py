@@ -35,6 +35,8 @@ class Config:
         return config
     
     def __init__(self, name):
+        if not name:
+            raise ValueError('Config must have a name')
         self.name = name
     
     def randomName():
@@ -2850,8 +2852,8 @@ def main():
             except FileNotFoundError:
                 displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
                 showKeyboard = True
-        except FileNotFoundError:
-            errors.errors = '<h1>Configuration %s not found</h1>' % runId
+        except (ValueError, FileNotFoundError):
+            errors.errors = '<h1>Configuration "%s" not found</h1>' % runId
             displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
             xml = '<root></root>'
     elif mode is Mode.generate:
