@@ -2741,6 +2741,19 @@ def parseForm(form):
     if description is None:
         description = ''
     return (displayGroups, showKeyboard, styling, description)
+    
+def determineMode(form):
+    wantList = form.getvalue('list')
+    runIdToReplay = form.getvalue('replay')
+    if deviceForBlockImage is not None:
+        mode = Mode.blocks
+    elif wantList is not None:
+        mode = Mode.list
+    elif runIdToReplay is not None:
+        mode = Mode.replay
+    else:
+        mode = Mode.generate
+    return mode
 
 def main():
     cgitb.enable()
@@ -2752,21 +2765,12 @@ def main():
     
     styling = 'None'
     description = ''
-
-    deviceForBlockImage = form.getvalue('blocks')
-    wantList = form.getvalue('list')
-    runIdToReplay = form.getvalue('replay')
-    if deviceForBlockImage is not None:
-        mode = Mode.blocks
-    elif wantList is not None:
-        mode = Mode.list
-    elif runIdToReplay is not None:
-        mode = Mode.replay
-    else:
-        mode = Mode.generate
     
+    deviceForBlockImage = form.getvalue('blocks')
+    mode = determineMode(form)
     if mode is Mode.blocks:
         try:
+            deviceForBlockImage = form.getvalue('blocks')
             createBlockImage(deviceForBlockImage)
         except KeyError:
             errors.errors = '<h1>%s is not a supported controller.</h1>' % deviceForBlockImage
@@ -2774,7 +2778,7 @@ def main():
         createdImages = []
     elif mode is Mode.replay:
         fileitem = {}
-        runId = runIdToReplay
+        runId = form.getvalue('replay')
         config = Config(runId)
         public = True
         try:
