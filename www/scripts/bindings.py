@@ -2725,7 +2725,7 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('Content-Type: text/html')
     print()
     print('<html>')
-    print('<head><title>Elite: Dangerous bindings</title></head>')
+    print('<head><title>EDRefCard</title></head>')
     print('<body>')
     printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
     print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
