@@ -2192,12 +2192,12 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             context.fill_opacity = 1
 
             # Add the ID to the title
-            if public is True:
-                context.push()
-                context.font = getFontPath('SemiBold', 'Normal')
-                context.font_size = 72
-                context.text(x=966,y=252,body='binds/%s' % runId)
-                context.pop()
+            url = config.refcardURL() if public else config.webRoot
+            context.push()
+            context.font = getFontPath('SemiBold', 'Normal')
+            context.font_size = 72
+            context.text(x=966, y=252, body=url)
+            context.pop()
 
             outputs = {}
             for group in displayGroups:
