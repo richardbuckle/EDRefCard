@@ -2665,7 +2665,7 @@ def printList():
     for obj in objs:
         config = Config(obj['runID'])
         refcardURL = str(config.refcardURL())
-        dateStr = str(obj['timestamp'].strftime("%Y-%m-%d %H:%M %Z"))
+        dateStr = str(obj['timestamp'].ctime())
         name = str(obj['description'])
         if name is '': 
             # if the uploader didn't bother to name their config, skip it
