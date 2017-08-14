@@ -2196,7 +2196,7 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             context.push()
             context.font = getFontPath('SemiBold', 'Normal')
             context.font_size = 72
-            context.text(x=966, y=252, body=url)
+            context.text(x=23, y=252, body=url)
             context.pop()
 
             outputs = {}
