@@ -2755,16 +2755,32 @@ def determineMode(form):
         mode = Mode.generate
     return mode
 
+def saveReplayInfo(config, description, styling, displayGroups, devices, showKeyboard, errors):
+    replayInfo = {}
+    replayInfo['displayGroups'] = displayGroups
+    replayInfo['showKeyboard'] = showKeyboard
+    replayInfo['misconfigurationWarnings'] = errors.misconfigurationWarnings
+    replayInfo['unhandledDevicesWarnings'] = errors.unhandledDevicesWarnings
+    replayInfo['deviceWarnings'] = errors.deviceWarnings
+    replayInfo['styling'] = styling
+    replayInfo['description'] = description
+    replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
+    replayInfo['devices'] = devices
+    replayPath = config.pathWithSuffix('.replay')
+    with replayPath.open('wb') as pickleFile:
+        pickle.dump(replayInfo, pickleFile)
+
 def main():
     cgitb.enable()
     
-    errors = Errors()
     
     # Obtain form input and set up our variables
     form = cgi.FieldStorage()
     
+    config = Config.newRandom()
     styling = 'None'
     description = ''
+    errors = Errors()
     
     deviceForBlockImage = form.getvalue('blocks')
     mode = determineMode(form)
@@ -2892,20 +2908,7 @@ def main():
     
     # Save variables for later replays
     if mode is Mode.generate:
-        replayInfo = {}
-        replayInfo['displayGroups'] = displayGroups
-        replayInfo['showKeyboard'] = showKeyboard
-        replayInfo['misconfigurationWarnings'] = errors.misconfigurationWarnings
-        replayInfo['unhandledDevicesWarnings'] = errors.unhandledDevicesWarnings
-        replayInfo['deviceWarnings'] = errors.deviceWarnings
-        replayInfo['styling'] = styling
-        replayInfo['description'] = description
-        replayInfo['timestamp'] = datetime.datetime.now(datetime.timezone.utc)
-        replayInfo['devices'] = devices
-        config = Config(runId)
-        replayPath = config.pathWithSuffix('.replay')
-        with replayPath.open('wb') as pickleFile:
-            pickle.dump(replayInfo, pickleFile)
+        saveReplayInfo(config, description, styling, displayGroups, devices, showKeyboard, errors)
     
     printHTML(mode, config, public, createdImages, deviceForBlockImage, errors)
 
