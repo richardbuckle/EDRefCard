@@ -2652,7 +2652,8 @@ def calculateBestFontSize(context, text, hotasDetail, biggestFontSize):
     return (fitText, fontSize, metrics)
 
 def printList():
-    print('<h2>Yes, we know this is very basic. Proper search support is coming soon.</h2>')
+    print('<h1>EDRefCard: public configurations.</h1>')
+    print('<p>Yes, we know this is very basic. Proper search support is coming soon.</p>')
     objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']))
     print('<table>')
     print('''
