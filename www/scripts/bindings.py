@@ -2714,12 +2714,12 @@ def main():
 
     deviceForBlockImage = form.getvalue('blocks')
     wantList = form.getvalue('list')
-    replay = form.getvalue('replay')
+    runIdToReplay = form.getvalue('replay')
     if deviceForBlockImage is not None:
         mode = Mode.blocks
     elif wantList is not None:
         mode = Mode.list
-    elif replay is not None:
+    elif runIdToReplay is not None:
         mode = Mode.replay
     else:
         mode = Mode.generate
@@ -2733,7 +2733,7 @@ def main():
         createdImages = []
     elif mode is Mode.replay:
         fileitem = {}
-        runId = replay
+        runId = runIdToReplay
         config = Config(runId)
         public = True
         try:
