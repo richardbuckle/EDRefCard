@@ -2830,11 +2830,13 @@ def main():
     elif mode is Mode.replay:
         fileitem = {}
         runId = form.getvalue('replay')
-        config = Config(runId)
         public = True
         try:
+            config = Config(runId)
             bindsPath = config.pathWithSuffix('.binds')
             replayPath = config.pathWithSuffix('.replay')
+            if not (bindsPath.exists() and replayPath.exists):
+                raise FileNotFoundError
             with codecs.open(str(bindsPath), 'r', 'utf-8') as fileInput:
                 xml = fileInput.read()
             try:
