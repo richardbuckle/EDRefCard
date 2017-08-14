@@ -19,6 +19,7 @@ import codecs
 import os
 import pickle
 import re
+from enum import Enum, auto
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -83,6 +84,13 @@ class Config:
         if sortKey is not None:
             objs.sort(key=sortKey)
         return objs
+
+
+class Mode(Enum):
+    blocks = auto()
+    list = auto()
+    replay = auto()
+    generate = auto()
 
 
 class Errors:
@@ -2674,7 +2682,7 @@ def printRefCard(config, public, createdImages, blocks, errors):
     print('<p/>')
 
 def printBody(mode, config, public, createdImages, blocks, errors):
-    if mode is 'list':
+    if mode is Mode.list:
         printList()
     else:
         printRefCard(config, public, createdImages, blocks, errors)
@@ -2708,22 +2716,22 @@ def main():
     wantList = form.getvalue('list')
     replay = form.getvalue('replay')
     if blocks is not None:
-        mode = 'Blocks'
+        mode = Mode.blocks
     elif wantList is not None:
-        mode = 'list'
+        mode = Mode.list
     elif replay is not None:
-        mode = 'Replay'
+        mode = Mode.replay
     else:
-        mode = 'Generate'
+        mode = Mode.generate
     
-    if mode == 'Blocks':
+    if mode is Mode.blocks:
         try:
             createBlockImage(blocks)
         except KeyError:
             errors.errors = '<h1>%s is not a supported controller.</h1>' % blocks
             xml = '<root></root>'
         createdImages = []
-    elif mode == 'Replay':
+    elif mode is Mode.replay:
         fileitem = {}
         runId = replay
         config = Config(runId)
@@ -2752,7 +2760,7 @@ def main():
             errors.errors = '<h1>Unknown configuration %s</h1>' % (runId)
             displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
             xml = '<root></root>'
-    elif mode == 'Generate':
+    elif mode is Mode.generate:
         config = Config.newRandom()
         config.makeDir()
         runId = config.name
@@ -2803,10 +2811,8 @@ def main():
         description = form.getvalue('description')
         if description is None:
             description = ''
-        else:
-            pass
             
-    if mode == 'Replay' or mode == 'Generate':
+    if mode is Mode.replay or mode is Mode.generate:
         # Obtain the bindings from the configuration file
         parser = etree.XMLParser(encoding='utf-8')
         try:
@@ -2874,7 +2880,7 @@ def main():
             errors.errors = '<h1>The file supplied does not have any bindings for a supported controller or keyboard.</h1>'
     
     # Save variables for later replays
-    if mode == 'Generate':
+    if mode is Mode.generate:
         replayInfo = {}
         replayInfo['displayGroups'] = displayGroups
         replayInfo['showKeyboard'] = showKeyboard
