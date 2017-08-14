@@ -2172,7 +2172,7 @@ def parseBindings(runId, xml, displayGroups):
 
     return (items, modifiers, devices)
 
-def writeUrlToDrawing(config, drawing):
+def writeUrlToDrawing(config, drawing, public):
     url = config.refcardURL() if public else config.webRoot
     drawing.push()
     drawing.font = getFontPath('SemiBold', 'Normal')
@@ -2200,7 +2200,7 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             context.fill_opacity = 1
 
             # Add the ID to the title
-            writeUrlToDrawing(config, context)
+            writeUrlToDrawing(config, context, public)
 
             outputs = {}
             for group in displayGroups:
@@ -2388,7 +2388,7 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
             context.fill_opacity = 1
 
             # Add the ID to the title
-            writeUrlToDrawing(config, context)
+            writeUrlToDrawing(config, context, public)
 
             for key, item in items.items():
                 itemDevice = item.get('Device')
