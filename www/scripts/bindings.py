@@ -2172,6 +2172,14 @@ def parseBindings(runId, xml, displayGroups):
 
     return (items, modifiers, devices)
 
+def writeUrlToDrawing(config, drawing):
+    url = config.refcardURL() if public else config.webRoot
+    drawing.push()
+    drawing.font = getFontPath('SemiBold', 'Normal')
+    drawing.font_size = 72
+    drawing.text(x=23, y=252, body=url)
+    drawing.pop()
+
 # Create a keyboard image from the template plus bindings
 def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize, displayGroups, runId, public):
     config = Config(runId)
@@ -2192,12 +2200,7 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             context.fill_opacity = 1
 
             # Add the ID to the title
-            url = config.refcardURL() if public else config.webRoot
-            context.push()
-            context.font = getFontPath('SemiBold', 'Normal')
-            context.font_size = 72
-            context.text(x=23, y=252, body=url)
-            context.pop()
+            writeUrlToDrawing(config, context)
 
             outputs = {}
             for group in displayGroups:
@@ -2385,12 +2388,7 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
             context.fill_opacity = 1
 
             # Add the ID to the title
-            if public is True:
-                context.push()
-                context.font = getFontPath('SemiBold', 'Normal')
-                context.font_size = 72
-                context.text(x=966,y=252,body='binds/%s' % runId)
-                context.pop()
+            writeUrlToDrawing(config, context)
 
             for key, item in items.items():
                 itemDevice = item.get('Device')
