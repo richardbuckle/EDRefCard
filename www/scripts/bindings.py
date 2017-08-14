@@ -2701,6 +2701,47 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('</body>')
     print('</html>')
 
+def parseForm(form):
+    displayGroups = []
+    if form.getvalue('showgalaxymap'):
+        displayGroups.append('Galaxy map')
+    if form.getvalue('showheadlook'):
+        displayGroups.append('Head look')
+    if form.getvalue('showsrv'):
+        displayGroups.append('SRV')
+    if form.getvalue('showship'):
+        displayGroups.append('Ship')
+    if form.getvalue('showui'):
+        displayGroups.append('UI')
+    if form.getvalue('showfighter'):
+        displayGroups.append('Fighter')
+    if form.getvalue('showmulticrew'):
+        displayGroups.append('Multicrew')
+    if form.getvalue('showcamera'):
+        displayGroups.append('Camera')
+    if form.getvalue('showcommandercreator'):
+        displayGroups.append('Commander creator')
+    if form.getvalue('showmisc'):
+        displayGroups.append('Misc')
+    if form.getvalue('public'):
+        public = True
+    if form.getvalue('keyboard'):
+        showKeyboard = True
+    else:
+        showKeyboard = False
+    
+    styling = 'None'  # Yes we do mean a string 'None'
+    if form.getvalue('styling') == 'group':
+        styling = 'Group'
+    if form.getvalue('styling') == 'category':
+        styling = 'Category'
+    if form.getvalue('styling') == 'modifier':
+        styling = 'Modifier'
+    description = form.getvalue('description')
+    if description is None:
+        description = ''
+    return (displayGroups, showKeyboard, styling, description)
+
 def main():
     cgitb.enable()
     
@@ -2776,46 +2817,6 @@ def main():
             with codecs.open(str(bindsPath), 'w', 'utf-8') as xmlOutput:
                 xmlOutput.write(xml)
         
-        def parseForm(form):
-            displayGroups = []
-            if form.getvalue('showgalaxymap'):
-                displayGroups.append('Galaxy map')
-            if form.getvalue('showheadlook'):
-                displayGroups.append('Head look')
-            if form.getvalue('showsrv'):
-                displayGroups.append('SRV')
-            if form.getvalue('showship'):
-                displayGroups.append('Ship')
-            if form.getvalue('showui'):
-                displayGroups.append('UI')
-            if form.getvalue('showfighter'):
-                displayGroups.append('Fighter')
-            if form.getvalue('showmulticrew'):
-                displayGroups.append('Multicrew')
-            if form.getvalue('showcamera'):
-                displayGroups.append('Camera')
-            if form.getvalue('showcommandercreator'):
-                displayGroups.append('Commander creator')
-            if form.getvalue('showmisc'):
-                displayGroups.append('Misc')
-            if form.getvalue('public'):
-                public = True
-            if form.getvalue('keyboard'):
-                showKeyboard = True
-            else:
-                showKeyboard = False
-            
-            styling = 'None'  # Yes we do mean a string 'None'
-            if form.getvalue('styling') == 'group':
-                styling = 'Group'
-            if form.getvalue('styling') == 'category':
-                styling = 'Category'
-            if form.getvalue('styling') == 'modifier':
-                styling = 'Modifier'
-            description = form.getvalue('description')
-            if description is None:
-                description = ''
-            return (displayGroups, showKeyboard, styling, description)
         (displayGroups, showKeyboard, styling, description) = parseForm(form)
             
     if mode is Mode.replay or mode is Mode.generate:
