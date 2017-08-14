@@ -2928,6 +2928,8 @@ def main():
     
     # Save variables for later replays
     if mode is Mode.generate:
+        if description == '':
+            description = 'untitled %s config' % devices
         saveReplayInfo(config, description, styling, displayGroups, devices, showKeyboard, errors)
     
     printHTML(mode, config, public, createdImages, deviceForBlockImage, errors)
