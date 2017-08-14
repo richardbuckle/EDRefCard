@@ -2260,7 +2260,7 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             sourceImg.save(filename=str(filePath))
     return True
 
-def appendKeyboardImage(createdImages, items, modifiers, fontSize, displayGroups, runId, public):
+def appendKeyboardImage(createdImages, items, modifiers, displayGroups, runId, public):
     def countKeyboardItems(items):
         keyboardItems = 0
         for  item in items.values():
@@ -2911,7 +2911,7 @@ def main():
                             alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
         
         if devices.get('Keyboard::0') is not None:
-            appendKeyboardImage(createdImages, items, modifiers, fontSize, displayGroups, runId, public)
+            appendKeyboardImage(createdImages, items, modifiers, displayGroups, runId, public)
         
         for deviceKey, device in devices.items():
             # Arduino Leonardo is used for head tracking so ignore it, along with vJoy (Tobii Eyex) and 16D00AEA (EDTracker)
