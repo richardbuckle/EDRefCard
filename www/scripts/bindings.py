@@ -140,7 +140,7 @@ supportedDevices = OrderedDict([
     ('LogitechG940Pedals', {'Template': 'g940pedals', 'HandledDevices': ['LogitechG940Pedals']}),
     ('SlawBF109Pedals', {'Template': 'slawbf109pedals', 'HandledDevices': ['SlawFlightControlRudder']}),
     ('MFGCrosswind', {'Template': 'crosswind', 'HandledDevices': ['16D00A38', '85640203']}),
-    ('DS4', {'Template': 'ds4', 'HandledDevices': ['DS4']}),
+    ('DS4', {'Template': 'ds4', 'HandledDevices': ['DS4', 'DualShock4']}),
     ('Keyboard', {'Template': 'keyboard', 'HandledDevices': ['Keyboard']})
 ])
 
@@ -2802,7 +2802,6 @@ def saveReplayInfo(config, description, styling, displayGroups, devices, showKey
 
 def main():
     cgitb.enable()
-    
     
     # Obtain form input and set up our variables
     form = cgi.FieldStorage()
