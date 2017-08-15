@@ -2800,6 +2800,15 @@ def saveReplayInfo(config, description, styling, displayGroups, devices, showKey
     with replayPath.open('wb') as pickleFile:
         pickle.dump(replayInfo, pickleFile)
 
+def parseLocalFile(filePath):
+    displayGroups = groupStyles.keys()
+    styling = 'None'  # Yes we do mean a string 'None'
+    config = Config('000000')
+    with filePath.open() as f:
+        xml = f.read()
+        (items, modifiers, devices) = parseBindings(config.name, xml, displayGroups)
+        return (items, modifiers, devices)
+
 def main():
     cgitb.enable()
     
