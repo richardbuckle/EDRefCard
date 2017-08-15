@@ -2172,6 +2172,14 @@ def parseBindings(runId, xml, displayGroups):
 
     return (items, modifiers, devices)
 
+def writeUrlToDrawing(config, drawing, public):
+    url = config.refcardURL() if public else config.webRoot
+    drawing.push()
+    drawing.font = getFontPath('SemiBold', 'Normal')
+    drawing.font_size = 72
+    drawing.text(x=23, y=252, body=url)
+    drawing.pop()
+
 # Create a keyboard image from the template plus bindings
 def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize, displayGroups, runId, public):
     config = Config(runId)
@@ -2192,12 +2200,7 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             context.fill_opacity = 1
 
             # Add the ID to the title
-            if public is True:
-                context.push()
-                context.font = getFontPath('SemiBold', 'Normal')
-                context.font_size = 72
-                context.text(x=966,y=252,body='binds/%s' % runId)
-                context.pop()
+            writeUrlToDrawing(config, context, public)
 
             outputs = {}
             for group in displayGroups:
@@ -2361,11 +2364,9 @@ def getModifierStyle(num):
         return modifierStyles[(113 - num) % 13]
 
 # Create a HOTAS image from the template plus bindings
-def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, runId, public, styling, deviceIndex):
-    global misconfigurationWarnings
-
+def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, config, public, styling, deviceIndex, misconfigurationWarnings):
     # Set up the path for our file
-    config = Config(runId)
+    runId = config.name
     if deviceIndex == 0:
         name = source
     else:
@@ -2387,12 +2388,7 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, ru
             context.fill_opacity = 1
 
             # Add the ID to the title
-            if public is True:
-                context.push()
-                context.font = getFontPath('SemiBold', 'Normal')
-                context.font_size = 72
-                context.text(x=966,y=252,body='binds/%s' % runId)
-                context.pop()
+            writeUrlToDrawing(config, context, public)
 
             for key, item in items.items():
                 itemDevice = item.get('Device')
@@ -2904,7 +2900,7 @@ def main():
                             hasNewBindings = True
                             break
                     if hasNewBindings is True:
-                        createHOTASImage(items, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, runId, public, styling, deviceIndex)
+                        createHOTASImage(items, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, config, public, styling, deviceIndex, errors.misconfigurationWarnings)
                         createdImages.append('%s::%s' % (supportedDeviceKey, deviceIndex))
                         for handledDevice in supportedDevice['HandledDevices']:
                             alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
