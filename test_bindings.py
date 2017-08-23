@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
 import unittest
+from pathlib import Path
+from www.scripts import bindings
 
 
-class BindingsTests(unittest.TestCase):
+class ConfigTests(unittest.TestCase):
 
-    def testOne(self):
-        self.fail()
+    def testPath(self):
+        config = bindings.Config('abcdef')
+        configPath = config.path()
+        expectedPath = (Path.cwd() / '../configs/ab/abcdef').resolve()
+        self.assertEqual(configPath, expectedPath)
 
 
 def main():
