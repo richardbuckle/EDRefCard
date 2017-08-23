@@ -18,7 +18,7 @@ Currently hosted at [https://edrefcard.info/](https://edrefcard.info/).
 # Installation in a web server
 
 * Base the server on the `www` subdirectory of this repo.
-* Adjust `Config.dirRoot` and `Config.webRoot` in `www/scripts/bindings.py` as necessary.
+* Check that your server is supplying the env vars `CONTEXT_DOCUMENT_ROOT` and `SCRIPT_URI` so that `Config.dirRoot` and `Config.webRoot` in `www/scripts/bindings.py` get set correctly. Apache 2 does this by default.
 * Add redirects as follows (in Apache 2 notation):
 
 ```
