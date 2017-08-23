@@ -2707,6 +2707,7 @@ def printList():
         </tr>
         ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
     print ('</table>')
+    print('<p><a href="/">Home</a>.')
 
 def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
     runId = config.name
@@ -2758,6 +2759,7 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('<body>')
     printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
     print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
+    print('<p><a href="/">Home</a>.')
     print('</body>')
     print('</html>')
 
