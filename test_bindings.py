@@ -10,7 +10,8 @@ class ConfigTests(unittest.TestCase):
     def testPath(self):
         config = bindings.Config('abcdef')
         configPath = config.path()
-        expectedPath = (Path.cwd() / '../configs/ab/abcdef').resolve()
+        cwd = Path.cwd()
+        expectedPath = cwd.parent  / 'configs/ab/abcdef'
         self.assertEqual(configPath, expectedPath)
 
 
