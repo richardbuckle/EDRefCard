@@ -2707,7 +2707,6 @@ def printList():
         </tr>
         ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
     print ('</table>')
-    print('<p><a href="/">Home</a>.')
 
 def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
     runId = config.name
