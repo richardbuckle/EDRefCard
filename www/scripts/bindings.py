@@ -2405,7 +2405,11 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
 
                 # Find the details for the control
                 texts = []
-                hotasDetail = hotasDetails.get(itemDevice).get(itemKey)
+                hotasDetail = None
+                try:
+                    hotasDetail = hotasDetails.get(itemDevice).get(itemKey)
+                except AttributeError:
+                    hotasDetail = None
                 if hotasDetail is None:
                     sys.stderr.write('%s: No control detail for %s\n' % (runId, key))
                     continue
