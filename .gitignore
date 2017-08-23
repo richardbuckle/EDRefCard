@@ -2,3 +2,5 @@ ignored
 *.pyc
 www/configs
 .cache
+.coverage
+htmlcov
