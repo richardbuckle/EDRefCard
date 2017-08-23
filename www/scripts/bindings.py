@@ -1645,6 +1645,32 @@ hotasDetails = {
         #'?': {'Type': 'Analogue', 'x': 1428, 'y': 331, 'width': 1052, 'height': 108}, # Vertical axis of trackpad
         #'?': {'Type': 'Analogue', 'x': 1428, 'y': 441, 'width': 1052, 'height': 108}, # Horizontal axis of trackpad
     },
+    'DualShock4': { # a copy of DS4
+        'Joy_1': {'Type': 'Digital', 'x': 2625, 'y': 1378, 'width': 1192}, # Square
+        'Joy_2': {'Type': 'Digital', 'x': 2625, 'y': 1283, 'width': 1192}, # Cross
+        'Joy_3': {'Type': 'Digital', 'x': 2625, 'y': 1188, 'width': 1192}, # Circle
+        'Joy_4': {'Type': 'Digital', 'x': 2625, 'y': 1094, 'width': 1192}, # Triangle
+        'Joy_5': {'Type': 'Digital', 'x': 74, 'y': 824, 'width': 1392, 'height': 108}, # Left bumper
+        'Joy_6': {'Type': 'Digital', 'x': 2368, 'y': 824, 'width': 1442, 'height': 108}, # Right bumper
+        'Joy_7': {'Type': 'Digital', 'x': 74, 'y': 986, 'width': 1192}, # Share (?)
+        'Joy_8': {'Type': 'Digital', 'x': 2625, 'y': 986, 'width': 1192}, # Options (?)
+        'Joy_9': {'Type': 'Digital', 'x': 1428, 'y': 551, 'width': 1052, 'height': 108}, # Trackpad press (?)
+        'Joy_10': {'Type': 'Digital', 'x': 1328, 'y': 1866, 'width': 1192}, # PS button (?)
+        'Joy_11': {'Type': 'Digital', 'x': 134, 'y': 1824, 'width': 1032, 'height': 108}, # Press of left stick
+        'Joy_12': {'Type': 'Digital', 'x': 2765, 'y': 1824, 'width': 1052, 'height': 108}, # Press of right stick
+        'Joy_POV1Up': {'Type': 'Digital', 'x': 134, 'y': 1104, 'width': 1032, 'height': 108},
+        'Joy_POV1Right': {'Type': 'Digital', 'x': 134, 'y': 1214, 'width': 1032, 'height': 108},
+        'Joy_POV1Down': {'Type': 'Digital', 'x': 134, 'y': 1324, 'width': 1032, 'height': 108},
+        'Joy_POV1Left': {'Type': 'Digital', 'x': 134, 'y': 1434, 'width': 1032, 'height': 108},
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 134, 'y': 1604, 'width': 1032, 'height': 108}, # Vertical axis of left stick
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 134, 'y': 1714, 'width': 1032, 'height': 108}, # Horizontal axis of left stick
+        'Joy_RZAxis': {'Type': 'Analogue', 'x': 2765, 'y': 1604, 'width': 1052, 'height': 108}, # Vertical axis of right stick
+        'Joy_ZAxis': {'Type': 'Analogue', 'x': 2765, 'y': 1714, 'width': 1052, 'height': 108}, # Horizontal axis of right stick
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 74, 'y': 718, 'width': 1392}, # Left trigger
+        'Joy_RYAxis': {'Type': 'Analogue', 'x': 2368, 'y': 720, 'width': 1442}, # Right trigger
+        #'?': {'Type': 'Analogue', 'x': 1428, 'y': 331, 'width': 1052, 'height': 108}, # Vertical axis of trackpad
+        #'?': {'Type': 'Analogue', 'x': 1428, 'y': 441, 'width': 1052, 'height': 108}, # Horizontal axis of trackpad
+    },
     'CHProPedals': {
         # Although the individual pedals are analogue, they often have digital binds due to their nature so we pretend they are digital
         'Joy_XAxis': {'Type': 'Digital', 'x': 164, 'y': 588, 'width': 1332, 'height': 162}, # Left pedal
