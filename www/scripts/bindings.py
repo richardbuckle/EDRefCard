@@ -25,7 +25,10 @@ from enum import Enum
 from pathlib import Path
 from urllib.parse import urljoin
 
-from .bindingsData import *
+try:
+    from .bindingsData import *
+except ImportError:
+    from bindingsData import *
 
 
 class Config:
