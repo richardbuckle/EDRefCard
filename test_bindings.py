@@ -15,6 +15,14 @@ class ConfigTests(unittest.TestCase):
         self.assertEqual(configPath, expectedPath)
 
 
+class ParserTests(unittest.TestCase):
+    
+    def testParseEmptyFile(self):
+        path = Path('bindings/testCases/empty.binds')
+        result = bindings.parseLocalFile(path)
+        expectedResult = ({}, {}, {})
+        self.assertEqual(result, expectedResult)
+
 def main():
     unittest.main()
 
