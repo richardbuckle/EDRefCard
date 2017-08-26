@@ -735,6 +735,7 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('<body>')
     printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
     printSupportPara()
+    printSupportPara()
     print('<p><a href="/">Home</a>.')
     print('</body>')
     print('</html>')
