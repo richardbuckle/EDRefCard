@@ -1,4 +1,5 @@
 #!/bin/sh
+DIR=`dirname "$0"`
 
 # purge all .jpg files over 1 day old
-find /home/edrefcardinfoi7/www/configs -name "*.jpg" \! \( -newerct '1 day ago' \) -delete
+find "./$DIR/www/configs" -name "*.jpg" \! \( -newerct '1 day ago' \) -delete
