@@ -72,7 +72,7 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(devices, expectedDevices)
 
     def testParseOneModifier(self):
-        path = Path('bindings/testCases/single_modiifer.binds')
+        path = Path('bindings/testCases/single_modifier.binds')
         (physicalKeys, modifiers, devices) = bindings.parseLocalFile(path)
         expectedKeys = {
             'T16000MTHROTTLE::0::Joy_4': {
