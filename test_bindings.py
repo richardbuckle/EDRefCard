@@ -103,19 +103,19 @@ class ParserTests(unittest.TestCase):
     
     def testParseEmptyFile(self):
         path = Path('bindings/testCases/empty.binds')
-        result = bindings.parseLocalFile(path)
+        (result, errors) = bindings.parseLocalFile(path)
         expectedResult = ({}, {}, {})
         self.assertEqual(result, expectedResult)
 
     def testParseInvalidFile(self):
         path = Path('bindings/testCases/Help.txt')
-        result = bindings.parseLocalFile(path)
+        (result, errors) = bindings.parseLocalFile(path)
         expectedResult = ({}, {}, {})
         self.assertEqual(result, expectedResult)
 
     def testParseOneKeyBind(self):
         path = Path('bindings/testCases/one_keystroke.binds')
-        (physicalKeys, modifiers, devices) = bindings.parseLocalFile(path)
+        ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
         expectedKeys = {
             'Keyboard::0::Key_Minus': {
                 'BaseKey': 'Key_Minus',
@@ -143,14 +143,16 @@ class ParserTests(unittest.TestCase):
                 'Key': 'Key_Minus'
             }
         }
-        expectedDevices = {'Keyboard::0': {'HandledDevices': ['Keyboard'], 'Template': 'keyboard'}}
+        expectedDevices = {
+            'Keyboard::0': {'HandledDevices': ['Keyboard'], 'Template': 'keyboard'}
+        }
         self.assertEqual(physicalKeys, expectedKeys)
         self.assertEqual(modifiers, {})
         self.assertEqual(devices, expectedDevices)
 
     def testParseOneModifier(self):
         path = Path('bindings/testCases/single_modifier.binds')
-        (physicalKeys, modifiers, devices) = bindings.parseLocalFile(path)
+        ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
         expectedKeys = {
             'T16000MTHROTTLE::0::Joy_4': {
                 'BaseKey': 'Joy_4',

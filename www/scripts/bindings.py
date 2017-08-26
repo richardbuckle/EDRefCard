@@ -954,7 +954,7 @@ def parseLocalFile(filePath):
     with filePath.open() as f:
         xml = f.read()
         (physicalKeys, modifiers, devices) = parseBindings(config.name, xml, displayGroups, errors)
-        return (physicalKeys, modifiers, devices)
+        return ((physicalKeys, modifiers, devices), errors)
 
 def main():
     cgitb.enable()
