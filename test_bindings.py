@@ -1,19 +1,31 @@
 #!/usr/bin/env python3
 
 import unittest
+import string
 from collections import OrderedDict
 from pathlib import Path
 from www.scripts import bindings
 
 
 class ConfigTests(unittest.TestCase):
-
+    
+    def testNameRequired(self):
+        with self.assertRaises(ValueError):
+            config = bindings.Config('')
+        
     def testPath(self):
         config = bindings.Config('abcdef')
         configPath = config.path()
         cwd = Path.cwd()
         expectedPath = cwd.parent  / 'configs/ab/abcdef'
         self.assertEqual(configPath, expectedPath)
+    
+    def testRandomNameValid(self):
+        config = bindings.Config.newRandom()
+        name = config.name
+        self.assertEqual(len(name), 6)
+        for char in name:
+            self.assertIn(char, string.ascii_lowercase)
 
 
 class ParserTests(unittest.TestCase):
