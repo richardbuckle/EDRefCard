@@ -80,6 +80,25 @@ class testTransKey(unittest.TestCase):
         self.assertEqual(k, 'A')
 
 
+class FontPathTests(unittest.TestCase):
+    
+    def testRegularNormal(self):
+        path = bindings.getFontPath('Regular', 'Normal')
+        self.assertEqual(path, '../fonts/Exo2.0-Regular.otf')
+
+    def testBoldNormal(self):
+        path = bindings.getFontPath('Bold', 'Normal')
+        self.assertEqual(path, '../fonts/Exo2.0-Bold.otf')
+
+    def testRegularItalic(self):
+        path = bindings.getFontPath('Regular', 'Italic')
+        self.assertEqual(path, '../fonts/Exo2.0-Italic.otf')
+
+    def testBoldItalic(self):
+        path = bindings.getFontPath('Bold', 'Italic')
+        self.assertEqual(path, '../fonts/Exo2.0-BoldItalic.otf')
+    
+    
 class ParserTests(unittest.TestCase):
     
     def testParseEmptyFile(self):
