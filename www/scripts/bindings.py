@@ -111,6 +111,8 @@ class Errors:
         self.errors = ''
 
 
+# Utility section
+
 # Helper to obtain a font path
 def getFontPath(weight, style):
     if style == 'Normal':
@@ -170,153 +172,7 @@ def transKey(key):
         trans = key.replace('Key_', '')
     return trans
 
-def parseBindings(runId, xml, displayGroups, errors):
-    parser = etree.XMLParser(encoding='utf-8')
-    try:
-        tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-    except etree.XMLSyntaxError:
-        errors.errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
-        xml = '<root></root>'
-        tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-    
-    physicalKeys = {}
-    modifiers = {}
-    hotasModifierNum = 1
-    keyboardModifierNum = 101
-    devices = {}
-
-    if len(tree.findall(".//*[@Device='T16000MTHROTTLE']")) > 0:
-        hasT16000MThrottle = True
-    else:
-        hasT16000MThrottle = False
-
-    xmlBindings = tree.findall(".//Binding") + tree.findall(".//Primary") + tree.findall(".//Secondary")
-    for xmlBinding in xmlBindings:
-        controlName = xmlBinding.getparent().tag
-
-        device = xmlBinding.get('Device')
-        if device == '{NoDevice}':
-            continue
-
-        # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
-        if device == 'T16000M' and hasT16000MThrottle == True:
-            device = 'T16000MFCS'
-
-        deviceIndex = xmlBinding.get('DeviceIndex', 0)
-
-        key = xmlBinding.get('Key')
-        # Remove the Neg_ and Pos_ headers to put digital buttons on analogue devices
-        if key is not None:
-            if key.startswith('Neg_'):
-                key = key.replace('Neg_', '', 1)
-            if key.startswith('Pos_'):
-                key = key.replace('Pos_', '', 1)
-
-        def modifierSortKey(modifierInfo):
-            modifierDevice = modifierInfo.get('Device')
-            # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
-            if modifierDevice == 'T16000M' and hasT16000MThrottle == True:
-                modifierDevice = 'T16000MFCS'
-            modifierKey = '%s::%s::%s' % (modifierDevice, modifierInfo.get('DeviceIndex', 0), modifierInfo.get('Key'))
-            return modifierKey
-            
-        modifiersInfo = xmlBinding.findall('Modifier')
-        modifiersInfo = sorted(modifiersInfo, key=modifierSortKey)
-        modifiersKey = 'Unmodified'
-        if modifiersInfo:
-            modifiersKey = ''
-            for modifierInfo in modifiersInfo:
-                modifierKey = modifierSortKey(modifierInfo)
-                if modifiersKey == '':
-                    modifiersKey = modifierKey
-                else:
-                    modifiersKey = '%s/%s' % (modifiersKey, modifierKey)
-            # See if we already have the modifier
-            foundKeyModifier = False
-            keyModifiers = modifiers.get(modifiersKey, [])
-            # Store it in case it didn't exist prior to the above call
-            modifiers[modifiersKey] = keyModifiers
-            for keyModifier in keyModifiers:
-                if keyModifier.get('ModifierKey') == modifiersKey:
-                    foundKeyModifier = True
-                    break
-            if not foundKeyModifier:
-                # Create individual modifiers
-                for modifierInfo in modifiersInfo:
-                    modifier = {}
-                    modifier['ModifierKey'] = modifiersKey
-                    modifierDevice = modifierInfo.get('Device')
-                    # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
-                    if modifierDevice == 'T16000M' and hasT16000MThrottle == True:
-                        modifierDevice = 'T16000MFCS'
-                    if modifierDevice == 'Keyboard':
-                        modifier['Number'] = keyboardModifierNum
-                    else:
-                        modifier['Number'] = hotasModifierNum
-                    modifier['Device'] = modifierDevice
-                    modifier['DeviceIndex'] = modifierInfo.get('DeviceIndex', 0)
-                    modifier['Key'] = modifierInfo.get('Key')
-                    modifierKey = '%s::%s::%s' % (modifierDevice, modifierInfo.get('DeviceIndex', 0), modifierInfo.get('Key'))
-                    updatedModifiers = modifiers.get(modifierKey, [])
-                    updatedModifiers.append(modifier)
-                    modifiers[modifierKey] = updatedModifiers
-                if '/' in modifiersKey:
-                    # Also need to add composite modifier
-                    modifier = {}
-                    modifier['ModifierKey'] = modifiersKey
-                    modifierDevice = modifierInfo.get('Device')
-                    # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
-                    if modifierDevice == 'T16000M' and hasT16000MThrottle == True:
-                        modifierDevice = 'T16000MFCS'
-                    if modifierDevice == 'Keyboard':
-                        modifier['Number'] = keyboardModifierNum
-                    else:
-                        modifier['Number'] = hotasModifierNum
-                    keyModifiers.append(modifier)
-                if modifierInfo.get('Device') == 'Keyboard':
-                    keyboardModifierNum = keyboardModifierNum + 1
-                else:
-                    hotasModifierNum = hotasModifierNum + 1
-        control = controls.get(controlName)
-        if control is None:
-            sys.stderr.write('%s: No control for %s\n' % (runId, controlName))
-            control = {}
-            control['Group'] = 'General'
-            control['Name'] = controlName
-            control['Order'] = 999
-            control['OverriddenBy'] = []
-            control['Type'] = 'Digital'
-        if control['Group'] not in displayGroups:
-            # The user isn't interested in this control group so drop it
-            continue
-
-        itemKey = '%s::%s::%s' % (device, deviceIndex, key)
-        deviceKey = '%s::%s' % (device, deviceIndex)
-        # Obtain the relevant supported device
-        thisDevice = None
-        for supportedDevice in supportedDevices.values():
-            if device in supportedDevice['HandledDevices']:
-                thisDevice = supportedDevice
-                break
-        devices[deviceKey] = thisDevice
-        physicalKey = physicalKeys.get(itemKey)
-        if physicalKey is None:
-            physicalKey = {}
-            physicalKey['Device'] = device
-            physicalKey['DeviceIndex'] = deviceIndex
-            # Get the unaltered key (might be prefixed with Neg_ or Pos_) and the mapped key
-            physicalKey['BaseKey'] = xmlBinding.get('Key')
-            physicalKey['Key'] = key
-            physicalKey['Binds'] = {}
-            physicalKeys[itemKey] = physicalKey
-        bind = physicalKey['Binds'].get(modifiersKey)
-        if bind is None:
-            bind = {}
-            bind['Controls'] = OrderedDict()
-            physicalKey['Binds'][modifiersKey] = bind
-        bind['Controls'][controlName] = control
-
-    return (physicalKeys, modifiers, devices)
+# Output section
 
 def writeUrlToDrawing(config, drawing, public):
     url = config.refcardURL() if public else config.webRoot
@@ -882,6 +738,156 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('</body>')
     print('</html>')
 
+# Parser section
+
+def parseBindings(runId, xml, displayGroups, errors):
+    parser = etree.XMLParser(encoding='utf-8')
+    try:
+        tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
+    except etree.XMLSyntaxError:
+        errors.errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
+        xml = '<root></root>'
+        tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
+    
+    physicalKeys = {}
+    modifiers = {}
+    hotasModifierNum = 1
+    keyboardModifierNum = 101
+    devices = {}
+
+    if len(tree.findall(".//*[@Device='T16000MTHROTTLE']")) > 0:
+        hasT16000MThrottle = True
+    else:
+        hasT16000MThrottle = False
+
+    xmlBindings = tree.findall(".//Binding") + tree.findall(".//Primary") + tree.findall(".//Secondary")
+    for xmlBinding in xmlBindings:
+        controlName = xmlBinding.getparent().tag
+
+        device = xmlBinding.get('Device')
+        if device == '{NoDevice}':
+            continue
+
+        # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
+        if device == 'T16000M' and hasT16000MThrottle == True:
+            device = 'T16000MFCS'
+
+        deviceIndex = xmlBinding.get('DeviceIndex', 0)
+
+        key = xmlBinding.get('Key')
+        # Remove the Neg_ and Pos_ headers to put digital buttons on analogue devices
+        if key is not None:
+            if key.startswith('Neg_'):
+                key = key.replace('Neg_', '', 1)
+            if key.startswith('Pos_'):
+                key = key.replace('Pos_', '', 1)
+
+        def modifierSortKey(modifierInfo):
+            modifierDevice = modifierInfo.get('Device')
+            # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
+            if modifierDevice == 'T16000M' and hasT16000MThrottle == True:
+                modifierDevice = 'T16000MFCS'
+            modifierKey = '%s::%s::%s' % (modifierDevice, modifierInfo.get('DeviceIndex', 0), modifierInfo.get('Key'))
+            return modifierKey
+            
+        modifiersInfo = xmlBinding.findall('Modifier')
+        modifiersInfo = sorted(modifiersInfo, key=modifierSortKey)
+        modifiersKey = 'Unmodified'
+        if modifiersInfo:
+            modifiersKey = ''
+            for modifierInfo in modifiersInfo:
+                modifierKey = modifierSortKey(modifierInfo)
+                if modifiersKey == '':
+                    modifiersKey = modifierKey
+                else:
+                    modifiersKey = '%s/%s' % (modifiersKey, modifierKey)
+            # See if we already have the modifier
+            foundKeyModifier = False
+            keyModifiers = modifiers.get(modifiersKey, [])
+            # Store it in case it didn't exist prior to the above call
+            modifiers[modifiersKey] = keyModifiers
+            for keyModifier in keyModifiers:
+                if keyModifier.get('ModifierKey') == modifiersKey:
+                    foundKeyModifier = True
+                    break
+            if not foundKeyModifier:
+                # Create individual modifiers
+                for modifierInfo in modifiersInfo:
+                    modifier = {}
+                    modifier['ModifierKey'] = modifiersKey
+                    modifierDevice = modifierInfo.get('Device')
+                    # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
+                    if modifierDevice == 'T16000M' and hasT16000MThrottle == True:
+                        modifierDevice = 'T16000MFCS'
+                    if modifierDevice == 'Keyboard':
+                        modifier['Number'] = keyboardModifierNum
+                    else:
+                        modifier['Number'] = hotasModifierNum
+                    modifier['Device'] = modifierDevice
+                    modifier['DeviceIndex'] = modifierInfo.get('DeviceIndex', 0)
+                    modifier['Key'] = modifierInfo.get('Key')
+                    modifierKey = '%s::%s::%s' % (modifierDevice, modifierInfo.get('DeviceIndex', 0), modifierInfo.get('Key'))
+                    updatedModifiers = modifiers.get(modifierKey, [])
+                    updatedModifiers.append(modifier)
+                    modifiers[modifierKey] = updatedModifiers
+                if '/' in modifiersKey:
+                    # Also need to add composite modifier
+                    modifier = {}
+                    modifier['ModifierKey'] = modifiersKey
+                    modifierDevice = modifierInfo.get('Device')
+                    # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
+                    if modifierDevice == 'T16000M' and hasT16000MThrottle == True:
+                        modifierDevice = 'T16000MFCS'
+                    if modifierDevice == 'Keyboard':
+                        modifier['Number'] = keyboardModifierNum
+                    else:
+                        modifier['Number'] = hotasModifierNum
+                    keyModifiers.append(modifier)
+                if modifierInfo.get('Device') == 'Keyboard':
+                    keyboardModifierNum = keyboardModifierNum + 1
+                else:
+                    hotasModifierNum = hotasModifierNum + 1
+        control = controls.get(controlName)
+        if control is None:
+            sys.stderr.write('%s: No control for %s\n' % (runId, controlName))
+            control = {}
+            control['Group'] = 'General'
+            control['Name'] = controlName
+            control['Order'] = 999
+            control['OverriddenBy'] = []
+            control['Type'] = 'Digital'
+        if control['Group'] not in displayGroups:
+            # The user isn't interested in this control group so drop it
+            continue
+
+        itemKey = '%s::%s::%s' % (device, deviceIndex, key)
+        deviceKey = '%s::%s' % (device, deviceIndex)
+        # Obtain the relevant supported device
+        thisDevice = None
+        for supportedDevice in supportedDevices.values():
+            if device in supportedDevice['HandledDevices']:
+                thisDevice = supportedDevice
+                break
+        devices[deviceKey] = thisDevice
+        physicalKey = physicalKeys.get(itemKey)
+        if physicalKey is None:
+            physicalKey = {}
+            physicalKey['Device'] = device
+            physicalKey['DeviceIndex'] = deviceIndex
+            # Get the unaltered key (might be prefixed with Neg_ or Pos_) and the mapped key
+            physicalKey['BaseKey'] = xmlBinding.get('Key')
+            physicalKey['Key'] = key
+            physicalKey['Binds'] = {}
+            physicalKeys[itemKey] = physicalKey
+        bind = physicalKey['Binds'].get(modifiersKey)
+        if bind is None:
+            bind = {}
+            bind['Controls'] = OrderedDict()
+            physicalKey['Binds'][modifiersKey] = bind
+        bind['Controls'][controlName] = control
+
+    return (physicalKeys, modifiers, devices)
+
 def parseForm(form):
     displayGroups = []
     if form.getvalue('showgalaxymap'):
@@ -960,6 +966,8 @@ def parseLocalFile(filePath):
         xml = f.read()
         (physicalKeys, modifiers, devices) = parseBindings(config.name, xml, displayGroups, errors)
         return ((physicalKeys, modifiers, devices), errors)
+
+# API section
 
 def main():
     cgitb.enable()
