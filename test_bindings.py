@@ -27,8 +27,8 @@ class ConfigTests(unittest.TestCase):
         
     def testPath(self):
         configPathStr = str(self.config.path())
-        expectedPathStr = str(self.expectedConfigPath) + '.jpg'
-        self.assertEqual(configPathStr, str(self.expectedConfigPath))
+        expectedPathStr = str(self.expectedConfigPath)
+        self.assertEqual(configPathStr, expectedPathStr)
     
     def testPathWithSuffix(self):
         configPathStr = str(self.config.pathWithSuffix('.jpg'))
@@ -63,6 +63,7 @@ class ErrorTests(unittest.TestCase):
         self.assertEqual(errors.deviceWarnings, '')
         self.assertEqual(errors.misconfigurationWarnings, '')
         self.assertEqual(errors.errors, '')
+
 
 class testTransKey(unittest.TestCase):
     
