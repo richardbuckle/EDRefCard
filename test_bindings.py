@@ -39,7 +39,7 @@ class ParserTests(unittest.TestCase):
     def testParseOneKeyBind(self):
         path = Path('bindings/testCases/one_keystroke.binds')
         (physicalKeys, modifiers, devices) = bindings.parseLocalFile(path)
-        expectedKey = {
+        expectedKeys = {
             'Keyboard::0::Key_Minus': {
                 'BaseKey': 'Key_Minus',
                 'Binds': {
@@ -66,10 +66,60 @@ class ParserTests(unittest.TestCase):
                 'Key': 'Key_Minus'
             }
         }
-        expectedDevice = {'Keyboard::0': {'HandledDevices': ['Keyboard'], 'Template': 'keyboard'}}
-        self.assertEqual(physicalKeys, (expectedKey))
+        expectedDevices = {'Keyboard::0': {'HandledDevices': ['Keyboard'], 'Template': 'keyboard'}}
+        self.assertEqual(physicalKeys, expectedKeys)
         self.assertEqual(modifiers, {})
-        self.assertEqual(devices, (expectedDevice))
+        self.assertEqual(devices, expectedDevices)
+
+    def testParseOneModifier(self):
+        path = Path('bindings/testCases/single_modiifer.binds')
+        (physicalKeys, modifiers, devices) = bindings.parseLocalFile(path)
+        expectedKeys = {
+            'T16000MTHROTTLE::0::Joy_4': {
+                'BaseKey': 'Joy_4',
+                'Binds': {
+                    'T16000MTHROTTLE::0::Joy_2': {
+                        'Controls': OrderedDict(
+                            [
+                                (
+                                    'SetSpeedZero',
+                                     {
+                                         'Category': 'Navigation',
+                                          'Group': 'Ship',
+                                          'HasAnalogue': False,
+                                          'Name': 'All stop',
+                                          'Order': 20,
+                                          'OverriddenBy': [],
+                                          'Type': 'Digital'
+                                    }
+                                )
+                            ]
+                        )
+                    }
+                },
+               'Device': 'T16000MTHROTTLE',
+               'DeviceIndex': 0,
+               'Key': 'Joy_4'
+            }
+        }
+        expectedModifers = {
+            'T16000MTHROTTLE::0::Joy_2': 
+                [
+                    {
+                        'Device': 'T16000MTHROTTLE',
+                        'DeviceIndex': 0,
+                        'Key': 'Joy_2',
+                        'ModifierKey': 'T16000MTHROTTLE::0::Joy_2',
+                        'Number': 1
+                    }
+                ]
+        }
+        expectedDevices = {
+            'T16000MTHROTTLE::0': {'HandledDevices': ['T16000MFCS', 'T16000MTHROTTLE'], 'Template': 't16000mfcs'}
+        }
+        self.assertEqual(physicalKeys, expectedKeys)
+        self.assertEqual(modifiers, expectedModifers)
+        self.assertEqual(devices, expectedDevices)
 
 def main():
     unittest.main()
