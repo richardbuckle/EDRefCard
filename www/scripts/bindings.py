@@ -724,7 +724,7 @@ def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
         printRefCard(config, public, createdImages, deviceForBlockImage, errors)
 
 def printSupportPara():
-    print('<p>Version %s<br>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>', __version__)
+    print('<p>Version %s<br>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__)
 
 def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('Content-Type: text/html')
@@ -733,7 +733,7 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('<head><title>EDRefCard</title></head>')
     print('<body>')
     printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
-    print('<p>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.')
+    printSupportPara()
     print('<p><a href="/">Home</a>.')
     print('</body>')
     print('</html>')
