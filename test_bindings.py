@@ -64,6 +64,20 @@ class ErrorTests(unittest.TestCase):
         self.assertEqual(errors.misconfigurationWarnings, '')
         self.assertEqual(errors.errors, '')
 
+class testTransKey(unittest.TestCase):
+    
+    def testNoneReturnsNone(self):
+        k = bindings.transKey(None)
+        self.assertIsNone(k)
+    
+    def testMappedKey(self):
+        k = bindings.transKey('Key_Comma')
+        self.assertEqual(k, ',')
+    
+    def testUnmappedKey(self):
+        k = bindings.transKey('Key_A')
+        self.assertEqual(k, 'A')
+
 
 class ParserTests(unittest.TestCase):
     
