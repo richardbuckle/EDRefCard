@@ -201,6 +201,41 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(modifiers, expectedModifers)
         self.assertEqual(devices, expectedDevices)
 
+    def testParseTwoModifiers(self):
+        path = Path('bindings/testCases/two_modifiers.binds')
+        ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
+        expectedModifers = {
+            'LogitechExtreme3DPro::0::Joy_7': 
+            [
+                {
+                    'Device': 'LogitechExtreme3DPro',
+                     'DeviceIndex': 0,
+                     'Key': 'Joy_7',
+                     'ModifierKey': 'LogitechExtreme3DPro::0::Joy_7/LogitechExtreme3DPro::0::Joy_8',
+                     'Number': 1
+                }
+            ],
+            'LogitechExtreme3DPro::0::Joy_7/LogitechExtreme3DPro::0::Joy_8': 
+            [
+                {
+                    'ModifierKey': 'LogitechExtreme3DPro::0::Joy_7/LogitechExtreme3DPro::0::Joy_8',
+                    'Number': 1
+                }
+            ],
+            'LogitechExtreme3DPro::0::Joy_8': 
+            [
+                {
+                    'Device': 'LogitechExtreme3DPro',
+                    'DeviceIndex': 0,
+                    'Key': 'Joy_8',
+                    'ModifierKey': 'LogitechExtreme3DPro::0::Joy_7/LogitechExtreme3DPro::0::Joy_8',
+                    'Number': 1
+                }
+            ]
+        }
+        self.assertEqual(modifiers, expectedModifers)
+
+
 def main():   # pragma: no cover
     unittest.main()
 
