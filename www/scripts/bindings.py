@@ -2064,7 +2064,7 @@ def parseBindings(runId, xml, displayGroups):
         xml = '<root></root>'
         tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
     
-    items = {}
+    physicalKeys = {}
     modifiers = {}
     hotasModifierNum = 1
     keyboardModifierNum = 101
@@ -2179,24 +2179,24 @@ def parseBindings(runId, xml, displayGroups):
                 thisDevice = supportedDevice
                 break
         devices[deviceKey] = thisDevice
-        item = items.get(itemKey)
-        if item is None:
-            item = {}
-            item['Device'] = device
-            item['DeviceIndex'] = deviceIndex
+        physicalKey = physicalKeys.get(itemKey)
+        if physicalKey is None:
+            physicalKey = {}
+            physicalKey['Device'] = device
+            physicalKey['DeviceIndex'] = deviceIndex
             # Get the unaltered key (might be prefixed with Neg_ or Pos_) and the mapped key
-            item['BaseKey'] = xmlBinding.get('Key')
-            item['Key'] = key
-            item['Binds'] = {}
-            items[itemKey] = item
-        bind = item['Binds'].get(modifiersKey)
+            physicalKey['BaseKey'] = xmlBinding.get('Key')
+            physicalKey['Key'] = key
+            physicalKey['Binds'] = {}
+            physicalKeys[itemKey] = physicalKey
+        bind = physicalKey['Binds'].get(modifiersKey)
         if bind is None:
             bind = {}
             bind['Controls'] = OrderedDict()
-            item['Binds'][modifiersKey] = bind
+            physicalKey['Binds'][modifiersKey] = bind
         bind['Controls'][controlName] = control
 
-    return (items, modifiers, devices)
+    return (physicalKeys, modifiers, devices)
 
 def writeUrlToDrawing(config, drawing, public):
     url = config.refcardURL() if public else config.webRoot
@@ -2207,7 +2207,7 @@ def writeUrlToDrawing(config, drawing, public):
     drawing.pop()
 
 # Create a keyboard image from the template plus bindings
-def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize, displayGroups, runId, public):
+def createKeyboardImage(physicalKeys, modifiers, source, imageDevices, biggestFontSize, displayGroups, runId, public):
     config = Config(runId)
     filePath = config.pathWithNameAndSuffix(source, '.jpg')
 
@@ -2233,15 +2233,15 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
                 outputs[group] = {}
 
             # Find the correct bindings and order them appropriately
-            for key, item in items.items():
-                itemDevice = item.get('Device')
-                itemKey = item.get('Key')
+            for physicalKeySpec, physicalKey in physicalKeys.items():
+                itemDevice = physicalKey.get('Device')
+                itemKey = physicalKey.get('Key')
 
                 # Only show it if we are handling the appropriate image at this time
                 if itemDevice not in imageDevices:
                     continue
 
-                for modifier, bind in item.get('Binds').items():
+                for modifier, bind in physicalKey.get('Binds').items():
                     for controlKey, control in bind.get('Controls').items():
                         bind = {}
                         bind['Control'] = control
@@ -2289,17 +2289,17 @@ def createKeyboardImage(items, modifiers, source, imageDevices, biggestFontSize,
             sourceImg.save(filename=str(filePath))
     return True
 
-def appendKeyboardImage(createdImages, items, modifiers, displayGroups, runId, public):
-    def countKeyboardItems(items):
+def appendKeyboardImage(createdImages, physicalKeys, modifiers, displayGroups, runId, public):
+    def countKeyboardItems(physicalKeys):
         keyboardItems = 0
-        for  item in items.values():
-            if item.get('Device') == 'Keyboard':
-                for bind in item.get('Binds').values():
+        for  physicalKey in physicalKeys.values():
+            if physicalKey.get('Device') == 'Keyboard':
+                for bind in physicalKey.get('Binds').values():
                     keyboardItems = keyboardItems + len(bind.get('Controls'))
         return keyboardItems
     
-    def fontSizeForKeyBoardItems(items):
-        keyboardItems = countKeyboardItems(items)
+    def fontSizeForKeyBoardItems(physicalKeys):
+        keyboardItems = countKeyboardItems(physicalKeys)
         if keyboardItems > 48:
             fontSize = 40 - int(((keyboardItems - 48) / 20) * 4)
             if fontSize < 24:
@@ -2308,8 +2308,8 @@ def appendKeyboardImage(createdImages, items, modifiers, displayGroups, runId, p
             fontSize = 40
         return fontSize
     
-    fontSize = fontSizeForKeyBoardItems(items)
-    createKeyboardImage(items, modifiers, 'keyboard', ['Keyboard'], fontSize, displayGroups, runId, public)
+    fontSize = fontSizeForKeyBoardItems(physicalKeys)
+    createKeyboardImage(physicalKeys, modifiers, 'keyboard', ['Keyboard'], fontSize, displayGroups, runId, public)
     createdImages.append('Keyboard')
 
 # Write text, possible wrapping
@@ -2390,7 +2390,7 @@ def getModifierStyle(num):
         return modifierStyles[(113 - num) % 13]
 
 # Create a HOTAS image from the template plus bindings
-def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, config, public, styling, deviceIndex, misconfigurationWarnings):
+def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontSize, config, public, styling, deviceIndex, misconfigurationWarnings):
     # Set up the path for our file
     runId = config.name
     if deviceIndex == 0:
@@ -2416,10 +2416,10 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
             # Add the ID to the title
             writeUrlToDrawing(config, context, public)
 
-            for key, item in items.items():
-                itemDevice = item.get('Device')
-                itemDeviceIndex = int(item.get('DeviceIndex'))
-                itemKey = item.get('Key')
+            for physicalKeySpec, physicalKey in physicalKeys.items():
+                itemDevice = physicalKey.get('Device')
+                itemDeviceIndex = int(physicalKey.get('DeviceIndex'))
+                itemKey = physicalKey.get('Key')
 
                 # Only show it if we are handling the appropriate image at this time
                 if itemDevice not in imageDevices:
@@ -2437,26 +2437,26 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
                 except AttributeError:
                     hotasDetail = None
                 if hotasDetail is None:
-                    sys.stderr.write('%s: No control detail for %s\n' % (runId, key))
+                    sys.stderr.write('%s: No control detail for %s\n' % (runId, physicalKeySpec))
                     continue
 
                 # First obtain the modifiers if there are any
-                for keyModifier in modifiers.get(key, []):
+                for keyModifier in modifiers.get(physicalKeySpec, []):
                     if styling == 'Modifier':
                         style = modifierStyles[keyModifier.get('Number') % 13]
                     else:
                         style = groupStyles.get('Modifier')
                     texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
-                if '::Joy' in key:
+                if '::Joy' in physicalKeySpec:
                     # Same again but for positive modifier
-                    for keyModifier in modifiers.get(key.replace('::Joy', '::Pos_Joy'), []):
+                    for keyModifier in modifiers.get(physicalKeySpec.replace('::Joy', '::Pos_Joy'), []):
                         if styling == 'Modifier':
                             style = modifierStyles[keyModifier.get('Number') % 13]
                         else:
                             style = groupStyles.get('Modifier')
                         texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
                     # Same again but for negative modifier
-                    for keyModifier in modifiers.get(key.replace('::Joy', '::Neg_Joy'), []):
+                    for keyModifier in modifiers.get(physicalKeySpec.replace('::Joy', '::Neg_Joy'), []):
                         if styling == 'Modifier':
                             style = modifierStyles[keyModifier.get('Number') % 13]
                         else:
@@ -2464,7 +2464,7 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
                         texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
 
                 # Next obtain unmodified bindings
-                for modifier, bind in item.get('Binds').items():
+                for modifier, bind in physicalKey.get('Binds').items():
                     if modifier == 'Unmodified':
                         for controlKey, control in bind.get('Controls').items():
                             overridden = False
@@ -2491,7 +2491,7 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
                 # Next obtain bindings with modifiers
                 # Lazy approach to do this but covers us for now
                 for curModifierNum in range(1, 200):
-                    for modifier, bind in item.get('Binds').items():
+                    for modifier, bind in physicalKey.get('Binds').items():
                         if modifier != 'Unmodified':
                             keyModifiers = modifiers.get(modifier)
                             modifierNum = 0
@@ -2527,7 +2527,7 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
                     context.text(x=text['X'], y=text['Y'], body=text['Text'])
 
             # Also need to add standalone modifiers (those without other binds)
-            for key, keyModifiers in modifiers.items():
+            for modifierSpec, keyModifiers in modifiers.items():
                 modifierTexts = []
                 for keyModifier in keyModifiers:
                     if keyModifier.get('Device') not in imageDevices:
@@ -2536,17 +2536,17 @@ def createHOTASImage(items, modifiers, source, imageDevices, biggestFontSize, co
                     if int(keyModifier.get('DeviceIndex')) != deviceIndex:
                         # This is not four our current device
                         continue
-                    if '/' in key:
+                    if '/' in modifierSpec:
                         # This is a logical modifier so ignore it
                         continue
-                    if items.get(key) is not None or items.get(key.replace('::Pos_Joy', '::Joy')) is not None or items.get(key.replace('::Neg_Joy', '::Joy')) is not None:
+                    if physicalKeys.get(modifierSpec) is not None or physicalKeys.get(modifierSpec.replace('::Pos_Joy', '::Joy')) is not None or physicalKeys.get(modifierSpec.replace('::Neg_Joy', '::Joy')) is not None:
                         # This has already been handled because it has other binds
                         continue
 
                     modifierKey = keyModifier.get('Key')
                     hotasDetail = hotasDetails.get(keyModifier.get('Device')).get(modifierKey)
                     if hotasDetail is None:
-                        sys.stderr.write('%s: No location for %s\n' % (runId, key))
+                        sys.stderr.write('%s: No location for %s\n' % (runId, modifierSpec))
                         continue
 
                     if styling == 'Modifier':
@@ -2837,8 +2837,8 @@ def parseLocalFile(filePath):
     config = Config('000000')
     with filePath.open() as f:
         xml = f.read()
-        (items, modifiers, devices) = parseBindings(config.name, xml, displayGroups)
-        return (items, modifiers, devices)
+        (physicalKeys, modifiers, devices) = parseBindings(config.name, xml, displayGroups)
+        return (physicalKeys, modifiers, devices)
 
 def main():
     cgitb.enable()
@@ -2913,7 +2913,7 @@ def main():
         public = len(description) > 0
         
     if mode is Mode.replay or mode is Mode.generate:
-        (items, modifiers, devices) = parseBindings(runId, xml, displayGroups)
+        (physicalKeys, modifiers, devices) = parseBindings(runId, xml, displayGroups)
         
         alreadyHandledDevices = []
         createdImages = []
@@ -2939,13 +2939,13 @@ def main():
                             hasNewBindings = True
                             break
                     if hasNewBindings is True:
-                        createHOTASImage(items, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, config, public, styling, deviceIndex, errors.misconfigurationWarnings)
+                        createHOTASImage(physicalKeys, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, config, public, styling, deviceIndex, errors.misconfigurationWarnings)
                         createdImages.append('%s::%s' % (supportedDeviceKey, deviceIndex))
                         for handledDevice in supportedDevice['HandledDevices']:
                             alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
         
         if devices.get('Keyboard::0') is not None:
-            appendKeyboardImage(createdImages, items, modifiers, displayGroups, runId, public)
+            appendKeyboardImage(createdImages, physicalKeys, modifiers, displayGroups, runId, public)
         
         for deviceKey, device in devices.items():
             # Arduino Leonardo is used for head tracking so ignore it, along with vJoy (Tobii Eyex) and 16D00AEA (EDTracker)
