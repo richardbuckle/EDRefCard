@@ -9,23 +9,60 @@ from www.scripts import bindings
 
 class ConfigTests(unittest.TestCase):
     
+    def setUp(self):
+        self.config = bindings.Config('abcdef')
+        cwd = Path.cwd()
+        self.expectedConfigPath = cwd.parent / 'configs/ab/abcdef'
+
     def testNameRequired(self):
         with self.assertRaises(ValueError):
             config = bindings.Config('')
-        
-    def testPath(self):
-        config = bindings.Config('abcdef')
-        configPath = config.path()
-        cwd = Path.cwd()
-        expectedPath = cwd.parent  / 'configs/ab/abcdef'
-        self.assertEqual(configPath, expectedPath)
     
-    def testRandomNameValid(self):
+    def testRandomNameIsValid(self):
         config = bindings.Config.newRandom()
         name = config.name
         self.assertEqual(len(name), 6)
         for char in name:
             self.assertIn(char, string.ascii_lowercase)
+        
+    def testPath(self):
+        configPathStr = str(self.config.path())
+        expectedPathStr = str(self.expectedConfigPath) + '.jpg'
+        self.assertEqual(configPathStr, str(self.expectedConfigPath))
+    
+    def testPathWithSuffix(self):
+        configPathStr = str(self.config.pathWithSuffix('.jpg'))
+        expectedPathStr = str(self.expectedConfigPath) + '.jpg'
+        self.assertEqual(configPathStr, expectedPathStr)
+    
+    def testSuffixMustStartWithDot(self):
+        with self.assertRaises(ValueError):
+            configPathStr = self.config.pathWithSuffix('jpg')
+    
+    def testPathWithNameAndSuffix(self):
+        configPathStr = str(self.config.pathWithNameAndSuffix('spam', '.jpg'))
+        expectedPathStr = str(self.expectedConfigPath) + '-spam.jpg'
+        self.assertEqual(configPathStr, expectedPathStr)
+    
+    def testRefCardURL(self):
+        url = self.config.refcardURL()
+        expectedURL = 'https://edrefcard.info/binds/abcdef'
+        self.assertEqual(url, expectedURL)
+    
+    def testBindsURL(self):
+        url = self.config.bindsURL()
+        expectedURL = 'https://edrefcard.info/configs/abcdef.binds'
+        self.assertEqual(url, expectedURL)
+
+
+class ErrorTests(unittest.TestCase):
+    
+    def testInitsWithBlankData(self):
+        errors = bindings.Errors()
+        self.assertEqual(errors.unhandledDevicesWarnings, '')
+        self.assertEqual(errors.deviceWarnings, '')
+        self.assertEqual(errors.misconfigurationWarnings, '')
+        self.assertEqual(errors.errors, '')
 
 
 class ParserTests(unittest.TestCase):
