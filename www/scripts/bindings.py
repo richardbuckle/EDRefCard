@@ -724,7 +724,8 @@ def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
         printRefCard(config, public, createdImages, deviceForBlockImage, errors)
 
 def printSupportPara():
-    print('<p>Version %s<br>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__)
+    supportPara = '<p>Version %s<br>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__
+    print(supportPara)
 
 def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('Content-Type: text/html')
