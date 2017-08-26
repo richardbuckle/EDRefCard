@@ -112,6 +112,7 @@ class ParserTests(unittest.TestCase):
         (result, errors) = bindings.parseLocalFile(path)
         expectedResult = ({}, {}, {})
         self.assertEqual(result, expectedResult)
+        self.assertTrue(len(errors.errors) > 0)
 
     def testParseOneKeyBind(self):
         path = Path('bindings/testCases/one_keystroke.binds')
