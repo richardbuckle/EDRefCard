@@ -121,8 +121,8 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(modifiers, expectedModifers)
         self.assertEqual(devices, expectedDevices)
 
-def main():
+def main():   # pragma: no cover
     unittest.main()
 
-if __name__ == '__main__':
+if __name__ == '__main__':   # pragma: no cover
     main()

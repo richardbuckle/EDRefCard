@@ -27,7 +27,7 @@ from urllib.parse import urljoin
 
 try:
     from .bindingsData import *
-except ImportError:
+except ImportError: # pragma: no cover
     from bindingsData import *
 
 
