@@ -212,16 +212,21 @@ def parseBindings(runId, xml, displayGroups, errors):
             if key.startswith('Pos_'):
                 key = key.replace('Pos_', '', 1)
 
+        def modifierSortKey(modifierInfo):
+            modifierDevice = modifierInfo.get('Device')
+            # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
+            if modifierDevice == 'T16000M' and hasT16000MThrottle == True:
+                modifierDevice = 'T16000MFCS'
+            modifierKey = '%s::%s::%s' % (modifierDevice, modifierInfo.get('DeviceIndex', 0), modifierInfo.get('Key'))
+            return modifierKey
+            
         modifiersInfo = xmlBinding.findall('Modifier')
+        modifiersInfo = sorted(modifiersInfo, key=modifierSortKey)
         modifiersKey = 'Unmodified'
         if modifiersInfo:
             modifiersKey = ''
             for modifierInfo in modifiersInfo:
-                modifierDevice = modifierInfo.get('Device')
-                # Rewrite the device if this is a T16000M stick and we have a T16000M throttle
-                if modifierDevice == 'T16000M' and hasT16000MThrottle == True:
-                    modifierDevice = 'T16000MFCS'
-                modifierKey = '%s::%s::%s' % (modifierDevice, modifierInfo.get('DeviceIndex', 0), modifierInfo.get('Key'))
+                modifierKey = modifierSortKey(modifierInfo)
                 if modifiersKey == '':
                     modifiersKey = modifierKey
                 else:
