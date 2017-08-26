@@ -170,7 +170,7 @@ def transKey(key):
         trans = key.replace('Key_', '')
     return trans
 
-def parseBindings(runId, xml, displayGroups):
+def parseBindings(runId, xml, displayGroups, errors):
     parser = etree.XMLParser(encoding='utf-8')
     try:
         tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
@@ -950,9 +950,10 @@ def parseLocalFile(filePath):
     displayGroups = groupStyles.keys()
     styling = 'None'  # Yes we do mean a string 'None'
     config = Config('000000')
+    errors = Errors()
     with filePath.open() as f:
         xml = f.read()
-        (physicalKeys, modifiers, devices) = parseBindings(config.name, xml, displayGroups)
+        (physicalKeys, modifiers, devices) = parseBindings(config.name, xml, displayGroups, errors)
         return (physicalKeys, modifiers, devices)
 
 def main():
@@ -1028,7 +1029,7 @@ def main():
         public = len(description) > 0
         
     if mode is Mode.replay or mode is Mode.generate:
-        (physicalKeys, modifiers, devices) = parseBindings(runId, xml, displayGroups)
+        (physicalKeys, modifiers, devices) = parseBindings(runId, xml, displayGroups, errors)
         
         alreadyHandledDevices = []
         createdImages = []

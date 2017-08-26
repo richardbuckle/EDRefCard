@@ -73,6 +73,12 @@ class ParserTests(unittest.TestCase):
         expectedResult = ({}, {}, {})
         self.assertEqual(result, expectedResult)
 
+    def testParseInvalidFile(self):
+        path = Path('bindings/testCases/Help.txt')
+        result = bindings.parseLocalFile(path)
+        expectedResult = ({}, {}, {})
+        self.assertEqual(result, expectedResult)
+
     def testParseOneKeyBind(self):
         path = Path('bindings/testCases/one_keystroke.binds')
         (physicalKeys, modifiers, devices) = bindings.parseLocalFile(path)
