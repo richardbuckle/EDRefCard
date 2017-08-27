@@ -61,12 +61,34 @@ class ConfigTests(unittest.TestCase):
 
 class ErrorTests(unittest.TestCase):
     
-    def testInitsWithBlankData(self):
+    def testInitWithBlankData(self):
         errors = bindings.Errors()
         self.assertEqual(errors.unhandledDevicesWarnings, '')
         self.assertEqual(errors.deviceWarnings, '')
         self.assertEqual(errors.misconfigurationWarnings, '')
         self.assertEqual(errors.errors, '')
+    
+    def testInitWithData(self):
+        errors = bindings.Errors(
+            unhandledDevicesWarnings='spam',
+            deviceWarnings='eggs',
+            misconfigurationWarnings='my hovercraft is full of eels',
+            errors='the larch'
+        )
+        self.assertEqual(errors.unhandledDevicesWarnings, 'spam')
+        self.assertEqual(errors.deviceWarnings, 'eggs')
+        self.assertEqual(errors.misconfigurationWarnings, 'my hovercraft is full of eels')
+        self.assertEqual(errors.errors, 'the larch')
+    
+    def testRepr(self):
+        errors = bindings.Errors(
+            unhandledDevicesWarnings='spam',
+            deviceWarnings='eggs',
+            misconfigurationWarnings='my hovercraft is full of eels',
+            errors='the larch'
+        )
+        expectedRepr = "Errors(unhandledDevicesWarnings='spam', deviceWarnings='eggs', misconfigurationWarnings='my hovercraft is full of eels', errors='the larch')"
+        self.assertEqual(repr(errors), expectedRepr)
 
 
 class testTransKey(unittest.TestCase):

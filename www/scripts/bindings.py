@@ -107,12 +107,21 @@ class Mode(Enum):
 
 class Errors:
     
-    def __init__(self):
-        self.unhandledDevicesWarnings = ''
-        self.deviceWarnings = ''
-        self.misconfigurationWarnings = ''
-        self.errors = ''
-
+    def __init__(
+            self,
+            unhandledDevicesWarnings = '',
+            deviceWarnings = '',
+            misconfigurationWarnings = '',
+            errors = ''
+        ):
+        self.unhandledDevicesWarnings = unhandledDevicesWarnings
+        self.deviceWarnings = deviceWarnings
+        self.misconfigurationWarnings = misconfigurationWarnings
+        self.errors = errors
+    
+    def __repr__(self):
+        return ("Errors(unhandledDevicesWarnings='%s', deviceWarnings='%s', misconfigurationWarnings='%s', errors='%s')" 
+            % (self.unhandledDevicesWarnings, self.deviceWarnings, self.misconfigurationWarnings, self.errors))
 
 # Utility section
 
