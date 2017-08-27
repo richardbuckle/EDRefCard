@@ -682,7 +682,10 @@ def printList():
         refcardURL = str(config.refcardURL())
         dateStr = str(obj['timestamp'].ctime())
         name = str(obj['description'])
-        controllers = ', '.join([fullKey.split('::')[0] for fullKey in obj['devices'].keys()])
+        controllers = [fullKey.split('::')[0] for fullKey in obj['devices'].keys()]
+        silencedComtrollers = ['Mouse', 'Keyboard']
+        controllers = [controller for controller in controllers if not controller in silencedComtrollers]
+        controllersStr = ', '.join(controllers)
         if name is '': 
             # if the uploader didn't bother to name their config, skip it
             continue
@@ -698,7 +701,7 @@ def printList():
                 %s
             </td>
         </tr>
-        ''' % (refcardURL, cgi.escape(name, quote=True), controllers, dateStr))
+        ''' % (refcardURL, cgi.escape(name, quote=True), controllersStr, dateStr))
     print ('</table>')
 
 def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
