@@ -41,8 +41,7 @@ class Purger:
         return list(parent.glob(nameGlob))
     
     def purgeFile(self, path):
-        print(path)
-        # path.unlink()
+        path.unlink()
     
     def purge(self):
         if not self.configsDir.exists():
