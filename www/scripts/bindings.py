@@ -672,7 +672,7 @@ def printList():
     print('<table>')
     print('''
         <tr>
-            <th>Descripton</th>
+            <th>Description</th>
             <th>Date</th>
         </tr>
     ''')
