@@ -46,6 +46,9 @@ class Config:
             raise ValueError('Config must have a name')
         self.name = name
     
+    def __repr__(self):
+        return "Config('%s')" % self.name
+    
     def randomName():
         name = ''.join(random.choice(string.ascii_lowercase) for x in range(6))
         return name
