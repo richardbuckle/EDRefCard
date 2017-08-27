@@ -386,7 +386,7 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</ShipSpotLightToggle>
 	<RadarRangeAxis>
-		<Binding Device="T16000MTHROTTLE" Key="Joy_VAxis" />
+		<Binding Device="T16000MTHROTTLE" Key="Joy_UAxis" />
 		<Inverted Value="1" />
 		<Deadzone Value="0.00000000" />
 	</RadarRangeAxis>

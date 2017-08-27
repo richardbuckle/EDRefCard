@@ -318,7 +318,7 @@
 		<Secondary Device="{NoDevice}" key="" />
 	</SelectTargetsTarget>
 	<WingNavLock>
-		<Primary Device="Keyboard" Key="Key_Minus" />
+		<Primary Device="{NoDevice}" key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</WingNavLock>
 	<TargetNextRouteSystem>

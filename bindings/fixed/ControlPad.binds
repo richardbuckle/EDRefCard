@@ -21,7 +21,7 @@
 		<ToggleOn Value="0" />
 	</YawToRollButton>
 	<RollAxisRaw>
-		<Binding Device="XB360 Pad" Key="Pad_LStickX" />
+		<Binding Device="GamePad" Key="Pad_LStickX" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.15" />
 	</RollAxisRaw>
@@ -34,7 +34,7 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</RollRightButton>
 	<PitchAxisRaw>
-		<Binding Device="XB360 Pad" Key="Pad_LStickY" />
+		<Binding Device="GamePad" Key="Pad_LStickY" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.15" />
 	</PitchAxisRaw>
@@ -63,7 +63,7 @@
 	<MouseDeadzone Value="0.05" />
 	<MouseLinearity Value="1.0" />
 	<LateralThrustRaw>
-		<Binding Device="XB360 Pad" Key="Pad_RStickX" />
+		<Binding Device="GamePad" Key="Pad_RStickX" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.15" />
 	</LateralThrustRaw>
@@ -76,7 +76,7 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</RightThrustButton>
 	<VerticalThrustRaw>
-		<Binding Device="XB360 Pad" Key="Pad_RStickY" />
+		<Binding Device="GamePad" Key="Pad_RStickY" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.15" />
 	</VerticalThrustRaw>
@@ -146,11 +146,11 @@
 	<ThrottleIncrement Value="0.00000000" />
 	<ForwardKey>
 		<Primary Device="Keyboard" Key="Key_W" />
-		<Secondary Device="XB360 Pad" Key="Pad_RBumper" />
+		<Secondary Device="GamePad" Key="Pad_RBumper" />
 	</ForwardKey>
 	<BackwardKey>
 		<Primary Device="Keyboard" Key="Key_S" />
-		<Secondary Device="XB360 Pad" Key="Pad_LBumper" />
+		<Secondary Device="GamePad" Key="Pad_LBumper" />
 	</BackwardKey>
 	<SetSpeedMinus100>
 		<Primary Device="{NoDevice}" Key="" />
@@ -274,12 +274,12 @@
 	</ToggleFlightAssist>
 	<YawToRollMode_FAOff Value="" />
 	<UseBoostJuice>
-		<Primary Device="XB360 Pad" Key="Pad_B" />
+		<Primary Device="GamePad" Key="Pad_B" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</UseBoostJuice>
 	<SelectTarget>
 		<Primary Device="Keyboard" Key="Key_T" />
-		<Secondary Device="XB360 Pad" Key="Pad_Y" />
+		<Secondary Device="GamePad" Key="Pad_Y" />
 	</SelectTarget>
 	<CycleNextTarget>
 		<Primary Device="Keyboard" Key="Key_G" />
@@ -336,15 +336,15 @@
 	<GunsightSystem Value="Bindings_TraditionalGunsights" />
 	<PrimaryFire>
 		<Primary Device="Mouse" Key="Mouse_1" />
-		<Secondary Device="XB360 Pad" Key="Pad_RTrigger" />
+		<Secondary Device="GamePad" Key="Pad_RTrigger" />
 	</PrimaryFire>
 	<SecondaryFire>
 		<Primary Device="Mouse" Key="Mouse_2" />
-		<Secondary Device="XB360 Pad" Key="Pad_LTrigger" />
+		<Secondary Device="GamePad" Key="Pad_LTrigger" />
 	</SecondaryFire>
 	<CycleFireGroupNext>
 		<Primary Device="Keyboard" Key="Key_N" />
-		<Secondary Device="XB360 Pad" Key="Pad_A" />
+		<Secondary Device="GamePad" Key="Pad_A" />
 	</CycleFireGroupNext>
 	<CycleFireGroupPrevious>
 		<Primary Device="{NoDevice}" Key="" />
@@ -352,7 +352,7 @@
 	</CycleFireGroupPrevious>
 	<DeployHardpointToggle>
 		<Primary Device="Keyboard" Key="Key_U" />
-		<Secondary Device="XB360 Pad" Key="Pad_Back" />
+		<Secondary Device="GamePad" Key="Pad_Back" />
 	</DeployHardpointToggle>
 	<DeployHardpointsOnFire Value="1" />
 	<ToggleButtonUpInput>
@@ -386,19 +386,19 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</RadarDecreaseRange>
 	<IncreaseEnginesPower>
-		<Primary Device="XB360 Pad" Key="Pad_DPadUp" />
+		<Primary Device="GamePad" Key="Pad_DPadUp" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</IncreaseEnginesPower>
 	<IncreaseWeaponsPower>
-		<Primary Device="XB360 Pad" Key="Pad_DPadRight" />
+		<Primary Device="GamePad" Key="Pad_DPadRight" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</IncreaseWeaponsPower>
 	<IncreaseSystemsPower>
-		<Primary Device="XB360 Pad" Key="Pad_DPadLeft" />
+		<Primary Device="GamePad" Key="Pad_DPadLeft" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</IncreaseSystemsPower>
 	<ResetPowerDistribution>
-		<Primary Device="XB360 Pad" Key="Pad_DPadDown" />
+		<Primary Device="GamePad" Key="Pad_DPadDown" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</ResetPowerDistribution>
 	<HMDReset>
@@ -474,7 +474,7 @@
 	</ShowPGScoreSummaryInput>
 	<UIFocusMode Value="Bindings_FocusModeHold" />
 	<UIFocus>
-		<Primary Device="XB360 Pad" Key="Pad_X" />
+		<Primary Device="GamePad" Key="Pad_X" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</UIFocus>
 	<Pause>
@@ -482,7 +482,7 @@
 		<Secondary Device="GamePad" Key="Pad_Start" />
 	</Pause>
 	<HeadLookToggle>
-		<Primary Device="XB360 Pad" Key="Pad_RThumb" />
+		<Primary Device="GamePad" Key="Pad_RThumb" />
 		<Secondary Device="{NoDevice}" Key="" />
 		<ToggleOn Value="1" />
 	</HeadLookToggle>
@@ -520,39 +520,39 @@
 	<RightPanelFocusOptions Value="" />
 	<UI_Up>
 		<Primary Device="Keyboard" Key="Key_W" />
-		<Secondary Device="XB360 Pad" Key="Pad_DPadUp" />
+		<Secondary Device="GamePad" Key="Pad_DPadUp" />
 	</UI_Up>
 	<UI_Down>
 		<Primary Device="Keyboard" Key="Key_S" />
-		<Secondary Device="XB360 Pad" Key="Pad_DPadDown" />
+		<Secondary Device="GamePad" Key="Pad_DPadDown" />
 	</UI_Down>
 	<UI_Left>
 		<Primary Device="Keyboard" Key="Key_A" />
-		<Secondary Device="XB360 Pad" Key="Pad_DPadLeft" />
+		<Secondary Device="GamePad" Key="Pad_DPadLeft" />
 	</UI_Left>
 	<UI_Right>
 		<Primary Device="Keyboard" Key="Key_D" />
-		<Secondary Device="XB360 Pad" Key="Pad_DPadRight" />
+		<Secondary Device="GamePad" Key="Pad_DPadRight" />
 	</UI_Right>
 	<UI_Select>
 		<Primary Device="Keyboard" Key="Key_Space" />
-		<Secondary Device="XB360 Pad" Key="Pad_A" />
+		<Secondary Device="GamePad" Key="Pad_A" />
 	</UI_Select>
 	<UI_Back>
 		<Primary Device="Keyboard" Key="Key_Backspace" />
-		<Secondary Device="XB360 Pad" Key="Pad_B" />
+		<Secondary Device="GamePad" Key="Pad_B" />
 	</UI_Back>
 	<UI_Toggle>
 		<Primary Device="Keyboard" Key="Key_Equals" />
-		<Secondary Device="XB360 Pad" Key="Pad_Y" />
+		<Secondary Device="GamePad" Key="Pad_Y" />
 	</UI_Toggle>
 	<CycleNextPanel>
 		<Primary Device="Keyboard" Key="Key_E" />
-		<Secondary Device="XB360 Pad" Key="Pad_RBumper" />
+		<Secondary Device="GamePad" Key="Pad_RBumper" />
 	</CycleNextPanel>
 	<CyclePreviousPanel>
 		<Primary Device="Keyboard" Key="Key_Q" />
-		<Secondary Device="XB360 Pad" Key="Pad_LBumper" />
+		<Secondary Device="GamePad" Key="Pad_LBumper" />
 	</CyclePreviousPanel>
 	<HeadlookDefault Value="0" />
 	<HeadlookIncrement Value="0.00000000" />
@@ -572,7 +572,7 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</HeadLookPitchDown>
 	<HeadLookPitchAxisRaw>
-		<Binding Device="XB360 Pad" Key="Pad_RStickY" />
+		<Binding Device="GamePad" Key="Pad_RStickY" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.15" />
 	</HeadLookPitchAxisRaw>
@@ -585,7 +585,7 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</HeadLookYawRight>
 	<HeadLookYawAxis>
-		<Binding Device="XB360 Pad" Key="Pad_RStickX" />
+		<Binding Device="GamePad" Key="Pad_RStickX" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.15" />
 	</HeadLookYawAxis>
