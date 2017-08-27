@@ -53,6 +53,10 @@ class ConfigTests(unittest.TestCase):
         url = self.config.bindsURL()
         expectedURL = 'https://edrefcard.info/configs/abcdef.binds'
         self.assertEqual(url, expectedURL)
+    
+    def testRepr(self):
+        representation = repr(self.config)
+        self.assertEqual(representation, "Config('abcdef')")
 
 
 class ErrorTests(unittest.TestCase):
