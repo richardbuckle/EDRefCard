@@ -32,16 +32,20 @@ class Purger:
         parent = path.parent
         return list(parent.glob(nameGlob))
     
+    def purgeFile(self, path):
+        print(path)
+        # path.unlink()
+    
     def purge(self):
         if not self.configsDir.exists():
             # script probably installed in the wrong place or called with the wrong working directory
             sys.exit('%s not found' % self.configsDir)
         allBindings = self.allBindings()
         privateBindings = self.thoseWithoutReplay(allBindings)
-        print([path.stem for path in privateBindings])
-        x= privateBindings[0]
-        print(x)
-        print( self.allFilesWithStartingWithStem(x) )
+        deepListToPurge = [self.allFilesWithStartingWithStem(path) for path in privateBindings]
+        filesToPurge = [x for sublist in deepListToPurge for x in sublist] 
+        for path in filesToPurge:
+            self.purgeFile(path)
         
 
 def main():
