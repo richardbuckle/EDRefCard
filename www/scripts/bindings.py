@@ -673,6 +673,7 @@ def printList():
     print('''
         <tr>
             <th>Description</th>
+            <th>Controllers</th>
             <th>Date</th>
         </tr>
     ''')
@@ -681,6 +682,7 @@ def printList():
         refcardURL = str(config.refcardURL())
         dateStr = str(obj['timestamp'].ctime())
         name = str(obj['description'])
+        controllers = ', '.join([fullKey.split('::')[0] for fullKey in obj['devices'].keys()])
         if name is '': 
             # if the uploader didn't bother to name their config, skip it
             continue
@@ -692,8 +694,11 @@ def printList():
             <td>
                 %s
             </td>
+            <td>
+                %s
+            </td>
         </tr>
-        ''' % (refcardURL, cgi.escape(name, quote=True), dateStr))
+        ''' % (refcardURL, cgi.escape(name, quote=True), controllers, dateStr))
     print ('</table>')
 
 def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
