@@ -672,9 +672,9 @@ def printList():
     print('<table>')
     print('''
         <tr>
-            <th>Description</th>
-            <th>Controllers</th>
-            <th>Date</th>
+            <th align="left">Description</th>
+            <th align="left">Controllers</th>
+            <th align="left">Date</th>
         </tr>
     ''')
     for obj in objs:
