@@ -684,7 +684,8 @@ def printList():
         name = str(obj['description'])
         controllers = [fullKey.split('::')[0] for fullKey in obj['devices'].keys()]
         silencedComtrollers = ['Mouse', 'Keyboard']
-        controllers = [controller for controller in controllers if not controller in silencedComtrollers].sorted()
+        controllers = [controller for controller in controllers if not controller in silencedComtrollers]
+        controllers.sort()
         controllersStr = ', '.join(controllers)
         if name is '': 
             # if the uploader didn't bother to name their config, skip it
