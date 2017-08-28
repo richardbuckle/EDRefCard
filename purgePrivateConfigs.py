@@ -35,7 +35,7 @@ class Purger:
     def thoseWithoutReplay(self, bindingsPaths):
         return [path for path in bindingsPaths if not self.hasReplay(path)]    
     
-    def allFilesWithStartingWithStem(self, path):
+    def allFilesStartingWithStem(self, path):
         nameGlob = '%s*.*' % path.stem
         parent = path.parent
         return list(parent.glob(nameGlob))
@@ -50,7 +50,7 @@ class Purger:
         allBindings = self.allBindings()
         privateBindings = self.thoseWithoutReplay(allBindings)
         oldPrivateBindings = [path for path in privateBindings if self.isOverOneDayOld(path)]
-        deepListToPurge = [self.allFilesWithStartingWithStem(path) for path in oldPrivateBindings]
+        deepListToPurge = [self.allFilesStartingWithStem(path) for path in oldPrivateBindings]
         filesToPurge = [x for sublist in deepListToPurge for x in sublist] 
         for path in filesToPurge:
             self.purgeFile(path)
