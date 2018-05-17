@@ -64,10 +64,6 @@ class ConfigTests(unittest.TestCase):
         path = bindings.Config.configsPath()
         print(path)
         
-    def testAllConfigs(self):
-        allConfigs = bindings.Config.allConfigs()
-        self.assertGreater(len(allConfigs), 0)
-        
     def testNames(self):
         # should not raise
         allConfigs = bindings.Config.allConfigs(sortKey=lambda obj: str(obj['description']).casefold())
