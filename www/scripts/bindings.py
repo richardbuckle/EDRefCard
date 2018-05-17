@@ -32,8 +32,11 @@ except: # pragma: no cover
 
 
 class Config:
-    dirRoot = Path(os.environ.get('CONTEXT_DOCUMENT_ROOT', '..')).resolve()
-    webRoot = urljoin(os.environ.get('SCRIPT_URI', 'https://edrefcard.info/'), '/')
+    def dirRoot():
+        return Path(os.environ.get('CONTEXT_DOCUMENT_ROOT', '..')).resolve()
+        
+    def webRoot():
+        return urljoin(os.environ.get('SCRIPT_URI', 'https://edrefcard.info/'), '/')
     
     def newRandom():
         config = Config(Config.randomName())
@@ -54,7 +57,7 @@ class Config:
         return name
     
     def configsPath():
-        return Config.dirRoot / 'configs'
+        return Config.dirRoot() / 'configs'
         
     def path(self):
         path = Config.configsPath() / self.name[:2] / self.name
@@ -77,11 +80,11 @@ class Config:
         dirPath.mkdir(parents=True, exist_ok=True)
         
     def refcardURL(self):
-        url = urljoin(self.webRoot, "binds/%s" % self.name)
+        url = urljoin(Config.webRoot(), "binds/%s" % self.name)
         return url
         
     def bindsURL(self):
-        url = urljoin(self.webRoot, "configs/%s.binds" % self.name)
+        url = urljoin(Config.webRoot(), "configs/%s.binds" % self.name)
         return url
     
     def allConfigs(sortKey=None):
@@ -97,7 +100,7 @@ class Config:
             objs.sort(key=sortKey)
         return objs
 
-
+	
 class Mode(Enum):
     blocks = 1
     list = 2
@@ -187,7 +190,7 @@ def transKey(key):
 # Output section
 
 def writeUrlToDrawing(config, drawing, public):
-    url = config.refcardURL() if public else config.webRoot
+    url = config.refcardURL() if public else Config.webRoot()
     drawing.push()
     drawing.font = getFontPath('SemiBold', 'Normal')
     drawing.font_size = 72
