@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import unittest
+import os
 import string
 from collections import OrderedDict
 from pathlib import Path
@@ -57,6 +58,14 @@ class ConfigTests(unittest.TestCase):
     def testRepr(self):
         representation = repr(self.config)
         self.assertEqual(representation, "Config('abcdef')")
+        
+    def testConfigPath(self):
+        path = bindings.Config.configsPath()
+        print(path)
+        
+    def testAllConfigs(self):
+        allConfigs = bindings.Config.allConfigs()
+        self.assertGreater(len(allConfigs), 0)
 
 
 class ErrorTests(unittest.TestCase):
@@ -127,21 +136,24 @@ class FontPathTests(unittest.TestCase):
     
 class ParserTests(unittest.TestCase):
     
+    def setUp(self):
+        self.testCasesPath = Path('../../bindings/testCases')
+
     def testParseEmptyFile(self):
-        path = Path('bindings/testCases/empty.binds')
+        path = self.testCasesPath / 'empty.binds'
         (result, errors) = bindings.parseLocalFile(path)
         expectedResult = ({}, {}, {})
         self.assertEqual(result, expectedResult)
 
     def testParseInvalidFile(self):
-        path = Path('bindings/testCases/Help.txt')
+        path = self.testCasesPath / 'Help.txt'
         (result, errors) = bindings.parseLocalFile(path)
         expectedResult = ({}, {}, {})
         self.assertEqual(result, expectedResult)
         self.assertTrue(len(errors.errors) > 0)
 
     def testParseOneKeyBind(self):
-        path = Path('bindings/testCases/one_keystroke.binds')
+        path = self.testCasesPath / 'one_keystroke.binds'
         ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
         expectedKeys = {
             'Keyboard::0::Key_Minus': {
@@ -178,7 +190,7 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(devices, expectedDevices)
 
     def testParseOneModifier(self):
-        path = Path('bindings/testCases/single_modifier.binds')
+        path = self.testCasesPath / 'single_modifier.binds'
         ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
         expectedKeys = {
             'T16000MTHROTTLE::0::Joy_4': {
@@ -228,7 +240,7 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(devices, expectedDevices)
 
     def testParseTwoModifiers(self):
-        path = Path('bindings/testCases/two_modifiers.binds')
+        path = self.testCasesPath / 'two_modifiers.binds'
         ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
         expectedModifers = {
             'LogitechExtreme3DPro::0::Joy_7': 
@@ -262,7 +274,7 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(modifiers, expectedModifers)
 
     def testParseTwoModifiersSwapped(self):
-        path = Path('bindings/testCases/two_modifiers_swapped.binds')
+        path = self.testCasesPath / 'two_modifiers_swapped.binds'
         ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
         expectedModifers = {
             'LogitechExtreme3DPro::0::Joy_7': 
@@ -298,6 +310,9 @@ class ParserTests(unittest.TestCase):
 
 
 def main():   # pragma: no cover
+    scriptsPath = Path.cwd() / 'www/scripts'
+    os.chdir(scriptsPath)
+    os.environ['CONTEXT_DOCUMENT_ROOT'] = str(scriptsPath.parent.resolve(True))
     unittest.main()
 
 if __name__ == '__main__':   # pragma: no cover
