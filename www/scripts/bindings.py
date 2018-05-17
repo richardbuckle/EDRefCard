@@ -13,6 +13,7 @@ from wand.color import Color
 
 import cgi
 import cgitb
+import html
 import sys
 import string
 import random
@@ -668,6 +669,33 @@ def calculateBestFontSize(context, text, hotasDetail, biggestFontSize):
 
     return (fitText, fontSize, metrics)
 
+def printListItem(configObj):
+    config = Config(configObj['runID'])
+    refcardURL = str(config.refcardURL())
+    dateStr = str(configObj['timestamp'].ctime())
+    name = str(configObj['description'])
+    controllers = [fullKey.split('::')[0] for fullKey in configObj['devices'].keys()]
+    silencedControllers = ['Mouse', 'Keyboard']
+    controllers = [controller for controller in controllers if not controller in silencedControllers]
+    controllers.sort()
+    controllersStr = ', '.join(controllers)
+    if name is '': 
+        # if the uploader didn't bother to name their config, skip it
+        return
+    print('''
+    <tr>
+        <td>
+            <a href=%s>%s</a>
+        </td>
+        <td>
+            %s
+        </td>
+        <td>
+            %s
+        </td>
+    </tr>
+    ''' % (refcardURL, html.escape(name, quote=True), controllersStr, dateStr))
+
 def printList():
     print('<div id="banner"><h1>EDRefCard: public configurations</h1></div>')
     print('<p>Yes, we know this is very basic. Proper search support is coming soon.</p>')
@@ -681,31 +709,7 @@ def printList():
         </tr>
     ''')
     for obj in objs:
-        config = Config(obj['runID'])
-        refcardURL = str(config.refcardURL())
-        dateStr = str(obj['timestamp'].ctime())
-        name = str(obj['description'])
-        controllers = [fullKey.split('::')[0] for fullKey in obj['devices'].keys()]
-        silencedComtrollers = ['Mouse', 'Keyboard']
-        controllers = [controller for controller in controllers if not controller in silencedComtrollers]
-        controllers.sort()
-        controllersStr = ', '.join(controllers)
-        if name is '': 
-            # if the uploader didn't bother to name their config, skip it
-            continue
-        print('''
-        <tr>
-            <td>
-                <a href=%s>%s</a>
-            </td>
-            <td>
-                %s
-            </td>
-            <td>
-                %s
-            </td>
-        </tr>
-        ''' % (refcardURL, cgi.escape(name, quote=True), controllersStr, dateStr))
+        printListItem(obj)
     print ('</table>')
 
 def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
