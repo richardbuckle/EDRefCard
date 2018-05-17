@@ -5,6 +5,7 @@ import os
 import string
 from collections import OrderedDict
 from pathlib import Path
+import contextlib
 from www.scripts import bindings
 
 
@@ -66,6 +67,13 @@ class ConfigTests(unittest.TestCase):
     def testAllConfigs(self):
         allConfigs = bindings.Config.allConfigs()
         self.assertGreater(len(allConfigs), 0)
+        
+    def testNames(self):
+        # should not raise
+        allConfigs = bindings.Config.allConfigs(sortKey=lambda obj: str(obj['description']).casefold())
+        with contextlib.redirect_stdout(None):
+            for obj in allConfigs:
+                bindings.printListItem(obj)
 
 
 class ErrorTests(unittest.TestCase):
