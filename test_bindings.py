@@ -145,7 +145,7 @@ class FontPathTests(unittest.TestCase):
 class ParserTests(unittest.TestCase):
     
     def setUp(self):
-        self.testCasesPath = Path('../../bindings/testCases')
+        self.testCasesPath = Path('../../bindings/testCases').resolve(True)
 
     def testParseEmptyFile(self):
         path = self.testCasesPath / 'empty.binds'
@@ -316,11 +316,12 @@ class ParserTests(unittest.TestCase):
         self.maxDiff = None
         self.assertEqual(modifiers, expectedModifers)
 
-
-def main():   # pragma: no cover
+def setUpModule():
     scriptsPath = Path.cwd() / 'www/scripts'
     os.chdir(scriptsPath)
     os.environ['CONTEXT_DOCUMENT_ROOT'] = str(scriptsPath.parent.resolve(True))
+    
+def main():   # pragma: no cover
     unittest.main()
 
 if __name__ == '__main__':   # pragma: no cover
