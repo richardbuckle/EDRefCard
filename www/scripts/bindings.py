@@ -712,6 +712,7 @@ def printList():
         try:
             printListItem(obj)
         except:
+            print('<tr><td>ERROR in item %s</td></tr>' % obj['runID'])
             continue
     print ('</table>')
 
