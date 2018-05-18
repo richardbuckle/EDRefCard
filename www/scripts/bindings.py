@@ -709,7 +709,10 @@ def printList():
         </tr>
     ''')
     for obj in objs:
-        printListItem(obj)
+        try:
+            printListItem(obj)
+        except:
+            continue
     print ('</table>')
 
 def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
