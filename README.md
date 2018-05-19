@@ -9,7 +9,7 @@ Currently hosted at [https://edrefcard.info/](https://edrefcard.info/).
 
 # Dependencies
 
-* Python 3
+* Python 3.6 or later
 	* Python3 module `lxml`
 	* Python3 module `wand`
 	* Python3 module `pytest`
@@ -22,13 +22,18 @@ Currently hosted at [https://edrefcard.info/](https://edrefcard.info/).
 # Installation in a web server
 
 * Base the server on the `www` subdirectory of this repo.
-* Check that your server is supplying the env vars `CONTEXT_DOCUMENT_ROOT` and `SCRIPT_URI` so that `Config.dirRoot` and `Config.webRoot` in `www/scripts/bindings.py` get set correctly. Apache 2 does this by default.
+* Check that your server is supplying the env vars `CONTEXT_DOCUMENT_ROOT` and `SCRIPT_URI` so that `Config.dirRoot` and `Config.webRoot` in `www/scripts/bindings.py` get set correctly. Apache 2 does this by default. Python's `cgi.test()` is useful here.
 * Add redirects as follows (in Apache 2 notation):
 
 ```
 RewriteRule ^/list$ /scripts/bindings.py?list=all
 RewriteRule ^/binds/(.+)$ /scripts/bindings.py?replay=$1
 RewriteRule ^/configs/([a-z][a-z])([^/]+)$ /configs/$1/$1$2
+```
+* Certain web servers, including Apache 2 on Debian 9, are prone to set brain-dead IO encodings, such as ANSI_X3.4-1968. To fix this, add the following at the end of `/etc/apache2/apache2.conf`:
+
+```
+SetEnv PYTHONIOENCODING utf-8
 ```
 
 # Credits

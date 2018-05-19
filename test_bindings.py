@@ -119,6 +119,17 @@ class testTransKey(unittest.TestCase):
         self.assertEqual(k, 'A')
 
 
+class uploadTests(unittest.TestCase):
+    
+    def setUp(self):
+        self.testCasesPath = Path('../../bindings/testUploads').resolve(True)
+    
+    def testUnicodeName(self):
+        path = self.testCasesPath / 'eu/euymtn.replay'
+        obj = bindings.Config.unpickle(path)
+        with contextlib.redirect_stdout(None):
+            bindings.printListItem(obj)
+
 class FontPathTests(unittest.TestCase):
     
     def testRegularNormal(self):

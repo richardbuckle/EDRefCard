@@ -87,16 +87,17 @@ class Config:
     def bindsURL(self):
         url = urljoin(Config.webRoot(), "configs/%s.binds" % self.name)
         return url
-    
+
+    def unpickle(path):
+        with path.open('rb') as file:
+            object = pickle.load(file)
+            object['runID'] = path.stem
+        return object
+            
     def allConfigs(sortKey=None):
         configsPath = Config.configsPath()
         picklePaths = list(configsPath.glob('**/*.replay'))
-        def loader(path):
-            with path.open('rb') as file:
-                object = pickle.load(file)
-                object['runID'] = path.stem
-                return object
-        objs = [loader(path) for path in picklePaths]
+        objs = [Config.unpickle(path) for path in picklePaths]
         if sortKey is not None:
             objs.sort(key=sortKey)
         return objs
@@ -711,8 +712,9 @@ def printList():
     for obj in objs:
         try:
             printListItem(obj)
-        except:
-            print('<tr><td>ERROR in item %s</td></tr>' % obj['runID'])
+        except Exception as e:
+            print('<tr><td>ERROR in item %s<td>%s</td></td></tr>' % (obj['runID'], str(e)))
+            cgitb.handler()
             continue
     print ('</table>')
 
@@ -756,20 +758,24 @@ def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
         printRefCard(config, public, createdImages, deviceForBlockImage, errors)
 
 def printSupportPara():
-    supportPara = '<p>Version %s<br>Please direct questions and suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__
+    supportPara = '<p>Version %s<br>Please direct questions, suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__
     print(supportPara)
 
 def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
-    print('Content-Type: text/html')
-    print()
-    print('<html>')
-    print('<head><title>EDRefCard</title></head>')
-    print('<body>')
+    print('''Content-Type: text/html
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>EDRefCard</title>
+</head>
+<body>''')
     printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
     printSupportPara()
-    print('<p><a href="/">Home</a>.')
-    print('</body>')
-    print('</html>')
+    print('''
+    <p><a href="/">Home</a>.</p>
+</body>
+</html>''')
 
 # Parser section
 
