@@ -714,7 +714,7 @@ def printList():
             printListItem(obj)
         except Exception as e:
             print('<tr><td>ERROR in item %s<td>%s</td></td></tr>' % (obj['runID'], str(e)))
-            cgitb.handler()
+            #cgitb.handler() # only for use when needed
             continue
     print ('</table>')
 
