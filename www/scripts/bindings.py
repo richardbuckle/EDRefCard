@@ -751,11 +751,24 @@ def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
             print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
     print('<p/>')
 
-def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
+def printBodyMain(mode, config, public, createdImages, deviceForBlockImage, errors):
     if mode is Mode.list:
         printList()
     else:
         printRefCard(config, public, createdImages, deviceForBlockImage, errors)
+
+def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
+    # guard against bad server configs
+    encoding = sys.stdout.encoding
+    if encoding != 'utf-8':
+        print(f'''
+        <p>It seems that your server is configured to use encoding "{encoding}" rather than "utf-8".<br>
+        For Apache, this can be fixed by adding <code>SetEnv PYTHONIOENCODING utf-8</code> at the end of <code>/etc/apache2/apache2.conf</code>.</p>
+        ''')
+        return
+    printBodyMain(mode, config, public, createdImages, deviceForBlockImage, errors)
+    printSupportPara()
+    print('<p><a href="/">Home</a>.</p>')
 
 def printSupportPara():
     supportPara = '<p>Version %s<br>Please direct questions, suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=212866">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__
@@ -771,9 +784,7 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
 </head>
 <body>''')
     printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
-    printSupportPara()
     print('''
-    <p><a href="/">Home</a>.</p>
 </body>
 </html>''')
 
