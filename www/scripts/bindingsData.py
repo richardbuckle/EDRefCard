@@ -42,6 +42,8 @@ supportedDevices = OrderedDict([
     ('SlawBF109Pedals', {'Template': 'slawbf109pedals', 'HandledDevices': ['SlawFlightControlRudder']}),
     ('MFGCrosswind', {'Template': 'crosswind', 'HandledDevices': ['16D00A38', '85640203']}),
     ('DS4', {'Template': 'ds4', 'HandledDevices': ['DS4', 'DualShock4']}),
+    ('VPC-WarBRD-DELTA-Left', {'Template': 'vpc-warbrd-delta-left', 'HandledDevices': ['03EB2042']}),
+    ('VPC-WarBRD-DELTA-Right', {'Template': 'vpc-warbrd-delta-right', 'HandledDevices': ['03EB2044']}),
     ('Keyboard', {'Template': 'keyboard', 'HandledDevices': ['Keyboard']})
 ])
 
@@ -1851,6 +1853,75 @@ hotasDetails = {
         'Joy_17': {'Type': 'Digital', 'x': 2274, 'y': 1254, 'width': 1192, 'height': 54}, # Engine start
         'Joy_18': {'Type': 'Digital', 'x': 2204, 'y': 1114, 'width': 1192, 'height': 54}, # Eject
     },
+    '03EB2042': { # VPC WarBRD Delta left
+        'Joy_1': {'Type': 'Digital', 'x': 2470, 'y': 1100, 'width': 1180}, # Trigger first stage
+        'Joy_2': {'Type': 'Digital', 'x': 2470, 'y': 1160, 'width': 1180}, # Trigger second stage
+        'Joy_3': {'Type': 'Digital', 'x': 2470, 'y': 1300, 'width': 1180}, # Trigger button
+        'Joy_4': {'Type': 'Digital', 'x': 270, 'y': 1000, 'width': 1180}, # Wheel up
+        'Joy_5': {'Type': 'Digital', 'x': 270, 'y': 1060, 'width': 1180}, # Wheel down
+        'Joy_6': {'Type': 'Digital', 'x': 270, 'y': 1120, 'width': 1180}, # Wheel push
+        'Joy_7': {'Type': 'Digital', 'x': 270, 'y': 820, 'width': 1180}, # Mini-joystick push
+		# 4-way hat right
+        'Joy_8': {'Type': 'Digital', 'x': 2470, 'y': 700, 'width': 1180}, 
+        'Joy_9': {'Type': 'Digital', 'x': 2470, 'y': 760, 'width': 1180},
+        'Joy_10': {'Type': 'Digital', 'x': 2470, 'y': 820, 'width': 1180},
+        'Joy_11': {'Type': 'Digital', 'x': 2470, 'y': 880, 'width': 1180},
+        'Joy_12': {'Type': 'Digital', 'x': 2470, 'y': 940, 'width': 1180},
+		# 4-way hat left
+        'Joy_13': {'Type': 'Digital', 'x': 270, 'y': 300, 'width': 1180},
+        'Joy_14': {'Type': 'Digital', 'x': 270, 'y': 360, 'width': 1180},
+        'Joy_15': {'Type': 'Digital', 'x': 270, 'y': 420, 'width': 1180},
+        'Joy_16': {'Type': 'Digital', 'x': 270, 'y': 480, 'width': 1180},
+        'Joy_17': {'Type': 'Digital', 'x': 270, 'y': 540, 'width': 1180},
+		# 8-way hat LED
+        'Joy_18': {'Type': 'Digital', 'x': 2470, 'y': 300, 'width': 1180},
+        'Joy_19': {'Type': 'Digital', 'x': 2470, 'y': 360, 'width': 1180},
+        'Joy_20': {'Type': 'Digital', 'x': 2470, 'y': 420, 'width': 1180},
+        'Joy_21': {'Type': 'Digital', 'x': 2470, 'y': 480, 'width': 1180},
+        'Joy_22': {'Type': 'Digital', 'x': 2470, 'y': 540, 'width': 1180},
+		# Joystick axis
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 270, 'y': 1400, 'width': 1180},
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 270, 'y': 1460, 'width': 1180},
+        'Joy_ZAxis': {'Type': 'Analogue', 'x': 270, 'y': 1520, 'width': 1180},
+		# Mini-joysticks axis
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 270, 'y': 700, 'width': 1180},
+        'Joy_RYAxis': {'Type': 'Analogue', 'x': 270, 'y': 760, 'width': 1180},
+    },
+    '03EB2044': { # VPC WarBRD Delta Right
+        'Joy_1': {'Type': 'Digital', 'x': 270, 'y': 1100, 'width': 1180}, # Trigger first stage
+        'Joy_2': {'Type': 'Digital', 'x': 270, 'y': 1160, 'width': 1180}, # Trigger second stage
+        'Joy_3': {'Type': 'Digital', 'x': 270, 'y': 1300, 'width': 1180}, # Trigger button
+        'Joy_4': {'Type': 'Digital', 'x': 2470, 'y': 1000, 'width': 1180}, # Wheel up
+        'Joy_5': {'Type': 'Digital', 'x': 2470, 'y': 1060, 'width': 1180}, # Wheel down
+        'Joy_6': {'Type': 'Digital', 'x': 2470, 'y': 1120, 'width': 1180}, # Wheel push
+        'Joy_7': {'Type': 'Digital', 'x': 2470, 'y': 820, 'width': 1180}, # Mini-joystick push
+		# 4-way hat right
+        'Joy_8': {'Type': 'Digital', 'x': 2470, 'y': 300, 'width': 1180},
+        'Joy_9': {'Type': 'Digital', 'x': 2470, 'y': 360, 'width': 1180},
+        'Joy_10': {'Type': 'Digital', 'x': 2470, 'y': 420, 'width': 1180},
+        'Joy_11': {'Type': 'Digital', 'x': 2470, 'y': 480, 'width': 1180},
+        'Joy_12': {'Type': 'Digital', 'x': 2470, 'y': 540, 'width': 1180},
+		# 4-way hat left
+		'Joy_13': {'Type': 'Digital', 'x': 270, 'y': 700, 'width': 1180}, 
+        'Joy_14': {'Type': 'Digital', 'x': 270, 'y': 760, 'width': 1180},
+        'Joy_15': {'Type': 'Digital', 'x': 270, 'y': 820, 'width': 1180},
+        'Joy_16': {'Type': 'Digital', 'x': 270, 'y': 880, 'width': 1180},
+        'Joy_17': {'Type': 'Digital', 'x': 270, 'y': 940, 'width': 1180},
+		# 8-way hat LED
+        'Joy_18': {'Type': 'Digital', 'x': 270, 'y': 300, 'width': 1180},
+        'Joy_19': {'Type': 'Digital', 'x': 270, 'y': 360, 'width': 1180},
+        'Joy_20': {'Type': 'Digital', 'x': 270, 'y': 420, 'width': 1180},
+        'Joy_21': {'Type': 'Digital', 'x': 270, 'y': 480, 'width': 1180},
+        'Joy_22': {'Type': 'Digital', 'x': 270, 'y': 540, 'width': 1180},
+		# Joystick axis
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 2470, 'y': 1400, 'width': 1180},
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 2470, 'y': 1460, 'width': 1180},
+        'Joy_ZAxis': {'Type': 'Analogue', 'x': 2470, 'y': 1520, 'width': 1180},
+		# Mini-joysticks axis
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 2470, 'y': 700, 'width': 1180},
+        'Joy_RYAxis': {'Type': 'Analogue', 'x': 2470, 'y': 760, 'width': 1180},
+    },
+
 }
 
 keymap = {
