@@ -1,3 +1,7 @@
+## 1.1
+
+* Blocking "spammy" descriptions is as those starting with punctuaction.
+
 ## 1.0.8
 
 * Added bindings introduced in Chapter 4, notable the FSS scanner.
