@@ -151,6 +151,7 @@ groupStyles = {
     'Head look': {'Color': Color('#CC00CC'), 'Font': getFontPath('Regular', 'Normal')},
     'Ship': {'Color': Color('#CC0000'), 'Font': getFontPath('Regular', 'Normal')},
     'SRV': {'Color': Color('#00CC00'), 'Font': getFontPath('Regular', 'Normal')},
+    'Scanners': {'Color': Color('#730099'), 'Font': getFontPath('Regular', 'Normal')},
     'UI': {'Color': Color('#00CCCC'), 'Font': getFontPath('Regular', 'Normal')},
 }
 

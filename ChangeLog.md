@@ -1,3 +1,7 @@
+## 1.0.8
+
+* Added bindings introduced in Chapter 4, notable the FSS scanner.
+
 ## 1.0.7
 
 * Fixed errors with non-ASCII file encodings. Should now be fully Unicode.

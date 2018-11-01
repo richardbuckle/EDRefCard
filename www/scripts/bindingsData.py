@@ -80,10 +80,16 @@ controls = {
     'OculusReset': {'Group': 'Misc', 'Category': 'General', 'Order': 6, 'Name': 'Reset Oculus', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'Pause': {'Group': 'Misc', 'Category': 'General', 'Order': 8, 'Name': 'Main menu', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'FriendsMenu': {'Group': 'Misc', 'Category': 'General', 'Order': 9, 'Name': 'Friends', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
-    'CommanderCreator_Undo': {'Group': 'Misc', 'Category': 'General', 'Order': 10, 'Name': 'Undo', 'Type': 'Digital', 'HasAnalouge': False, 'OverriddenBy': []},
-    'CommanderCreator_Redo': {'Group': 'Misc', 'Category': 'General', 'Order': 11, 'Name': 'Redo', 'Type': 'Digital', 'HasAnalouge': False, 'OverriddenBy': []},
-    'CommanderCreator_Rotation_MouseToggle': {'Group': 'Misc', 'Category': 'General', 'Order': 12, 'Name': 'Rotation toggle', 'Type': 'Digital', 'HasAnalouge': False, 'OverriddenBy': []},
-    'CommanderCreator_Rotation': {'Group': 'Misc', 'Category': 'General', 'Order': 13, 'Name': 'Rotation', 'Type': 'Digital', 'OverriddenBy': []},
+    'CommanderCreator_Undo': {'Group': 'Commander creator', 'Category': 'General', 'Order': 10, 'Name': 'Undo', 'Type': 'Digital', 'HasAnalouge': False, 'OverriddenBy': []},
+    'CommanderCreator_Redo': {'Group': 'Commander creator', 'Category': 'General', 'Order': 11, 'Name': 'Redo', 'Type': 'Digital', 'HasAnalouge': False, 'OverriddenBy': []},
+    'CommanderCreator_Rotation_MouseToggle': {'Group': 'Commander creator', 'Category': 'General', 'Order': 12, 'Name': 'Rotation toggle', 'Type': 'Digital', 'HasAnalouge': False, 'OverriddenBy': []},
+    'CommanderCreator_Rotation': {'Group': 'Commander creator', 'Category': 'General', 'Order': 13, 'Name': 'Rotation', 'Type': 'Digital', 'OverriddenBy': []},
+    'NightVisionToggle': {'Group': 'Misc', 'Category': 'General', 'Order': 14, 'Name': 'Night vision', 'Type': 'Digital', 'OverriddenBy': []},
+    'OpenCodexGoToDiscovery': {'Group': 'Misc', 'Category': 'General', 'Order': 15, 'Name': 'Codex', 'Type': 'Digital', 'OverriddenBy': []},
+    'GalnetAudio_Play_Pause': {'Group': 'Misc', 'Category': 'General', 'Order': 16, 'Name': 'Play/Pause Audio', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'GalnetAudio_SkipForward': {'Group': 'Misc', 'Category': 'General', 'Order': 17, 'Name': 'Next Audio Track', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'GalnetAudio_SkipBackward': {'Group': 'Misc', 'Category': 'General', 'Order': 18, 'Name': 'Previous Audio Track', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'GalnetAudio_ClearQueue': {'Group': 'Misc', 'Category': 'General', 'Order': 19, 'Name': 'Clear Audio Queue', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
 
     #
     # Head look 
@@ -294,6 +300,7 @@ controls = {
     'FocusLeftPanel': {'Group': 'Ship', 'Order': 504, 'Name': 'Navigation panel', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'FocusRightPanel': {'Group': 'Ship', 'Order': 505, 'Name': 'Systems panel', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'FocusRadarPanel': {'Group': 'Ship', 'Order': 506, 'Name': 'Role panel', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'PlayerHUDModeToggle': {'Group': 'Ship', 'Category': 'General', 'Order': 507, 'Name': 'HUD mode', 'Type': 'Digital', 'OverriddenBy': []},
 
     # Landing
     'LandingGearToggle': {'Group': 'Ship', 'Category': 'Navigation', 'Order': 601, 'Name': 'Landing gear', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
@@ -317,6 +324,28 @@ controls = {
     'RightThrustButton_Landing': {'Group': 'Ship', 'Category': 'Navigation', 'Order': 619, 'Name': 'Thrust right (landing)', 'Type': 'Digital', 'HasAnalogue': True, 'OverriddenBy': ['RightThrustButton']},
     'DisableRotationCorrectToggle': {'Group': 'Ship', 'Category': 'Navigation', 'Order': 620, 'Name': 'Rotational correction', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
 
+    # Scanners
+    'ExplorationFSSEnter': {'Group': 'Scanners', 'Category': 'General', 'Order': 1, 'Name': 'Enter FSS', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSCameraPitch': {'Group': 'Scanners', 'Category': 'General', 'Order': 2, 'Name': 'Pitch (FSS)', 'Type': 'Analogue', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSCameraPitchIncreaseButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 3, 'Name': 'Pitch up (FSS)', 'Type': 'Digital', 'HasAnalogue': True, 'OverriddenBy': []},
+    'ExplorationFSSCameraPitchDecreaseButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 4, 'Name': 'Pitch down (FSS)', 'Type': 'Digital', 'HasAnalogue': True, 'OverriddenBy': []},
+    'ExplorationFSSCameraYaw': {'Group': 'Scanners', 'Category': 'General', 'Order': 5, 'Name': 'Yaw (FSS)', 'Type': 'Analogue', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSCameraYawIncreaseButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 6, 'Name': 'Yaw right (FSS)', 'Type': 'Digital', 'HasAnalogue': True, 'OverriddenBy': []},
+    'ExplorationFSSCameraYawDecreaseButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 7, 'Name': 'Yaw left (FSS)', 'Type': 'Digital', 'HasAnalogue': True, 'OverriddenBy': []},
+    'ExplorationFSSZoomIn': {'Group': 'Scanners', 'Category': 'General', 'Order': 8, 'Name': 'Auto-zoom FSS in', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSZoomOut': {'Group': 'Scanners', 'Category': 'General', 'Order': 9, 'Name': 'Auto-zoom FSS out', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSMiniZoomIn': {'Group': 'Scanners', 'Category': 'General', 'Order': 10, 'Name': 'Zoom FSS in', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSMiniZoomOut': {'Group': 'Scanners', 'Category': 'General', 'Order': 11, 'Name': 'Zoom FSS out', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSRadioTuningX_Raw': {'Group': 'Scanners', 'Category': 'General', 'Order': 12, 'Name': 'FSS tuning', 'Type': 'Analogue', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSRadioTuningX_Increase': {'Group': 'Scanners', 'Category': 'General', 'Order': 13, 'Name': 'FSS tune right', 'Type': 'Digital', 'HasAnalogue': True, 'OverriddenBy': []},
+    'ExplorationFSSRadioTuningX_Decrease': {'Group': 'Scanners', 'Category': 'General', 'Order': 14, 'Name': 'FSS tune left', 'Type': 'Digital', 'HasAnalogue': True, 'OverriddenBy': []},
+    'ExplorationFSSDiscoveryScan': {'Group': 'Scanners', 'Category': 'General', 'Order': 15, 'Name': 'FSS honk', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSQuit': {'Group': 'Scanners', 'Category': 'General', 'Order': 16, 'Name': 'Exit FSS', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSTarget': {'Group': 'Scanners', 'Category': 'General', 'Order': 17, 'Name': 'Target FSS', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationFSSShowHelp': {'Group': 'Scanners', 'Category': 'General', 'Order': 18, 'Name': 'FSS help', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationSAAChangeScannedAreaViewToggle': {'Group': 'Scanners', 'Category': 'General', 'Order': 19, 'Name': 'Toggle planet front/back', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'ExplorationSAAExitThirdPerson': {'Group': 'Scanners', 'Category': 'General', 'Order': 20, 'Name': 'Exit surface scanner', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    
     # Misc
     'EjectAllCargo': {'Group': 'Ship', 'Category': 'General', 'Order': 701, 'Name': 'Eject cargo', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'HeadLookToggle': {'Group': 'Ship', 'Category': 'General', 'Order': 702, 'Name': 'Toggle headlook', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
@@ -387,6 +416,8 @@ controls = {
     'UI_Select': {'Group': 'UI', 'Category': 'UI', 'Order': 7, 'Name': 'UI select', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'UI_Back': {'Group': 'UI', 'Category': 'UI', 'Order': 8, 'Name': 'UI back', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'UI_Toggle': {'Group': 'UI', 'Category': 'UI', 'Order': 9, 'Name': 'UI toggle', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'CycleNextPage': {'Group': 'UI', 'Category': 'UI', 'Order': 10, 'Name': 'Next page', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'CyclePreviousPage': {'Group': 'UI', 'Category': 'UI', 'Order': 11, 'Name': 'Previous page', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
 }
 
 hotasDetails = {
