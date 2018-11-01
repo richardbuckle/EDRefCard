@@ -104,6 +104,7 @@ class Config:
 
 	
 class Mode(Enum):
+    invalid = 0
     blocks = 1
     list = 2
     replay = 3
@@ -984,8 +985,13 @@ def determineMode(form):
     deviceForBlockImage = form.getvalue('blocks')
     wantList = form.getvalue('list')
     runIdToReplay = form.getvalue('replay')
+    description = form.getvalue('description')
+    if description is None:
+        description = ''
     
-    if deviceForBlockImage is not None:
+    if len(description) > 0 and not description[0].isalnum():
+        mode = Mode.invalid
+    elif deviceForBlockImage is not None:
         mode = Mode.blocks
     elif wantList is not None:
         mode = Mode.list
@@ -1037,7 +1043,10 @@ def main():
     
     deviceForBlockImage = form.getvalue('blocks')
     mode = determineMode(form)
-    if mode is Mode.blocks:
+    if mode is Mode.invalid:
+        errors.errors = 'That is not a valid description. Leading punctuation is not allowed.</h1>'
+        xml = '<root></root>'        
+    elif mode is Mode.blocks:
         try:
             deviceForBlockImage = form.getvalue('blocks')
             createBlockImage(deviceForBlockImage)
@@ -1081,6 +1090,7 @@ def main():
         config.makeDir()
         runId = config.name
         displayGroups = []
+        (displayGroups, showKeyboard, styling, description) = parseForm(form)
         xml = form.getvalue('bindings')
         if xml is None or xml is b'':
             errors.errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
@@ -1091,7 +1101,6 @@ def main():
             with codecs.open(str(bindsPath), 'w', 'utf-8') as xmlOutput:
                 xmlOutput.write(xml)
         
-        (displayGroups, showKeyboard, styling, description) = parseForm(form)
         public = len(description) > 0
         
     if mode is Mode.replay or mode is Mode.generate:

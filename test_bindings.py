@@ -148,6 +148,18 @@ class FontPathTests(unittest.TestCase):
         path = bindings.getFontPath('Bold', 'Italic')
         self.assertEqual(path, '../fonts/Exo2.0-BoldItalic.otf')
     
+
+class FormTests(unittest.TestCase):
+
+    def testLeadingPunctuationNotAllowed(self):
+        class FormProxy :
+            def getvalue(self, key):
+                return '----starts with punctuation' if key == 'description' else 'boo'
+        formProxy = FormProxy()
+        mode = bindings.determineMode(formProxy)
+        print(mode)
+        self.assertEqual(bindings.Mode.invalid, mode)
+    
     
 class ParserTests(unittest.TestCase):
     
