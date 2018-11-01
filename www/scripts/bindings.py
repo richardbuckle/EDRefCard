@@ -947,6 +947,8 @@ def parseForm(form):
         displayGroups.append('Head look')
     if form.getvalue('showsrv'):
         displayGroups.append('SRV')
+    if form.getvalue('showscanners'):
+        displayGroups.append('Scanners')
     if form.getvalue('showship'):
         displayGroups.append('Ship')
     if form.getvalue('showui'):
