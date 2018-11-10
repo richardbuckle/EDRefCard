@@ -1,4 +1,4 @@
-## 1.1.1
+## 1.2
 
 * Command names are now in Title Case and some have been abbreviated.
 * The keyboard chart makes more use of symbols to identify the keys.
