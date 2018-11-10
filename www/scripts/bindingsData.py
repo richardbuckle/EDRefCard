@@ -2041,4 +2041,5 @@ keymap = {
     'Key_BackSlash': '\\',
     'Key_Slash': '/',
     'Key_Apostrophe': '\'',
+    'Key_Hash': '#',
 }
