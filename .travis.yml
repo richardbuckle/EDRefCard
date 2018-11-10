@@ -8,7 +8,8 @@ script:
   - pytest --cov=. --cov-report term-missing
 branches:
   only:
-   - master
+   - live
+   - beta
    - dev
    - /^Release\/.*$/
 after_success:
