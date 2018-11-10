@@ -1,6 +1,11 @@
+## 1.1.1
+
+* Added support for Dual Virpil VPC WarBRD DELTA joysticks.
+* Added support for Saitek X45 HOTAS.
+
 ## 1.1
 
-* Blocking "spammy" descriptions is as those starting with punctuaction.
+* Blocking "spammy" descriptions is as those starting with punctuation.
 
 ## 1.0.8
 
