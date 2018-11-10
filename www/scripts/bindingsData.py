@@ -253,10 +253,10 @@ controls = {
     'IncreaseWeaponsPower': {'Group': 'Ship', 'Category': 'Combat', 'Order': 204, 'Name': 'WEP', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
 
     # Fighter
-    'OrderRequestDock': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 251, 'Name': 'Dock Fighter', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
-    'OrderDefensiveBehaviour': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 252, 'Name': 'Defensive Stance', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
-    'OrderAggressiveBehaviour': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 253, 'Name': 'Aggressive Stance', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
-    'OrderFocusTarget': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 253, 'Name': 'Focus Target', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'OrderRequestDock': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 251, 'Name': 'Dock SLF', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'OrderDefensiveBehaviour': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 252, 'Name': 'Be Defensive', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'OrderAggressiveBehaviour': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 253, 'Name': 'Be Aggressive', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
+    'OrderFocusTarget': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 253, 'Name': 'Attack My Target', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'OrderHoldFire': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 254, 'Name': 'Hold Fire', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'OrderHoldPosition': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 256, 'Name': 'Hold Position', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
     'OrderFollow': {'Group': 'Fighter', 'Category': 'Combat', 'Order': 257, 'Name': 'Follow', 'Type': 'Digital', 'HasAnalogue': False, 'OverriddenBy': []},
