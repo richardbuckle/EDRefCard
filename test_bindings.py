@@ -157,7 +157,7 @@ class FormTests(unittest.TestCase):
                 return '----starts with punctuation' if key == 'description' else 'boo'
         formProxy = FormProxy()
         mode = bindings.determineMode(formProxy)
-        print(mode)
+        print(mode)	
         self.assertEqual(bindings.Mode.invalid, mode)
     
     
@@ -194,7 +194,7 @@ class ParserTests(unittest.TestCase):
                                     {
                                         'Group': 'Ship',
                                         'HasAnalogue': False,
-                                        'Name': 'Wingman navlock',
+                                        'Name': 'Wingman Navlock',
                                         'Order': 405,
                                         'OverriddenBy': [],
                                         'Type': 'Digital'
@@ -232,7 +232,7 @@ class ParserTests(unittest.TestCase):
                                          'Category': 'Navigation',
                                           'Group': 'Ship',
                                           'HasAnalogue': False,
-                                          'Name': 'All stop',
+                                          'Name': 'All Stop',
                                           'Order': 20,
                                           'OverriddenBy': [],
                                           'Type': 'Digital'
