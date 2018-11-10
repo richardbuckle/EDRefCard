@@ -21,6 +21,7 @@ supportedDevices = OrderedDict([
     ('Gladiator', {'Template': 'gladiator', 'HandledDevices': ['231D0121']}),
     ('Cougar', {'Template': 'cougar', 'HandledDevices': ['044FB351', '044FB352']}),
     ('SaitekFLY5', {'Template': 'fly5', 'HandledDevices': ['SaitekFLY5', '06A30836']}),
+    ('SaitekX45', {'Template': 'x45', 'HandledDevices': ['SaitekX45']}),
     ('SaitekX52', {'Template': 'x52', 'HandledDevices': ['SaitekX52']}),
     ('SaitekX52Pro', {'Template': 'x52pro', 'HandledDevices': ['SaitekX52Pro']}),
     ('SaitekX55', {'Template': 'x55', 'HandledDevices': ['SaitekX55Joystick', 'SaitekX55Throttle']}),
@@ -569,6 +570,44 @@ hotasDetails = {
         'Joy_XAxis': {'Type': 'Analogue', 'x': 2484, 'y': 1080, 'width': 1132}, # Stick roll
         'Joy_YAxis': {'Type': 'Analogue', 'x': 2484, 'y': 1024, 'width': 1132}, # Stick pitch
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 264, 'y': 1404, 'width': 1032}, # Throttle
+    },
+    'SaitekX45': {
+        'Joy_1': {'Type': 'Digital', 'x': 4260, 'y': 1040, 'width': 600}, # Stick Trigger button
+        'Joy_2': {'Type': 'Digital', 'x': 2900, 'y': 810, 'width': 600}, # Stick Fire button 'A'
+        'Joy_3': {'Type': 'Digital', 'x': 4100, 'y': 640, 'width': 600}, # Stick Fire button 'B'
+        'Joy_4': {'Type': 'Digital', 'x': 3710, 'y': 410, 'width': 600}, # Stick Launch button
+        'Joy_5': {'Type': 'Digital', 'x': 1880, 'y': 1410, 'width': 600}, # Throttle Fire button 'D'
+        'Joy_6': {'Type': 'Digital', 'x': 1630, 'y': 2400, 'width': 600}, # Throttle Mouse Fire button
+        'Joy_7': {'Type': 'Digital', 'x': 4200, 'y': 1370, 'width': 600}, # Stick Pinkie button
+        'Joy_8': {'Type': 'Digital', 'x': 4260, 'y': 800, 'width': 600}, # Stick Fire button 'C'
+        'Joy_9': {'Type': 'Digital', 'x': 1630, 'y': 1556, 'width': 600}, # Stick first switch up
+        'Joy_10': {'Type': 'Digital', 'x': 1630, 'y': 1608, 'width': 600}, # Stick first switch down
+        'Joy_11': {'Type': 'Digital', 'x': 1785, 'y': 1716, 'width': 600}, # Stick second switch up
+        'Joy_12': {'Type': 'Digital', 'x': 1785, 'y': 1768, 'width': 600}, # Stick second switch down
+        'Joy_13': {'Type': 'Digital', 'x': 2110, 'y': 1872, 'width': 600}, # Stick third switch up
+        'Joy_14': {'Type': 'Digital', 'x': 2110, 'y': 1924, 'width': 600}, # Stick third switch down
+        'Joy_15': {'Type': 'Digital', 'x': 2940, 'y': 370, 'width': 600}, # Stick PoV2 Up
+        'Joy_16': {'Type': 'Digital', 'x': 2940, 'y': 450, 'width': 600}, # Stick PoV2 Right
+        'Joy_17': {'Type': 'Digital', 'x': 2940, 'y': 540, 'width': 600}, # Stick PoV2 Down
+        'Joy_18': {'Type': 'Digital', 'x': 2940, 'y': 630, 'width': 600}, # Stick PoV2 Left
+        'Joy_19': {'Type': 'Digital', 'x': 1630, 'y': 530, 'width': 600}, # Throttle rear hat up
+        'Joy_20': {'Type': 'Digital', 'x': 1630, 'y': 610, 'width': 600}, # Throttle rear hat right
+        'Joy_21': {'Type': 'Digital', 'x': 1630, 'y': 700, 'width': 600}, # Throttle rear hat down
+        'Joy_22': {'Type': 'Digital', 'x': 1630, 'y': 790, 'width': 600}, # Throttle rear hat left
+        'Joy_23': {'Type': 'Digital', 'x': 2180, 'y': 1930, 'width': 600}, # Throttle Mouse Hat Up
+        'Joy_24': {'Type': 'Digital', 'x': 2180, 'y': 2010, 'width': 600}, # Throttle Mouse Hat Right
+        'Joy_25': {'Type': 'Digital', 'x': 2180, 'y': 2100, 'width': 600}, # Throttle Mouse Hat Down
+        'Joy_26': {'Type': 'Digital', 'x': 2180, 'y': 2190, 'width': 600}, # Throttle Mouse Hat Left
+        'Joy_POV1Up': {'Type': 'Digital', 'x': 2810, 'y': 1050, 'width': 600}, # Stick PoV1 hat up
+        'Joy_POV1Right': {'Type': 'Digital', 'x': 2810, 'y': 1130, 'width': 600}, # Stick PoV1 hat right
+        'Joy_POV1Down': {'Type': 'Digital', 'x': 2810, 'y': 1220, 'width': 600}, # Stick PoV1 hat down
+        'Joy_POV1Left': {'Type': 'Digital', 'x': 2810, 'y': 1315, 'width': 600}, # Stick PoV1 hat left
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 1890, 'y': 1620, 'width': 600}, # Throttle bottom rotary
+        'Joy_RYAxis': {'Type': 'Analogue', 'x': 1940, 'y': 1120, 'width': 600}, # Throttle top rotary
+        'Joy_RZAxis': {'Type': 'Analogue', 'x': 730, 'y': 880, 'width': 600}, # Throttle yaw rocker
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 4210, 'y': 2310, 'width': 600}, # Stick roll
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 4210, 'y': 2400, 'width': 600}, # Stick pitch
+        'Joy_UAxis': {'Type': 'Analogue', 'x': 140, 'y': 1600, 'width': 600}, # Throttle main slider
     },
     'SaitekX52': {
         'Joy_1': {'Type': 'Digital', 'x': 3164, 'y': 858, 'width': 600}, # Stick primary trigger half press
