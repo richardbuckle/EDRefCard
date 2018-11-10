@@ -2043,5 +2043,4 @@ keymap = {
     'Key_Apostrophe': '\'',
     'Key_Backspace': '⌫',
     'Key_Tab': '⇥',
-    'Key_CapsLock: '⇪',
 }
