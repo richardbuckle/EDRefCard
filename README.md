@@ -1,5 +1,6 @@
 # Build status
-* master  [![Build Status](https://travis-ci.org/richardbuckle/EDRefCard.svg?branch=master)](https://travis-ci.org/richardbuckle/EDRefCard)  [![Coverage Status](https://coveralls.io/repos/github/richardbuckle/EDRefCard/badge.svg?branch=master)](https://coveralls.io/github/richardbuckle/EDRefCard?branch=master)
+* live  [![Build Status](https://travis-ci.org/richardbuckle/EDRefCard.svg?branch=live)](https://travis-ci.org/richardbuckle/EDRefCard)  [![Coverage Status](https://coveralls.io/repos/github/richardbuckle/EDRefCard/badge.svg?branch=live)](https://coveralls.io/github/richardbuckle/EDRefCard?branch=live)
+* beta  [![Build Status](https://travis-ci.org/richardbuckle/EDRefCard.svg?branch=beta)](https://travis-ci.org/richardbuckle/EDRefCard)  [![Coverage Status](https://coveralls.io/repos/github/richardbuckle/EDRefCard/badge.svg?branch=beta)](https://coveralls.io/github/richardbuckle/EDRefCard?branch=beta)
 * dev [![Build Status](https://travis-ci.org/richardbuckle/EDRefCard.svg?branch=dev)](https://travis-ci.org/richardbuckle/EDRefCard)  [![Coverage Status](https://coveralls.io/repos/github/richardbuckle/EDRefCard/badge.svg?branch=dev)](https://coveralls.io/github/richardbuckle/EDRefCard?branch=dev)
 
 # Purpose
