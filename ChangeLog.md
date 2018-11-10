@@ -1,5 +1,6 @@
 ## 1.1.1
 
+* Command names are now in Title Case and some have been abbreviated.
 * The keyboard chart makes more use of symbols to identify the keys.
 * The Galaxy map controls now say "GalMap" rather than "Camera".
 * Added support for Dual Virpil VPC WarBRD DELTA joysticks.
