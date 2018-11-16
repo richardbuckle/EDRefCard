@@ -1,3 +1,8 @@
+## 1.2.1
+
+* Added the new bindings introduced in Chapter 4 beta 3.
+* Updated the code that prevents redundant specialisations from being shown on the same card (e.g. when GalMap pitch axis is the same as your regular pitch axis). This should make cards more concise w/o loss of clarity.
+
 ## 1.2
 
 * Command names are now in Title Case and some have been abbreviated.
