@@ -49,6 +49,7 @@ supportedDevices = OrderedDict([
 ])
 
 controls = {
+    # The 'OverriddenBy' list is used to specify that a detailed binding such as 'SelectTarget_Buggy' need not be printed if the exact same button is bound to the more general version of that control (in that case 'SelectTarget').
     #
     # Controls for the galaxy map
     #
