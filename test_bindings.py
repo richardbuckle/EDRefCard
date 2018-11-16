@@ -196,7 +196,7 @@ class ParserTests(unittest.TestCase):
                                         'HasAnalogue': False,
                                         'Name': 'Wingman Navlock',
                                         'Order': 405,
-                                        'OverriddenBy': [],
+                                        'HideIfSameAs': [],
                                         'Type': 'Digital'
                                     }
                                 )
@@ -234,7 +234,7 @@ class ParserTests(unittest.TestCase):
                                           'HasAnalogue': False,
                                           'Name': 'All Stop',
                                           'Order': 20,
-                                          'OverriddenBy': [],
+                                          'HideIfSameAs': [],
                                           'Type': 'Digital'
                                     }
                                 )

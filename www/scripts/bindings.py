@@ -462,11 +462,12 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                 for modifier, bind in physicalKey.get('Binds').items():
                     if modifier == 'Unmodified':
                         for controlKey, control in bind.get('Controls').items():
-                            overridden = False
-                            for overrideKey in bind.get('Controls').keys():
-                                if overrideKey in control.get('OverriddenBy'):
-                                    overridden = True
-                            if overridden is True:
+                            hidden = False
+                            # TODO: this is O(N^2) fix
+                            for moreGeneralMatch in bind.get('Controls').keys():
+                                if moreGeneralMatch in control.get('HideIfSameAs'):
+                                    hidden = True
+                            if hidden is True:
                                 continue
                             # Check if this is a digital control on an analogue stick with an analogue equivalent
                             if control.get('Type') == 'Digital' and control.get('HasAnalogue') is True and hotasDetail.get('Type') == 'Analogue':
@@ -497,11 +498,12 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                             if modifierNum != curModifierNum:
                                 continue
                             for controlKey, control in bind.get('Controls').items():
-                                overridden = False
-                                for overrideKey in bind.get('Controls').keys():
-                                    if overrideKey in control.get('OverriddenBy'):
-                                        overridden = True
-                                if overridden == True:
+                                # TODO: this is O(N^2) fix
+                                hidden = False
+                                for moreGeneralMatch in bind.get('Controls').keys():
+                                    if moreGeneralMatch in control.get('HideIfSameAs'):
+                                        hidden = True
+                                if hidden == True:
                                     continue
                                 else:
                                     if styling == 'Modifier':
@@ -906,7 +908,7 @@ def parseBindings(runId, xml, displayGroups, errors):
             control['Group'] = 'General'
             control['Name'] = controlName
             control['Order'] = 999
-            control['OverriddenBy'] = []
+            control['HideIfSameAs'] = []
             control['Type'] = 'Digital'
         if control['Group'] not in displayGroups:
             # The user isn't interested in this control group so drop it
