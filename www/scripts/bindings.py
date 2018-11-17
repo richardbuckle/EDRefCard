@@ -798,8 +798,8 @@ def parseBindings(runId, xml, displayGroups, errors):
     parser = etree.XMLParser(encoding='utf-8')
     try:
         tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-    except etree.XMLSyntaxError:
-        errors.errors = '<h1>Incorrect file supplied; please go back and select your binds file as per the instructions.<h1>'
+    except etree.XMLSyntaxError as e:
+        errors.errors = "<h3>There was a problem parsing the file you supplied.</h3><p>%s.</p>" % str(e)
         xml = '<root></root>'
         tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
     
