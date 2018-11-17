@@ -60,10 +60,6 @@ class ConfigTests(unittest.TestCase):
         representation = repr(self.config)
         self.assertEqual(representation, "Config('abcdef')")
         
-    def testConfigPath(self):
-        path = bindings.Config.configsPath()
-        print(path)
-        
     def testNames(self):
         # should not raise
         allConfigs = bindings.Config.allConfigs(sortKey=lambda obj: str(obj['description']).casefold())
@@ -157,7 +153,6 @@ class FormTests(unittest.TestCase):
                 return '----starts with punctuation' if key == 'description' else 'boo'
         formProxy = FormProxy()
         mode = bindings.determineMode(formProxy)
-        print(mode)	
         self.assertEqual(bindings.Mode.invalid, mode)
     
     
@@ -228,7 +223,6 @@ class ParserTests(unittest.TestCase):
             },
             'Keyboard::0::Key_RightShift': {
                 'BaseKey': 'Key_RightShift',
-                },
                 'Device': 'Keyboard',
                 'DeviceIndex': 0,
                 'Key': 'Key_RightShift',
