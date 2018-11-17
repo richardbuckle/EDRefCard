@@ -2036,6 +2036,7 @@ keymap = {
     'Key_Numpad_Enter': 'Num Enter',
     'Key_Numpad_Equals': 'Num =',
     'Key_Numpad_Comma': 'Num ,',
+    'Key_Numpad_Period': 'Num .',
     'Key_PageDown': 'PgDn',
     'Key_PageUp': 'PgUp',
     'Key_Grave': '`',
