@@ -1,3 +1,7 @@
+## 1.2.2
+
+* Improved the error reporting when there is an error parsing the bindings file.
+
 ## 1.2.1
 
 * Added the new bindings introduced in Chapter 4 beta 3.
