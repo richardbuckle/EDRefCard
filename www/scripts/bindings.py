@@ -968,10 +968,6 @@ def parseForm(form):
         displayGroups.append('Holo-Me')
     if form.getvalue('showmisc'):
         displayGroups.append('Misc')
-    if form.getvalue('keyboard'):
-        showKeyboard = True
-    else:
-        showKeyboard = False
     
     styling = 'None'  # Yes we do mean a string 'None'
     if form.getvalue('styling') == 'group':
@@ -983,7 +979,7 @@ def parseForm(form):
     description = form.getvalue('description')
     if description is None:
         description = ''
-    return (displayGroups, showKeyboard, styling, description)
+    return (displayGroups, styling, description)
     
 def determineMode(form):
     deviceForBlockImage = form.getvalue('blocks')
@@ -1005,10 +1001,9 @@ def determineMode(form):
         mode = Mode.generate
     return mode
 
-def saveReplayInfo(config, description, styling, displayGroups, devices, showKeyboard, errors):
+def saveReplayInfo(config, description, styling, displayGroups, devices, errors):
     replayInfo = {}
     replayInfo['displayGroups'] = displayGroups
-    replayInfo['showKeyboard'] = showKeyboard
     replayInfo['misconfigurationWarnings'] = errors.misconfigurationWarnings
     replayInfo['unhandledDevicesWarnings'] = errors.unhandledDevicesWarnings
     replayInfo['deviceWarnings'] = errors.deviceWarnings
@@ -1074,7 +1069,6 @@ def main():
                 with replayPath.open("rb") as pickleFile:
                     replayInfo = pickle.load(pickleFile)
                     displayGroups =  replayInfo.get('displayGroups', ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI'])
-                    showKeyboard = replayInfo.get('showKeyboard', True)
                     errors.misconfigurationWarnings = replayInfo.get('misconfigurationWarnings', replayInfo.get('warnings', ''))
                     errors.deviceWarnings = replayInfo.get('deviceWarnings', '')
                     errors.unhandledDevicesWarnings = ''
@@ -1084,7 +1078,6 @@ def main():
                     # devices = replayInfo['devices']
             except FileNotFoundError:
                 displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
-                showKeyboard = True
         except (ValueError, FileNotFoundError):
             errors.errors = '<h1>Configuration "%s" not found</h1>' % runId
             displayGroups = ['Galaxy map', 'General', 'Head look', 'SRV', 'Ship', 'UI']
@@ -1094,7 +1087,7 @@ def main():
         config.makeDir()
         runId = config.name
         displayGroups = []
-        (displayGroups, showKeyboard, styling, description) = parseForm(form)
+        (displayGroups, styling, description) = parseForm(form)
         xml = form.getvalue('bindings')
         if xml is None or xml is b'':
             errors.errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
@@ -1156,7 +1149,7 @@ def main():
     
     # Save variables for later replays
     if (mode is Mode.generate and public):
-        saveReplayInfo(config, description, styling, displayGroups, devices, showKeyboard, errors)
+        saveReplayInfo(config, description, styling, displayGroups, devices, errors)
     
     printHTML(mode, config, public, createdImages, deviceForBlockImage, errors)
 
