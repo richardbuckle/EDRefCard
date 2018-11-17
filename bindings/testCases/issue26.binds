@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Root PresetName="NLS X-56 Rhino" MajorVersion="3" MinorVersion="0">
+	<ExplorationFSSEnter>
+		<Primary Device="Keyboard" Key="Key_Apostrophe" />
+		<Secondary Device="Keyboard" Key="Key_RightShift" />
+	</ExplorationFSSEnter>
+</Root>

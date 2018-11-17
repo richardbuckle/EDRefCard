@@ -216,6 +216,31 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(modifiers, {})
         self.assertEqual(devices, expectedDevices)
 
+    def testParseTwoKeyBinds(self):
+        path = self.testCasesPath / 'issue26.binds'
+        ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
+        expectedKeys = {
+            'Keyboard::0::Key_Apostrophe': {
+                'BaseKey': 'Key_Apostrophe',
+                'Device': 'Keyboard',
+                'DeviceIndex': 0,
+                'Key': 'Key_Apostrophe',
+            },
+            'Keyboard::0::Key_RightShift': {
+                'BaseKey': 'Key_RightShift',
+                },
+                'Device': 'Keyboard',
+                'DeviceIndex': 0,
+                'Key': 'Key_RightShift',
+            }
+        }
+        expectedDevices = {
+            'Keyboard::0': {'HandledDevices': ['Keyboard'], 'Template': 'keyboard'}
+        }
+        self.assertEqual(physicalKeys.keys(), expectedKeys.keys())
+        self.assertEqual(modifiers, {})
+        self.assertEqual(devices, expectedDevices)
+
     def testParseOneModifier(self):
         path = self.testCasesPath / 'single_modifier.binds'
         ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)
