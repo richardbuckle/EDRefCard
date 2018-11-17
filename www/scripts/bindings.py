@@ -309,9 +309,6 @@ def appendKeyboardImage(createdImages, physicalKeys, modifiers, displayGroups, r
 
 # Write text, possible wrapping
 def writeText(context, img, text, screenState, font, surround, newLine):
-    if text is None:
-        text = "hell"
-        #return
     border = 4
 
     # Work out the size of the text
@@ -322,6 +319,10 @@ def writeText(context, img, text, screenState, font, surround, newLine):
     context.stroke_width=0
     context.fill_color=Color('#000')
     context.fill_opacity=1
+
+    if text is None:
+        text = 'invalid'
+        context.fill_color=Color('#FFFF7F50') # Coral
 
     metrics = context.get_font_metrics(img, text, multiline=False)
     if screenState['currentY'] + int(metrics.text_height + 32) > 2160:
