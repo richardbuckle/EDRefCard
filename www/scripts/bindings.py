@@ -145,7 +145,7 @@ groupStyles = {
     'Misc': {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')},
     'Modifier': {'Color': Color('#000000'), 'Font': getFontPath('Bold', 'Normal')},
     'Galaxy map': {'Color': Color('#CCCC00'), 'Font': getFontPath('Regular', 'Normal')},
-    'Commander creator': {'Color': Color('#CCCC00'), 'Font': getFontPath('Regular', 'Italic')},
+    'Holo-Me': {'Color': Color('#CCCC00'), 'Font': getFontPath('Regular', 'Italic')},
     'Multicrew': {'Color': Color('#CCCC00'), 'Font': getFontPath('Bold', 'Italic')},
     'Fighter': {'Color': Color('#777777'), 'Font': getFontPath('Regular', 'Normal')},
     'Camera': {'Color': Color('#777777'), 'Font': getFontPath('Regular', 'Italic')},
@@ -965,7 +965,7 @@ def parseForm(form):
     if form.getvalue('showcamera'):
         displayGroups.append('Camera')
     if form.getvalue('showcommandercreator'):
-        displayGroups.append('Commander creator')
+        displayGroups.append('Holo-Me')
     if form.getvalue('showmisc'):
         displayGroups.append('Misc')
     if form.getvalue('keyboard'):
