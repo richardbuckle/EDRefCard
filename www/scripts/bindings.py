@@ -310,7 +310,8 @@ def appendKeyboardImage(createdImages, physicalKeys, modifiers, displayGroups, r
 # Write text, possible wrapping
 def writeText(context, img, text, screenState, font, surround, newLine):
     if text is None:
-        return
+        text = "hell"
+        #return
     border = 4
 
     # Work out the size of the text
