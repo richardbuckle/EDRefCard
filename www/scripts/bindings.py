@@ -322,7 +322,7 @@ def writeText(context, img, text, screenState, font, surround, newLine):
 
     if text is None:
         text = 'invalid'
-        context.fill_color=Color('#FFFF7F50') # Coral
+        context.fill_color=Color('#FF0000') # Red
 
     metrics = context.get_font_metrics(img, text, multiline=False)
     if screenState['currentY'] + int(metrics.text_height + 32) > 2160:
