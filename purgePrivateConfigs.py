@@ -25,11 +25,11 @@ class Purger:
         replayPath = self.replayPath(bindPath)
         return replayPath.exists()
     
-    def isOverOneDayOld(self, bindPath):
+    def isOverOneHourOld(self, bindPath):
         stat = bindPath.stat()
         fileTouchedTime = stat.st_ctime
         now = time.time()
-        cutoff = now - 86400 # bad practice but good enough for this
+        cutoff = now - 3600
         return fileTouchedTime < cutoff
         
     def thoseWithoutReplay(self, bindingsPaths):
@@ -49,7 +49,7 @@ class Purger:
             sys.exit('%s not found' % self.configsDir)
         allBindings = self.allBindings()
         privateBindings = self.thoseWithoutReplay(allBindings)
-        oldPrivateBindings = [path for path in privateBindings if self.isOverOneDayOld(path)]
+        oldPrivateBindings = [path for path in privateBindings if self.isOverOneHourOld(path)]
         deepListToPurge = [self.allFilesStartingWithStem(path) for path in oldPrivateBindings]
         filesToPurge = [x for sublist in deepListToPurge for x in sublist] 
         for path in filesToPurge:
