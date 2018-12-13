@@ -1,3 +1,7 @@
+## 1.2.3
+
+* Restored caching of rendered JPEGs to one day now that we have more disk space.
+
 ## 1.2.2
 
 * Improved the error reporting when there is an error parsing the bindings file.
