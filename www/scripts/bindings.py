@@ -797,10 +797,10 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
 # Parser section
 
 def parseBindings(runId, xml, displayGroups, errors):
-    parser = etree.XMLParser(encoding='utf-8')
+    parser = etree.XMLParser(encoding='utf-8', resolve_entities=False)
     try:
         tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-    except etree.XMLSyntaxError as e:
+    except SyntaxError as e:
         errors.errors = '''<h3>There was a problem parsing the file you supplied.</h3>
         <p>%s.</p>
         <p>Possibly you submitted the wrong file, or hand-edited it and made a mistake.</p>''' % html.escape(str(e), quote=True)
