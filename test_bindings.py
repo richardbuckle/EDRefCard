@@ -186,6 +186,12 @@ class ParserTests(unittest.TestCase):
         isRedundant = bindings.isRedundantSpecialisation(control, bind)
         self.assertFalse(isRedundant)
 
+    def testControlHasNoRedundantSpecialisation(self):
+        control = {'Group': 'Misc', 'Category': 'General', 'Order': 14, 'Name': 'Night Vision', 'Type': 'Digital', 'HideIfSameAs': []}
+        bind = {'Controls': OrderedDict([('NightVisionToggle', 'blah')])}
+        isRedundant = bindings.isRedundantSpecialisation(control, bind)
+        self.assertFalse(isRedundant)
+
     def testParseOneKeyBind(self):
         path = self.testCasesPath / 'one_keystroke.binds'
         ((physicalKeys, modifiers, devices), errors) = bindings.parseLocalFile(path)

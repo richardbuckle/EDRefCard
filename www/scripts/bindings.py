@@ -388,9 +388,11 @@ def getModifierStyle(num):
 
 # Return whether a binding is a redundant specialisation and thus can be hidden
 def isRedundantSpecialisation(control, bind):
-    # TODO: this is O(N^2) fix
+    moreGeneralControls = control.get('HideIfSameAs')
+    if len(moreGeneralControls) == 0:
+        return False
     for moreGeneralMatch in bind.get('Controls').keys():
-        if moreGeneralMatch in control.get('HideIfSameAs'):
+        if moreGeneralMatch in moreGeneralControls:
             return True
     return False
 
