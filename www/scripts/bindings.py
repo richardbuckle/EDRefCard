@@ -386,6 +386,14 @@ def getModifierStyle(num):
     else:
         return modifierStyles[(113 - num) % 13]
 
+# Return whether a binding is a redundant specialisation and thus can be hidden
+def isRedundantSpecialisation(control, bind):
+    # TODO: this is O(N^2) fix
+    for moreGeneralMatch in bind.get('Controls').keys():
+        if moreGeneralMatch in control.get('HideIfSameAs'):
+            return True
+    return False
+
 # Create a HOTAS image from the template plus bindings
 def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontSize, config, public, styling, deviceIndex, misconfigurationWarnings):
     # Set up the path for our file
@@ -464,12 +472,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                 for modifier, bind in physicalKey.get('Binds').items():
                     if modifier == 'Unmodified':
                         for controlKey, control in bind.get('Controls').items():
-                            hidden = False
-                            # TODO: this is O(N^2) fix
-                            for moreGeneralMatch in bind.get('Controls').keys():
-                                if moreGeneralMatch in control.get('HideIfSameAs'):
-                                    hidden = True
-                            if hidden is True:
+                            if isRedundantSpecialisation(control, bind):
                                 continue
                             # Check if this is a digital control on an analogue stick with an analogue equivalent
                             if control.get('Type') == 'Digital' and control.get('HasAnalogue') is True and hotasDetail.get('Type') == 'Analogue':
@@ -500,21 +503,15 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                             if modifierNum != curModifierNum:
                                 continue
                             for controlKey, control in bind.get('Controls').items():
-                                # TODO: this is O(N^2) fix
-                                hidden = False
-                                for moreGeneralMatch in bind.get('Controls').keys():
-                                    if moreGeneralMatch in control.get('HideIfSameAs'):
-                                        hidden = True
-                                if hidden == True:
+                                if isRedundantSpecialisation(control, bind):
                                     continue
+                                if styling == 'Modifier':
+                                    texts.append({'Text': '%s' % control.get('Name'), control.get('Group'): 'Modifier', 'Style': getModifierStyle(curModifierNum)})
+                                    # sys.stderr.write('Writing %s with style %s\n' % (control.get('Name'), getModifierStyle(curModifierNum)));
+                                elif styling == 'Category':
+                                    texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
                                 else:
-                                    if styling == 'Modifier':
-                                        texts.append({'Text': '%s' % control.get('Name'), control.get('Group'): 'Modifier', 'Style': getModifierStyle(curModifierNum)})
-                                        # sys.stderr.write('Writing %s with style %s\n' % (control.get('Name'), getModifierStyle(curModifierNum)));
-                                    elif styling == 'Category':
-                                        texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
-                                    else:
-                                        texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': groupStyles.get(control.get('Group'))})
+                                    texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': groupStyles.get(control.get('Group'))})
             
                 # Obtain the layout of the texts and write them
                 texts = layoutText(sourceImg, context, texts, hotasDetail, biggestFontSize)
