@@ -173,6 +173,18 @@ class ParserTests(unittest.TestCase):
         expectedResult = ({}, {}, {})
         self.assertEqual(result, expectedResult)
         self.assertTrue(len(errors.errors) > 0)
+        
+    def testRedundantSpecialisation(self):
+        control = {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 12, 'Name': 'GalMap Pitch Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchUpButton']}
+        bind = {'Controls': OrderedDict([('CamPitchUp', 'blah'), ('PitchUpButton', 'blah')])}
+        isRedundant = bindings.isRedundantSpecialisation(control, bind)
+        self.assertTrue(isRedundant)
+
+    def testNonRedundantSpecialisation(self):
+        control = {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 12, 'Name': 'GalMap Pitch Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchUpButton']}
+        bind = {'Controls': OrderedDict([('CamPitchUp', 'blah'), ('PitchDownButton', 'blah')])}
+        isRedundant = bindings.isRedundantSpecialisation(control, bind)
+        self.assertFalse(isRedundant)
 
     def testParseOneKeyBind(self):
         path = self.testCasesPath / 'one_keystroke.binds'
