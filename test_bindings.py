@@ -3,6 +3,7 @@
 from unittest import TestCase, mock, main as testmain
 from unittest.mock import MagicMock
 import os
+import pprint
 import string
 from collections import OrderedDict
 from pathlib import Path
@@ -418,6 +419,24 @@ class ParserTests(TestCase):
         }
         self.maxDiff = None
         self.assertEqual(modifiers, expectedModifers)
+        
+    def test26FSSOnly(self):
+        path = self.testCasesPath / 'issue26full.xml'
+        errors = bindings.Errors()
+        displayGroups = ['Scanners',]
+        with path.open() as f:
+            xml = f.read()
+            (physicalKeys, modifiers, devices) = bindings.parseBindings("test", xml, displayGroups, errors)
+            pprint.pprint(physicalKeys['Keyboard::0::Key_RightShift'])
+
+    def test26FSSandShip(self):
+        path = self.testCasesPath / 'issue26full.xml'
+        errors = bindings.Errors()
+        displayGroups = ['Ship', 'Scanners']
+        with path.open() as f:
+            xml = f.read()
+            (physicalKeys, modifiers, devices) = bindings.parseBindings("test", xml, displayGroups, errors)
+            pprint.pprint(physicalKeys['Keyboard::0::Key_RightShift'])
 
 def setUpModule():
     scriptsPath = Path.cwd() / 'www/scripts'
