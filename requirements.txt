@@ -1,5 +1,0 @@
-pytest
-pytest-cov
-coveralls
-lxml
-wand

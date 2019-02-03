@@ -10,14 +10,8 @@ Currently hosted at [https://edrefcard.info/](https://edrefcard.info/).
 
 # Dependencies
 
-* Python 3.6 or later
-	* Python3 module `lxml`
-	* Python3 module `wand`
-	* Python3 module `pytest`
-	* Python3 module `pytest-cov`
-	* Python3 module `coveralls`
-
-* ImageMagick v6 (at the time of writing python wand doesn't support ImageMagick v7)
+1. Run `pipenv install`.
+2. Install ImageMagick v6 (at the time of writing python wand doesn't support ImageMagick v7)
 	* you may need to configure the `MAGICK_HOME` env var to get `wand` to see the ImageMagick libraries.
 
 # Installation in a web server
