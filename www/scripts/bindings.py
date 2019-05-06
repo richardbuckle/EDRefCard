@@ -375,6 +375,7 @@ def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#0F0'):
             context.font = getFontPath('Regular', 'Normal')
             context.text_antialias = True
             context.font_style = 'normal'
+            maxFontSize = 40
 
             for keyDevice in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
                 for (keycode, box) in hotasDetails[keyDevice].items():
@@ -384,7 +385,14 @@ def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#0F0'):
                     context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
                     context.stroke_width = 0
                     context.fill_color = Color('#000')
-                    context.text(x=box['x'], y=box['y'], body=keycode)
+                    texts = layoutText(sourceImg, context, [keycode], box, maxFontSize)
+                    for text in texts:
+                        context.font_size = text['Size']
+                        # TODO dry this up
+                        context.font = text['Style']['Font']
+                        if styling != 'None':
+                            context.fill_color = text['Style']['Color']
+                        context.text(x=text['X'], y=text['Y'], body=text['Text'])
                     
             context.draw(sourceImg)
             sourceImg.save(filename=str(filePath))
