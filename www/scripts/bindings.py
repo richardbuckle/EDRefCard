@@ -776,6 +776,9 @@ def printBodyMain(mode, config, public, createdImages, deviceForBlockImage, erro
         case Mode.list:
             printList()
             break
+        case Mode.listDevices:
+            printDeviceList()
+            break
         default:
             printRefCard(config, public, createdImages, deviceForBlockImage, errors)
             break
@@ -1003,7 +1006,7 @@ def parseForm(form):
 def determineMode(form):
     deviceForBlockImage = form.getvalue('blocks')
     wantList = form.getvalue('list')
-    wantDeviceList = form.getvalue('devices')
+    wantDeviceList = form.getvalue('devicelist')
     runIdToReplay = form.getvalue('replay')
     description = form.getvalue('description')
     if description is None:
