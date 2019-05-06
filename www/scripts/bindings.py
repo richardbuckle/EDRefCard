@@ -714,7 +714,7 @@ def printListItem(configObj):
 
 def printDeviceList():
     print('<div id="banner"><h1>EDRefCard: supported devices</h1></div>')
-    devices = supportedDevices.keys().sorted()
+    devices = supportedDevices.keys().sort()
     print(devices)
 
 def printList():
