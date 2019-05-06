@@ -1,5 +1,7 @@
 ## 1.2.4
 
+* New URL endpoint `/device/xxx` shows the button names and rectangles (shaded in light green and outlined in red) of a given device, to assist with (a) debugging button mappings and (b) aligning the rectangles pixel-perfect.
+
 ## 1.2.3
 
 * Restored caching of rendered JPEGs to one day now that we have more disk space.
