@@ -1028,12 +1028,7 @@ def parseLocalFile(filePath):
 
 # API section
 
-def main():
-    cgitb.enable()
-    
-    # Obtain form input and set up our variables
-    form = cgi.FieldStorage()
-    
+def processForm(form):
     config = Config.newRandom()
     styling = 'None'
     description = ''
@@ -1153,6 +1148,11 @@ def main():
         saveReplayInfo(config, description, styling, displayGroups, devices, errors)
     
     printHTML(mode, config, public, createdImages, deviceForBlockImage, errors)
+
+def main():
+    cgitb.enable()
+    form = cgi.FieldStorage()
+    processForm(form)
 
 if __name__ == '__main__':
     main()
