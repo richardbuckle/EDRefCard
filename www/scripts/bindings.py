@@ -391,8 +391,6 @@ def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#0F0'):
                         context.font_size = text['Size']
                         # TODO dry this up
                         context.font = text['Style']['Font']
-                        if styling != 'None':
-                            context.fill_color = text['Style']['Color']
                         context.text(x=text['X'], y=text['Y'], body=text['Text'])
                     
             context.draw(sourceImg)
