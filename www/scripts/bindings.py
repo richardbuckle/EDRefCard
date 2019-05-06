@@ -772,16 +772,12 @@ def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
     print('<p/>')
 
 def printBodyMain(mode, config, public, createdImages, deviceForBlockImage, errors):
-    switch(mode):
-        case Mode.list:
-            printList()
-            break
-        case Mode.listDevices:
-            printDeviceList()
-            break
-        default:
-            printRefCard(config, public, createdImages, deviceForBlockImage, errors)
-            break
+    if mode == Mode.list:
+        printList()
+    elif mode == Mode.listDevices:
+        printDeviceList()
+    else:
+        printRefCard(config, public, createdImages, deviceForBlockImage, errors)
 
 def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
     # guard against bad server configs
