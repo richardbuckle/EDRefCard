@@ -1,6 +1,7 @@
 ## 1.2.4
 
 * New URL endpoint `/device/xxx` shows the button names and rectangles (shaded in light green and outlined in red) of a given device, to assist with (a) debugging button mappings and (b) aligning the rectangles pixel-perfect.
+* New URL endpoint `/deviceList` lists all supported devices by primary name, linking to the above.
 
 ## 1.2.3
 
