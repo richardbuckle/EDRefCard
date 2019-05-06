@@ -772,7 +772,7 @@ def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
     print('<p><a href="/">Home</a>.</p>')
 
 def printSupportPara():
-    supportPara = '<p>Version %s<br>Please direct questions, suggestions and support requests to <a href="https://forums.frontier.co.uk/showthread.php?t=464400">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__
+    supportPara = '<p>Version %s<br>Please direct questions, suggestions and support requests to <a href="https://forums.frontier.co.uk/threads/edrefcard-makes-a-printable-reference-card-of-your-controller-bindings.464400/">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__
     print(supportPara)
 
 def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
