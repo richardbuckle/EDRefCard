@@ -155,6 +155,18 @@ class FormTests(unittest.TestCase):
         mode = bindings.determineMode(formProxy)
         self.assertEqual(bindings.Mode.invalid, mode)
     
+
+class ModiferStylesTests(unittest.TestCase):
+    
+    def testZeroIndex(self):
+        style = bindings.ModifierStyles.index(0)
+        self.assertEqual(bindings.ModifierStyles.styles[0], style)
+    
+    def testTwoPastEnd(self):
+        i = len(bindings.ModifierStyles.styles) + 1
+        style = bindings.ModifierStyles.index(i)
+        self.assertEqual(bindings.ModifierStyles.styles[1], style)
+
     
 class ParserTests(unittest.TestCase):
     

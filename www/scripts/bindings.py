@@ -166,22 +166,28 @@ categoryStyles = {
 }
 
 # Modifier styling - note a list not a dictionary as modifiers are numeric
-modifierStyles = [
-    {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#FF0000'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#00FF00'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#0000FF'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#777700'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#770077'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#007777'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#777777'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#FF7777'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#77FF77'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#7777FF'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#CCCC77'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#CC77CC'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#77CCCC'), 'Font': getFontPath('Regular', 'Normal')},
-]
+class ModifierStyles:
+    styles = [
+        {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#FF0000'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#00FF00'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#0000FF'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#777700'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#770077'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#007777'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#777777'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#FF7777'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#77FF77'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#7777FF'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#CCCC77'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#CC77CC'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#77CCCC'), 'Font': getFontPath('Regular', 'Normal')},
+    ]
+
+    def index(num):
+        i= num % len(ModifierStyles.styles)
+        return ModifierStyles.styles[i]
+    
 
 def transKey(key):
     if key is None:
@@ -377,15 +383,6 @@ def createBlockImage(supportedDeviceKey):
             context.draw(sourceImg)
             sourceImg.save(filename=str(filePath))
 
-# We have a limited number of modifier styles so balance them out across the modifier number
-def getModifierStyle(num):
-    if num == 0:
-        return modifierStyles[0]
-    elif num < 100:
-        return modifierStyles[0 + (num % 13)]
-    else:
-        return modifierStyles[(113 - num) % 13]
-
 # Return whether a binding is a redundant specialisation and thus can be hidden
 def isRedundantSpecialisation(control, bind):
     moreGeneralControls = control.get('HideIfSameAs')
@@ -450,7 +447,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                 # First obtain the modifiers if there are any
                 for keyModifier in modifiers.get(physicalKeySpec, []):
                     if styling == 'Modifier':
-                        style = modifierStyles[keyModifier.get('Number') % 13]
+                        style = ModifierStyles.index(keyModifier.get('Number'))
                     else:
                         style = groupStyles.get('Modifier')
                     texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
@@ -458,14 +455,14 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                     # Same again but for positive modifier
                     for keyModifier in modifiers.get(physicalKeySpec.replace('::Joy', '::Pos_Joy'), []):
                         if styling == 'Modifier':
-                            style = modifierStyles[keyModifier.get('Number') % 13]
+                            style = ModifierStyles.index(keyModifier.get('Number'))
                         else:
                             style = groupStyles.get('Modifier')
                         texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
                     # Same again but for negative modifier
                     for keyModifier in modifiers.get(physicalKeySpec.replace('::Joy', '::Neg_Joy'), []):
                         if styling == 'Modifier':
-                            style = modifierStyles[keyModifier.get('Number') % 13]
+                            style = ModifierStyles.index(keyModifier.get('Number'))
                         else:
                             style = groupStyles.get('Modifier')
                         texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
@@ -485,7 +482,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                                 #sys.stderr.write('%s: Digital command %s found on hotas control %s::%s\n' % (runId, control['Name'], itemDevice, itemKey))
 
                             if styling == 'Modifier':
-                                texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': modifierStyles[0]})
+                                texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': ModifierStyles.index(0)})
                             elif styling == 'Category':
                                 texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
                             else:
@@ -508,8 +505,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                                 if isRedundantSpecialisation(control, bind):
                                     continue
                                 if styling == 'Modifier':
-                                    texts.append({'Text': '%s' % control.get('Name'), control.get('Group'): 'Modifier', 'Style': getModifierStyle(curModifierNum)})
-                                    # sys.stderr.write('Writing %s with style %s\n' % (control.get('Name'), getModifierStyle(curModifierNum)));
+                                    texts.append({'Text': '%s' % control.get('Name'), control.get('Group'): 'Modifier', 'Style': ModifierStyles.index(curModifierNum)})
                                 elif styling == 'Category':
                                     texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
                                 else:
@@ -548,7 +544,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                         continue
 
                     if styling == 'Modifier':
-                        style = getModifierStyle(keyModifier.get('Number'))
+                        style = ModifierStyles.index(keyModifier.get('Number'))
                     else:
                         style = groupStyles.get('Modifier')
                     modifierTexts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
