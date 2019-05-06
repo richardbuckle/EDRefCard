@@ -776,9 +776,6 @@ def printBodyMain(mode, config, public, createdImages, deviceForBlockImage, erro
         case Mode.list:
             printList()
             break
-        case Mode.listDevices:
-            printDeviceList()
-            break
         default:
             printRefCard(config, public, createdImages, deviceForBlockImage, errors)
             break
