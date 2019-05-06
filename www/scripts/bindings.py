@@ -385,6 +385,7 @@ def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#0F0'):
                     context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
                     context.stroke_width = 0
                     context.fill_color = Color('#000')
+                    texts = [{'Text': keycode, , 'Group': 'General', 'Style': groupStyles['General']}]
                     texts = layoutText(sourceImg, context, [keycode], box, maxFontSize)
                     for text in texts:
                         context.font_size = text['Size']
