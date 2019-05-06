@@ -109,6 +109,7 @@ class Mode(Enum):
     list = 2
     replay = 3
     generate = 4
+    listDevices = 5
 
 
 class Errors:
@@ -994,6 +995,7 @@ def parseForm(form):
 def determineMode(form):
     deviceForBlockImage = form.getvalue('blocks')
     wantList = form.getvalue('list')
+    wantDeviceList = form.getvalue('devices')
     runIdToReplay = form.getvalue('replay')
     description = form.getvalue('description')
     if description is None:
@@ -1005,6 +1007,8 @@ def determineMode(form):
         mode = Mode.blocks
     elif wantList is not None:
         mode = Mode.list
+    elif wantDeviceList is not None:
+        mode = Mode.listDevices
     elif runIdToReplay is not None:
         mode = Mode.replay
     else:

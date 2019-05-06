@@ -126,6 +126,7 @@ class uploadTests(unittest.TestCase):
         with contextlib.redirect_stdout(None):
             bindings.printListItem(obj)
 
+
 class FontPathTests(unittest.TestCase):
     
     def testRegularNormal(self):
@@ -154,6 +155,14 @@ class FormTests(unittest.TestCase):
         formProxy = FormProxy()
         mode = bindings.determineMode(formProxy)
         self.assertEqual(bindings.Mode.invalid, mode)
+
+    def testDeviceListMode(self):
+        class FormProxy :
+            def getvalue(self, key):
+                return 'all' if key == 'devices' else 'boo'
+        formProxy = FormProxy()
+        mode = bindings.determineMode(formProxy)
+        self.assertEqual(bindings.Mode.listDevices, mode)
     
 
 class ModiferStylesTests(unittest.TestCase):
