@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-__version__ = '1.2.3'
+__version__ = '1.2.4'
 
 from collections import OrderedDict
 

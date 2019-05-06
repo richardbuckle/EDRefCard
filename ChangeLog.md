@@ -1,3 +1,5 @@
+## 1.2.4
+
 ## 1.2.3
 
 * Restored caching of rendered JPEGs to one day now that we have more disk space.
