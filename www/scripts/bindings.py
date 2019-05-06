@@ -362,7 +362,7 @@ def writeText(context, img, text, screenState, font, surround, newLine):
     else:
         screenState['currentX'] = screenState['currentX'] + width
 
-def createBlockImage(supportedDeviceKey):
+def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#0F0'):
     supportedDevice = supportedDevices[supportedDeviceKey]
     # Set up the path for our file
     templateName = supportedDevice['Template']
@@ -372,14 +372,20 @@ def createBlockImage(supportedDeviceKey):
     
     with Image(filename='../res/' + supportedDevice['Template'] + '.jpg') as sourceImg:
         with Drawing() as context:
-            context.stroke_width=1
-            context.stroke_color=Color('#F00')
-            context.fill_color=Color('#0F0')
+            context.font = getFontPath('Regular', 'Normal')
+            context.text_antialias = True
+            context.font_style = 'normal'
 
             for keyDevice in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
-                for box in hotasDetails[keyDevice].values():
+                for (keycode, box) in hotasDetails[keyDevice].items():
+                    context.stroke_width = 1
+                    context.stroke_color = Color(strokeColor)
+                    context.fill_color = Color(fillColor)
                     context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
-
+                    context.stroke_width = 0
+                    context.fill_color = Color('#000')
+                    context.text(x=box['x'], y=box['y'], body=text[keycode])
+                    
             context.draw(sourceImg)
             sourceImg.save(filename=str(filePath))
 
