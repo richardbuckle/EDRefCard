@@ -712,6 +712,11 @@ def printListItem(configObj):
     </tr>
     ''' % (refcardURL, html.escape(name, quote=True), controllersStr, dateStr))
 
+def printDeviceList():
+    print('<div id="banner"><h1>EDRefCard: supported devices</h1></div>')
+    devices = supportedDevices.keys().sort()
+    print(devices)
+
 def printList():
     print('<div id="banner"><h1>EDRefCard: public configurations</h1></div>')
     print('<p>Yes, we know this is very basic. Proper search support is coming soon.</p>')
@@ -767,10 +772,16 @@ def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
     print('<p/>')
 
 def printBodyMain(mode, config, public, createdImages, deviceForBlockImage, errors):
-    if mode is Mode.list:
-        printList()
-    else:
-        printRefCard(config, public, createdImages, deviceForBlockImage, errors)
+    switch(mode):
+        case Mode.list:
+            printList()
+            break
+        case Mode.listDevices:
+            printDeviceList()
+            break
+        default:
+            printRefCard(config, public, createdImages, deviceForBlockImage, errors)
+            break
 
 def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
     # guard against bad server configs
