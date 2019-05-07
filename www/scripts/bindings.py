@@ -714,8 +714,12 @@ def printListItem(configObj):
 
 def printDeviceList():
     print('<div id="banner"><h1>EDRefCard: supported devices</h1></div>')
+    print('<ul>')
     devices = sorted(supportedDevices.keys())
+    for device in devices:
+        print('<li><a href=%s>%s</a></li>') % (device, device)
     print(devices)
+    print('/<ul>')
 
 def printList():
     print('<div id="banner"><h1>EDRefCard: public configurations</h1></div>')
