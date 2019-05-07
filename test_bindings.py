@@ -159,7 +159,7 @@ class FormTests(unittest.TestCase):
     def testDeviceListMode(self):
         class FormProxy :
             def getvalue(self, key):
-                return 'all' if key == 'devices' else 'boo'
+                return 'all' if key == 'devicelist' else 'boo'
         formProxy = FormProxy()
         mode = bindings.determineMode(formProxy)
         self.assertEqual(bindings.Mode.listDevices, mode)
