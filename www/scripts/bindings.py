@@ -717,8 +717,7 @@ def printDeviceList():
     print('<ul>')
     devices = sorted(supportedDevices.keys())
     for device in devices:
-        print('<li><a href=%s>%s</a></li>' % (device, device))
-    print(devices)
+        print('<li><a href=device/%s>%s</a></li>' % (device, device))
     print('/<ul>')
 
 def printList():
