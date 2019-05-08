@@ -718,7 +718,7 @@ def printDeviceList():
     devices = sorted(supportedDevices.keys())
     for device in devices:
         print('<li><a href=device/%s>%s</a></li>' % (device, device))
-    print('/<ul>')
+    print('</ul>')
 
 def printList():
     print('<div id="banner"><h1>EDRefCard: public configurations</h1></div>')
