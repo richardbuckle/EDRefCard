@@ -1882,47 +1882,47 @@ hotasDetails = {
         'Joy_RZAxis': {'Type': 'Analogue', 'x': 2324, 'y': 1136, 'width': 1332, 'height': 54},
     },
     '231D0121': { # VKB Gladiator
-        'Joy_1': {'Type': 'Digital', 'x': 2184, 'y': 584, 'width': 1472, 'height': 54}, # Primary trigger (mode 1, unshifted)
-        'Joy_3': {'Type': 'Digital', 'x': 2184, 'y': 640, 'width': 1472, 'height': 56}, # Primary trigger (mode 1, shifted)
-        'Joy_5': {'Type': 'Digital', 'x': 2184, 'y': 704, 'width': 1472, 'height': 54}, # Primary trigger (mode 2, unshifted)
-        'Joy_27': {'Type': 'Digital', 'x': 2184, 'y': 760, 'width': 1472, 'height': 56}, # Primary trigger (mode 2, shifted)
-        'Joy_2': {'Type': 'Digital', 'x': 2124, 'y': 304, 'width': 1472, 'height': 54}, # Thumb trigger (mode 1, unshifted)
-        'Joy_4': {'Type': 'Digital', 'x': 2124, 'y': 360, 'width': 1472, 'height': 56}, # Thumb trigger (mode 1, shifted)
-        'Joy_28': {'Type': 'Digital', 'x': 2124, 'y': 424, 'width': 1472, 'height': 54}, # Thumb trigger (mode 2, unshifted)
-        'Joy_29': {'Type': 'Digital', 'x': 2124, 'y': 480, 'width': 1472, 'height': 56}, # Thumb trigger (mode 2, shifted)
+        'Joy_1': {'Type': 'Digital', 'x': 204, 'y': 1524, 'width': 992, 'height': 54}, # Flaps up
+        'Joy_2': {'Type': 'Digital', 'x': 254, 'y': 1624, 'width': 992, 'height': 54}, # Flaps down
+        'Joy_3': {'Type': 'Digital', 'x': 784, 'y': 1904, 'width': 992, 'height': 54}, # A1
+        'Joy_4': {'Type': 'Digital', 'x': 2524, 'y': 1514, 'width': 992, 'height': 54}, # A2
+        'Joy_5': {'Type': 'Digital', 'x': 2464, 'y': 1424, 'width': 992, 'height': 54}, # A3
+        'Joy_6': {'Type': 'Digital', 'x': 1144, 'y': 1994, 'width': 992, 'height': 54}, # B1
+        'Joy_7': {'Type': 'Digital', 'x': 2484, 'y': 1814, 'width': 992, 'height': 54}, # B2
+        'Joy_8': {'Type': 'Digital', 'x': 2564, 'y': 1604, 'width': 992, 'height': 54}, # B3
+        'Joy_9': {'Type': 'Digital', 'x': 2244, 'y': 1994, 'width': 992, 'height': 54}, # C1
+        'Joy_10': {'Type': 'Digital', 'x': 2414, 'y': 1904, 'width': 992, 'height': 54}, # C2
+        'Joy_11': {'Type': 'Digital', 'x': 2624, 'y': 1694, 'width': 992, 'height': 54}, # C3
+        'Joy_12': {'Type': 'Digital', 'x': 2274, 'y': 1254, 'width': 1192, 'height': 54}, # Engine start
+        'Joy_13': {'Type': 'Digital', 'x': 2204, 'y': 1114, 'width': 1192, 'height': 54}, # Eject
+        'Joy_14': {'Type': 'Digital', 'x': 2184, 'y': 584, 'width': 1472, 'height': 54}, # Primary trigger (mode 1, unshifted)
+        'Joy_15': {'Type': 'Digital', 'x': 2184, 'y': 640, 'width': 1472, 'height': 56}, # Primary trigger (mode 1, shifted)
+        'Joy_16': {'Type': 'Digital', 'x': 2184, 'y': 704, 'width': 1472, 'height': 54}, # Primary trigger (mode 2, unshifted)
+        'Joy_17': {'Type': 'Digital', 'x': 2184, 'y': 760, 'width': 1472, 'height': 56}, # Primary trigger (mode 2, shifted)
+        'Joy_18': {'Type': 'Digital', 'x': 2124, 'y': 304, 'width': 1472, 'height': 54}, # Thumb trigger (mode 1, unshifted)
+        'Joy_19': {'Type': 'Digital', 'x': 2124, 'y': 360, 'width': 1472, 'height': 56}, # Thumb trigger (mode 1, shifted)
+        'Joy_20': {'Type': 'Digital', 'x': 2124, 'y': 424, 'width': 1472, 'height': 54}, # Thumb trigger (mode 2, unshifted)
+        'Joy_21': {'Type': 'Digital', 'x': 2124, 'y': 480, 'width': 1472, 'height': 56}, # Thumb trigger (mode 2, shifted)
         'Joy_POV1Up': {'Type': 'Digital', 'x': 274, 'y': 304, 'width': 1112, 'height': 54}, # POV hat up (mode 1, unshifted)
-        'Joy_19': {'Type': 'Digital', 'x': 274, 'y': 360, 'width': 1112, 'height': 54}, # POV hat up (mode 1, shifted)
-        'Joy_POV1Right': {'Type': 'Digital', 'x': 274, 'y': 416, 'width': 1112, 'height': 52}, # POV hat right (mode 1, unshifted)
-        'Joy_22': {'Type': 'Digital', 'x': 274, 'y': 470, 'width': 1112, 'height': 54}, # POV hat right (mode 1, shifted)
+        'Joy_22': {'Type': 'Digital', 'x': 274, 'y': 360, 'width': 1112, 'height': 54}, # POV hat up (mode 1, shifted)
         'Joy_POV1Down': {'Type': 'Digital', 'x': 274, 'y': 526, 'width': 1112, 'height': 52}, # POV hat down (mode 1, unshifted)
-        'Joy_20': {'Type': 'Digital', 'x': 274, 'y': 580, 'width': 1112, 'height': 54}, # POV hat down (mode 1, shifted)
-        'Joy_POV1Left': {'Type': 'Digital', 'x': 274, 'y': 636, 'width': 1112, 'height': 52}, # POV hat right (mode 1, unshifted)
-        'Joy_21': {'Type': 'Digital', 'x': 274, 'y': 690, 'width': 1112, 'height': 66}, # POV hat right (mode 1, shifted)
+        'Joy_23': {'Type': 'Digital', 'x': 274, 'y': 580, 'width': 1112, 'height': 54}, # POV hat down (mode 1, shifted)
+        'Joy_POV1Left': {'Type': 'Digital', 'x': 274, 'y': 636, 'width': 1112, 'height': 52}, # POV hat left (mode 1, unshifted)
+        'Joy_24': {'Type': 'Digital', 'x': 274, 'y': 690, 'width': 1112, 'height': 66}, # POV hat left (mode 1, shifted)
+        'Joy_POV1Right': {'Type': 'Digital', 'x': 274, 'y': 416, 'width': 1112, 'height': 52}, # POV hat right (mode 1, unshifted)
+        'Joy_25': {'Type': 'Digital', 'x': 274, 'y': 470, 'width': 1112, 'height': 54}, # POV hat right (mode 1, shifted)
         'Joy_POV2Up': {'Type': 'Digital', 'x': 274, 'y': 764, 'width': 1112, 'height': 54}, # POV hat up (mode 2, unshifted)
-        'Joy_23': {'Type': 'Digital', 'x': 274, 'y': 820, 'width': 1112, 'height': 54}, # POV hat up (mode 2, shifted)
-        'Joy_POV2Right': {'Type': 'Digital', 'x': 274, 'y': 876, 'width': 1112, 'height': 52}, # POV hat right (mode 2, unshifted)
-        'Joy_26': {'Type': 'Digital', 'x': 274, 'y': 930, 'width': 1112, 'height': 54}, # POV hat right (mode 2, shifted)
+        'Joy_26': {'Type': 'Digital', 'x': 274, 'y': 820, 'width': 1112, 'height': 54}, # POV hat up (mode 2, shifted)
         'Joy_POV2Down': {'Type': 'Digital', 'x': 274, 'y': 986, 'width': 1112, 'height': 52}, # POV hat down (mode 2, unshifted)
-        'Joy_24': {'Type': 'Digital', 'x': 274, 'y': 1040, 'width': 1112, 'height': 54}, # POV hat down (mode 2, shifted)
-        'Joy_POV2Left': {'Type': 'Digital', 'x': 274, 'y': 1096, 'width': 1112, 'height': 52}, # POV hat right (mode 2, unshifted)
-        'Joy_25': {'Type': 'Digital', 'x': 274, 'y': 1150, 'width': 1112, 'height': 66}, # POV hat right (mode 2, shifted)
-        'Joy_XAxis': {'Type': 'Analogue', 'x': 2164, 'y': 910, 'width': 1532, 'height': 54},
-        'Joy_YAxis': {'Type': 'Analogue', 'x': 2164, 'y': 854, 'width': 1532, 'height': 54},
+        'Joy_27': {'Type': 'Digital', 'x': 274, 'y': 1040, 'width': 1112, 'height': 54}, # POV hat down (mode 2, shifted)
+        'Joy_POV2Left': {'Type': 'Digital', 'x': 274, 'y': 1096, 'width': 1112, 'height': 52}, # POV hat left (mode 2, unshifted)
+        'Joy_28': {'Type': 'Digital', 'x': 274, 'y': 1150, 'width': 1112, 'height': 66}, # POV hat left (mode 2, shifted)
+        'Joy_POV2Right': {'Type': 'Digital', 'x': 274, 'y': 876, 'width': 1112, 'height': 52}, # POV hat right (mode 2, unshifted)
+        'Joy_29': {'Type': 'Digital', 'x': 274, 'y': 930, 'width': 1112, 'height': 54}, # POV hat right (mode 2, shifted)
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 2164, 'y': 910, 'width': 1532, 'height': 54}, # Roll
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 2164, 'y': 854, 'width': 1532, 'height': 54}, # Pitch
         'Joy_RXAxis': {'Type': 'Analogue', 'x': 2164, 'y': 966, 'width': 1532, 'height': 54}, # Yaw
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 564, 'y': 1402, 'width': 832, 'height': 54}, # Throttle
-        'Joy_6': {'Type': 'Digital', 'x': 204, 'y': 1524, 'width': 992, 'height': 54}, # Flaps up
-        'Joy_7': {'Type': 'Digital', 'x': 254, 'y': 1624, 'width': 992, 'height': 54}, # Flaps down
-        'Joy_8': {'Type': 'Digital', 'x': 784, 'y': 1904, 'width': 992, 'height': 54}, # A1
-        'Joy_9': {'Type': 'Digital', 'x': 2524, 'y': 1514, 'width': 992, 'height': 54}, # A2
-        'Joy_10': {'Type': 'Digital', 'x': 2464, 'y': 1424, 'width': 992, 'height': 54}, # A3
-        'Joy_11': {'Type': 'Digital', 'x': 1144, 'y': 1994, 'width': 992, 'height': 54}, # B1
-        'Joy_12': {'Type': 'Digital', 'x': 2484, 'y': 1814, 'width': 992, 'height': 54}, # B2
-        'Joy_13': {'Type': 'Digital', 'x': 2564, 'y': 1604, 'width': 992, 'height': 54}, # B3
-        'Joy_14': {'Type': 'Digital', 'x': 2244, 'y': 1994, 'width': 992, 'height': 54}, # C1
-        'Joy_15': {'Type': 'Digital', 'x': 2414, 'y': 1904, 'width': 992, 'height': 54}, # C2
-        'Joy_16': {'Type': 'Digital', 'x': 2624, 'y': 1694, 'width': 992, 'height': 54}, # C3
-        'Joy_17': {'Type': 'Digital', 'x': 2274, 'y': 1254, 'width': 1192, 'height': 54}, # Engine start
-        'Joy_18': {'Type': 'Digital', 'x': 2204, 'y': 1114, 'width': 1192, 'height': 54}, # Eject
     },
     '03EB2042': { # VPC WarBRD Delta left
         'Joy_1': {'Type': 'Digital', 'x': 2470, 'y': 1100, 'width': 1180}, # Trigger first stage
