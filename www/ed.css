@@ -63,4 +63,31 @@ form input[type='submit']  {
   display: inline-block;
 }
 
+/* Lists */
 
+#list h1 {
+  text-align: left;
+  font-size: 2em;
+}
+
+table {
+  font-family: serif;
+}
+
+.description {
+	width: 26em;
+	min-width: 8em;
+	max-width: none;
+}
+
+.controllers {
+	width: 32em;
+	min-width: 8em;
+	max-width: 32em;
+}
+
+.date {
+	width: 13em;
+	max-width: 13em;
+	min-width: 13em;
+}
