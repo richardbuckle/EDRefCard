@@ -548,7 +548,8 @@ hotasDetails = {
         'Joy_YAxis': {'Type': 'Analogue', 'x': 2484, 'y': 1024, 'width': 1132}, # Stick pitch
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 264, 'y': 1404, 'width': 1032}, # Throttle
     },
-    '06A30836': {
+    '06A30836': { # TODO collapse alias
+        'displayName': 'SaitekFLY5',
         'Joy_1': {'Type': 'Digital', 'x': 684, 'y': 794, 'width': 1092}, # Primary trigger
         'Joy_2': {'Type': 'Digital', 'x': 734, 'y': 874, 'width': 1092}, # Bottom-left button
         'Joy_3': {'Type': 'Digital', 'x': 2414, 'y': 744, 'width': 1092}, # Bottom-right button
@@ -788,8 +789,9 @@ hotasDetails = {
         'Joy_XAxis': {'Type': 'Analogue', 'x': 3194, 'y': 1110, 'width': 632}, # x
         'Joy_YAxis': {'Type': 'Analogue', 'x': 3194, 'y': 1054, 'width': 632} # y
     },
-    '07382221': # Old name for Saitek X56 joystick
+    '07382221': # Old name for Saitek X56 joystick TODO merge
     {
+        'displayName': 'SaitekX56Joystick',
         'Joy_1': {'Type': 'Digital', 'x': 1964, 'y': 618, 'width': 642, 'height': 108}, # Primary trigger
         'Joy_2': {'Type': 'Digital', 'x': 2084, 'y': 208, 'width': 792}, # 'R' button
         'Joy_3': {'Type': 'Digital', 'x': 3014, 'y': 604, 'width': 792}, # Side button
@@ -859,6 +861,7 @@ hotasDetails = {
     },
     '0738A221': # Old name for Saitek X56 throttle
     {
+        'displayName': 'SaitekX56Throttle',
         'Joy_1': {'Type': 'Digital', 'x': 24, 'y': 604, 'width': 752},  # E button
         'Joy_2': {'Type': 'Digital', 'x': 1874, 'y': 1660, 'width': 672}, # F push
         'Joy_3': {'Type': 'Digital', 'x': 1534, 'y': 1810, 'width': 672}, # G push
@@ -945,6 +948,7 @@ hotasDetails = {
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 2254, 'y': 1894, 'width': 692}, # Wheel on left of base
     },
     '068EC0F3': { # CH FighterStick with CH manager
+        'displayName': 'CH FighterStick with CH manager',
         'Joy_1': {'Type': 'Digital', 'x': 1974, 'y': 854, 'width': 592}, # Primary trigger
         'Joy_2': {'Type': 'Digital', 'x': 1664, 'y': 334, 'width': 892}, # Top trigger
         'Joy_3': {'Type': 'Digital', 'x': 1754, 'y': 234, 'width': 892}, # Side trigger
@@ -1020,6 +1024,7 @@ hotasDetails = {
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 80, 'y': 714, 'width': 692}, # Throttle
     },
     '068EC010': { # CH Pro Throttle with CH manager, alternate
+        'displayName': 'CH Pro Throttle with CH manager, alternate',
         'Joy_1': {'Type': 'Digital', 'x': 1261, 'y': 1549, 'width': 932}, # Mouse button
         'Joy_2': {'Type': 'Digital', 'x': 1042, 'y': 814, 'width': 892}, # Right back
         'Joy_3': {'Type': 'Digital', 'x': 904, 'y': 724, 'width': 892}, # Middle back
@@ -1045,6 +1050,7 @@ hotasDetails = {
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 80, 'y': 714, 'width': 692}, # Throttle
     },
     '068E00FA': { # CH Quadrant throttle
+        'displayName': 'CH Quadrant throttle',
         'Joy_XAxis': {'Type': 'Analogue', 'x': 354, 'y': 804, 'width': 932}, # Throttle 1
         'Joy_YAxis': {'Type': 'Analogue', 'x': 554, 'y': 564, 'width': 932}, # Throttle 2
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 754, 'y': 324, 'width': 932}, # Throttle 3
@@ -1065,6 +1071,7 @@ hotasDetails = {
         'Joy_12': {'Type': 'Digital', 'x': 2614, 'y': 1540, 'width': 932}, # Switch 6 down
     },
     '06A30C2D': { # CH Pro Flight Quadrant throttle
+        'displayName': 'CH Pro Flight Quadrant throttle',
         'Joy_XAxis': {'Type': 'Analogue', 'x': 554, 'y': 564, 'width': 932}, # Throttle 1
         'Joy_YAxis': {'Type': 'Analogue', 'x': 1474, 'y': 324, 'width': 932}, # Throttle 2
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 2414, 'y': 564, 'width': 932}, # Throttle 3
@@ -1278,6 +1285,7 @@ hotasDetails = {
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 530, 'y': 316, 'width': 540}, # Throttle
     },
     '07382218': { # Saitek Side Panel Control Deck
+        'displayName': 'SidePanelControlDeck',
         'Joy_1': {'Type': 'Digital', 'x': 34, 'y': 584, 'width': 592},
         'Joy_2': {'Type': 'Digital', 'x': 634, 'y': 584, 'width': 592},
         'Joy_3': {'Type': 'Digital', 'x': 1234, 'y': 584, 'width': 592},
@@ -1357,6 +1365,7 @@ hotasDetails = {
         'GamePad_LThumb': {'Type': 'Digital', 'x': 134, 'y': 1150, 'width': 1032, 'height': 108},
     },
     '045E02FF': { # Copy of XB360 controls
+        'displayName': 'XB360',
         'Pad_LBumper': {'Type': 'Digital', 'x': 74, 'y': 624, 'width': 1392, 'height': 108},
         'Pad_LTrigger': {'Type': 'Digital', 'x': 74, 'y': 518, 'width': 1392},
         'Pad_RBumper': {'Type': 'Digital', 'x': 2368, 'y': 624, 'width': 1442, 'height': 108},
@@ -1400,6 +1409,7 @@ hotasDetails = {
         'GamePad_LThumb': {'Type': 'Digital', 'x': 134, 'y': 1150, 'width': 1032, 'height': 108},
     },
     '045E02DD': { # Copy of XB360 controls
+        'displayName': 'XB360',
         'Pad_LBumper': {'Type': 'Digital', 'x': 74, 'y': 624, 'width': 1392, 'height': 108},
         'Pad_LTrigger': {'Type': 'Digital', 'x': 74, 'y': 518, 'width': 1392},
         'Pad_RBumper': {'Type': 'Digital', 'x': 2368, 'y': 624, 'width': 1442, 'height': 108},
@@ -1486,6 +1496,7 @@ hotasDetails = {
         'GamePad_LThumb': {'Type': 'Digital', 'x': 134, 'y': 1150, 'width': 1032, 'height': 108},
     },
     '045E02E3': { # XBox Elite controller
+        'displayName': 'XBox Elite controller',
         'Pad_LBumper': {'Type': 'Digital', 'x': 74, 'y': 624, 'width': 1392, 'height': 108},
         'Pad_LTrigger': {'Type': 'Digital', 'x': 74, 'y': 518, 'width': 1392},
         'Pad_RBumper': {'Type': 'Digital', 'x': 2368, 'y': 624, 'width': 1442, 'height': 108},
@@ -1529,6 +1540,7 @@ hotasDetails = {
         'GamePad_LThumb': {'Type': 'Digital', 'x': 134, 'y': 1150, 'width': 1032, 'height': 108},
     },
     '1689FE00': { # Razer Sabretooth (xbox-like pad)
+        'displayName': 'Razer Sabretooth',
         'Pad_LBumper': {'Type': 'Digital', 'x': 74, 'y': 624, 'width': 1392, 'height': 108},
         'Pad_LTrigger': {'Type': 'Digital', 'x': 74, 'y': 518, 'width': 1392},
         'Pad_RBumper': {'Type': 'Digital', 'x': 2368, 'y': 624, 'width': 1442, 'height': 108},
@@ -1701,6 +1713,7 @@ hotasDetails = {
     },
     '06A30765': { # Copy of SaitekProFlightRudderPedals (although actually Cessna pedals)
         # Although the individual pedals are analogue, they often have digital binds due to their nature so we pretend they are digital
+        'displayName': 'Cessna pedals',
         'Joy_XAxis': {'Type': 'Digital', 'x': 164, 'y': 588, 'width': 1332, 'height': 162}, # Left pedal
         'Joy_YAxis': {'Type': 'Digital', 'x': 2264, 'y': 588, 'width': 1332, 'height': 162}, # Right pedal
         'Joy_RZAxis': {'Type': 'Analogue', 'x': 1208, 'y': 331, 'width': 1332, 'height': 162}, # Rudder
@@ -1719,17 +1732,20 @@ hotasDetails = {
     },
     '16D00A38': { # MFG Crosswind
         # Although the individual pedals are analogue, they often have digital binds due to their nature so we pretend they are digital
+        'displayName': 'MFG Crosswind',
         'Joy_XAxis': {'Type': 'Digital', 'x': 164, 'y': 588, 'width': 1332, 'height': 162}, # Left pedal (unconfirmed)
         'Joy_YAxis': {'Type': 'Digital', 'x': 2264, 'y': 588, 'width': 1332, 'height': 162}, # Right pedal (unconfirmed)
         'Joy_RZAxis': {'Type': 'Analogue', 'x': 1208, 'y': 331, 'width': 1332, 'height': 162}, # Rudder
     },
     '85640203': { # MFG Crosswind (alternate address)
         # Although the individual pedals are analogue, they often have digital binds due to their nature so we pretend they are digital
+        'displayName': 'MFG Crosswind',
         'Joy_XAxis': {'Type': 'Digital', 'x': 164, 'y': 588, 'width': 1332, 'height': 162}, # Left pedal (unconfirmed)
         'Joy_YAxis': {'Type': 'Digital', 'x': 2264, 'y': 588, 'width': 1332, 'height': 162}, # Right pedal (unconfirmed)
         'Joy_RZAxis': {'Type': 'Analogue', 'x': 1208, 'y': 331, 'width': 1332, 'height': 162}, # Rudder
     },
     '046DC29A': { # Logitech GT Wheel
+        'displayName': 'Logitech GT Wheel',
         'Joy_1': {'Type': 'Digital', 'x': 2624, 'y': 1089, 'width': 1192, 'height': 54}, # Cross button
         'Joy_2': {'Type': 'Digital', 'x': 2624, 'y': 1184, 'width': 1192, 'height': 54}, # Square button
         'Joy_3': {'Type': 'Digital', 'x': 2624, 'y': 994, 'width': 1192, 'height': 54}, # Circle button
@@ -1758,6 +1774,7 @@ hotasDetails = {
         'Joy_XAxis': {'Type': 'Analogue', 'x': 1284, 'y': 304, 'width': 932, 'height': 54}, # Steering wheel
     },
     '044FB351': { # Cougar MFD 1
+        'displayName': 'Cougar MFD 1',
         'Joy_1': {'Type': 'Digital', 'x': 134, 'y': 604, 'width': 592, 'height': 100},
         'Joy_2': {'Type': 'Digital', 'x': 239, 'y': 464, 'width': 592, 'height': 100},
         'Joy_3': {'Type': 'Digital', 'x': 644, 'y': 320, 'width': 592, 'height': 100},
@@ -1788,6 +1805,7 @@ hotasDetails = {
         'Joy_28': {'Type': 'Digital', 'x': 84, 'y': 844, 'width': 392, 'height': 80},
     },
     '044FB352': { # Cougar MFD 2
+        'displayName': 'Cougar MFD 2',
         'Joy_1': {'Type': 'Digital', 'x': 2068, 'y': 604, 'width': 592, 'height': 100},
         'Joy_2': {'Type': 'Digital', 'x': 2173, 'y': 464, 'width': 592, 'height': 100},
         'Joy_3': {'Type': 'Digital', 'x': 2578, 'y': 320, 'width': 592, 'height': 100},
@@ -1818,6 +1836,7 @@ hotasDetails = {
         'Joy_28': {'Type': 'Digital', 'x': 2018, 'y': 844, 'width': 392, 'height': 80},
     },
     '11C05603': { # Cobra M5
+        'displayName': 'Cobra M5',
         'Joy_1': {'Type': 'Digital', 'x': 64, 'y': 1273, 'width': 1392, 'height': 54}, # Primary trigger
         'Joy_2': {'Type': 'Digital', 'x': 2264, 'y': 922, 'width': 1392, 'height': 54}, # Secondary trigger
         'Joy_3': {'Type': 'Digital', 'x': 124, 'y': 1124, 'width': 1332, 'height': 54}, # NAV left red button
@@ -1850,6 +1869,7 @@ hotasDetails = {
         'Joy_RZAxis': {'Type': 'Analogue', 'x': 2324, 'y': 1136, 'width': 1332, 'height': 54},
     },
     '11C05605': { # Cobra M5 variant
+        'displayName': 'Cobra M5 variant',
         'Joy_1': {'Type': 'Digital', 'x': 64, 'y': 1273, 'width': 1392, 'height': 54}, # Primary trigger
         'Joy_2': {'Type': 'Digital', 'x': 2264, 'y': 922, 'width': 1392, 'height': 54}, # Secondary trigger
         'Joy_3': {'Type': 'Digital', 'x': 124, 'y': 1124, 'width': 1332, 'height': 54}, # NAV left red button
@@ -1926,6 +1946,7 @@ hotasDetails = {
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 564, 'y': 1402, 'width': 832, 'height': 54}, # Throttle
     },
     '03EB2042': { # VPC WarBRD Delta left
+        'displayName': 'VPC WarBRD Delta left',
         'Joy_1': {'Type': 'Digital', 'x': 2470, 'y': 1100, 'width': 1180}, # Trigger first stage
         'Joy_2': {'Type': 'Digital', 'x': 2470, 'y': 1160, 'width': 1180}, # Trigger second stage
         'Joy_3': {'Type': 'Digital', 'x': 2470, 'y': 1300, 'width': 1180}, # Trigger button
@@ -1959,7 +1980,8 @@ hotasDetails = {
         'Joy_RXAxis': {'Type': 'Analogue', 'x': 270, 'y': 700, 'width': 1180},
         'Joy_RYAxis': {'Type': 'Analogue', 'x': 270, 'y': 760, 'width': 1180},
     },
-    '03EB2044': { # VPC WarBRD Delta Right
+    '03EB2044': { # VPC WarBRD Delta right
+        'displayName': 'VPC WarBRD Delta right',
         'Joy_1': {'Type': 'Digital', 'x': 270, 'y': 1100, 'width': 1180}, # Trigger first stage
         'Joy_2': {'Type': 'Digital', 'x': 270, 'y': 1160, 'width': 1180}, # Trigger second stage
         'Joy_3': {'Type': 'Digital', 'x': 270, 'y': 1300, 'width': 1180}, # Trigger button
