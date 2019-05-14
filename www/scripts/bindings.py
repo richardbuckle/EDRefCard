@@ -712,8 +712,16 @@ def printListItem(configObj):
     </tr>
     ''' % (refcardURL, html.escape(name, quote=True), controllersStr, dateStr))
 
+def modeTitle(mode):
+    if mode == Mode.list:
+        return 'EDRefCard: public configurations'
+    elif mode == Mode.listDevices:
+        return 'EDRefCard: supported devices'
+    else:
+        return 'EDRefCard'
+
 def printDeviceList():
-    print('<div id="banner"><h1>EDRefCard: supported devices</h1></div>')
+    print('<div id="list"><h1>%s</h1></div>' % modeTitle(Mode.list))
     print('<ul>')
     devices = sorted(supportedDevices.keys())
     for device in devices:
@@ -721,7 +729,7 @@ def printDeviceList():
     print('</ul>')
 
 def printList():
-    print('<div id="banner"><h1>EDRefCard: public configurations</h1></div>')
+    print('<div id="list"><h1>%s</h1></div>' % modeTitle(Mode.listDevices))
     print('<p>Yes, we know this is very basic. Proper search support is coming soon.</p>')
     objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']).casefold())
     print('<table>')
@@ -805,9 +813,12 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
 <html>
 <head>
     <meta charset="utf-8">
-    <title>EDRefCard</title>
+    <meta name="robots" content="all">
+    <title>%s</title>
+    <link href='https://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet' type='text/css'>
+    <style type="text/css" media="all">@import"ed.css";</style>
 </head>
-<body>''')
+<body>''' % modeTitle(mode))
     printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
     print('''
 </body>
