@@ -1,3 +1,12 @@
+## 1.2.4
+
+* Amended the VKB Gladiator bindings: my thanks to KellyR (CMDR Analee Winston) for kicking my behind on this an providing corroborating data.
+* Added a new URL `https://edrefcard/devices` listing all supported devices by primary name and linking to:
+  * New endpoints `https://edrefcard//device/xxx` that show the given device's button names in rectangles shaded in light green and outlined in red, to assist with (a) debugging button mappings and (b) aligning the rectangles pixel-perfect.
+* Tweaked CSS styling and column width settings for `/list` and `/devices` to make the table neater. I'll be the first to admit this isn't my strong suit.
+* Reduced the maximum input length for the "description" field to 190 characters in light of the above.
+* Updated the forum thread URL.
+
 ## 1.2.3
 
 * Restored caching of rendered JPEGs to one day now that we have more disk space.

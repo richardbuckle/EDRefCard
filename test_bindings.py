@@ -126,6 +126,7 @@ class uploadTests(unittest.TestCase):
         with contextlib.redirect_stdout(None):
             bindings.printListItem(obj)
 
+
 class FontPathTests(unittest.TestCase):
     
     def testRegularNormal(self):
@@ -155,6 +156,18 @@ class FormTests(unittest.TestCase):
         mode = bindings.determineMode(formProxy)
         self.assertEqual(bindings.Mode.invalid, mode)
     
+
+class ModiferStylesTests(unittest.TestCase):
+    
+    def testZeroIndex(self):
+        style = bindings.ModifierStyles.index(0)
+        self.assertEqual(bindings.ModifierStyles.styles[0], style)
+    
+    def testTwoPastEnd(self):
+        i = len(bindings.ModifierStyles.styles) + 1
+        style = bindings.ModifierStyles.index(i)
+        self.assertEqual(bindings.ModifierStyles.styles[1], style)
+
     
 class ParserTests(unittest.TestCase):
     
@@ -173,6 +186,24 @@ class ParserTests(unittest.TestCase):
         expectedResult = ({}, {}, {})
         self.assertEqual(result, expectedResult)
         self.assertTrue(len(errors.errors) > 0)
+        
+    def testRedundantSpecialisation(self):
+        control = {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 12, 'Name': 'GalMap Pitch Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchUpButton']}
+        bind = {'Controls': OrderedDict([('CamPitchUp', 'blah'), ('PitchUpButton', 'blah')])}
+        isRedundant = bindings.isRedundantSpecialisation(control, bind)
+        self.assertTrue(isRedundant)
+
+    def testNonRedundantSpecialisation(self):
+        control = {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 12, 'Name': 'GalMap Pitch Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchUpButton']}
+        bind = {'Controls': OrderedDict([('CamPitchUp', 'blah'), ('PitchDownButton', 'blah')])}
+        isRedundant = bindings.isRedundantSpecialisation(control, bind)
+        self.assertFalse(isRedundant)
+
+    def testControlHasNoRedundantSpecialisation(self):
+        control = {'Group': 'Misc', 'Category': 'General', 'Order': 14, 'Name': 'Night Vision', 'Type': 'Digital', 'HideIfSameAs': []}
+        bind = {'Controls': OrderedDict([('NightVisionToggle', 'blah')])}
+        isRedundant = bindings.isRedundantSpecialisation(control, bind)
+        self.assertFalse(isRedundant)
 
     def testParseOneKeyBind(self):
         path = self.testCasesPath / 'one_keystroke.binds'

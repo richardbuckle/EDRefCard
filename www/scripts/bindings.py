@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-__version__ = '1.2.3'
+__version__ = '1.2.4'
 
 from lxml import etree
 
@@ -109,6 +109,7 @@ class Mode(Enum):
     list = 2
     replay = 3
     generate = 4
+    listDevices = 5
 
 
 class Errors:
@@ -166,22 +167,28 @@ categoryStyles = {
 }
 
 # Modifier styling - note a list not a dictionary as modifiers are numeric
-modifierStyles = [
-    {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#FF0000'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#00FF00'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#0000FF'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#777700'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#770077'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#007777'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#777777'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#FF7777'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#77FF77'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#7777FF'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#CCCC77'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#CC77CC'), 'Font': getFontPath('Regular', 'Normal')},
-    {'Color': Color('#77CCCC'), 'Font': getFontPath('Regular', 'Normal')},
-]
+class ModifierStyles:
+    styles = [
+        {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#FF0000'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#00FF00'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#0000FF'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#777700'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#770077'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#007777'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#777777'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#FF7777'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#77FF77'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#7777FF'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#CCCC77'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#CC77CC'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('#77CCCC'), 'Font': getFontPath('Regular', 'Normal')},
+    ]
+
+    def index(num):
+        i= num % len(ModifierStyles.styles)
+        return ModifierStyles.styles[i]
+    
 
 def transKey(key):
     if key is None:
@@ -356,7 +363,7 @@ def writeText(context, img, text, screenState, font, surround, newLine):
     else:
         screenState['currentX'] = screenState['currentX'] + width
 
-def createBlockImage(supportedDeviceKey):
+def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#90EE90'):
     supportedDevice = supportedDevices[supportedDeviceKey]
     # Set up the path for our file
     templateName = supportedDevice['Template']
@@ -366,25 +373,41 @@ def createBlockImage(supportedDeviceKey):
     
     with Image(filename='../res/' + supportedDevice['Template'] + '.jpg') as sourceImg:
         with Drawing() as context:
-            context.stroke_width=1
-            context.stroke_color=Color('#F00')
-            context.fill_color=Color('#0F0')
+            context.font = getFontPath('Regular', 'Normal')
+            context.text_antialias = True
+            context.font_style = 'normal'
+            maxFontSize = 40
 
             for keyDevice in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
-                for box in hotasDetails[keyDevice].values():
+                for (keycode, box) in hotasDetails[keyDevice].items():
+                    if keycode == 'displayName':
+                        continue
+                    context.stroke_width = 1
+                    context.stroke_color = Color(strokeColor)
+                    context.fill_color = Color(fillColor)
                     context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
-
+                    context.stroke_width = 0
+                    context.fill_color = Color('#000')
+                    sourceTexts = [{'Text': keycode, 'Group': 'General', 'Style': groupStyles['General']}]
+                    texts = layoutText(sourceImg, context, sourceTexts, box, maxFontSize)
+                    for text in texts:
+                        context.font_size = text['Size']
+                        # TODO dry this up
+                        context.font = text['Style']['Font']
+                        context.text(x=text['X'], y=text['Y'], body=text['Text'])
+                    
             context.draw(sourceImg)
             sourceImg.save(filename=str(filePath))
 
-# We have a limited number of modifier styles so balance them out across the modifier number
-def getModifierStyle(num):
-    if num == 0:
-        return modifierStyles[0]
-    elif num < 100:
-        return modifierStyles[0 + (num % 13)]
-    else:
-        return modifierStyles[(113 - num) % 13]
+# Return whether a binding is a redundant specialisation and thus can be hidden
+def isRedundantSpecialisation(control, bind):
+    moreGeneralControls = control.get('HideIfSameAs')
+    if len(moreGeneralControls) == 0:
+        return False
+    for moreGeneralMatch in bind.get('Controls').keys():
+        if moreGeneralMatch in moreGeneralControls:
+            return True
+    return False
 
 # Create a HOTAS image from the template plus bindings
 def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontSize, config, public, styling, deviceIndex, misconfigurationWarnings):
@@ -440,7 +463,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                 # First obtain the modifiers if there are any
                 for keyModifier in modifiers.get(physicalKeySpec, []):
                     if styling == 'Modifier':
-                        style = modifierStyles[keyModifier.get('Number') % 13]
+                        style = ModifierStyles.index(keyModifier.get('Number'))
                     else:
                         style = groupStyles.get('Modifier')
                     texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
@@ -448,14 +471,14 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                     # Same again but for positive modifier
                     for keyModifier in modifiers.get(physicalKeySpec.replace('::Joy', '::Pos_Joy'), []):
                         if styling == 'Modifier':
-                            style = modifierStyles[keyModifier.get('Number') % 13]
+                            style = ModifierStyles.index(keyModifier.get('Number'))
                         else:
                             style = groupStyles.get('Modifier')
                         texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
                     # Same again but for negative modifier
                     for keyModifier in modifiers.get(physicalKeySpec.replace('::Joy', '::Neg_Joy'), []):
                         if styling == 'Modifier':
-                            style = modifierStyles[keyModifier.get('Number') % 13]
+                            style = ModifierStyles.index(keyModifier.get('Number'))
                         else:
                             style = groupStyles.get('Modifier')
                         texts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
@@ -464,12 +487,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                 for modifier, bind in physicalKey.get('Binds').items():
                     if modifier == 'Unmodified':
                         for controlKey, control in bind.get('Controls').items():
-                            hidden = False
-                            # TODO: this is O(N^2) fix
-                            for moreGeneralMatch in bind.get('Controls').keys():
-                                if moreGeneralMatch in control.get('HideIfSameAs'):
-                                    hidden = True
-                            if hidden is True:
+                            if isRedundantSpecialisation(control, bind):
                                 continue
                             # Check if this is a digital control on an analogue stick with an analogue equivalent
                             if control.get('Type') == 'Digital' and control.get('HasAnalogue') is True and hotasDetail.get('Type') == 'Analogue':
@@ -480,7 +498,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                                 #sys.stderr.write('%s: Digital command %s found on hotas control %s::%s\n' % (runId, control['Name'], itemDevice, itemKey))
 
                             if styling == 'Modifier':
-                                texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': modifierStyles[0]})
+                                texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': ModifierStyles.index(0)})
                             elif styling == 'Category':
                                 texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
                             else:
@@ -500,21 +518,14 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                             if modifierNum != curModifierNum:
                                 continue
                             for controlKey, control in bind.get('Controls').items():
-                                # TODO: this is O(N^2) fix
-                                hidden = False
-                                for moreGeneralMatch in bind.get('Controls').keys():
-                                    if moreGeneralMatch in control.get('HideIfSameAs'):
-                                        hidden = True
-                                if hidden == True:
+                                if isRedundantSpecialisation(control, bind):
                                     continue
+                                if styling == 'Modifier':
+                                    texts.append({'Text': '%s' % control.get('Name'), control.get('Group'): 'Modifier', 'Style': ModifierStyles.index(curModifierNum)})
+                                elif styling == 'Category':
+                                    texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
                                 else:
-                                    if styling == 'Modifier':
-                                        texts.append({'Text': '%s' % control.get('Name'), control.get('Group'): 'Modifier', 'Style': getModifierStyle(curModifierNum)})
-                                        # sys.stderr.write('Writing %s with style %s\n' % (control.get('Name'), getModifierStyle(curModifierNum)));
-                                    elif styling == 'Category':
-                                        texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': categoryStyles.get(control.get('Category', 'General'))})
-                                    else:
-                                        texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': groupStyles.get(control.get('Group'))})
+                                    texts.append({'Text': '%s[%s]' % (control.get('Name'), curModifierNum), 'Group': control.get('Group'), 'Style': groupStyles.get(control.get('Group'))})
             
                 # Obtain the layout of the texts and write them
                 texts = layoutText(sourceImg, context, texts, hotasDetail, biggestFontSize)
@@ -549,7 +560,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                         continue
 
                     if styling == 'Modifier':
-                        style = getModifierStyle(keyModifier.get('Number'))
+                        style = ModifierStyles.index(keyModifier.get('Number'))
                     else:
                         style = groupStyles.get('Modifier')
                     modifierTexts.append({'Text': 'Modifier %s' % (keyModifier.get('Number')), 'Group': 'Modifier', 'Style': style})
@@ -681,38 +692,64 @@ def printListItem(configObj):
     refcardURL = str(config.refcardURL())
     dateStr = str(configObj['timestamp'].ctime())
     name = str(configObj['description'])
-    controllers = [fullKey.split('::')[0] for fullKey in configObj['devices'].keys()]
-    silencedControllers = ['Mouse', 'Keyboard']
-    controllers = [controller for controller in controllers if not controller in silencedControllers]
-    controllers.sort()
-    controllersStr = ', '.join(controllers)
+    
+    def controllersListName(rawKeys):
+        controllers = [fullKey.split('::')[0] for fullKey in rawKeys]
+        silencedControllers = ['Mouse', 'Keyboard']
+        def displayName(controller):
+            try:
+                return hotasDetails[controller]['displayName']
+            except:
+                return controller
+        controllers = [displayName(controller) for controller in controllers if not controller in silencedControllers]
+        controllers.sort()
+        controllersStr = ', '.join(controllers)
+        return controllersStr
+        
+    controllersStr = controllersListName(configObj['devices'].keys())
     if name is '': 
         # if the uploader didn't bother to name their config, skip it
         return
     print('''
     <tr>
-        <td>
+        <td class="description">
             <a href=%s>%s</a>
         </td>
-        <td>
+        <td class="controllers">
             %s
         </td>
-        <td>
+        <td class="date">
             %s
         </td>
     </tr>
     ''' % (refcardURL, html.escape(name, quote=True), controllersStr, dateStr))
 
-def printList():
-    print('<div id="banner"><h1>EDRefCard: public configurations</h1></div>')
+def modeTitle(mode):
+    if mode == Mode.list:
+        return 'EDRefCard: public configurations'
+    elif mode == Mode.listDevices:
+        return 'EDRefCard: supported devices'
+    else:
+        return 'EDRefCard'
+
+def printDeviceList(mode):
+    print('<div id="list"><h1>%s</h1></div>' % modeTitle(mode))
+    print('<ul>')
+    devices = sorted(supportedDevices.keys())
+    for device in devices:
+        print('<li><a href=device/%s>%s</a></li>' % (device, device))
+    print('</ul>')
+
+def printList(mode):
+    print('<div id="list"><h1>%s</h1></div>' % modeTitle(mode))
     print('<p>Yes, we know this is very basic. Proper search support is coming soon.</p>')
     objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']).casefold())
     print('<table>')
     print('''
         <tr>
-            <th align="left">Description</th>
-            <th align="left">Controllers</th>
-            <th align="left">Date</th>
+            <th align="left" class="description">Description</th>
+            <th align="left" class="controllers">Controllers</th>
+            <th align="left" class="date">Date</th>
         </tr>
     ''')
     for obj in objs:
@@ -758,8 +795,10 @@ def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
     print('<p/>')
 
 def printBodyMain(mode, config, public, createdImages, deviceForBlockImage, errors):
-    if mode is Mode.list:
-        printList()
+    if mode == Mode.list:
+        printList(mode)
+    elif mode == Mode.listDevices:
+        printDeviceList(mode)
     else:
         printRefCard(config, public, createdImages, deviceForBlockImage, errors)
 
@@ -786,9 +825,12 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
 <html>
 <head>
     <meta charset="utf-8">
-    <title>EDRefCard</title>
+    <meta name="robots" content="all">
+    <title>%s</title>
+    <link href='https://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet' type='text/css'>
+    <style type="text/css" media="all">@import"ed.css";</style>
 </head>
-<body>''')
+<body>''' % modeTitle(mode))
     printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
     print('''
 </body>
@@ -797,10 +839,10 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
 # Parser section
 
 def parseBindings(runId, xml, displayGroups, errors):
-    parser = etree.XMLParser(encoding='utf-8')
+    parser = etree.XMLParser(encoding='utf-8', resolve_entities=False)
     try:
         tree = etree.fromstring(bytes(xml, 'utf-8'), parser=parser)
-    except etree.XMLSyntaxError as e:
+    except SyntaxError as e:
         errors.errors = '''<h3>There was a problem parsing the file you supplied.</h3>
         <p>%s.</p>
         <p>Possibly you submitted the wrong file, or hand-edited it and made a mistake.</p>''' % html.escape(str(e), quote=True)
@@ -986,6 +1028,7 @@ def parseForm(form):
 def determineMode(form):
     deviceForBlockImage = form.getvalue('blocks')
     wantList = form.getvalue('list')
+    wantDeviceList = form.getvalue('devicelist')
     runIdToReplay = form.getvalue('replay')
     description = form.getvalue('description')
     if description is None:
@@ -997,6 +1040,8 @@ def determineMode(form):
         mode = Mode.blocks
     elif wantList is not None:
         mode = Mode.list
+    elif wantDeviceList is not None:
+        mode = Mode.listDevices
     elif runIdToReplay is not None:
         mode = Mode.replay
     else:
@@ -1029,12 +1074,7 @@ def parseLocalFile(filePath):
 
 # API section
 
-def main():
-    cgitb.enable()
-    
-    # Obtain form input and set up our variables
-    form = cgi.FieldStorage()
-    
+def processForm(form):
     config = Config.newRandom()
     styling = 'None'
     description = ''
@@ -1154,6 +1194,11 @@ def main():
         saveReplayInfo(config, description, styling, displayGroups, devices, errors)
     
     printHTML(mode, config, public, createdImages, deviceForBlockImage, errors)
+
+def main():
+    cgitb.enable()
+    form = cgi.FieldStorage()
+    processForm(form)
 
 if __name__ == '__main__':
     main()

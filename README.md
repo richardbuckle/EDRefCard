@@ -30,6 +30,8 @@ Currently hosted at [https://edrefcard.info/](https://edrefcard.info/).
 RewriteRule ^/list$ /scripts/bindings.py?list=all
 RewriteRule ^/binds/(.+)$ /scripts/bindings.py?replay=$1
 RewriteRule ^/configs/([a-z][a-z])([^/]+)$ /configs/$1/$1$2
+RewriteRule ^/devices$ /scripts/bindings.py?devicelist=all
+RewriteRule ^/device/(.+)$ /scripts/bindings.py?blocks=$1
 ```
 * Certain web servers, including Apache 2 on Debian 9, are prone to set brain-dead IO encodings, such as ANSI_X3.4-1968. To fix this, add the following at the end of `/etc/apache2/apache2.conf`:
 
