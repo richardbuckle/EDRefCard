@@ -700,13 +700,13 @@ def printListItem(configObj):
         return
     print('''
     <tr>
-        <td>
+        <td class="description">
             <a href=%s>%s</a>
         </td>
-        <td>
+        <td class="controllers">
             %s
         </td>
-        <td>
+        <td class="date">
             %s
         </td>
     </tr>
@@ -735,9 +735,9 @@ def printList():
     print('<table>')
     print('''
         <tr>
-            <th align="left">Description</th>
-            <th align="left">Controllers</th>
-            <th align="left">Date</th>
+            <th align="left" class="description">Description</th>
+            <th align="left" class="controllers">Controllers</th>
+            <th align="left" class="date">Date</th>
         </tr>
     ''')
     for obj in objs:
