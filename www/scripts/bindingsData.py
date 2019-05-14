@@ -1882,6 +1882,7 @@ hotasDetails = {
         'Joy_RZAxis': {'Type': 'Analogue', 'x': 2324, 'y': 1136, 'width': 1332, 'height': 54},
     },
     '231D0121': { # VKB Gladiator
+        'displayName': 'VKB Gladiator',
         'Joy_1': {'Type': 'Digital', 'x': 204, 'y': 1524, 'width': 992, 'height': 54}, # Flaps up
         'Joy_2': {'Type': 'Digital', 'x': 254, 'y': 1624, 'width': 992, 'height': 54}, # Flaps down
         'Joy_3': {'Type': 'Digital', 'x': 784, 'y': 1904, 'width': 992, 'height': 54}, # A1
