@@ -694,7 +694,12 @@ def printListItem(configObj):
     def controllersListName(rawKeys):
         controllers = [fullKey.split('::')[0] for fullKey in rawKeys]
         silencedControllers = ['Mouse', 'Keyboard']
-        controllers = [controller for controller in controllers if not controller in silencedControllers]
+        def displayName(controller):
+            try:
+                return hotasDetails[controller]['displayName']
+            except:
+                return controller
+        controllers = [displayName(controller) for controller in controllers if not controller in silencedControllers]
         controllers.sort()
         controllersStr = ', '.join(controllers)
         return controllersStr
