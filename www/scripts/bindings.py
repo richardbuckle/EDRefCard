@@ -690,11 +690,16 @@ def printListItem(configObj):
     refcardURL = str(config.refcardURL())
     dateStr = str(configObj['timestamp'].ctime())
     name = str(configObj['description'])
-    controllers = [fullKey.split('::')[0] for fullKey in configObj['devices'].keys()]
-    silencedControllers = ['Mouse', 'Keyboard']
-    controllers = [controller for controller in controllers if not controller in silencedControllers]
-    controllers.sort()
-    controllersStr = ', '.join(controllers)
+    
+    def controllersListName(rawKeys):
+        controllers = [fullKey.split('::')[0] for fullKey in rawKeys]
+        silencedControllers = ['Mouse', 'Keyboard']
+        controllers = [controller for controller in controllers if not controller in silencedControllers]
+        controllers.sort()
+        controllersStr = ', '.join(controllers)
+        return controllersStr
+        
+    controllersStr = controllersListName(configObj['devices'].keys())
     if name is '': 
         # if the uploader didn't bother to name their config, skip it
         return
