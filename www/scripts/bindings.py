@@ -720,16 +720,16 @@ def modeTitle(mode):
     else:
         return 'EDRefCard'
 
-def printDeviceList():
-    print('<div id="list"><h1>%s</h1></div>' % modeTitle(Mode.list))
+def printDeviceList(mode):
+    print('<div id="list"><h1>%s</h1></div>' % modeTitle(mode))
     print('<ul>')
     devices = sorted(supportedDevices.keys())
     for device in devices:
         print('<li><a href=device/%s>%s</a></li>' % (device, device))
     print('</ul>')
 
-def printList():
-    print('<div id="list"><h1>%s</h1></div>' % modeTitle(Mode.listDevices))
+def printList(mode):
+    print('<div id="list"><h1>%s</h1></div>' % modeTitle(mode))
     print('<p>Yes, we know this is very basic. Proper search support is coming soon.</p>')
     objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']).casefold())
     print('<table>')
@@ -784,9 +784,9 @@ def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
 
 def printBodyMain(mode, config, public, createdImages, deviceForBlockImage, errors):
     if mode == Mode.list:
-        printList()
+        printList(mode)
     elif mode == Mode.listDevices:
-        printDeviceList()
+        printDeviceList(mode)
     else:
         printRefCard(config, public, createdImages, deviceForBlockImage, errors)
 
