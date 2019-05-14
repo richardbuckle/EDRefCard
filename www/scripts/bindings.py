@@ -380,6 +380,8 @@ def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#90EE90'
 
             for keyDevice in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
                 for (keycode, box) in hotasDetails[keyDevice].items():
+                    if keycode = 'displayName':
+                        continue
                     context.stroke_width = 1
                     context.stroke_color = Color(strokeColor)
                     context.fill_color = Color(fillColor)
