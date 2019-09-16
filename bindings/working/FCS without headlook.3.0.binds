@@ -133,7 +133,7 @@
 	<ThrottleAxis>
 		<Binding Device="T16000MTHROTTLE" Key="Joy_ZAxis" />
 		<Inverted Value="1" />
-		<Deadzone Value="0.00000000" />
+		<Deadzone Value="0.02000000" />
 	</ThrottleAxis>
 	<ThrottleRange Value="" />
 	<ToggleReverseThrottleInput>
@@ -441,7 +441,7 @@
 		<Secondary Device="Keyboard" Key="Key_DownArrow" />
 	</ResetPowerDistribution>
 	<HMDReset>
-		<Primary Device="{NoDevice}" Key="" />
+		<Primary Device="T16000M" Key="Joy_6" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</HMDReset>
 	<ToggleCargoScoop>
@@ -533,10 +533,10 @@
 		<Primary Device="T16000MTHROTTLE" Key="Joy_POV1Right" />
 		<Secondary Device="Keyboard" Key="Key_3" />
 	</FocusRightPanel>
-	<LeftPanelFocusOptions Value="FocusOption_Nothing" />
+	<LeftPanelFocusOptions Value="" />
 	<CommsPanelFocusOptions Value="FocusOption_Show" />
 	<RolePanelFocusOptions Value="FocusOption_Nothing" />
-	<RightPanelFocusOptions Value="FocusOption_Nothing" />
+	<RightPanelFocusOptions Value="" />
 	<EnableCameraLockOn Value="1" />
 	<GalaxyMapOpen>
 		<Primary Device="T16000MTHROTTLE" Key="Joy_4">
@@ -584,6 +584,12 @@
 		</Primary>
 		<Secondary Device="Keyboard" Key="Key_H" />
 	</PlayerHUDModeToggle>
+	<ExplorationFSSEnter>
+		<Primary Device="T16000MTHROTTLE" Key="Joy_POV1Right">
+			<Modifier Device="T16000MTHROTTLE" Key="Joy_3" />
+		</Primary>
+		<Secondary Device="{NoDevice}" Key="" />
+	</ExplorationFSSEnter>
 	<UI_Up>
 		<Primary Device="T16000M" Key="Joy_POV1Up" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -753,6 +759,10 @@
 		<Secondary Device="{NoDevice}" Key="" />
 		<ToggleOn Value="0" />
 	</CamTranslateZHold>
+	<GalaxyMapHome>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</GalaxyMapHome>
 	<ToggleDriveAssist>
 		<Primary Device="T16000MTHROTTLE" Key="Joy_1" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -836,6 +846,14 @@
 		</Primary>
 		<Secondary Device="Keyboard" Key="Key_Space" />
 	</ToggleBuggyTurretButton>
+	<BuggyCycleFireGroupNext>
+		<Primary Device="T16000M" Key="Joy_POV1Right" />
+		<Secondary Device="Keyboard" Key="Key_Period" />
+	</BuggyCycleFireGroupNext>
+	<BuggyCycleFireGroupPrevious>
+		<Primary Device="T16000M" Key="Joy_POV1Left" />
+		<Secondary Device="Keyboard" Key="Key_Comma" />
+	</BuggyCycleFireGroupPrevious>
 	<SelectTarget_Buggy>
 		<Primary Device="T16000M" Key="Joy_2" />
 		<Secondary Device="{NoDevice}" Key="" />
