@@ -1,4 +1,5 @@
 ## 1.2.5
+* Added bindings for the Store Camera.
 * Revised the color palette.
 
 ## 1.2.4
