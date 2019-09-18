@@ -1,3 +1,6 @@
+## 1.2.5
+* Revised the color palette.
+
 ## 1.2.4
 
 * Amended the VKB Gladiator bindings: my thanks to KellyR (CMDR Analee Winston) for kicking my behind on this an providing corroborating data.
