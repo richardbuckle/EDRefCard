@@ -73,9 +73,7 @@ controls = {
     'CamZoomIn': {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 18, 'Name': 'GalMap Zoom In', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
     'CamZoomOut': {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 19, 'Name': 'GalMap Zoom Out', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
 
-    #
     # General items available on both ship and SRV
-    #
     'RadarRangeAxis': {'Group': 'Misc', 'Category': 'Navigation', 'Order': 1, 'Name': 'Sensor Range', 'Type': 'Analogue', 'HideIfSameAs': []},
     'RadarDecreaseRange': {'Group': 'Misc', 'Category': 'Navigation', 'Order': 2, 'Name': 'Dec Sensor Range', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
     'RadarIncreaseRange': {'Group': 'Misc', 'Category': 'Navigation', 'Order': 3, 'Name': 'Inc Sensor Range', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
@@ -95,9 +93,7 @@ controls = {
     'GalnetAudio_SkipBackward': {'Group': 'Misc', 'Category': 'General', 'Order': 18, 'Name': 'Prev Audio Track', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
     'GalnetAudio_ClearQueue': {'Group': 'Misc', 'Category': 'General', 'Order': 19, 'Name': 'Clear Audio Queue', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
 
-    #
     # Head look 
-    #
     'HeadLookPitchAxis': {'Group': 'Head look', 'Category': 'Navigation', 'Order': 1, 'Name': 'Look Up/Down', 'Type': 'Analogue', 'HideIfSameAs': []},
     'HeadLookPitchAxisRaw': {'Group': 'Head look', 'Category': 'Navigation', 'Order': 2, 'Name': 'Look Up/Down', 'Type': 'Analogue', 'HideIfSameAs': []},
     'HeadLookPitchUp': {'Group': 'Head look', 'Category': 'Navigation', 'Order': 3, 'Name': 'Look Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
@@ -408,6 +404,17 @@ controls = {
     'FocusDistanceInc': {'Group': 'Camera', 'Category': 'General', 'Order': 846, 'Name': 'Focus Further', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
     'FocusDistanceDec': {'Group': 'Camera', 'Category': 'General', 'Order': 847, 'Name': 'Focus Nearer', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
 
+    # Store camera
+    'StoreEnableRotation': {'Group': 'Camera', 'Category': 'Camera', 'Order': 901, 'Name': 'Store Cam Rotation', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'StorePitchCamera': {'Group': 'Camera', 'Category': 'Camera', 'Order': 902, 'Name': 'Store Cam Pitch', 'Type': 'Analogue', 'HideIfSameAs': ['PitchAxisRaw']},
+    'StorePitchCameraUp': {'Group': 'Camera', 'Category': 'Camera', 'Order': 903, 'Name': 'Store Cam Pitch Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchUpButton']},
+    'StorePitchCameraDown': {'Group': 'Camera', 'Category': 'Camera', 'Order': 904, 'Name': 'Store Cam Pitch Down', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchDownButton']},
+    'StoreYawCamera': {'Group': 'Camera', 'Category': 'Camera', 'Order': 905, 'Name': 'Store Cam Yaw', 'Type': 'Analogue', 'HideIfSameAs': ['YawAxisRaw']},
+    'StoreYawCameraLeft': {'Group': 'Camera', 'Category': 'Camera', 'Order': 906, 'Name': 'Store Cam Yaw Left', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawLeftButton']},
+    'StoreYawCameraRight': {'Group': 'Camera', 'Category': 'Camera', 'Order': 907, 'Name': 'Store Cam Yaw Right', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawRightButton']},
+    'StoreCamZoomIn': {'Group': 'Camera', 'Category': 'Camera', 'Order': 908, 'Name': 'Store Cam Zoom In', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'StoreCamZoomOut': {'Group': 'Camera', 'Category': 'Camera', 'Order': 909, 'Name': 'Store Cam Zoom Out', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    
     #
     # Controls for the UI panels
     #
