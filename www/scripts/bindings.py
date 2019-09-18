@@ -148,22 +148,22 @@ groupStyles = {
     'Galaxy map': {'Color': Color('#228B22'), 'Font': getFontPath('Regular', 'Normal')}, # ForestGreen
     'Holo-Me': {'Color': Color('#A0522D'), 'Font': getFontPath('Regular', 'Normal')}, # Sienna
     'Multicrew': {'Color': Color('#4682B4'), 'Font': getFontPath('Bold', 'Normal')}, # SteelBlue
-    'Fighter': {'Color': Color('#DC143C'), 'Font': getFontPath('Regular', 'Normal')}, # Crimson
+    'Fighter': {'Color': Color('#483D8B'), 'Font': getFontPath('Regular', 'Normal')}, # DarkSlateBlue
     'Camera': {'Color': Color('#6B8E23'), 'Font': getFontPath('Regular', 'Normal')}, # OliveDrab
     'Head look': {'Color': Color('#CD5C5C'), 'Font': getFontPath('Regular', 'Normal')}, # IndianRed
-    'Ship': {'Color': Color('#4169E1'), 'Font': getFontPath('Regular', 'Normal')}, # RoyalBlue
-    'SRV': {'Color': Color('#A0522D'), 'Font': getFontPath('Regular', 'Normal')}, # Sienna
-    'Scanners': {'Color': Color('#DA70D6'), 'Font': getFontPath('Regular', 'Normal')}, # Orchid
-    'UI': {'Color': Color('#FFD700'), 'Font': getFontPath('Regular', 'Normal')}, # Gold
+    'Ship': {'Color': Color('#DC143C'), 'Font': getFontPath('Regular', 'Normal')}, # Crimson
+    'SRV': {'Color': Color('#9370DB'), 'Font': getFontPath('Regular', 'Normal')}, # MediumPurple
+    'Scanners': {'Color': Color('#9932CC'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrchid
+    'UI': {'Color': Color('#FF8C00'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrange
 }
 
 # Command category styling
 categoryStyles = {
-    'General': {'Color': Color('#4169E1'), 'Font': getFontPath('Regular', 'Normal')}, # RoyalBlue
+    'General': {'Color': Color('#483D8B'), 'Font': getFontPath('Regular', 'Normal')}, # DarkSlateBlue
     'Combat': {'Color': Color('#DC143C'), 'Font': getFontPath('Regular', 'Normal')}, # Crimson
     'Social': {'Color': Color('#228B22'), 'Font': getFontPath('Regular', 'Normal')}, # ForestGreen
     'Navigation': {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')}, # Black
-    'UI': {'Color': Color('#FFD700'), 'Font': getFontPath('Regular', 'Normal')}, # Gold
+    'UI': {'Color': Color('#FF8C00'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrange
 }
 
 # Modifier styling - note a list not a dictionary as modifiers are numeric
@@ -172,9 +172,9 @@ class ModifierStyles:
         {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')}, # Black
         {'Color': Color('#DC143C'), 'Font': getFontPath('Regular', 'Normal')}, # Crimson
         {'Color': Color('#228B22'), 'Font': getFontPath('Regular', 'Normal')}, # ForestGreen
-        {'Color': Color('#4169E1'), 'Font': getFontPath('Regular', 'Normal')}, # RoyalBlue
-        {'Color': Color('#FFD700'), 'Font': getFontPath('Regular', 'Normal')}, # Gold
-        {'Color': Color('#DA70D6'), 'Font': getFontPath('Regular', 'Normal')}, # Orchid
+        {'Color': Color('#483D8B'), 'Font': getFontPath('Regular', 'Normal')}, # DarkSlateBlue
+        {'Color': Color('#FF8C00'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrange
+        {'Color': Color('#9932CC'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrchid
         {'Color': Color('#4682B4'), 'Font': getFontPath('Regular', 'Normal')}, # SteelBlue
         {'Color': Color('#A0522D'), 'Font': getFontPath('Regular', 'Normal')}, # Sienna
         {'Color': Color('#CD5C5C'), 'Font': getFontPath('Regular', 'Normal')}, # IndianRed
