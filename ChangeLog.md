@@ -1,3 +1,6 @@
+## 1.2.6
+* Added binding for Store Toggle Preview.
+
 ## 1.2.5
 * Added bindings for the Store Camera.
 * Revised the color palette.

@@ -1349,27 +1349,11 @@
 		<Inverted Value="0" />
 		<Deadzone Value="0.00000000" />
 	</StorePitchCamera>
-	<StorePitchCameraUp>
-		<Primary Device="{NoDevice}" Key="" />
-		<Secondary Device="{NoDevice}" Key="" />
-	</StorePitchCameraUp>
-	<StorePitchCameraDown>
-		<Primary Device="{NoDevice}" Key="" />
-		<Secondary Device="{NoDevice}" Key="" />
-	</StorePitchCameraDown>
 	<StoreYawCamera>
 		<Binding Device="T16000M" Key="Joy_RZAxis" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.00000000" />
 	</StoreYawCamera>
-	<StoreYawCameraLeft>
-		<Primary Device="{NoDevice}" Key="" />
-		<Secondary Device="{NoDevice}" Key="" />
-	</StoreYawCameraLeft>
-	<StoreYawCameraRight>
-		<Primary Device="{NoDevice}" Key="" />
-		<Secondary Device="{NoDevice}" Key="" />
-	</StoreYawCameraRight>
 	<StoreCamZoomIn>
 		<Primary Device="T16000MTHROTTLE" Key="Joy_8" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -1378,6 +1362,10 @@
 		<Primary Device="T16000MTHROTTLE" Key="Joy_10" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</StoreCamZoomOut>
+	<StoreToggle>
+		<Primary Device="T16000MTHROTTLE" Key="Joy_1" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</StoreToggle>
 	<CommanderCreator_Undo>
 		<Primary Device="Keyboard" Key="Key_Z" />
 		<Secondary Device="{NoDevice}" Key="" />

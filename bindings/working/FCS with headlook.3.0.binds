@@ -1378,6 +1378,10 @@
 		<Primary Device="T16000MTHROTTLE" Key="Joy_10" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</StoreCamZoomOut>
+	<StoreToggle>
+		<Primary Device="T16000MTHROTTLE" Key="Joy_1" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</StoreToggle>
 	<CommanderCreator_Undo>
 		<Primary Device="Keyboard" Key="Key_Z" />
 		<Secondary Device="{NoDevice}" Key="" />

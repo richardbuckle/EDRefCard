@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-__version__ = '1.2.5'
+__version__ = '1.2.6'
 
 from collections import OrderedDict
 
@@ -414,6 +414,7 @@ controls = {
     'StoreYawCameraRight': {'Group': 'Camera', 'Category': 'Camera', 'Order': 907, 'Name': 'Store Cam Yaw Right', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawRightButton']},
     'StoreCamZoomIn': {'Group': 'Camera', 'Category': 'Camera', 'Order': 908, 'Name': 'Store Cam Zoom In', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
     'StoreCamZoomOut': {'Group': 'Camera', 'Category': 'Camera', 'Order': 909, 'Name': 'Store Cam Zoom Out', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'StoreToggle': {'Group': 'Camera', 'Category': 'Camera', 'Order': 910, 'Name': 'Store Toggle Preview', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
     
     #
     # Controls for the UI panels
