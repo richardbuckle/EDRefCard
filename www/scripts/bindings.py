@@ -142,47 +142,47 @@ def getFontPath(weight, style):
 
 # Command group styling
 groupStyles = {
-    'General': {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')}, # Black
-    'Misc': {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')}, # Black
-    'Modifier': {'Color': Color('#000000'), 'Font': getFontPath('Bold', 'Normal')}, # Black
-    'Galaxy map': {'Color': Color('#228B22'), 'Font': getFontPath('Regular', 'Normal')}, # ForestGreen
-    'Holo-Me': {'Color': Color('#A0522D'), 'Font': getFontPath('Regular', 'Normal')}, # Sienna
-    'Multicrew': {'Color': Color('#4682B4'), 'Font': getFontPath('Bold', 'Normal')}, # SteelBlue
-    'Fighter': {'Color': Color('#483D8B'), 'Font': getFontPath('Regular', 'Normal')}, # DarkSlateBlue
-    'Camera': {'Color': Color('#6B8E23'), 'Font': getFontPath('Regular', 'Normal')}, # OliveDrab
-    'Head look': {'Color': Color('#CD5C5C'), 'Font': getFontPath('Regular', 'Normal')}, # IndianRed
-    'Ship': {'Color': Color('#DC143C'), 'Font': getFontPath('Regular', 'Normal')}, # Crimson
-    'SRV': {'Color': Color('#9370DB'), 'Font': getFontPath('Regular', 'Normal')}, # MediumPurple
-    'Scanners': {'Color': Color('#9932CC'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrchid
-    'UI': {'Color': Color('#FF8C00'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrange
+    'General': {'Color': Color('Black'), 'Font': getFontPath('Regular', 'Normal')},
+    'Misc': {'Color': Color('Black'), 'Font': getFontPath('Regular', 'Normal')},
+    'Modifier': {'Color': Color('Black'), 'Font': getFontPath('Bold', 'Normal')},
+    'Galaxy map': {'Color': Color('ForestGreen'), 'Font': getFontPath('Regular', 'Normal')},
+    'Holo-Me': {'Color': Color('Sienna'), 'Font': getFontPath('Regular', 'Normal')},
+    'Multicrew': {'Color': Color('SteelBlue'), 'Font': getFontPath('Bold', 'Normal')},
+    'Fighter': {'Color': Color('DarkSlateBlue'), 'Font': getFontPath('Regular', 'Normal')},
+    'Camera': {'Color': Color('OliveDrab'), 'Font': getFontPath('Regular', 'Normal')},
+    'Head look': {'Color': Color('IndianRed'), 'Font': getFontPath('Regular', 'Normal')},
+    'Ship': {'Color': Color('Crimson'), 'Font': getFontPath('Regular', 'Normal')},
+    'SRV': {'Color': Color('MediumPurple'), 'Font': getFontPath('Regular', 'Normal')},
+    'Scanners': {'Color': Color('DarkOrchid'), 'Font': getFontPath('Regular', 'Normal')},
+    'UI': {'Color': Color('DarkOrange'), 'Font': getFontPath('Regular', 'Normal')},
 }
 
 # Command category styling
 categoryStyles = {
-    'General': {'Color': Color('#483D8B'), 'Font': getFontPath('Regular', 'Normal')}, # DarkSlateBlue
-    'Combat': {'Color': Color('#DC143C'), 'Font': getFontPath('Regular', 'Normal')}, # Crimson
-    'Social': {'Color': Color('#228B22'), 'Font': getFontPath('Regular', 'Normal')}, # ForestGreen
-    'Navigation': {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')}, # Black
-    'UI': {'Color': Color('#FF8C00'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrange
+    'General': {'Color': Color('DarkSlateBlue'), 'Font': getFontPath('Regular', 'Normal')},
+    'Combat': {'Color': Color('Crimson'), 'Font': getFontPath('Regular', 'Normal')},
+    'Social': {'Color': Color('ForestGreen'), 'Font': getFontPath('Regular', 'Normal')},
+    'Navigation': {'Color': Color('Black'), 'Font': getFontPath('Regular', 'Normal')},
+    'UI': {'Color': Color('DarkOrange'), 'Font': getFontPath('Regular', 'Normal')},
 }
 
 # Modifier styling - note a list not a dictionary as modifiers are numeric
 class ModifierStyles:
     styles = [
-        {'Color': Color('#000000'), 'Font': getFontPath('Regular', 'Normal')}, # Black
-        {'Color': Color('#DC143C'), 'Font': getFontPath('Regular', 'Normal')}, # Crimson
-        {'Color': Color('#228B22'), 'Font': getFontPath('Regular', 'Normal')}, # ForestGreen
-        {'Color': Color('#483D8B'), 'Font': getFontPath('Regular', 'Normal')}, # DarkSlateBlue
-        {'Color': Color('#FF8C00'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrange
-        {'Color': Color('#9932CC'), 'Font': getFontPath('Regular', 'Normal')}, # DarkOrchid
-        {'Color': Color('#4682B4'), 'Font': getFontPath('Regular', 'Normal')}, # SteelBlue
-        {'Color': Color('#A0522D'), 'Font': getFontPath('Regular', 'Normal')}, # Sienna
-        {'Color': Color('#CD5C5C'), 'Font': getFontPath('Regular', 'Normal')}, # IndianRed
-        {'Color': Color('#6495ED'), 'Font': getFontPath('Regular', 'Normal')}, # CornflowerBlue
-        {'Color': Color('#6B8E23'), 'Font': getFontPath('Regular', 'Normal')}, # OliveDrab
-        {'Color': Color('#9370DB'), 'Font': getFontPath('Regular', 'Normal')}, # MediumPurple
-        {'Color': Color('#e9967A'), 'Font': getFontPath('Regular', 'Normal')}, # DarkSalmon
-        {'Color': Color('#778899'), 'Font': getFontPath('Regular', 'Normal')}, # LightSlateGray
+        {'Color': Color('Black'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('Crimson'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('ForestGreen'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('DarkSlateBlue'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('DarkOrange'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('DarkOrchid'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('SteelBlue'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('Sienna'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('IndianRed'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('CornflowerBlue'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('OliveDrab'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('MediumPurple'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('DarkSalmon'), 'Font': getFontPath('Regular', 'Normal')},
+        {'Color': Color('LightSlateGray'), 'Font': getFontPath('Regular', 'Normal')},
     ]
 
     def index(num):
@@ -224,7 +224,7 @@ def createKeyboardImage(physicalKeys, modifiers, source, imageDevices, biggestFo
             context.text_antialias = True
             context.font_style = 'normal'
             context.stroke_width = 0
-            context.fill_color = Color('#000')
+            context.fill_color = Color('Black')
             context.fill_opacity = 1
 
             # Add the ID to the title
@@ -270,7 +270,7 @@ def createKeyboardImage(physicalKeys, modifiers, source, imageDevices, biggestFo
             font = Font(getFontPath('Regular', 'Normal'), antialias=True, size=biggestFontSize)
             groupTitleFont = Font(getFontPath('Regular', 'Normal'), antialias=True, size=biggestFontSize*2)
             context.stroke_width=2
-            context.stroke_color=Color('#000')
+            context.stroke_color=Color('Black')
             context.fill_opacity=0
 
             # Go through once for each display group
@@ -324,12 +324,12 @@ def writeText(context, img, text, screenState, font, surround, newLine):
     context.font_size = font.size
     context.push()
     context.stroke_width=0
-    context.fill_color=Color('#000')
+    context.fill_color=Color('Black')
     context.fill_opacity=1
 
     if text is None:
         text = 'invalid'
-        context.fill_color=Color('#FF0000') # Red
+        context.fill_color=Color('Red')
 
     metrics = context.get_font_metrics(img, text, multiline=False)
     if screenState['currentY'] + int(metrics.text_height + 32) > 2160:
@@ -387,7 +387,7 @@ def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#90EE90'
                     context.fill_color = Color(fillColor)
                     context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
                     context.stroke_width = 0
-                    context.fill_color = Color('#000')
+                    context.fill_color = Color('Black')
                     sourceTexts = [{'Text': keycode, 'Group': 'General', 'Style': groupStyles['General']}]
                     texts = layoutText(sourceImg, context, sourceTexts, box, maxFontSize)
                     for text in texts:
@@ -430,7 +430,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
             context.text_antialias = True
             context.font_style = 'normal'
             context.stroke_width = 0
-            context.fill_color = Color('#000')
+            context.fill_color = Color('Black')
             context.fill_opacity = 1
 
             # Add the ID to the title
