@@ -363,7 +363,7 @@ def writeText(context, img, text, screenState, font, surround, newLine):
     else:
         screenState['currentX'] = screenState['currentX'] + width
 
-def createBlockImage(supportedDeviceKey, strokeColor='#F00', fillColor='#90EE90'):
+def createBlockImage(supportedDeviceKey, strokeColor='Black', fillColor='LightGreen'):
     supportedDevice = supportedDevices[supportedDeviceKey]
     # Set up the path for our file
     templateName = supportedDevice['Template']
