@@ -6,6 +6,7 @@ from collections import OrderedDict
 
 
 supportedDevices = OrderedDict([
+    ('HotasCougar',{'Template': 'hotascougar', 'HandledDevices': ['044F0400']}),
     ('LogitechExtreme3DPro', {'Template': 'extreme3dpro', 'HandledDevices': ['LogitechExtreme3DPro']}),
     ('Logitech710WirelessGamepad', {'Template': 'f710', 'HandledDevices': ['Logitech710WirelessGamepad']}),
     ('LogitechGTWheel', {'Template': 'gtwheel', 'HandledDevices': ['046DC29A']}),
@@ -433,6 +434,48 @@ controls = {
 }
 
 hotasDetails = {
+        '044F0400': {
+        'displayName': 'HotasCougar',
+        'Joy_1': {'Type': 'Digital', 'x': 2042, 'y': 548, 'width': 620}, # Primary trigger half press
+        'Joy_2': {'Type': 'Digital', 'x': 1952, 'y': 214, 'width': 880}, # Top trigger red button
+        'Joy_3': {'Type': 'Digital', 'x': 2084, 'y': 1102, 'width': 580}, # Pinky button
+        'Joy_4': {'Type': 'Digital', 'x': 2084, 'y': 1012, 'width': 580}, # Pinky trigger
+        'Joy_5': {'Type': 'Digital', 'x': 2886, 'y': 212, 'width': 880}, # Top side button
+        'Joy_6': {'Type': 'Digital', 'x': 2042, 'y': 602, 'width': 620}, # Primary trigger full press
+        'Joy_7': {'Type': 'Digital', 'x': 1916, 'y': 300, 'width': 760}, # Left hat up
+        'Joy_8': {'Type': 'Digital', 'x': 1916, 'y': 354, 'width': 760}, # Left hat right
+        'Joy_9': {'Type': 'Digital', 'x': 1916, 'y': 408, 'width': 760}, # Left hat down
+        'Joy_10': {'Type': 'Digital', 'x': 1916, 'y': 462, 'width': 760}, # Left hat left
+        'Joy_11': {'Type': 'Digital', 'x': 3048, 'y': 562, 'width': 760}, # Right hat up
+        'Joy_12': {'Type': 'Digital', 'x': 3048, 'y': 616, 'width': 760}, # Right hat right
+        'Joy_13': {'Type': 'Digital', 'x': 3048, 'y': 670, 'width': 760}, # Right hat down
+        'Joy_14': {'Type': 'Digital', 'x': 3048, 'y': 724, 'width': 760}, # Right hat left
+        'Joy_15': {'Type': 'Digital', 'x': 2004, 'y': 700, 'width': 660}, # Thumb hat up
+        'Joy_16': {'Type': 'Digital', 'x': 2004, 'y': 754, 'width': 660}, # Thumb hat right
+        'Joy_17': {'Type': 'Digital', 'x': 2004, 'y': 808, 'width': 660}, # Thumb hat down
+        'Joy_18': {'Type': 'Digital', 'x': 2004, 'y': 862, 'width': 660}, # Thumb hat left
+        'Joy_19': {'Type': 'Digital', 'x': 390, 'y': 1650, 'width': 660}, # Rdr Cursor button
+        'Joy_20': {'Type': 'Digital', 'x': 1505, 'y': 1684, 'width': 840}, #Radio select down
+        'Joy_21': {'Type': 'Digital', 'x': 1505, 'y': 1738, 'width': 840}, #Radio select up
+        'Joy_22': {'Type': 'Digital', 'x': 1505, 'y': 1792, 'width': 840}, #Radio select right
+        'Joy_23': {'Type': 'Digital', 'x': 1505, 'y': 1846, 'width': 840}, #Radio select left
+        'Joy_24': {'Type': 'Digital', 'x': 1225, 'y': 649, 'width': 700}, #Man RNG/Uncage button
+        'Joy_25': {'Type': 'Digital', 'x': 1327, 'y': 1026, 'width': 750}, #Dog fight up
+        'Joy_26': {'Type': 'Digital', 'x': 1327, 'y': 1080, 'width': 750}, #Dog fight down
+        'Joy_27': {'Type': 'Digital', 'x': 1327, 'y': 1220, 'width': 750}, #SPD BRK up
+        'Joy_28': {'Type': 'Digital', 'x': 1327, 'y': 1274, 'width': 750}, #SPD BRK down
+        'Joy_POV1Up': {'Type': 'Digital', 'x': 3048, 'y': 308, 'width': 760}, # PoV hat up
+        'Joy_POV1Right': {'Type': 'Digital', 'x': 3048, 'y': 362, 'width': 760}, # PoV hat right
+        'Joy_POV1Down': {'Type': 'Digital', 'x': 3048, 'y': 416, 'width': 760}, # PoV hat down
+        'Joy_POV1Left': {'Type': 'Digital', 'x': 3048, 'y': 470, 'width': 760}, # PoV hat left
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 3126, 'y': 872, 'width': 680}, # Stick left/right
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 3126, 'y': 818, 'width': 680}, # Stick up/down
+        'Joy_ZAxis': {'Type': 'Analogue', 'x': 120, 'y': 365, 'width': 750}, # Throttle
+        'Joy_UAxis': {'Type': 'Analogue', 'x': 1225, 'y': 595, 'width': 700}, # Man RNG/Uncage
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 1327, 'y': 1430, 'width': 750}, # Ant Elev
+        'Joy_VAxis': {'Type': 'Analogue', 'x': 390, 'y': 1585, 'width': 750}, # Rdr Cursor
+        'Neg_Joy_VAxis': {'Type': 'Analogue', 'x': 390, 'y': 1645, 'width': 750}, # Rdr Cursor
+    },
     'LogitechExtreme3DPro': {
         'Joy_1': {'Type': 'Digital', 'x': 474, 'y': 904, 'width': 1092}, # Primary trigger
         'Joy_2': {'Type': 'Digital', 'x': 474, 'y': 1004, 'width': 1092}, # Side trigger
