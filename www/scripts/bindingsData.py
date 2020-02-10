@@ -433,27 +433,28 @@ controls = {
     'CyclePreviousPage': {'Group': 'UI', 'Category': 'UI', 'Order': 11, 'Name': 'Prev Page', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
 }
 
+# default height is 54 (px)
 hotasDetails = {
         '044F0400': {
         'displayName': 'HotasCougar',
-        'Joy_1': {'Type': 'Digital', 'x': 2042, 'y': 548, 'width': 620}, # Primary trigger half press
-        'Joy_2': {'Type': 'Digital', 'x': 1952, 'y': 214, 'width': 880}, # Top trigger red button
-        'Joy_3': {'Type': 'Digital', 'x': 2084, 'y': 1102, 'width': 580}, # Pinky button
-        'Joy_4': {'Type': 'Digital', 'x': 2084, 'y': 1012, 'width': 580}, # Pinky trigger
-        'Joy_5': {'Type': 'Digital', 'x': 2886, 'y': 212, 'width': 880}, # Top side button
-        'Joy_6': {'Type': 'Digital', 'x': 2042, 'y': 602, 'width': 620}, # Primary trigger full press
-        'Joy_7': {'Type': 'Digital', 'x': 1916, 'y': 300, 'width': 760}, # Left hat up
-        'Joy_8': {'Type': 'Digital', 'x': 1916, 'y': 354, 'width': 760}, # Left hat right
-        'Joy_9': {'Type': 'Digital', 'x': 1916, 'y': 408, 'width': 760}, # Left hat down
-        'Joy_10': {'Type': 'Digital', 'x': 1916, 'y': 462, 'width': 760}, # Left hat left
-        'Joy_11': {'Type': 'Digital', 'x': 3048, 'y': 562, 'width': 760}, # Right hat up
-        'Joy_12': {'Type': 'Digital', 'x': 3048, 'y': 616, 'width': 760}, # Right hat right
-        'Joy_13': {'Type': 'Digital', 'x': 3048, 'y': 670, 'width': 760}, # Right hat down
-        'Joy_14': {'Type': 'Digital', 'x': 3048, 'y': 724, 'width': 760}, # Right hat left
-        'Joy_15': {'Type': 'Digital', 'x': 2004, 'y': 700, 'width': 660}, # Thumb hat up
-        'Joy_16': {'Type': 'Digital', 'x': 2004, 'y': 754, 'width': 660}, # Thumb hat right
-        'Joy_17': {'Type': 'Digital', 'x': 2004, 'y': 808, 'width': 660}, # Thumb hat down
-        'Joy_18': {'Type': 'Digital', 'x': 2004, 'y': 862, 'width': 660}, # Thumb hat left
+        'Joy_1': {'Type': 'Digital', 'x': 2003, 'y': 557, 'width': 670}, # Primary trigger half press
+        'Joy_2': {'Type': 'Digital', 'x': 1948, 'y': 218, 'width': 892}, # Top trigger red button
+        'Joy_3': {'Type': 'Digital', 'x': 2080, 'y': 1094, 'width': 592}, # Pinky button
+        'Joy_4': {'Type': 'Digital', 'x': 2080, 'y': 1004, 'width': 592}, # Pinky trigger
+        'Joy_5': {'Type': 'Digital', 'x': 2881, 'y': 218, 'width': 892}, # Top side button
+        'Joy_6': {'Type': 'Digital', 'x': 2003, 'y': 611, 'width': 670}, # Primary trigger full press
+        'Joy_7': {'Type': 'Digital', 'x': 1995, 'y': 302, 'width': 676}, # Left hat up
+        'Joy_8': {'Type': 'Digital', 'x': 1995, 'y': 356, 'width': 676}, # Left hat right
+        'Joy_9': {'Type': 'Digital', 'x': 1995, 'y': 410, 'width': 676}, # Left hat down
+        'Joy_10': {'Type': 'Digital', 'x': 1995, 'y': 464, 'width': 676}, # Left hat left
+        'Joy_11': {'Type': 'Digital', 'x': 3042, 'y': 562, 'width': 774}, # Right hat up
+        'Joy_12': {'Type': 'Digital', 'x': 3042, 'y': 616, 'width': 774}, # Right hat right
+        'Joy_13': {'Type': 'Digital', 'x': 3042, 'y': 670, 'width': 774}, # Right hat down
+        'Joy_14': {'Type': 'Digital', 'x': 3042, 'y': 724, 'width': 774}, # Right hat left
+        'Joy_15': {'Type': 'Digital', 'x': 2004, 'y': 700, 'width': 667}, # Thumb hat up
+        'Joy_16': {'Type': 'Digital', 'x': 2004, 'y': 754, 'width': 667}, # Thumb hat right
+        'Joy_17': {'Type': 'Digital', 'x': 2004, 'y': 808, 'width': 667}, # Thumb hat down
+        'Joy_18': {'Type': 'Digital', 'x': 2004, 'y': 862, 'width': 667}, # Thumb hat left
         'Joy_19': {'Type': 'Digital', 'x': 390, 'y': 1650, 'width': 660}, # Rdr Cursor button
         'Joy_20': {'Type': 'Digital', 'x': 1505, 'y': 1684, 'width': 840}, #Radio select down
         'Joy_21': {'Type': 'Digital', 'x': 1505, 'y': 1738, 'width': 840}, #Radio select up
@@ -464,12 +465,12 @@ hotasDetails = {
         'Joy_26': {'Type': 'Digital', 'x': 1327, 'y': 1080, 'width': 750}, #Dog fight down
         'Joy_27': {'Type': 'Digital', 'x': 1327, 'y': 1220, 'width': 750}, #SPD BRK up
         'Joy_28': {'Type': 'Digital', 'x': 1327, 'y': 1274, 'width': 750}, #SPD BRK down
-        'Joy_POV1Up': {'Type': 'Digital', 'x': 3048, 'y': 308, 'width': 760}, # PoV hat up
-        'Joy_POV1Right': {'Type': 'Digital', 'x': 3048, 'y': 362, 'width': 760}, # PoV hat right
-        'Joy_POV1Down': {'Type': 'Digital', 'x': 3048, 'y': 416, 'width': 760}, # PoV hat down
-        'Joy_POV1Left': {'Type': 'Digital', 'x': 3048, 'y': 470, 'width': 760}, # PoV hat left
-        'Joy_XAxis': {'Type': 'Analogue', 'x': 3126, 'y': 872, 'width': 680}, # Stick left/right
-        'Joy_YAxis': {'Type': 'Analogue', 'x': 3126, 'y': 818, 'width': 680}, # Stick up/down
+        'Joy_POV1Up': {'Type': 'Digital', 'x': 3042, 'y': 304, 'width': 774}, # PoV hat up
+        'Joy_POV1Right': {'Type': 'Digital', 'x': 3042, 'y': 358, 'width': 774}, # PoV hat right
+        'Joy_POV1Down': {'Type': 'Digital', 'x': 3042, 'y': 412, 'width': 774}, # PoV hat down
+        'Joy_POV1Left': {'Type': 'Digital', 'x': 3042, 'y': 466, 'width': 774}, # PoV hat left
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 3124, 'y': 870, 'width': 692}, # Stick left/right
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 3124, 'y': 816, 'width': 692}, # Stick up/down
         'Joy_ZAxis': {'Type': 'Analogue', 'x': 120, 'y': 365, 'width': 750}, # Throttle
         'Joy_UAxis': {'Type': 'Analogue', 'x': 1225, 'y': 595, 'width': 700}, # Man RNG/Uncage
         'Joy_RXAxis': {'Type': 'Analogue', 'x': 1327, 'y': 1430, 'width': 750}, # Ant Elev
