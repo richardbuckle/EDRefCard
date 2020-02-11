@@ -455,27 +455,26 @@ hotasDetails = {
         'Joy_16': {'Type': 'Digital', 'x': 2004, 'y': 754, 'width': 667}, # Thumb hat right
         'Joy_17': {'Type': 'Digital', 'x': 2004, 'y': 808, 'width': 667}, # Thumb hat down
         'Joy_18': {'Type': 'Digital', 'x': 2004, 'y': 862, 'width': 667}, # Thumb hat left
-        'Joy_19': {'Type': 'Digital', 'x': 390, 'y': 1650, 'width': 660}, # Rdr Cursor button
-        'Joy_20': {'Type': 'Digital', 'x': 1505, 'y': 1684, 'width': 840}, #Radio select down
-        'Joy_21': {'Type': 'Digital', 'x': 1505, 'y': 1738, 'width': 840}, #Radio select up
-        'Joy_22': {'Type': 'Digital', 'x': 1505, 'y': 1792, 'width': 840}, #Radio select right
-        'Joy_23': {'Type': 'Digital', 'x': 1505, 'y': 1846, 'width': 840}, #Radio select left
-        'Joy_24': {'Type': 'Digital', 'x': 1225, 'y': 649, 'width': 700}, #Man RNG/Uncage button
-        'Joy_25': {'Type': 'Digital', 'x': 1327, 'y': 1026, 'width': 750}, #Dog fight up
-        'Joy_26': {'Type': 'Digital', 'x': 1327, 'y': 1080, 'width': 750}, #Dog fight down
-        'Joy_27': {'Type': 'Digital', 'x': 1327, 'y': 1220, 'width': 750}, #SPD BRK up
-        'Joy_28': {'Type': 'Digital', 'x': 1327, 'y': 1274, 'width': 750}, #SPD BRK down
+        'Joy_19': {'Type': 'Digital', 'x': 372, 'y': 1640, 'width': 683}, # Rdr Cursor button
+        'Joy_20': {'Type': 'Digital', 'x': 1495, 'y': 1679, 'width': 772}, #Radio select down
+        'Joy_21': {'Type': 'Digital', 'x': 1495, 'y': 1733, 'width': 772}, #Radio select up
+        'Joy_22': {'Type': 'Digital', 'x': 1495, 'y': 1787, 'width': 772}, #Radio select right
+        'Joy_23': {'Type': 'Digital', 'x': 1495, 'y': 1841, 'width': 772}, #Radio select left
+        'Joy_24': {'Type': 'Digital', 'x': 1220, 'y': 649, 'width': 633}, #Man RNG/Uncage button
+        'Joy_25': {'Type': 'Digital', 'x': 1310, 'y': 1022, 'width': 690}, #Dog fight up
+        'Joy_26': {'Type': 'Digital', 'x': 1310, 'y': 1076, 'width': 690}, #Dog fight down
+        'Joy_27': {'Type': 'Digital', 'x': 1310, 'y': 1214, 'width': 690}, #SPD BRK up
+        'Joy_28': {'Type': 'Digital', 'x': 1310, 'y': 1268, 'width': 690}, #SPD BRK down
         'Joy_POV1Up': {'Type': 'Digital', 'x': 3042, 'y': 304, 'width': 774}, # PoV hat up
         'Joy_POV1Right': {'Type': 'Digital', 'x': 3042, 'y': 358, 'width': 774}, # PoV hat right
         'Joy_POV1Down': {'Type': 'Digital', 'x': 3042, 'y': 412, 'width': 774}, # PoV hat down
         'Joy_POV1Left': {'Type': 'Digital', 'x': 3042, 'y': 466, 'width': 774}, # PoV hat left
         'Joy_XAxis': {'Type': 'Analogue', 'x': 3124, 'y': 870, 'width': 692}, # Stick left/right
         'Joy_YAxis': {'Type': 'Analogue', 'x': 3124, 'y': 816, 'width': 692}, # Stick up/down
-        'Joy_ZAxis': {'Type': 'Analogue', 'x': 120, 'y': 365, 'width': 750}, # Throttle
-        'Joy_UAxis': {'Type': 'Analogue', 'x': 1225, 'y': 595, 'width': 700}, # Man RNG/Uncage
-        'Joy_RXAxis': {'Type': 'Analogue', 'x': 1327, 'y': 1430, 'width': 750}, # Ant Elev
-        'Joy_VAxis': {'Type': 'Analogue', 'x': 390, 'y': 1585, 'width': 750}, # Rdr Cursor
-        'Neg_Joy_VAxis': {'Type': 'Analogue', 'x': 390, 'y': 1645, 'width': 750}, # Rdr Cursor
+        'Joy_ZAxis': {'Type': 'Analogue', 'x': 108, 'y': 364, 'width': 682}, # Throttle
+        'Joy_UAxis': {'Type': 'Analogue', 'x': 1220, 'y': 595, 'width': 633}, # Man RNG/Uncage
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 1310, 'y': 1424, 'width': 690}, # Ant Elev
+        'Joy_VAxis': {'Type': 'Analogue', 'x': 372, 'y': 1586, 'width': 683}, # Rdr Cursor
     },
     'LogitechExtreme3DPro': {
         'Joy_1': {'Type': 'Digital', 'x': 474, 'y': 904, 'width': 1092}, # Primary trigger
