@@ -5,3 +5,4 @@ www/configs
 .coverage
 htmlcov
 .pytest_cache
+.DS_Store

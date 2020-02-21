@@ -45,6 +45,7 @@ supportedDevices = OrderedDict([
     ('DS4', {'Template': 'ds4', 'HandledDevices': ['DS4', 'DualShock4']}),
     ('VPC-WarBRD-DELTA-Left', {'Template': 'vpc-warbrd-delta-left', 'HandledDevices': ['03EB2042']}),
     ('VPC-WarBRD-DELTA-Right', {'Template': 'vpc-warbrd-delta-right', 'HandledDevices': ['03EB2044']}),
+    ('VKB-Gunfighter-Kosmosima-SCG-Right', {'Template': 'vkb-gunfighter-kosmosima-scg-right', 'HandledDevices': ['231D0126']}),
     ('Keyboard', {'Template': 'keyboard', 'HandledDevices': ['Keyboard']})
 ])
 
@@ -2023,7 +2024,38 @@ hotasDetails = {
         'Joy_RXAxis': {'Type': 'Analogue', 'x': 2470, 'y': 700, 'width': 1180},
         'Joy_RYAxis': {'Type': 'Analogue', 'x': 2470, 'y': 760, 'width': 1180},
     },
-
+    '231D0126': { # VKB Gunfighter Kosmosima SCG Right
+        'displayName': 'VKB Gunfighter Kosmosima SCG Right',
+        'Joy_1': {'Type': 'Digital', 'x': 1139, 'y': 1777, 'width': 739, 'height': 68}, # Fire first stage
+        'Joy_2': {'Type': 'Digital', 'x': 1139, 'y': 1852, 'width': 739, 'height': 68}, # Fire second stage
+        'Joy_3': {'Type': 'Digital', 'x': 2571, 'y': 1364, 'width': 724, 'height': 68}, # A2
+        'Joy_4': {'Type': 'Digital', 'x': 1223, 'y': 1091, 'width': 709, 'height': 68}, # B1
+        'Joy_5': {'Type': 'Digital', 'x': 1059, 'y': 2030, 'width': 740, 'height': 68}, # D1
+        'Joy_6': {'Type': 'Digital', 'x': 2427, 'y': 388, 'width': 782, 'height': 68}, # A4 up
+        'Joy_7': {'Type': 'Digital', 'x': 2427, 'y': 623, 'width': 782, 'height': 68}, # A4 right
+        'Joy_8': {'Type': 'Digital', 'x': 2427, 'y': 466, 'width': 782, 'height': 68}, # A4 down
+        'Joy_9': {'Type': 'Digital', 'x': 2427, 'y': 544, 'width': 782, 'height': 68}, # A4 left
+        'Joy_10': {'Type': 'Digital', 'x': 2427, 'y': 699, 'width': 782, 'height': 68}, # A4 push
+        'Joy_11': {'Type': 'Digital', 'x': 2518, 'y': 876, 'width': 772, 'height': 68}, # A3 up
+        'Joy_12': {'Type': 'Digital', 'x': 2518, 'y': 1107, 'width': 772, 'height': 68}, # A3 right
+        'Joy_13': {'Type': 'Digital', 'x': 2518, 'y': 953, 'width': 772, 'height': 68}, # A3 down
+        'Joy_14': {'Type': 'Digital', 'x': 2518, 'y': 1029, 'width': 772, 'height': 68}, # A3 left
+        'Joy_15': {'Type': 'Digital', 'x': 2518, 'y': 1184, 'width': 772, 'height': 68}, # A3 push
+        'Joy_21': {'Type': 'Digital', 'x': 2658, 'y': 1534, 'width': 632, 'height': 68}, # C1 up
+        'Joy_22': {'Type': 'Digital', 'x': 2658, 'y': 1768, 'width': 632, 'height': 68}, # C1 right
+        'Joy_23': {'Type': 'Digital', 'x': 2658, 'y': 1612, 'width': 632, 'height': 68}, # C1 down
+        'Joy_24': {'Type': 'Digital', 'x': 2658, 'y': 1690, 'width': 632, 'height': 68}, # C1 left
+        'Joy_25': {'Type': 'Digital', 'x': 2658, 'y': 1845, 'width': 632, 'height': 68}, # C1 push
+        'Joy_26': {'Type': 'Digital', 'x': 1153, 'y': 1519, 'width': 718, 'height': 68}, # B2 up
+        'Joy_27': {'Type': 'Digital', 'x': 1153, 'y': 1597, 'width': 718, 'height': 68}, # B2 down
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 732, 'y': 406, 'width': 639, 'height': 68}, # A1 Ministick R x
+        'Joy_RYAxis': {'Type': 'Analogue', 'x': 732, 'y': 484, 'width': 639, 'height': 68}, # A1 Ministick R y
+        'Joy_RZAxis': {'Type': 'Analogue', 'x': 2622, 'y': 2025, 'width': 671, 'height': 68}, # Twist R z
+        'Joy_POV1Up': {'Type': 'Digital', 'x': 1488, 'y': 561, 'width': 571, 'height': 68}, # A1 POV Switch up
+        'Joy_POV1Right': {'Type': 'Digital', 'x': 1488, 'y': 795, 'width': 571, 'height': 68}, # A1 POV Switch right
+        'Joy_POV1Down': {'Type': 'Digital', 'x': 1488, 'y': 638, 'width': 571, 'height': 68}, # A1 POV Switch down
+        'Joy_POV1Left': {'Type': 'Digital', 'x': 1488, 'y': 717, 'width': 571, 'height': 68}, # A1 POV Switch left
+    },
 }
 
 keymap = {
