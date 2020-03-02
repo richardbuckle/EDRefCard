@@ -1,7 +1,7 @@
 FROM python:3
 
 RUN apt-get update -y \
-    && apt-get install -y apache2 libapache2-mod-wsgi \
+    && apt-get install -y apache2 \
     && apt-get clean -y \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*    
