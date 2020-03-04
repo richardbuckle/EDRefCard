@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-__version__ = '1.2.6'
+__version__ = '1.2.7'
 
 from lxml import etree
 

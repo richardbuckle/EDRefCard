@@ -1,3 +1,6 @@
+## 1.2.7
+* Added support for Thrustmaster Hotas Cougar.
+
 ## 1.2.6
 * Added binding for Store Toggle Preview.
 
