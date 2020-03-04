@@ -45,7 +45,7 @@ supportedDevices = OrderedDict([
     ('DS4', {'Template': 'ds4', 'HandledDevices': ['DS4', 'DualShock4']}),
     ('VPC-WarBRD-DELTA-Left', {'Template': 'vpc-warbrd-delta-left', 'HandledDevices': ['03EB2042']}),
     ('VPC-WarBRD-DELTA-Right', {'Template': 'vpc-warbrd-delta-right', 'HandledDevices': ['03EB2044']}),
-    ('VKB-Gunfighter-Kosmosima-SCG-Right', {'Template': 'vkb-gunfighter-kosmosima-scg-right', 'HandledDevices': ['231D0126']}),
+    ('VKB-Kosmosima-SCG-Right', {'Template': 'vkb-kosmosima-scg-right', 'HandledDevices': ['231D0126']}),
     ('Keyboard', {'Template': 'keyboard', 'HandledDevices': ['Keyboard']})
 ])
 
@@ -2024,8 +2024,8 @@ hotasDetails = {
         'Joy_RXAxis': {'Type': 'Analogue', 'x': 2470, 'y': 700, 'width': 1180},
         'Joy_RYAxis': {'Type': 'Analogue', 'x': 2470, 'y': 760, 'width': 1180},
     },
-    '231D0126': { # VKB Gunfighter Kosmosima SCG Right
-        'displayName': 'VKB Gunfighter Kosmosima SCG Right',
+    '231D0126': { # VKB Kosmosima SCG Right
+        'displayName': 'VKB Kosmosima SCG Right',
         'Joy_1': {'Type': 'Digital', 'x': 1139, 'y': 1777, 'width': 739, 'height': 68}, # Fire first stage
         'Joy_2': {'Type': 'Digital', 'x': 1139, 'y': 1852, 'width': 739, 'height': 68}, # Fire second stage
         'Joy_3': {'Type': 'Digital', 'x': 2571, 'y': 1364, 'width': 724, 'height': 68}, # A2
