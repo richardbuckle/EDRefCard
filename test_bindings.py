@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import unittest
+from unittest import TestCase, mock, main as testmain
+from unittest.mock import MagicMock
 import os
 import string
 from collections import OrderedDict
@@ -9,7 +10,7 @@ import contextlib
 from www.scripts import bindings
 
 
-class ConfigTests(unittest.TestCase):
+class ConfigTests(TestCase):
     
     def setUp(self):
         self.config = bindings.Config('abcdef')
@@ -68,7 +69,7 @@ class ConfigTests(unittest.TestCase):
                 bindings.printListItem(obj)
 
 
-class ErrorTests(unittest.TestCase):
+class ErrorTests(TestCase):
     
     def testInitWithBlankData(self):
         errors = bindings.Errors()
@@ -100,7 +101,7 @@ class ErrorTests(unittest.TestCase):
         self.assertEqual(repr(errors), expectedRepr)
 
 
-class testTransKey(unittest.TestCase):
+class testTransKey(TestCase):
     
     def testNoneReturnsNone(self):
         k = bindings.transKey(None)
@@ -115,7 +116,7 @@ class testTransKey(unittest.TestCase):
         self.assertEqual(k, 'A')
 
 
-class uploadTests(unittest.TestCase):
+class uploadTests(TestCase):
     
     def setUp(self):
         self.testCasesPath = Path('../../bindings/testUploads').resolve(True)
@@ -127,7 +128,7 @@ class uploadTests(unittest.TestCase):
             bindings.printListItem(obj)
 
 
-class FontPathTests(unittest.TestCase):
+class FontPathTests(TestCase):
     
     def testRegularNormal(self):
         path = bindings.getFontPath('Regular', 'Normal')
@@ -146,7 +147,7 @@ class FontPathTests(unittest.TestCase):
         self.assertEqual(path, '../fonts/Exo2.0-BoldItalic.otf')
     
 
-class FormTests(unittest.TestCase):
+class FormTests(TestCase):
 
     def testLeadingPunctuationNotAllowed(self):
         class FormProxy :
@@ -157,7 +158,7 @@ class FormTests(unittest.TestCase):
         self.assertEqual(bindings.Mode.invalid, mode)
     
 
-class ModiferStylesTests(unittest.TestCase):
+class ModiferStylesTests(TestCase):
     
     def testZeroIndex(self):
         style = bindings.ModifierStyles.index(0)
@@ -169,7 +170,7 @@ class ModiferStylesTests(unittest.TestCase):
         self.assertEqual(bindings.ModifierStyles.styles[1], style)
 
     
-class ParserTests(unittest.TestCase):
+class ParserTests(TestCase):
     
     def setUp(self):
         self.testCasesPath = Path('../../bindings/testCases').resolve(True)
@@ -391,7 +392,7 @@ def setUpModule():
     os.environ['CONTEXT_DOCUMENT_ROOT'] = str(scriptsPath.parent.resolve(True))
     
 def main():   # pragma: no cover
-    unittest.main()
+    testmain()
 
 if __name__ == '__main__':   # pragma: no cover
     main()
