@@ -2085,10 +2085,10 @@ hotasDetails = {
         'Joy_13': {'Type': 'Digital', 'x': 782, 'y': 960, 'width': 772, 'height': 68}, # A3 down
         'Joy_14': {'Type': 'Digital', 'x': 782, 'y': 1040, 'width': 772, 'height': 68}, # A3 left
         'Joy_15': {'Type': 'Digital', 'x': 782, 'y': 1196, 'width': 772, 'height': 68}, # A3 push
-        'Joy_21': {'Type': 'Digital', 'x': 748, 'y': 1568, 'width': 632, 'height': 68}, # C1 up
-        'Joy_22': {'Type': 'Digital', 'x': 748, 'y': 1806, 'width': 632, 'height': 68}, # C1 right
-        'Joy_23': {'Type': 'Digital', 'x': 748, 'y': 1648, 'width': 632, 'height': 68}, # C1 down
-        'Joy_24': {'Type': 'Digital', 'x': 748, 'y': 1726, 'width': 632, 'height': 68}, # C1 left
+        'Joy_24': {'Type': 'Digital', 'x': 748, 'y': 1568, 'width': 632, 'height': 68}, # C1 up
+        'Joy_21': {'Type': 'Digital', 'x': 748, 'y': 1806, 'width': 632, 'height': 68}, # C1 right
+        'Joy_22': {'Type': 'Digital', 'x': 748, 'y': 1648, 'width': 632, 'height': 68}, # C1 down
+        'Joy_23': {'Type': 'Digital', 'x': 748, 'y': 1726, 'width': 632, 'height': 68}, # C1 left
         'Joy_25': {'Type': 'Digital', 'x': 748, 'y': 1882, 'width': 632, 'height': 68}, # C1 push
         'Joy_26': {'Type': 'Digital', 'x': 2028, 'y': 1540, 'width': 718, 'height': 68}, # B2 up
         'Joy_27': {'Type': 'Digital', 'x': 2028, 'y': 1616, 'width': 718, 'height': 68}, # B2 down
