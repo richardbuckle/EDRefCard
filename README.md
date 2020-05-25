@@ -39,6 +39,20 @@ RewriteRule ^/device/(.+)$ /scripts/bindings.py?blocks=$1
 SetEnv PYTHONIOENCODING utf-8
 ```
 
+# Docker
+
+Build a docker container:
+```
+docker build -t edrefcard .
+```
+
+Run the docker container in the background, exposed on port 8080 on the host:
+```
+docker run -d --rm --name edrefcard -p 8080:80 edrefcard
+```
+
+EDRefCard can then be accessed at http://localhost:8080
+
 # Credits
 
 EDRefCard is derived with permission from code originally developed by CMDR jgm.
