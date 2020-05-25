@@ -1,6 +1,6 @@
 ## 1.2.8
-* Added support for VKB Kosmosima SCG Left and Right grips, courtesy of 	ajhewett.
-* Handled invalid keyboard bindings of the form `Device="Keyboard" Key="""`
+* Added support for VKB Kosmosima SCG Left and Right grips, courtesy of ajhewett.
+* Handled invalid keyboard bindings of the form `Device="Keyboard" Key=""`
 
 ## 1.2.7
 * Added support for Thrustmaster Hotas Cougar.
