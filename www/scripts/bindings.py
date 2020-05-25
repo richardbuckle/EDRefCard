@@ -327,7 +327,7 @@ def writeText(context, img, text, screenState, font, surround, newLine):
     context.fill_color=Color('Black')
     context.fill_opacity=1
 
-    if text is None:
+    if text is None or text == '':
         text = 'invalid'
         context.fill_color=Color('Red')
 
