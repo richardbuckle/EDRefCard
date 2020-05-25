@@ -158,6 +158,20 @@ class FormTests(TestCase):
         self.assertEqual(bindings.Mode.invalid, mode)
     
 
+class BlocksTests(TestCase):
+
+    def createBlockImage(self, device):
+        if device == 'Keyboard': return
+        bindings.createBlockImage(device, dryRun=True)
+
+    def testDS4IsValid(self):
+        self.createBlockImage('DS4') # should not raise
+        
+    def testAllValid(self):
+        for device in bindings.supportedDevices.keys():
+            self.createBlockImage(device)
+    
+
 class ModiferStylesTests(TestCase):
     
     def testZeroIndex(self):

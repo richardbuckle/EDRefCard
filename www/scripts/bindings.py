@@ -363,7 +363,7 @@ def writeText(context, img, text, screenState, font, surround, newLine):
     else:
         screenState['currentX'] = screenState['currentX'] + width
 
-def createBlockImage(supportedDeviceKey, strokeColor='Red', fillColor='LightGreen'):
+def createBlockImage(supportedDeviceKey, strokeColor='Red', fillColor='LightGreen', dryRun=False):
     supportedDevice = supportedDevices[supportedDeviceKey]
     # Set up the path for our file
     templateName = supportedDevice['Template']
@@ -373,31 +373,33 @@ def createBlockImage(supportedDeviceKey, strokeColor='Red', fillColor='LightGree
     
     with Image(filename='../res/' + supportedDevice['Template'] + '.jpg') as sourceImg:
         with Drawing() as context:
-            context.font = getFontPath('Regular', 'Normal')
-            context.text_antialias = True
-            context.font_style = 'normal'
+            if not dryRun:        
+                context.font = getFontPath('Regular', 'Normal')
+                context.text_antialias = True
+                context.font_style = 'normal'
             maxFontSize = 40
 
             for keyDevice in supportedDevice.get('KeyDevices', supportedDevice.get('HandledDevices')):
                 for (keycode, box) in hotasDetails[keyDevice].items():
                     if keycode == 'displayName':
                         continue
-                    context.stroke_width = 1
-                    context.stroke_color = Color(strokeColor)
-                    context.fill_color = Color(fillColor)
-                    context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
-                    context.stroke_width = 0
-                    context.fill_color = Color('Black')
-                    sourceTexts = [{'Text': keycode, 'Group': 'General', 'Style': groupStyles['General']}]
-                    texts = layoutText(sourceImg, context, sourceTexts, box, maxFontSize)
-                    for text in texts:
-                        context.font_size = text['Size']
-                        # TODO dry this up
-                        context.font = text['Style']['Font']
-                        context.text(x=text['X'], y=text['Y'], body=text['Text'])
-                    
-            context.draw(sourceImg)
-            sourceImg.save(filename=str(filePath))
+                    if not dryRun:        
+                        context.stroke_width = 1
+                        context.stroke_color = Color(strokeColor)
+                        context.fill_color = Color(fillColor)
+                        context.rectangle(top=box['y'], left=box['x'], width=box['width'], height=box.get('height', 54))
+                        context.stroke_width = 0
+                        context.fill_color = Color('Black')
+                        sourceTexts = [{'Text': keycode, 'Group': 'General', 'Style': groupStyles['General']}]
+                        texts = layoutText(sourceImg, context, sourceTexts, box, maxFontSize)
+                        for text in texts:
+                            context.font_size = text['Size']
+                            # TODO dry this up
+                            context.font = text['Style']['Font']
+                            context.text(x=text['X'], y=text['Y'], body=text['Text'])
+            if not dryRun:        
+                context.draw(sourceImg)
+                sourceImg.save(filename=str(filePath))
 
 # Return whether a binding is a redundant specialisation and thus can be hidden
 def isRedundantSpecialisation(control, bind):
