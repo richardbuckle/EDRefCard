@@ -689,27 +689,42 @@ def calculateBestFontSize(context, text, hotasDetail, biggestFontSize):
 
     return (fitText, fontSize, metrics)
 
-def printListItem(configObj):
+# Returns a set of controller names used by the binding
+def controllerNames(configObj):
+    rawKeys = configObj['devices'].keys()
+    controllers = [fullKey.split('::')[0] for fullKey in rawKeys]
+    silencedControllers = ['Mouse', 'Keyboard']
+    def displayName(controller):
+        try:
+            return hotasDetails[controller]['displayName']
+        except:
+            return controller
+    controllers = {displayName(controller) for controller in controllers if not controller in silencedControllers}
+    return controllers
+
+def printListItem(configObj, searchOpts):
     config = Config(configObj['runID'])
     refcardURL = str(config.refcardURL())
     dateStr = str(configObj['timestamp'].ctime())
     name = str(configObj['description'])
-    
-    def controllersListName(rawKeys):
-        controllers = [fullKey.split('::')[0] for fullKey in rawKeys]
-        silencedControllers = ['Mouse', 'Keyboard']
-        def displayName(controller):
-            try:
-                return hotasDetails[controller]['displayName']
-            except:
-                return controller
-        controllers = [displayName(controller) for controller in controllers if not controller in silencedControllers]
-        controllers.sort()
-        controllersStr = ', '.join(controllers)
-        return controllersStr
-        
-    controllersStr = controllersListName(configObj['devices'].keys())
-    if name is '': 
+
+    controllers = controllerNames(configObj)
+    # Apply search filter if provided
+    searchControllers = searchOpts.get('controllers', set())
+    if searchControllers:
+        # Resolve device name from select list (from 'supportedDevices') into a their 'handledDevices' (what is in
+        # the bindings files)
+        requestedDevices = [supportedDevices.get(controller,{}).get('HandledDevices',{}) for controller in searchControllers]
+        requestedDevices = set([item for sublist in requestedDevices for item in sublist]) # Flatten into a set
+
+        # Compare against the list of devices supported in this binding config
+        devices = [fullKey.split('::')[0] for fullKey in configObj['devices'].keys()]
+        #print('<!-- Checking if any requested devices %s are in config\'s devices %s -->' % (requestedDevices, devices))
+        if not any(requestedDevice in devices for requestedDevice in requestedDevices):
+            return
+
+    controllersStr = ', '.join(sorted(controllers))
+    if name == '':
         # if the uploader didn't bother to name their config, skip it
         return
     print('''
@@ -739,12 +754,35 @@ def printDeviceList(mode):
     print('<ul>')
     devices = sorted(supportedDevices.keys())
     for device in devices:
-        print('<li><a href=device/%s>%s</a></li>' % (device, device))
+        print('<li><a href=device/%s>%s</a> <a href="list?deviceFilter=%s" title="search">&#128269;</a></li>' % (device, device, device))
     print('</ul>')
 
-def printList(mode):
+def printSearchForm(searchOptions):
+    print('<div>')
+    print('<form action="" id="searchForm">')
+    print('<table>')
+    print('<tr>')
+    print('<td><label for="deviceFilter">Select Controller(s)</label></td>')
+    print('<td><select name="deviceFilter" id="deviceFilter" multiple size=10>')
+    controllers = sorted(supportedDevices.keys())
+    for controller in controllers:
+        selected = "selected" if controller in searchOptions.get("controllers",[]) else ""
+        print('<option value="%s" %s>%s</option>' % (controller, selected, controller))
+    print('</select></td>')
+    print('</tr>')
+    print('<tr>')
+    print('<td colspan=2><input type="submit" value="Search"></input></td>')
+    print('</tr>')
+    print('</table>')
+    print('</form>')
+    print('</div>')
+
+def printList(mode, searchOpts):
+
     print('<div id="list"><h1>%s</h1></div>' % modeTitle(mode))
-    print('<p>Yes, we know this is very basic. Proper search support is coming soon.</p>')
+
+    printSearchForm(searchOpts)
+
     objs = Config.allConfigs(sortKey=lambda obj: str(obj['description']).casefold())
     print('<table>')
     print('''
@@ -754,9 +792,11 @@ def printList(mode):
             <th align="left" class="date">Date</th>
         </tr>
     ''')
+
+    print("<!--\nSearch options: \n%s\n-->\n" % str(searchOpts))
     for obj in objs:
         try:
-            printListItem(obj)
+            printListItem(obj, searchOpts)
         except Exception as e:
             print('<tr><td>ERROR in item %s<td>%s</td></td></tr>' % (obj['runID'], str(e)))
             #cgitb.handler() # only for use when needed
@@ -796,15 +836,15 @@ def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
             print('<p/>You can download the custom binds file for the configuration shown above at <a href="%s">%s</a>.  Replace your existing custom binds file with this file to use these controls.' % (bindsURL, bindsURL))
     print('<p/>')
 
-def printBodyMain(mode, config, public, createdImages, deviceForBlockImage, errors):
+def printBodyMain(mode, options, config, public, createdImages, deviceForBlockImage, errors):
     if mode == Mode.list:
-        printList(mode)
+        printList(mode, options)
     elif mode == Mode.listDevices:
         printDeviceList(mode)
     else:
         printRefCard(config, public, createdImages, deviceForBlockImage, errors)
 
-def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
+def printBody(mode, options, config, public, createdImages, deviceForBlockImage, errors):
     # guard against bad server configs
     encoding = sys.stdout.encoding
     if encoding != 'utf-8':
@@ -813,7 +853,7 @@ def printBody(mode, config, public, createdImages, deviceForBlockImage, errors):
         For Apache, this can be fixed by adding <code>SetEnv PYTHONIOENCODING utf-8</code> at the end of <code>/etc/apache2/apache2.conf</code>.</p>
         ''')
         return
-    printBodyMain(mode, config, public, createdImages, deviceForBlockImage, errors)
+    printBodyMain(mode, options, config, public, createdImages, deviceForBlockImage, errors)
     printSupportPara()
     print('<p><a href="/">Home</a>.</p>')
 
@@ -821,7 +861,7 @@ def printSupportPara():
     supportPara = '<p>Version %s<br>Please direct questions, suggestions and support requests to <a href="https://forums.frontier.co.uk/threads/edrefcard-makes-a-printable-reference-card-of-your-controller-bindings.464400/">the thread on the official Elite: Dangerous forums</a>.</p>' % __version__
     print(supportPara)
 
-def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
+def printHTML(mode, options, config, public, createdImages, deviceForBlockImage, errors):
     print('''Content-Type: text/html
 
 <html>
@@ -833,7 +873,7 @@ def printHTML(mode, config, public, createdImages, deviceForBlockImage, errors):
     <style type="text/css" media="all">@import"ed.css";</style>
 </head>
 <body>''' % modeTitle(mode))
-    printBody(mode, config, public, createdImages, deviceForBlockImage, errors)
+    printBody(mode, options, config, public, createdImages, deviceForBlockImage, errors)
     print('''
 </body>
 </html>''')
@@ -1080,6 +1120,7 @@ def processForm(form):
     config = Config.newRandom()
     styling = 'None'
     description = ''
+    options = {}
     public = False
     createdImages = []
     errors = Errors()
@@ -1133,7 +1174,7 @@ def processForm(form):
         displayGroups = []
         (displayGroups, styling, description) = parseForm(form)
         xml = form.getvalue('bindings')
-        if xml is None or xml is b'':
+        if xml is None or xml == b'':
             errors.errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
             xml = '<root></root>'
         else:
@@ -1143,7 +1184,13 @@ def processForm(form):
                 xmlOutput.write(xml)
         
         public = len(description) > 0
-        
+    elif mode is Mode.list:
+        deviceFilters = form.getvalue("deviceFilter", [])
+        if deviceFilters:
+            if type(deviceFilters) is not type([]):
+                deviceFilters = [ deviceFilters ]
+            options['controllers'] = set(deviceFilters)
+
     if mode is Mode.replay or mode is Mode.generate:
         (physicalKeys, modifiers, devices) = parseBindings(runId, xml, displayGroups, errors)
         
@@ -1194,8 +1241,8 @@ def processForm(form):
     # Save variables for later replays
     if (mode is Mode.generate and public):
         saveReplayInfo(config, description, styling, displayGroups, devices, errors)
-    
-    printHTML(mode, config, public, createdImages, deviceForBlockImage, errors)
+
+    printHTML(mode, options, config, public, createdImages, deviceForBlockImage, errors)
 
 def main():
     cgitb.enable()
