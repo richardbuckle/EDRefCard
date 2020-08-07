@@ -712,8 +712,8 @@ def printListItem(configObj, searchOpts):
     # Apply search filter if provided
     searchControllers = searchOpts.get('controllers', set())
     if searchControllers:
-        # Resolve device name from select list (from 'supportedDevices') into a their 'handledDevices' (what is in
-        # the bindings files)
+        # Resolve device name from select list (from 'supportedDevices') into their 'handledDevices' (which are
+        # referenced in the bindings files)
         requestedDevices = [supportedDevices.get(controller,{}).get('HandledDevices',{}) for controller in searchControllers]
         requestedDevices = set([item for sublist in requestedDevices for item in sublist]) # Flatten into a set
 
