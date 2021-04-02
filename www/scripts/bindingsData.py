@@ -2169,10 +2169,10 @@ hotasDetails = {
         'Joy_20': {'Type': 'Digital', 'x': 384, 'y': 1886, 'width': 918, 'height': 56}, # C1 push
         'Joy_21': {'Type': 'Digital', 'x': 460, 'y': 1158, 'width': 842, 'height': 56}, # Rapid fire push
         'Joy_22': {'Type': 'Digital', 'x': 460, 'y': 1220, 'width': 842, 'height': 56}, # Rapid fire pull
-        'Joy_23': {'Type': 'Digital', 'x': 2718, 'y': 1826, 'width': 918, 'height': 56}, # En1 up
-        'Joy_24': {'Type': 'Digital', 'x': 2718, 'y': 1888, 'width': 918, 'height': 56}, # En1 down
-        'Joy_25': {'Type': 'Digital', 'x': 2718, 'y': 1948, 'width': 918, 'height': 56}, # En2 up
-        'Joy_26': {'Type': 'Digital', 'x': 2718, 'y': 2010, 'width': 918, 'height': 56}, # En2 down
+        'Joy_23': {'Type': 'Digital', 'x': 2718, 'y': 1826, 'width': 842, 'height': 56}, # En1 up
+        'Joy_24': {'Type': 'Digital', 'x': 2718, 'y': 1888, 'width': 842, 'height': 56}, # En1 down
+        'Joy_25': {'Type': 'Digital', 'x': 2718, 'y': 1948, 'width': 842, 'height': 56}, # En2 up
+        'Joy_26': {'Type': 'Digital', 'x': 2718, 'y': 2010, 'width': 842, 'height': 56}, # En2 down
         'Joy_27': {'Type': 'Digital', 'x': 2656, 'y': 1540, 'width': 902, 'height': 56}, # F1
         'Joy_28': {'Type': 'Digital', 'x': 2656, 'y': 1600, 'width': 902, 'height': 56}, # F2
         'Joy_29': {'Type': 'Digital', 'x': 2656, 'y': 1662, 'width': 902, 'height': 56}, # F3
