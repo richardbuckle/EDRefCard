@@ -342,7 +342,7 @@ controls = {
     'SAAThirdPersonPitchAxisRaw': {'Group': 'Scanners', 'Category': 'General', 'Order': 281, 'Name': 'Pitch (DSS)', 'Type': 'Analogue', 'HideIfSameAs': ['PitchAxisRaw']},
     'SAAThirdPersonPitchUpButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 282, 'Name': 'Pitch Up (DSS)', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchUpButton']},
     'SAAThirdPersonPitchDownButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 283, 'Name': 'Pitch Down (DSS)', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchDownButton']},
-    'SAAThirdPersonYawAxisRaw': {'Group': 'Scanners', 'Category': 'General', 'Order': 284, 'Name': 'Yaw (DSS)', 'Type': 'Analogue', 'HideIfSameAs': ['YawAxisRaw']},
+    'SAAThirdPersonYawAxisRaw': {'Group': 'Scanners', 'Category': 'General', 'Order': 284, 'Name': 'DSS Yaw', 'Type': 'Analogue', 'HideIfSameAs': ['YawAxisRaw']},
     'SAAThirdPersonYawLeftButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 285, 'Name': 'Yaw Left (DSS)', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawLeftButton']},
     'SAAThirdPersonYawRightButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 286, 'Name': 'Yaw Right (DSS)', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawRightButton']},
     'SAAThirdPersonFovAxisRaw': {'Group': 'Scanners', 'Category': 'General', 'Order': 287, 'Name': 'DSS Field of View', 'Type': 'Analogue', 'HideIfSameAs': []},
