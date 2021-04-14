@@ -709,7 +709,7 @@ def printListItem(configObj):
         return controllersStr
         
     controllersStr = controllersListName(configObj['devices'].keys())
-    if name is '': 
+    if name == '': 
         # if the uploader didn't bother to name their config, skip it
         return
     print('''
@@ -1133,7 +1133,7 @@ def processForm(form):
         displayGroups = []
         (displayGroups, styling, description) = parseForm(form)
         xml = form.getvalue('bindings')
-        if xml is None or xml is b'':
+        if xml is None or xml == b'':
             errors.errors = '<h1>No bindings file supplied; please go back and select your binds file as per the instructions.</h1>'
             xml = '<root></root>'
         else:
