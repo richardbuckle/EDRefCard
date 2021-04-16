@@ -457,7 +457,7 @@
 		<Secondary Device="GamePad" Key="Pad_RBumper">
 			<Modifier Device="GamePad" Key="Pad_Y" />
 		</Secondary>
-		<ToggleOn />
+		<ToggleOn Value="1" />
 	</ToggleCargoScoop>
 	<EjectAllCargo>
 		<Primary Device="{NoDevice}" Key="" />
@@ -1181,7 +1181,7 @@
 		<Secondary Device="GamePad" Key="GamePad_FaceUp">
 			<Modifier Device="GamePad" Key="GamePad_RBumper" />
 		</Secondary>
-		<ToggleOn />
+		<ToggleOn Value="1" />
 	</ToggleCargoScoop_Buggy>
 	<EjectAllCargo_Buggy>
 		<Primary Device="{NoDevice}" Key="" />

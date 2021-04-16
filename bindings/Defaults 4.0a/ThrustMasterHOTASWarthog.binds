@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Root PresetName="ThrustMasterHOTASWarthog" SortOrder="0">
 	<MouseXMode Value="" />
 	<MouseXDecay Value="0" />
@@ -124,8 +124,7 @@
 		<Deadzone Value="0.00000000" />
 	</VerticalThrustAlternate>
 	<UseAlternateFlightValuesToggle>
-		<Primary Device="{NoDevice}" Key="">
-		</Primary>
+		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 		<ToggleOn Value="1" />
 	</UseAlternateFlightValuesToggle>
@@ -422,7 +421,7 @@
 	<ToggleCargoScoop>
 		<Primary Device="ThrustMasterWarthogThrottle" Key="Joy_24" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn Value="0" />
+		<ToggleOn Value="1" />
 	</ToggleCargoScoop>
 	<EjectAllCargo>
 		<Primary Device="{NoDevice}" Key="" />
@@ -435,6 +434,7 @@
 	<MicrophoneMute>
 		<Primary Device="Keyboard" Key="Key_backslash" />
 		<Secondary Device="{NoDevice}" Key="" />
+		<ToggleOn />
 	</MicrophoneMute>
 	<MuteButtonMode Value="mute_toggle" />
 	<CqcMuteButtonMode Value="mute_pushToTalk" />
@@ -752,7 +752,6 @@
 	<HeadlightsBuggyButton>
 		<Primary Device="ThrustMasterWarthogThrottle" Key="Joy_27" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn Value="0" />
 	</HeadlightsBuggyButton>
 	<ToggleBuggyTurretButton>
 		<Primary Device="ThrustMasterWarthogThrottle" Key="Joy_21" />
@@ -787,7 +786,7 @@
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraScrollRight>
-		<VanityCameraOne>
+	<VanityCameraOne>
 		<Primary Device="Keyboard" Key="Key_Numpad_1" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraOne>
@@ -854,24 +853,24 @@
 		<Inverted Value="0" />
 		<Deadzone Value="0.00000000" />
 	</MultiCrewThirdPersonYawAxisRaw>
-		<MultiCrewThirdPersonYawLeftButton>
+	<MultiCrewThirdPersonYawLeftButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonYawLeftButton>
-		<MultiCrewThirdPersonYawRightButton>
+	<MultiCrewThirdPersonYawRightButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonYawRightButton>
-		<MultiCrewThirdPersonPitchAxisRaw>
+	<MultiCrewThirdPersonPitchAxisRaw>
 		<Binding Device="ThrustMasterWarthogJoystick" Key="Joy_YAxis" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.00000000" />
 	</MultiCrewThirdPersonPitchAxisRaw>
-		<MultiCrewThirdPersonPitchUpButton>
+	<MultiCrewThirdPersonPitchUpButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonPitchUpButton>
-		<MultiCrewThirdPersonPitchDownButton>
+	<MultiCrewThirdPersonPitchDownButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonPitchDownButton>
@@ -888,7 +887,6 @@
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonFovInButton>
-
 	<MultiCrewPrimaryFire>
 		<Primary Device="Mouse" Key="Mouse_1" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -962,7 +960,7 @@
 	<ToggleCargoScoop_Buggy>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn Value="0" />
+		<ToggleOn Value="1" />
 	</ToggleCargoScoop_Buggy>
 	<EjectAllCargo_Buggy>
 		<Primary Device="{NoDevice}" Key="" />
@@ -1051,34 +1049,29 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</OpenOrders>
 	<ChargeECM>
-    <Primary Device="{NoDevice}" Key="" />
-    <Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</ChargeECM>
-	
 	<!-- Commander Creator start -->
-	
 	<CommanderCreator_Undo>
-		<Primary Device="Keyboard" key="Key_Z"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="Keyboard" Key="Key_Z" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</CommanderCreator_Undo>
 	<CommanderCreator_Redo>
-		<Primary Device="Keyboard" key="Key_X"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="Keyboard" Key="Key_X" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</CommanderCreator_Redo>
 	<CommanderCreator_Rotation_MouseToggle>
 		<Primary Device="Mouse" Key="Mouse_2" />
-		<Secondary Device="{NoDevice}" key=""/>
+		<Secondary Device="{NoDevice}" Key="" />
 	</CommanderCreator_Rotation_MouseToggle>
 	<CommanderCreator_Rotation>
 		<Binding Device="ThrustMasterWarthogThrottle" Key="Joy_XAxis" />
 		<Inverted Value="1" />
 		<Deadzone Value="0.00000000" />
 	</CommanderCreator_Rotation>
-	
 	<!-- Commander Creator end -->
-	
 	<!-- Analysis Mode and DSS/FSS -->
-	
 	<PlayerHUDModeToggle>
 		<Primary Device="Keyboard" Key="Key_M" />
 		<Secondary Device="ThrustMasterWarthogThrottle" Key="Joy_31" />
@@ -1087,7 +1080,6 @@
 		<Primary Device="Keyboard" Key="Key_O" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</OpenCodexGoToDiscovery>
-	
 	<ExplorationFSSEnter>
 		<Primary Device="Keyboard" Key="Key_Apostrophe" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -1147,7 +1139,6 @@
 		<Primary Device="ThrustMasterWarthogThrottle" Key="Joy_19" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</ExplorationFSSShowHelp>
-	
 	<ExplorationSAAChangeScannedAreaViewToggle>
 		<Primary Device="ThrustMasterWarthogJoystick" Key="Joy_4" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -1157,15 +1148,13 @@
 		<Primary Device="ThrustMasterWarthogJoystick" Key="Joy_3" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</ExplorationSAAExitThirdPerson>
-	
 	<FSSMouseXMode Value="" />
 	<FSSMouseXDecay Value="1" />
 	<FSSMouseYMode Value="" />
 	<FSSMouseYDecay Value="1" />
 	<FSSMouseSensitivity Value="5.00000000" />
-	
 	<!-- Analysis Mode and DSS/FSS end -->
-		<!-- Humanoid start -->
+	<!-- Humanoid start -->
 	<MouseHumanoidXMode Value="Bindings_MouseYaw" />
 	<MouseHumanoidYMode Value="Bindings_MousePitch" />
 	<MouseHumanoidSensitivity Value="3" />
@@ -1225,12 +1214,12 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidItemWheelButton>
 	<HumanoidItemWheelButton_XAxis>
-		<Binding Device="Mouse" Key="Mouse_XAxis" />
+		<Binding Device="{NoDevice}" Key="" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.4" />
 	</HumanoidItemWheelButton_XAxis>
 	<HumanoidItemWheelButton_YAxis>
-		<Binding Device="Mouse" Key="Mouse_YAxis" />
+		<Binding Device="{NoDevice}" Key="" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.4" />
 	</HumanoidItemWheelButton_YAxis>
@@ -1278,7 +1267,7 @@
 	</HumanoidResetPowerDistributionButton>
 	<HumanoidThrowGrenadeButton>
 		<Primary Device="Keyboard" Key="Key_X" />
-		<Secondary Device="{NoDevice}" Key="" />
+		<Secondary Device="Keyboard" Key="Key_G" />
 	</HumanoidThrowGrenadeButton>
 	<HumanoidMeleeButton>
 		<Primary Device="Keyboard" Key="Key_V" />
@@ -1305,7 +1294,6 @@
 		<Secondary Device="Keyboard" Key="Key_DownArrow" />
 	</HumanoidPulseScanButton>
 	<!-- Store Camera Start -->
-	
 	<StoreEnableRotation>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="Mouse" Key="Mouse_3" />
@@ -1332,7 +1320,6 @@
 		<Primary Device="ThrustMasterWarthogJoystick" Key="Joy_1" />
 		<Secondary Device="Keyboard" Key="Key_Tab" />
 	</StoreToggle>
-	
 	<!-- Store Camera End -->
 	<HumanoidOpenAccessPanelButton>
 		<Primary Device="Keyboard" Key="Key_Q">
@@ -1386,4 +1373,20 @@
 		<Primary Device="Keyboard" Key="Key_C" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidToggleShieldsButton>
+	<HumanoidItemWheelButton_XLeft>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidItemWheelButton_XLeft>
+	<HumanoidItemWheelButton_XRight>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidItemWheelButton_XRight>
+	<HumanoidItemWheelButton_YUp>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidItemWheelButton_YUp>
+	<HumanoidItemWheelButton_YDown>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidItemWheelButton_YDown>
 </Root>
