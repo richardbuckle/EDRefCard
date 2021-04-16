@@ -1164,11 +1164,11 @@
 	</VanityCameraScrollLeft>
 	<VanityCameraScrollRight>
 		<Primary Device="Keyboard" Key="Key_RightArrow" />
-		<Secondary Device="{NoDevice}" Key="" />
+		<Secondary Device="T16000MTHROTTLE" Key="Pos_Joy_RZAxis" />
 	</VanityCameraScrollRight>
 	<ToggleFreeCam>
 		<Primary Device="Keyboard" Key="Key_Numpad_0" />
-		<Secondary Device="{NoDevice}" Key="" />
+		<Secondary Device="T16000M" Key="Joy_3" />
 	</ToggleFreeCam>
 	<VanityCameraOne>
 		<Primary Device="Keyboard" Key="Key_Numpad_1" />
