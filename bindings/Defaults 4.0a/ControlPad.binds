@@ -407,7 +407,7 @@
 	<ToggleCargoScoop>
 		<Primary Device="Keyboard" Key="Key_Home" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn />
+		<ToggleOn Value="1" />
 	</ToggleCargoScoop>
 	<EjectAllCargo>
 		<Primary Device="{NoDevice}" Key="" />
@@ -1442,7 +1442,9 @@
 		<Primary Device="GamePad" Key="GamePad_LBumper">
 			<Hold Value="1" />
 		</Primary>
-		<Secondary Device="Keyboard" Key="Key_Q" />
+		<Secondary Device="Keyboard" Key="Key_LeftAlt">
+			<Hold Value="1" />
+		</Secondary>
 	</HumanoidItemWheelButton>
 	<HumanoidToggleShieldBoosterModuleButton>
 		<Primary Device="GamePad" Key="GamePad_DPadLeft" />

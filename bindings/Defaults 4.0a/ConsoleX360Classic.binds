@@ -140,7 +140,7 @@
 			<Modifier Device="GamePad" Key="GamePad_FaceRight" />
 		</Primary>
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn />
+		<ToggleOn Value="1" />
 	</ToggleCargoScoop>
 	<ShipSpotLightToggle>
 		<Primary Device="GamePad" Key="GamePad_DPadLeft">

@@ -1114,7 +1114,7 @@
 	<ToggleCargoScoop_Buggy>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn Value="0" />
+		<ToggleOn Value="1" />
 	</ToggleCargoScoop_Buggy>
 	<EjectAllCargo_Buggy>
 		<Primary Device="{NoDevice}" Key="" />
@@ -1358,12 +1358,12 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidItemWheelButton>
 	<HumanoidItemWheelButton_XAxis>
-		<Binding Device="Mouse" Key="Mouse_XAxis" />
+		<Binding Device="{NoDevice}" Key="" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.4" />
 	</HumanoidItemWheelButton_XAxis>
 	<HumanoidItemWheelButton_YAxis>
-		<Binding Device="Mouse" Key="Mouse_YAxis" />
+		<Binding Device="{NoDevice}" Key="" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.4" />
 	</HumanoidItemWheelButton_YAxis>
@@ -1411,7 +1411,7 @@
 	</HumanoidResetPowerDistributionButton>
 	<HumanoidThrowGrenadeButton>
 		<Primary Device="Keyboard" Key="Key_X" />
-		<Secondary Device="{NoDevice}" Key="" />
+		<Secondary Device="Keyboard" Key="Key_G" />
 	</HumanoidThrowGrenadeButton>
 	<HumanoidMeleeButton>
 		<Primary Device="Keyboard" Key="Key_V" />
@@ -1521,4 +1521,20 @@
 		<Primary Device="Keyboard" Key="Key_E" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidToggleMissionHelpPanelButton>
+	<HumanoidItemWheelButton_XLeft>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidItemWheelButton_XLeft>
+	<HumanoidItemWheelButton_XRight>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidItemWheelButton_XRight>
+	<HumanoidItemWheelButton_YUp>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidItemWheelButton_YUp>
+	<HumanoidItemWheelButton_YDown>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidItemWheelButton_YDown>
 </Root>

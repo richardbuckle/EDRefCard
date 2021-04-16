@@ -120,7 +120,7 @@
 			<Modifier Device="GamePad" Key="GamePad_FaceRight" />
 		</Primary>
 		<Secondary Device="Keyboard" Key="Key_Home" />
-		<ToggleOn />
+		<ToggleOn Value="1" />
 	</ToggleCargoScoop>
 	<PhotoCameraToggle>
 		<Primary Device="GamePad" Key="GamePad_DPadRight">
