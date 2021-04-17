@@ -1483,11 +1483,11 @@
 	</ExplorationSAAExitThirdPerson>
 	<ExplorationSAANextGenus>
 		<Primary Device="Keyboard" Key="Key_E" />
-		<Secondary Device="Keyboard" Key="Key_End" />
+		<Secondary Device="T16000MTHROTTLE" Key="Pos_Joy_RZAxis" />
 	</ExplorationSAANextGenus>
 	<ExplorationSAAPreviousGenus>
 		<Primary Device="Keyboard" Key="Key_W" />
-		<Secondary Device="Keyboard" Key="Key_Delete" />
+		<Secondary Device="T16000MTHROTTLE" Key="Neg_Joy_RZAxis" />
 	</ExplorationSAAPreviousGenus>
 	<SAAThirdPersonMouseXMode Value="" />
 	<SAAThirdPersonMouseXDecay Value="0" />
@@ -1731,7 +1731,7 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidToggleToolModeButton>
 	<HumanoidToggleMissionHelpPanelButton>
-		<Primary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Slash" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidToggleMissionHelpPanelButton>
 	<GalaxyMapOpen_Humanoid>
