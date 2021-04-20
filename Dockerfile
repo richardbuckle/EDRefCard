@@ -11,7 +11,7 @@ RUN pip install lxml wand
 # Copy over the apache configuration file and enable the site
 RUN a2enmod headers rewrite cgi
 
-COPY ./edrefcard.conf /etc/apache2/sites-available/edrefcard.conf
+COPY ./conf/apache/edrefcard.conf /etc/apache2/sites-available/edrefcard.conf
 COPY ./www/ /var/www/html
 
 RUN mkdir /var/www/html/configs \
