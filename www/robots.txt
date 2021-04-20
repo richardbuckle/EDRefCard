@@ -1,0 +1,7 @@
+User-agent: * 
+Allow: /index.html$
+Allow: /list$
+Allow: /devices$
+Disallow: /fonts/
+Disallow: /scripts/
+Disallow: *
