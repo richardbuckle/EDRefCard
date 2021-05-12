@@ -64,9 +64,10 @@ class ConfigTests(TestCase):
     def testNames(self):
         # should not raise
         allConfigs = bindings.Config.allConfigs(sortKey=lambda obj: str(obj['description']).casefold())
+        searchOpts = {}
         with contextlib.redirect_stdout(None):
             for obj in allConfigs:
-                bindings.printListItem(obj)
+                bindings.printListItem(obj, searchOpts)
 
 
 class ErrorTests(TestCase):
@@ -124,8 +125,9 @@ class uploadTests(TestCase):
     def testUnicodeName(self):
         path = self.testCasesPath / 'eu/euymtn.replay'
         obj = bindings.Config.unpickle(path)
+        searchOpts = {}
         with contextlib.redirect_stdout(None):
-            bindings.printListItem(obj)
+            bindings.printListItem(obj, searchOpts)
 
 
 class FontPathTests(TestCase):
