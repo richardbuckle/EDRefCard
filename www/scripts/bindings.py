@@ -155,6 +155,7 @@ groupStyles = {
     'SRV': {'Color': Color('MediumPurple'), 'Font': getFontPath('Regular', 'Normal')},
     'Scanners': {'Color': Color('DarkOrchid'), 'Font': getFontPath('Regular', 'Normal')},
     'UI': {'Color': Color('DarkOrange'), 'Font': getFontPath('Regular', 'Normal')},
+    'OnFoot': {'Color': Color('CornflowerBlue'), 'Font': getFontPath('Regular', 'Normal')},
 }
 
 # Command category styling

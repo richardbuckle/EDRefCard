@@ -128,7 +128,7 @@ controls = {
     'BuggyPitchAxis': {'Group': 'SRV', 'Category': 'Navigation', 'Order': 9, 'Name': 'Pitch', 'Type': 'Analogue', 'HideIfSameAs': ['PitchAxis', 'PitchAxisRaw']},
     'BuggyPitchUpButton': {'Group': 'SRV', 'Category': 'Navigation', 'Order': 11, 'Name': 'Pitch Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchUpButton']},
     'BuggyPitchDownButton': {'Group': 'SRV', 'Category': 'Navigation', 'Order': 12, 'Name': 'Pitch Down', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchDownButton']},
-    'BuggyRollLeft': {'Group': 'SRV', 'Category': 'Navigation', 'Order': 15, 'Name': 'Roll Left', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['RollLeftButton']},
+    'BuggyRollLeft': {'Group': 'SRV', 'Category': 'Navigation', 'Order': 13, 'Name': 'Roll Left', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['RollLeftButton']},
     'BuggyRollAxisRaw': {'Group': 'SRV', 'Category': 'Navigation', 'Order': 14, 'Name': 'Roll', 'Type': 'Analogue', 'HideIfSameAs': ['RollAxisRaw']},
     'BuggyRollLeftButton': {'Group': 'SRV', 'Category': 'Navigation', 'Order': 15, 'Name': 'Roll Left', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['RollLeftButton']},
     'BuggyRollRight': {'Group': 'SRV', 'Category': 'Navigation', 'Order': 16, 'Name': 'Roll Right', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['RollRightButton']},
@@ -439,6 +439,87 @@ controls = {
     'UI_Toggle': {'Group': 'UI', 'Category': 'UI', 'Order': 9, 'Name': 'UI Toggle', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
     'CycleNextPage': {'Group': 'UI', 'Category': 'UI', 'Order': 10, 'Name': 'Next Page', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
     'CyclePreviousPage': {'Group': 'UI', 'Category': 'UI', 'Order': 11, 'Name': 'Prev Page', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    
+    #
+    # Controls only available On Foot
+    #
+    
+    # Motion
+    'HumanoidForwardAxis': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 4, 'Name': 'Fwd/Back', 'Type': 'Analogue', 'HideIfSameAs': ['ThrottleAxis']},
+    'HumanoidForwardButton': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 5, 'Name': 'Fwd', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['ForwardKey']},
+    'HumanoidBackwardButton': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 6, 'Name': 'Back', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['BackwardKey']},
+    'HumanoidPitchAxis': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 9, 'Name': 'Pitch', 'Type': 'Analogue', 'HideIfSameAs': ['PitchAxis', 'PitchAxisRaw']},
+    'HumanoidPitchUpButton': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 11, 'Name': 'Pitch Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchUpButton']},
+    'HumanoidPitchDownButton': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 12, 'Name': 'Pitch Down', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['PitchDownButton']},
+    'HumanoidStrafeAxis': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 13, 'Name': 'Strafe', 'Type': 'Analogue', 'HideIfSameAs': ['RollAxisRaw']},
+    'HumanoidStrafeLeftButton': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 14, 'Name': 'Strafe Left', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['RollLeftButton']},
+    'HumanoidStrafeRightButton': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 15, 'Name': 'Strafe Right', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['RollRightButton']},
+    'HumanoidRotateAxis': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 16, 'Name': 'Turn', 'Type': 'Analogue', 'HideIfSameAs': ['YawAxisRaw']},
+    'HumanoidRotateLeftButton': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 17, 'Name': 'Turn Left', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawLeftButton']},
+    'HumanoidRotateRightButton': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 18, 'Name': 'Turn Right', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawRightButton']},
+
+    # Targeting and firing
+    'HumanoidPrimaryFireButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 100, 'Name': 'Fire', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PrimaryFire']},
+    'HumanoidActivateSuitAbilityButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 101, 'Name': 'Suit Tool', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidConflictContextualUI': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 102, 'Name': 'Combat UI', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidConflictContextualUIButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 103, 'Name': 'Combat UI', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidCrouchButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 104, 'Name': 'Crouch', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidHideWeaponButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 105, 'Name': 'Holster', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidJumpButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 106, 'Name': 'Jump', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidMeleeButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 107, 'Name': 'Melee', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidOpenAccessPanelButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 108, 'Name': 'Open Access Panel', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidPrimaryInteractButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 109, 'Name': 'Interact', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidPulseScanButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 110, 'Name': 'Pulse Scan', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidReloadButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 111, 'Name': 'Reload', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSecondaryInteractButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 112, 'Name': 'Interact 2', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectNextGrenadeTypeButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 113, 'Name': 'Next Grenade', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectNextWeaponButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 114, 'Name': 'Next WEP', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectPreviousGrenadeTypeButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 115, 'Name': 'Prev Grenade', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectPreviousWeaponButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 116, 'Name': 'Prev WEP', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectPrimaryWeaponButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 117, 'Name': 'WEP 1', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectSecondaryWeaponButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 118, 'Name': 'WEP 2', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectUtilityWeaponButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 119, 'Name': 'Select Util', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSprintButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 120, 'Name': 'Sprint', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSwitchToCompAnalyser': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 121, 'Name': 'Comp Analyser', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSwitchToRechargeTool': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 122, 'Name': 'Recharge Tool', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSwitchToSuitTool': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 123, 'Name': 'Suit Tool', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSwitchWeapon': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 124, 'Name': 'Switch WEP', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidThrowGrenadeButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 125, 'Name': 'Throw Grenade', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidToggleFlashlightButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 126, 'Name': 'Flashlight', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidToggleJumpAssistModuleButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 127, 'Name': 'Jump Assist', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidToggleMissionHelpPanelButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 128, 'Name': 'Mission Help', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidToggleNightVisionButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 129, 'Name': 'Night Vision', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['NightVisionToggle']},
+    'HumanoidToggleShieldBoosterModuleButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 130, 'Name': 'Shield Boost', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidToggleShieldsButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 131, 'Name': 'Shields', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidToggleToolModeButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 132, 'Name': 'Tool Mode', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidToggleWeaponBoosterModuleButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 134, 'Name': 'Weapon Booster', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidZoomButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 135, 'Name': 'ZoomButton', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+
+    # Managing power
+    'HumanoidResetPowerDistributionButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 201, 'Name': 'RST', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['ResetPowerDistribution']},
+    'HumanoidIncreaseEnginesPowerButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 202, 'Name': 'ENG', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['IncreaseEnginesPower']},
+    'HumanoidIncreaseSystemsPowerButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 203, 'Name': 'SYS', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['IncreaseSystemsPower']},
+    'HumanoidIncreaseWeaponsPowerButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 204, 'Name': 'WEP', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['IncreaseWeaponsPower']},
+
+    # Navigation
+    'GalaxyMapOpen_Humanoid': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 301, 'Name': 'GalMap', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['GalaxyMapOpen']},
+    'SystemMapOpen_Humanoid': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 302, 'Name': 'SysMap', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['SystemMapOpen']},
+
+    # UI
+    'FocusCommsPanel_Humanoid': {'Group': 'OnFoot', 'Order': 401, 'Name': 'Comms Panel', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['FocusCommsPanel']},
+    'QuickCommsPanel_Humanoid': {'Group': 'OnFoot', 'Order': 405, 'Name': 'Quick Comms', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['QuickCommsPanel']},
+
+    # Item Wheel
+    'HumanoidItemWheelButton': {'Group': 'OnFoot', 'Order': 701, 'Name': 'Item Wheel', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidItemWheelButton_XAxis': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 702, 'Name': 'Item L/R', 'Type': 'Analogue', 'HideIfSameAs': []},
+    'HumanoidItemWheelButton_XLeft': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 703, 'Name': 'Item Left', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
+    'HumanoidItemWheelButton_XRight': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 704, 'Name': 'Item Right', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
+    'HumanoidItemWheelButton_YAxis': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 705, 'Name': 'Item Up/Dn', 'Type': 'Analogue', 'HideIfSameAs': []},
+    'HumanoidItemWheelButton_YDown': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 706, 'Name': 'Item Down', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
+    'HumanoidItemWheelButton_YUp': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 707, 'Name': 'Item Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
+    
+    # Camera
+    'PhotoCameraToggle_Humanoid': {'Group': 'Camera', 'Category': 'Camera', 'Order': 801, 'Name': 'External Cam', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
 }
 
 # default height is 54 (px)
