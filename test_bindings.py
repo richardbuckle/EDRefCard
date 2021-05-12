@@ -117,6 +117,16 @@ class testTransKey(TestCase):
         self.assertEqual(k, 'A')
 
 
+class testGroups(TestCase):
+    
+    def testGroupsHaveStyles(self):
+        styledGroups = set(bindings.groupStyles.keys())
+        allGroups = set({'General', 'Modifier'})
+        for controlValue in bindings.controls.values():
+            allGroups.add(controlValue['Group'])
+        self.assert(styledGroups, allGroups)
+
+
 class uploadTests(TestCase):
     
     def setUp(self):
