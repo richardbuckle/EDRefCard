@@ -1,3 +1,6 @@
+## 1.3
+* Added support for VKB Gladiator Left and Right sticks, courtesy of awerschlan and esabouraud.
+
 ## 1.2.8
 * Added support for VKB Kosmosima SCG Left and Right grips, courtesy of ajhewett.
 * Handled invalid keyboard bindings of the form `Device="Keyboard" Key=""`
