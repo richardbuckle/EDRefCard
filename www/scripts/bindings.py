@@ -412,7 +412,7 @@ def isRedundantSpecialisation(control, bind):
     return False
 
 # Create a HOTAS image from the template plus bindings
-def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontSize, config, public, styling, deviceIndex, misconfigurationWarnings, showKey=False):
+def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontSize, config, public, styling, deviceIndex, misconfigurationWarnings):
     # Set up the path for our file
     runId = config.name
     if deviceIndex == 0:
@@ -461,10 +461,6 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                 if hotasDetail is None:
                     sys.stderr.write('%s: No control detail for %s\n' % (runId, physicalKeySpec))
                     continue
-
-                # Optionally show button number or axis name        
-                if showKey:    
-                    texts.append({'Text': itemKey.replace("Joy_","").replace("Axis",""), 'Group': 'Modifier', 'Style': groupStyles.get('Modifier')})        
 
                 # First obtain the modifiers if there are any
                 for keyModifier in modifiers.get(physicalKeySpec, []):
@@ -1018,9 +1014,6 @@ def parseForm(form):
         displayGroups.append('Holo-Me')
     if form.getvalue('showmisc'):
         displayGroups.append('Misc')
-    if form.getvalue('showkey'):
-        displayGroups.append('Key')
-
     
     styling = 'None'  # Yes we do mean a string 'None'
     if form.getvalue('styling') == 'group':
@@ -1178,7 +1171,7 @@ def processForm(form):
                             hasNewBindings = True
                             break
                     if hasNewBindings is True:
-                        createHOTASImage(physicalKeys, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, config, public, styling, deviceIndex, errors.misconfigurationWarnings,'Key' in displayGroups)
+                        createHOTASImage(physicalKeys, modifiers, supportedDevice['Template'], supportedDevice['HandledDevices'], 40, config, public, styling, deviceIndex, errors.misconfigurationWarnings)
                         createdImages.append('%s::%s' % (supportedDeviceKey, deviceIndex))
                         for handledDevice in supportedDevice['HandledDevices']:
                             alreadyHandledDevices.append('%s::%s' % (handledDevice, deviceIndex))
