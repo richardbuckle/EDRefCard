@@ -24,9 +24,11 @@ Currently hosted at [https://edrefcard.info/](https://edrefcard.info/).
 
 * Base the server on the `www` subdirectory of this repo.
 * Check that your server is supplying the env vars `CONTEXT_DOCUMENT_ROOT` and `SCRIPT_URI` so that `Config.dirRoot` and `Config.webRoot` in `www/scripts/bindings.py` get set correctly. Apache 2 does this by default. Python's `cgi.test()` is useful here.
+* Enable Apache's `rewrite` and `cgi` or `cgid` mods.
 * Add redirects as follows (in Apache 2 notation):
 
 ```
+RewriteEngine On
 RewriteRule ^/list$ /scripts/bindings.py?list=all
 RewriteRule ^/binds/(.+)$ /scripts/bindings.py?replay=$1
 RewriteRule ^/configs/([a-z][a-z])([^/]+)$ /configs/$1/$1$2
