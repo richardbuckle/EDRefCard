@@ -117,6 +117,23 @@ class testTransKey(TestCase):
         self.assertEqual(k, 'A')
 
 
+class testGroups(TestCase):
+    
+    def testGroupsHaveStyles(self):
+        styledGroups = set(bindings.groupStyles.keys())
+        allGroups = set({'General', 'Modifier'})
+        for controlValue in bindings.controls.values():
+            allGroups.add(controlValue['Group'])
+        self.assertTrue(allGroups.issubset(styledGroups))
+    
+    def testNoRedundantGroupStyles(self):
+        styledGroups = set(bindings.groupStyles.keys())
+        allGroups = set({'General', 'Modifier'})
+        for controlValue in bindings.controls.values():
+            allGroups.add(controlValue['Group'])
+        self.assertTrue(allGroups.issuperset(styledGroups))
+
+
 class uploadTests(TestCase):
     
     def setUp(self):

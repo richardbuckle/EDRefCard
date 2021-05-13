@@ -155,6 +155,7 @@ groupStyles = {
     'SRV': {'Color': Color('MediumPurple'), 'Font': getFontPath('Regular', 'Normal')},
     'Scanners': {'Color': Color('DarkOrchid'), 'Font': getFontPath('Regular', 'Normal')},
     'UI': {'Color': Color('DarkOrange'), 'Font': getFontPath('Regular', 'Normal')},
+    'OnFoot': {'Color': Color('CornflowerBlue'), 'Font': getFontPath('Regular', 'Normal')},
 }
 
 # Command category styling
@@ -1046,6 +1047,8 @@ def parseForm(form):
         displayGroups.append('UI')
     if form.getvalue('showfighter'):
         displayGroups.append('Fighter')
+    if form.getvalue('showonfoot'):
+        displayGroups.append('OnFoot')
     if form.getvalue('showmulticrew'):
         displayGroups.append('Multicrew')
     if form.getvalue('showcamera'):
