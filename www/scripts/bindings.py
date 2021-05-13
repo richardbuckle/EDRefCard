@@ -1047,6 +1047,8 @@ def parseForm(form):
         displayGroups.append('UI')
     if form.getvalue('showfighter'):
         displayGroups.append('Fighter')
+    if form.getvalue('showonfoot'):
+        displayGroups.append('OnFoot')
     if form.getvalue('showmulticrew'):
         displayGroups.append('Multicrew')
     if form.getvalue('showcamera'):
