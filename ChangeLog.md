@@ -2,6 +2,7 @@
 * Added support for VKB Gladiator Left and Right sticks, courtesy of awerschlan and esabouraud.
 * Added support for VPC Alpha Left and Right grips, courtesy of Slion.
 * Added searching by controller type, courtesy of alewando.
+* Added support for Odyssey's "On Foot" bindings.
 
 ## 1.2.8
 * Added support for VKB Kosmosima SCG Left and Right grips, courtesy of ajhewett.
