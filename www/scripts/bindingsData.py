@@ -152,6 +152,8 @@ controls = {
     'BuggyTurretYawAxisRaw': {'Group': 'SRV', 'Category': 'Combat', 'Order': 110, 'Name': 'Turret Yaw', 'Type': 'Analogue', 'HideIfSameAs': ['YawAxisRaw']},
     'BuggyTurretYawLeftButton': {'Group': 'SRV', 'Category': 'Combat', 'Order': 111, 'Name': 'Turret Left', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawLeftButton']},
     'BuggyTurretYawRightButton': {'Group': 'SRV', 'Category': 'Combat', 'Order': 112, 'Name': 'Turret Right', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': ['YawLeftButton']},
+    'BuggyCycleFireGroupNext': {'Group': 'SRV', 'Category': 'Combat', 'Order': 113, 'Name': 'Next Fire Group', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['CycleFireGroupNext']},
+    'BuggyCycleFireGroupPrevious': {'Group': 'SRV', 'Category': 'Combat', 'Order': 114, 'Name': 'Prev Fire Group', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['CycleFireGroupPrevious']},
 
      # Managing power
     'ResetPowerDistribution_Buggy': {'Group': 'SRV', 'Category': 'Combat', 'Order': 201, 'Name': 'RST', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['ResetPowerDistribution']},
