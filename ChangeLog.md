@@ -1,3 +1,6 @@
+##1.3.1
+* Sundry cleanup and fixes.
+
 ## 1.3
 * Added support for VKB Gladiator Left and Right sticks, courtesy of awerschlan and esabouraud.
 * Added support for VPC Alpha Left and Right grips, courtesy of Slion.
