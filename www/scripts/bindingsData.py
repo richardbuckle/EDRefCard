@@ -81,6 +81,7 @@ controls = {
     'CamZoomAxis': {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 17, 'Name': 'GalMap Zoom', 'Type': 'Analogue', 'HideIfSameAs': []},
     'CamZoomIn': {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 18, 'Name': 'GalMap Zoom In', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
     'CamZoomOut': {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 19, 'Name': 'GalMap Zoom Out', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
+    'GalaxyMapHome': {'Group': 'Galaxy map', 'Category': 'UI', 'Order': 20, 'Name': 'GalMap Home', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
 
     # General items available on both ship and SRV
     'RadarRangeAxis': {'Group': 'Misc', 'Category': 'Navigation', 'Order': 1, 'Name': 'Sensor Range', 'Type': 'Analogue', 'HideIfSameAs': []},
