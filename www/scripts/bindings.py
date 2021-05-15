@@ -460,7 +460,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                 except AttributeError:
                     hotasDetail = None
                 if hotasDetail is None:
-                    logError('%s: No control detail for %s\n' % (runId, physicalKeySpec))
+                    logError('%s: No drawing box found for %s\n' % (runId, physicalKeySpec))
                     continue
 
                 # First obtain the modifiers if there are any
