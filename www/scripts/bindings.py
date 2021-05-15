@@ -460,7 +460,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                 except AttributeError:
                     hotasDetail = None
                 if hotasDetail is None:
-                    sys.stderr.write('%s: No control detail for %s\n' % (runId, physicalKeySpec))
+                    logError('%s: No control detail for %s\n' % (runId, physicalKeySpec))
                     continue
 
                 # First obtain the modifiers if there are any
@@ -498,7 +498,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                                     misconfigurationWarnings = '<h1>Misconfiguration detected</h1>You have one or more analogue controls configured incorrectly. Please see <a href="https://forums.frontier.co.uk/showthread.php?t=209792">this thread</a> for details of the problem and how to correct it.<br/> <b>Your misconfigured controls:</b> <b>%s</b> ' % control['Name']
                                 else:
                                     misconfigurationWarnings = '%s, <b>%s</b>' % (misconfigurationWarnings, control['Name'])
-                                #sys.stderr.write('%s: Digital command %s found on hotas control %s::%s\n' % (runId, control['Name'], itemDevice, itemKey))
+                                #logError('%s: Digital command %s found on hotas control %s::%s\n' % (runId, control['Name'], itemDevice, itemKey))
 
                             if styling == 'Modifier':
                                 texts.append({'Text': '%s' % (control.get('Name')), 'Group': control.get('Group'), 'Style': ModifierStyles.index(0)})
@@ -559,7 +559,7 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
                     modifierKey = keyModifier.get('Key')
                     hotasDetail = hotasDetails.get(keyModifier.get('Device')).get(modifierKey)
                     if hotasDetail is None:
-                        sys.stderr.write('%s: No location for %s\n' % (runId, modifierSpec))
+                        logError('%s: No location for %s\n' % (runId, modifierSpec))
                         continue
 
                     if styling == 'Modifier':
@@ -992,7 +992,7 @@ def parseBindings(runId, xml, displayGroups, errors):
                     hotasModifierNum = hotasModifierNum + 1
         control = controls.get(controlName)
         if control is None:
-            sys.stderr.write('%s: No control for %s\n' % (runId, controlName))
+            logError('%s: No control for %s\n' % (runId, controlName))
             control = {}
             control['Group'] = 'General'
             control['Name'] = controlName
@@ -1232,7 +1232,7 @@ def processForm(form):
         for deviceKey, device in devices.items():
             # Arduino Leonardo is used for head tracking so ignore it, along with vJoy (Tobii Eyex) and 16D00AEA (EDTracker)
             if device is None and deviceKey != 'Mouse::0' and deviceKey != 'ArduinoLeonardo::0' and deviceKey != 'vJoy::0' and deviceKey != 'vJoy::1' and deviceKey != '16D00AEA::0':
-                sys.stderr.write('%s: found unsupported device %s\n' % (runId, deviceKey))
+                logError('%s: found unsupported device %s\n' % (runId, deviceKey))
                 if errors.unhandledDevicesWarnings  == '':
                     errors.unhandledDevicesWarnings = '<h1>Unknown controller detected</h1>You have a device that is not supported at this time. Please report details of your device by following the link at the bottom of this page supplying the reference "%s" and we will attempt to add support for it.' % runId
             if device is not None and 'ThrustMasterWarthogCombined' in device['HandledDevices'] and errors.deviceWarnings == '':
@@ -1246,6 +1246,9 @@ def processForm(form):
         saveReplayInfo(config, description, styling, displayGroups, devices, errors)
 
     printHTML(mode, options, config, public, createdImages, deviceForBlockImage, errors)
+
+def logError(message):
+    sys.stderr.write("EDRefCard: %s", message)
 
 def main():
     cgitb.enable()
