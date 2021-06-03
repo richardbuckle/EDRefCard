@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Root PresetName="DualShock4ControllerYaw" SortOrder="0">
 	<YawAxisRaw>
 		<Binding Device="DualShock4" Key="Joy_ZAxis" />
@@ -127,8 +127,7 @@
 		<Deadzone Value="0.00000000" />
 	</VerticalThrustAlternate>
 	<UseAlternateFlightValuesToggle>
-		<Primary Device="{NoDevice}" Key="">
-		</Primary>
+		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 		<ToggleOn Value="1" />
 	</UseAlternateFlightValuesToggle>
@@ -424,12 +423,12 @@
 		<ToggleOn Value="0" />
 	</MicrophoneMute>
 	<UseShieldCell>
-		<Primary Device="{NoDevice}" key="" />
-		<Secondary Device="{NoDevice}" key="" />
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</UseShieldCell>
 	<FireChaffLauncher>
-		<Primary Device="{NoDevice}" key="" />
-		<Secondary Device="{NoDevice}" key="" />
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</FireChaffLauncher>
 	<PhotoCameraToggle>
 		<Primary Device="Keyboard" Key="Key_Space">
@@ -439,7 +438,10 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</PhotoCameraToggle>
 	<PhotoCameraToggle_Buggy>
-		<Primary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Space">
+			<Modifier Device="Keyboard" Key="Key_LeftControl" />
+			<Modifier Device="Keyboard" Key="Key_LeftAlt" />
+		</Primary>
 		<Secondary Device="{NoDevice}" Key="" />
 	</PhotoCameraToggle_Buggy>
 	<HyperSuperCombination>
@@ -460,12 +462,12 @@
 		<ToggleOn Value="1" />
 	</DisableRotationCorrectToggle>
 	<GalaxyMapOpen>
-		<Primary Device="{NoDevice}" key="" />
-		<Secondary Device="{NoDevice}" key="" />
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</GalaxyMapOpen>
 	<SystemMapOpen>
-		<Primary Device="{NoDevice}" key="" />
-		<Secondary Device="{NoDevice}" key="" />
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</SystemMapOpen>
 	<ShowPGScoreSummaryInput>
 		<Primary Device="Keyboard" Key="Key_F1" />
@@ -516,40 +518,40 @@
 	<RolePanelFocusOptions Value="" />
 	<RightPanelFocusOptions Value="" />
 	<UI_Up>
-		<Secondary Device="Keyboard" Key="Key_W" />
 		<Primary Device="DualShock4" Key="Joy_POV1Up" />
+		<Secondary Device="Keyboard" Key="Key_W" />
 	</UI_Up>
 	<UI_Down>
-		<Secondary Device="Keyboard" Key="Key_S" />
 		<Primary Device="DualShock4" Key="Joy_POV1Down" />
+		<Secondary Device="Keyboard" Key="Key_S" />
 	</UI_Down>
 	<UI_Left>
-		<Secondary Device="Keyboard" Key="Key_A" />
 		<Primary Device="DualShock4" Key="Joy_POV1Left" />
+		<Secondary Device="Keyboard" Key="Key_A" />
 	</UI_Left>
 	<UI_Right>
-		<Secondary Device="Keyboard" Key="Key_D" />
 		<Primary Device="DualShock4" Key="Joy_POV1Right" />
+		<Secondary Device="Keyboard" Key="Key_D" />
 	</UI_Right>
 	<UI_Select>
-		<Secondary Device="Keyboard" Key="Key_Space" />
 		<Primary Device="DualShock4" Key="Joy_2" />
+		<Secondary Device="Keyboard" Key="Key_Space" />
 	</UI_Select>
 	<UI_Back>
-		<Secondary Device="Keyboard" Key="Key_Backspace" />
 		<Primary Device="DualShock4" Key="Joy_3" />
+		<Secondary Device="Keyboard" Key="Key_Backspace" />
 	</UI_Back>
 	<UI_Toggle>
-		<Secondary Device="Keyboard" Key="Key_Equals" />
 		<Primary Device="DualShock4" Key="Joy_4" />
+		<Secondary Device="Keyboard" Key="Key_Equals" />
 	</UI_Toggle>
 	<CycleNextPanel>
-		<Secondary Device="Keyboard" Key="Key_E" />
 		<Primary Device="DualShock4" Key="Joy_6" />
+		<Secondary Device="Keyboard" Key="Key_E" />
 	</CycleNextPanel>
 	<CyclePreviousPanel>
-		<Secondary Device="Keyboard" Key="Key_Q" />
 		<Primary Device="DualShock4" Key="Joy_5" />
+		<Secondary Device="Keyboard" Key="Key_Q" />
 	</CyclePreviousPanel>
 	<CycleNextPage>
 		<Primary Device="DualShock4" Key="Joy_8" />
@@ -594,7 +596,6 @@
 		<Inverted Value="1" />
 		<Deadzone Value="0.15" />
 	</HeadLookYawAxis>
-	
 	<!-- Galaxy map controls -->
 	<CamPitchAxis>
 		<Binding Device="DualShock4" Key="Joy_RZAxis" />
@@ -684,7 +685,6 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</GalaxyMapHome>
 	<!-- Galaxy map controls end -->
-	
 	<ToggleDriveAssist>
 		<Primary Device="DualShock4" Key="Joy_9" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -757,7 +757,6 @@
 	<HeadlightsBuggyButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn Value="1" />
 	</HeadlightsBuggyButton>
 	<ToggleBuggyTurretButton>
 		<Primary Device="DualShock4" Key="Joy_11" />
@@ -780,10 +779,9 @@
 		<Primary Device="DualShock4" Key="Joy_11" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewToggleMode>
-	
 	<!--       Vanity Cam Start-->
 	<ToggleVanityCamera>
-		<Secondary Device="Keyboard" Key="Key_RightShift"/>
+		<Secondary Device="Keyboard" Key="Key_RightShift" />
 		<Primary Device="DualShock4" Key="Joy_POV1Left">
 			<Modifier Device="DualShock4" Key="Joy_3" />
 		</Primary>
@@ -792,7 +790,7 @@
 		<Primary Device="DualShock4" Key="Joy_POV1Down">
 			<Modifier Device="DualShock4" Key="Joy_4" />
 		</Primary>
-		<Secondary Device="Keyboard" Key="Key_RightShift"/>
+		<Secondary Device="Keyboard" Key="Key_RightShift" />
 	</ToggleVanityCamera_Buggy>
 	<VanityCameraScrollLeft>
 		<Primary Device="DualShock4" Key="Joy_POV1Left" />
@@ -807,64 +805,64 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraOne>
 	<VanityCameraTwo>
-			<Primary Device="Keyboard" Key="Key_Numpad_2" />
-			<Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Numpad_2" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraTwo>
 	<VanityCameraThree>
-			<Primary Device="Keyboard" Key="Key_Numpad_3" />
-			<Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Numpad_3" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraThree>
 	<VanityCameraFour>
-			<Primary Device="Keyboard" Key="Key_Numpad_4" />
-			<Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Numpad_4" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraFour>
 	<VanityCameraFive>
-			<Primary Device="Keyboard" Key="Key_Numpad_5" />
-			<Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Numpad_5" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraFive>
 	<VanityCameraSix>
-			<Primary Device="Keyboard" Key="Key_Numpad_6" />
-			<Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Numpad_6" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraSix>
 	<VanityCameraSeven>
-			<Primary Device="Keyboard" Key="Key_Numpad_7" />
-			<Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Numpad_7" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraSeven>
 	<VanityCameraEight>
-			<Primary Device="Keyboard" Key="Key_Numpad_8" />
-			<Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Numpad_8" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraEight>
 	<VanityCameraNine>
-			<Primary Device="Keyboard" Key="Key_Numpad_9" />
-			<Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Numpad_9" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</VanityCameraNine>
 	<ToggleFreeCam>
-		<Primary Device="DualShock4" Key="Joy_11"/>
-		<Secondary Device="Keyboard" Key="Key_Numpad_0"/>
+		<Primary Device="DualShock4" Key="Joy_11" />
+		<Secondary Device="Keyboard" Key="Key_Numpad_0" />
 	</ToggleFreeCam>
 	<FreeCamToggleHUD>
-		<Secondary Device="Keyboard" Key="Key_LeftControl"/>
-		<Primary  Device="DualShock4" Key="Joy_4"/>
+		<Primary Device="DualShock4" Key="Joy_4" />
+		<Secondary Device="Keyboard" Key="Key_LeftControl" />
 	</FreeCamToggleHUD>
 	<FreeCamSpeedInc>
-		<Secondary Device="Keyboard" Key="Key_Equals"/>
 		<Primary Device="DualShock4" Key="Joy_6">
-		<Modifier Device="DualShock4" Key="Joy_1" />
+			<Modifier Device="DualShock4" Key="Joy_1" />
 		</Primary>
+		<Secondary Device="Keyboard" Key="Key_Equals" />
 	</FreeCamSpeedInc>
 	<FreeCamSpeedDec>
-		<Secondary Device="Keyboard" Key="Key_Minus"/>
 		<Primary Device="DualShock4" Key="Joy_5">
-		<Modifier Device="DualShock4" Key="Joy_1" />
+			<Modifier Device="DualShock4" Key="Joy_1" />
 		</Primary>
+		<Secondary Device="Keyboard" Key="Key_Minus" />
 	</FreeCamSpeedDec>
 	<FreeCamZoomIn>
-		<Primary Device="DualShock4" Key="Joy_POV1Up"/>
-		<Secondary Device="Keyboard" Key="Key_UpArrow"/>	
+		<Primary Device="DualShock4" Key="Joy_POV1Up" />
+		<Secondary Device="Keyboard" Key="Key_UpArrow" />
 	</FreeCamZoomIn>
 	<FreeCamZoomOut>
-		<Secondary Device="Keyboard" Key="Key_DownArrow"/>
-		<Primary Device="DualShock4" Key="Joy_POV1Down"/>
+		<Primary Device="DualShock4" Key="Joy_POV1Down" />
+		<Secondary Device="Keyboard" Key="Key_DownArrow" />
 	</FreeCamZoomOut>
 	<MoveFreeCamY>
 		<Binding Device="DualShock4" Key="Joy_YAxis" />
@@ -872,12 +870,12 @@
 		<Deadzone Value="0.15" />
 	</MoveFreeCamY>
 	<MoveFreeCamForward>
-		<Primary Device="Keyboard" Key="Key_W"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="Keyboard" Key="Key_W" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</MoveFreeCamForward>
 	<MoveFreeCamBackwards>
-		<Primary Device="Keyboard" Key="Key_S"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="Keyboard" Key="Key_S" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</MoveFreeCamBackwards>
 	<MoveFreeCamX>
 		<Binding Device="DualShock4" Key="Joy_XAxis" />
@@ -885,12 +883,12 @@
 		<Deadzone Value="0.15" />
 	</MoveFreeCamX>
 	<MoveFreeCamRight>
-		<Primary Device="Keyboard" Key="Key_D"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="Keyboard" Key="Key_D" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</MoveFreeCamRight>
 	<MoveFreeCamLeft>
-		<Primary Device="Keyboard" Key="Key_A"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="Keyboard" Key="Key_A" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</MoveFreeCamLeft>
 	<MoveFreeCamZ>
 		<Binding Device="{NoDevice}" Key="" />
@@ -898,22 +896,22 @@
 		<Deadzone Value="DefaultPlatformDeadzone" />
 	</MoveFreeCamZ>
 	<MoveFreeCamUp>
-		<Primary Device="Keyboard" Key="Key_R"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="Keyboard" Key="Key_R" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</MoveFreeCamUp>
 	<MoveFreeCamUpAxis>
-		<Binding Device="DualShock4" key="Joy_RYAxis"/>
+		<Binding Device="DualShock4" Key="Joy_RYAxis" />
 		<Inverted Value="0" />
 		<Deadzone Value="DefaultPlatformDeadzone" />
 	</MoveFreeCamUpAxis>
 	<MoveFreeCamDownAxis>
-		<Binding Device="DualShock4" key="Joy_RXAxis"/>
+		<Binding Device="DualShock4" Key="Joy_RXAxis" />
 		<Inverted Value="0" />
 		<Deadzone Value="DefaultPlatformDeadzone" />
 	</MoveFreeCamDownAxis>
 	<MoveFreeCamDown>
-		<Primary Device="Keyboard" Key="Key_F"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="Keyboard" Key="Key_F" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</MoveFreeCamDown>
 	<PitchCamera>
 		<Binding Device="DualShock4" Key="Joy_RZAxis" />
@@ -921,12 +919,12 @@
 		<Deadzone Value="0.15" />
 	</PitchCamera>
 	<PitchCameraUp>
-		<Primary Device="{NoDevice}" Key=""/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</PitchCameraUp>
 	<PitchCameraDown>
-		<Primary Device="{NoDevice}" Key=""/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</PitchCameraDown>
 	<YawCamera>
 		<Binding Device="DualShock4" Key="Joy_ZAxis" />
@@ -934,12 +932,12 @@
 		<Deadzone Value="0.15" />
 	</YawCamera>
 	<YawCameraLeft>
-		<Primary Device="{NoDevice}" Key=""/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</YawCameraLeft>
 	<YawCameraRight>
-		<Primary Device="{NoDevice}" Key=""/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</YawCameraRight>
 	<RollCamera>
 		<Binding Device="{NoDevice}" Key="" />
@@ -947,53 +945,52 @@
 		<Deadzone Value="DefaultPlatformDeadzone" />
 	</RollCamera>
 	<RollCameraLeft>
-		<Primary Device="DualShock4" Key="Joy_5"/>
-		<Secondary Device="Keyboard" key="Key_Q"/>
+		<Primary Device="DualShock4" Key="Joy_5" />
+		<Secondary Device="Keyboard" Key="Key_Q" />
 	</RollCameraLeft>
 	<RollCameraRight>
-		<Primary Device="DualShock4" Key="Joy_6"/>
-		<Secondary Device="Keyboard" key="Key_E"/>
+		<Primary Device="DualShock4" Key="Joy_6" />
+		<Secondary Device="Keyboard" Key="Key_E" />
 	</RollCameraRight>
 	<ToggleRotationLock>
 		<Primary Device="DualShock4" Key="Joy_POV1Up">
 			<Modifier Device="DualShock4" Key="Joy_1" />
 		</Primary>
-		<Secondary Device="Keyboard" key="Key_End"/>
+		<Secondary Device="Keyboard" Key="Key_End" />
 	</ToggleRotationLock>
 	<FixCameraRelativeToggle>
-		<Primary Device="DualShock4" Key="Joy_12"/>
-		<Secondary Device="Keyboard" key="Key_Numpad_0"/>
+		<Primary Device="DualShock4" Key="Joy_12" />
+		<Secondary Device="Keyboard" Key="Key_Numpad_0" />
 	</FixCameraRelativeToggle>
 	<FixCameraWorldToggle>
-		<Primary Device="DualShock4" Key="Joy_11"/>
-		<Secondary Device="Keyboard" key="Key_Space"/>
+		<Primary Device="DualShock4" Key="Joy_11" />
+		<Secondary Device="Keyboard" Key="Key_Space" />
 	</FixCameraWorldToggle>
 	<QuitCamera>
-		<Primary Device="DualShock4" Key="Joy_3"/>
-		<Secondary Device="Keyboard" key="Key_Backspace"/>
+		<Primary Device="DualShock4" Key="Joy_3" />
+		<Secondary Device="Keyboard" Key="Key_Backspace" />
 	</QuitCamera>
 	<ToggleAdvanceMode>
-		<Primary Device="DualShock4" Key="Joy_2"/>
-		<Secondary Device="Keyboard" key="Key_Delete"/>
+		<Primary Device="DualShock4" Key="Joy_2" />
+		<Secondary Device="Keyboard" Key="Key_Delete" />
 	</ToggleAdvanceMode>
 	<FStopInc>
-		<Primary   Device="DualShock4" Key="Joy_POV1Right"/>
-		<Secondary Device="Keyboard" Key="Key_RightArrow"/>
+		<Primary Device="DualShock4" Key="Joy_POV1Right" />
+		<Secondary Device="Keyboard" Key="Key_RightArrow" />
 	</FStopInc>
 	<FStopDec>
-		<Secondary   Device="Keyboard" Key="Key_LeftArrow"/>
-		<Primary Device="DualShock4" Key="Joy_POV1Left"/>
+		<Primary Device="DualShock4" Key="Joy_POV1Left" />
+		<Secondary Device="Keyboard" Key="Key_LeftArrow" />
 	</FStopDec>
 	<FocusDistanceInc>
-		<Secondary Device="Keyboard" Key="Key_UpArrow"/>
-		<Primary Device="DualShock4" Key="Joy_POV1Up"/>
+		<Secondary Device="Keyboard" Key="Key_UpArrow" />
+		<Primary Device="DualShock4" Key="Joy_POV1Up" />
 	</FocusDistanceInc>
 	<FocusDistanceDec>
-		<Secondary Device="Keyboard" Key="Key_DownArrow"/>
-		<Primary Device="DualShock4" Key="Joy_POV1Down"/>
+		<Secondary Device="Keyboard" Key="Key_DownArrow" />
+		<Primary Device="DualShock4" Key="Joy_POV1Down" />
 	</FocusDistanceDec>
-<!--                      Vanity Cam End-->
-
+	<!--                      Vanity Cam End-->
 	<BuggyTurretYawAxisRaw>
 		<Binding Device="DualShock4" Key="Joy_ZAxis" />
 		<Inverted Value="0" />
@@ -1025,24 +1022,24 @@
 		<Inverted Value="1" />
 		<Deadzone Value="0.15" />
 	</MultiCrewThirdPersonYawAxisRaw>
-		<MultiCrewThirdPersonYawLeftButton>
+	<MultiCrewThirdPersonYawLeftButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonYawLeftButton>
-		<MultiCrewThirdPersonYawRightButton>
+	<MultiCrewThirdPersonYawRightButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonYawRightButton>
-		<MultiCrewThirdPersonPitchAxisRaw>
+	<MultiCrewThirdPersonPitchAxisRaw>
 		<Binding Device="DualShock4" Key="Joy_RZAxis" />
 		<Inverted Value="0" />
 		<Deadzone Value="0.15" />
 	</MultiCrewThirdPersonPitchAxisRaw>
-		<MultiCrewThirdPersonPitchUpButton>
+	<MultiCrewThirdPersonPitchUpButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonPitchUpButton>
-		<MultiCrewThirdPersonPitchDownButton>
+	<MultiCrewThirdPersonPitchDownButton>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonPitchDownButton>
@@ -1059,7 +1056,6 @@
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</MultiCrewThirdPersonFovInButton>
-
 	<MultiCrewPrimaryFire>
 		<Primary Device="Mouse" Key="Mouse_1" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -1222,34 +1218,29 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</OpenOrders>
 	<ChargeECM>
-    <Primary Device="{NoDevice}" Key="" />
-    <Secondary Device="{NoDevice}" Key="" />
+		<Primary Device="{NoDevice}" Key="" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</ChargeECM>
-	
 	<!-- Commander Creator start -->
-	
 	<CommanderCreator_Undo>
-		<Primary Device="DualShock4" key="Joy_1"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="DualShock4" Key="Joy_1" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</CommanderCreator_Undo>
 	<CommanderCreator_Redo>
-		<Primary Device="DualShock4" key="Joy_4"/>
-		<Secondary Device="{NoDevice}" key=""/>
+		<Primary Device="DualShock4" Key="Joy_4" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</CommanderCreator_Redo>
 	<CommanderCreator_Rotation_MouseToggle>
 		<Primary Device="Mouse" Key="Mouse_2" />
-		<Secondary Device="{NoDevice}" key=""/>
+		<Secondary Device="{NoDevice}" Key="" />
 	</CommanderCreator_Rotation_MouseToggle>
 	<CommanderCreator_Rotation>
 		<Binding Device="DualShock4" Key="Joy_ZAxis" />
 		<Inverted Value="1" />
 		<Deadzone Value="0.15" />
 	</CommanderCreator_Rotation>
-	
 	<!-- Commander Creator end -->
-	
 	<!-- Analysis Mode and DSS/FSS -->
-	
 	<PlayerHUDModeToggle>
 		<Primary Device="Keyboard" Key="Key_M" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -1258,7 +1249,6 @@
 		<Primary Device="Keyboard" Key="Key_O" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</OpenCodexGoToDiscovery>
-	
 	<ExplorationFSSEnter>
 		<Primary Device="Keyboard" Key="Key_Apostrophe" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -1310,7 +1300,6 @@
 		<Primary Device="DualShock4" Key="Joy_1" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</ExplorationFSSShowHelp>
-	
 	<ExplorationSAAChangeScannedAreaViewToggle>
 		<Primary Device="DualShock4" Key="Joy_5" />
 		<Secondary Device="{NoDevice}" Key="" />
@@ -1320,9 +1309,7 @@
 		<Primary Device="DualShock4" Key="Joy_9" />
 		<Secondary Device="DualShock4" Key="Joy_3" />
 	</ExplorationSAAExitThirdPerson>
-	
 	<!-- Analysis Mode and DSS/FSS end -->
-    
 	<!-- Humanoid start -->
 	<MouseHumanoidXMode Value="" />
 	<MouseHumanoidYMode Value="" />
@@ -1540,7 +1527,9 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</FocusCommsPanel_Humanoid>
 	<QuickCommsPanel_Humanoid>
-		<Primary Device="{NoDevice}" Key="" />
+		<Primary Device="DualShock4" Key="Joy_3">
+			<Modifier Device="DualShock4" Key="Joy_POV1Up" />
+		</Primary>
 		<Secondary Device="{NoDevice}" Key="" />
 	</QuickCommsPanel_Humanoid>
 	<HumanoidOpenAccessPanelButton>
@@ -1550,13 +1539,13 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidOpenAccessPanelButton>
 	<HumanoidConflictContextualUIButton>
-		<Primary Device="DualShock4" Key="Joy_1" />
+		<Primary Device="DualShock4" Key="Joy_3">
+			<Modifier Device="DualShock4" Key="Joy_POV1Left" />
+		</Primary>
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidConflictContextualUIButton>
 	<!-- Humanoid end -->
-	
 	<!-- Store Camera Start -->
-	
 	<StoreEnableRotation>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="Mouse" Key="Mouse_3" />
@@ -1583,7 +1572,12 @@
 		<Primary Device="DualShock4" Key="Joy_1" />
 		<Secondary Device="Keyboard" Key="Key_Tab" />
 	</StoreToggle>
-	
 	<!-- Store Camera End -->
-	
+	<PhotoCameraToggle_Humanoid>
+		<Primary Device="Keyboard" Key="Key_Space">
+			<Modifier Device="Keyboard" Key="Key_LeftControl" />
+			<Modifier Device="Keyboard" Key="Key_LeftAlt" />
+		</Primary>
+		<Secondary Device="{NoDevice}" Key="" />
+	</PhotoCameraToggle_Humanoid>
 </Root>

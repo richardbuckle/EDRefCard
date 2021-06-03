@@ -269,7 +269,7 @@
 	<ToggleFlightAssist>
 		<Primary Device="Keyboard" Key="Key_Z" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn />
+		<ToggleOn Value="1" />
 	</ToggleFlightAssist>
 	<YawToRollMode_FAOff Value="" />
 	<UseBoostJuice>
@@ -357,7 +357,7 @@
 	<ToggleButtonUpInput>
 		<Primary Device="Keyboard" Key="Key_Delete" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn />
+		<ToggleOn Value="1" />
 	</ToggleButtonUpInput>
 	<DeployHeatSink>
 		<Primary Device="Keyboard" Key="Key_V" />
@@ -466,7 +466,7 @@
 	<DisableRotationCorrectToggle>
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
-		<ToggleOn />
+		<ToggleOn Value="1" />
 	</DisableRotationCorrectToggle>
 	<GalaxyMapOpen>
 		<Primary Device="{NoDevice}" Key="" />
@@ -773,7 +773,7 @@
 	</SelectTarget_Buggy>
 	<MouseTurretXMode Value="Bindings_MouseYaw" />
 	<MouseTurretXDecay Value="1" />
-	<MouseTurretYMode Value="Bindings_MousePitchInverted" />
+	<MouseTurretYMode Value="Bindings_MousePitch" />
 	<MouseTurretYDecay Value="1" />
 	<MultiCrewThirdPersonMouseXMode Value="Bindings_MouseYaw" />
 	<MultiCrewThirdPersonMouseXDecay Value="0" />
@@ -972,7 +972,7 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</ToggleAdvanceMode>
 	<FStopInc>
-		<Primary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_RightArrow" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</FStopInc>
 	<FStopDec>
@@ -1316,7 +1316,7 @@
 	<FSSMouseXDecay Value="1" />
 	<FSSMouseYMode Value="Bindings_MousePitchInverted" />
 	<FSSMouseYDecay Value="1" />
-	<FSSMouseSensitivity Value="5.00000000" />
+	<FSSMouseSensitivity Value="7" />
 	<!-- Analysis Mode including DSS/FSS Scan end -->
 	<!-- Humanoid start -->
 	<MouseHumanoidXMode Value="Bindings_MouseYaw" />
@@ -1394,11 +1394,11 @@
 	</HumanoidPrimaryFireButton>
 	<HumanoidSelectPrimaryWeaponButton>
 		<Primary Device="Keyboard" Key="Key_1" />
-		<Secondary Device="Mouse" Key="Pos_Mouse_ZAxis" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidSelectPrimaryWeaponButton>
 	<HumanoidSelectSecondaryWeaponButton>
 		<Primary Device="Keyboard" Key="Key_2" />
-		<Secondary Device="Mouse" Key="Neg_Mouse_ZAxis" />
+		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidSelectSecondaryWeaponButton>
 	<HumanoidHideWeaponButton>
 		<Primary Device="Keyboard" Key="Key_U" />
@@ -1557,4 +1557,56 @@
 		<Primary Device="{NoDevice}" Key="" />
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidItemWheelButton_YDown>
+	<HumanoidSelectNextWeaponButton>
+		<Primary Device="Mouse" Key="Neg_Mouse_ZAxis" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidSelectNextWeaponButton>
+	<HumanoidSelectPreviousWeaponButton>
+		<Primary Device="Mouse" Key="Pos_Mouse_ZAxis" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidSelectPreviousWeaponButton>
+	<HumanoidWalkButton>
+		<Primary Device="Keyboard" Key="Key_Slash" />
+		<Secondary Device="{NoDevice}" Key="" />
+		<ToggleOn Value="1" />
+	</HumanoidWalkButton>
+	<SAAThirdPersonMouseXMode Value="Bindings_MouseYaw" />
+	<SAAThirdPersonMouseYMode Value="Bindings_MousePitch" />
+	<SAAThirdPersonMouseSensitivity Value="5" />
+	<ExplorationSAANextGenus>
+		<Primary Device="Keyboard" Key="Key_E" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</ExplorationSAANextGenus>
+	<ExplorationSAAPreviousGenus>
+		<Primary Device="Keyboard" Key="Key_Q" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</ExplorationSAAPreviousGenus>
+	<HumanoidSelectNextGrenadeTypeButton>
+		<Primary Device="Keyboard" Key="Key_Tab" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidSelectNextGrenadeTypeButton>
+	<HumanoidClearAuthorityLevel>
+		<Primary Device="Keyboard" Key="Key_Minus" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidClearAuthorityLevel>
+	<HumanoidHealthPack>
+		<Primary Device="Keyboard" Key="Key_6" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidHealthPack>
+	<HumanoidBattery>
+		<Primary Device="Keyboard" Key="Key_7" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidBattery>
+	<HumanoidSelectFragGrenade>
+		<Primary Device="Keyboard" Key="Key_8" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidSelectFragGrenade>
+	<HumanoidSelectEMPGrenade>
+		<Primary Device="Keyboard" Key="Key_9" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidSelectEMPGrenade>
+	<HumanoidSelectShieldGrenade>
+		<Primary Device="Keyboard" Key="Key_0" />
+		<Secondary Device="{NoDevice}" Key="" />
+	</HumanoidSelectShieldGrenade>
 </Root>

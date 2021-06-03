@@ -433,11 +433,15 @@
 	<PhotoCameraToggle>
 		<Primary Device="Keyboard" Key="Key_Space">
 			<Modifier Device="Keyboard" Key="Key_LeftControl" />
+			<Modifier Device="Keyboard" Key="Key_LeftAlt" />
 		</Primary>
 		<Secondary Device="{NoDevice}" Key="" />
 	</PhotoCameraToggle>
 	<PhotoCameraToggle_Buggy>
-		<Primary Device="{NoDevice}" Key="" />
+		<Primary Device="Keyboard" Key="Key_Space">
+			<Modifier Device="Keyboard" Key="Key_LeftControl" />
+			<Modifier Device="Keyboard" Key="Key_LeftAlt" />
+		</Primary>
 		<Secondary Device="{NoDevice}" Key="" />
 	</PhotoCameraToggle_Buggy>
 	<HyperSuperCombination>
@@ -1523,7 +1527,9 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</FocusCommsPanel_Humanoid>
 	<QuickCommsPanel_Humanoid>
-		<Primary Device="{NoDevice}" Key="" />
+		<Primary Device="DualShock4" Key="Joy_3">
+			<Modifier Device="DualShock4" Key="Joy_POV1Up" />
+		</Primary>
 		<Secondary Device="{NoDevice}" Key="" />
 	</QuickCommsPanel_Humanoid>
 	<HumanoidOpenAccessPanelButton>
@@ -1533,7 +1539,9 @@
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidOpenAccessPanelButton>
 	<HumanoidConflictContextualUIButton>
-		<Primary Device="DualShock4" Key="Joy_1" />
+		<Primary Device="DualShock4" Key="Joy_3">
+			<Modifier Device="DualShock4" Key="Joy_POV1Left" />
+		</Primary>
 		<Secondary Device="{NoDevice}" Key="" />
 	</HumanoidConflictContextualUIButton>
 	<!-- Humanoid end -->
@@ -1565,4 +1573,11 @@
 		<Secondary Device="Keyboard" Key="Key_Tab" />
 	</StoreToggle>
 	<!-- Store Camera End -->
+	<PhotoCameraToggle_Humanoid>
+		<Primary Device="Keyboard" Key="Key_Space">
+			<Modifier Device="Keyboard" Key="Key_LeftControl" />
+			<Modifier Device="Keyboard" Key="Key_LeftAlt" />
+		</Primary>
+		<Secondary Device="{NoDevice}" Key="" />
+	</PhotoCameraToggle_Humanoid>
 </Root>
