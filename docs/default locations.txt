@@ -1,0 +1,4 @@
+Journals	"USERPROFILE\Saved Games\Frontier Developments\Elite Dangerous"
+Config and Bindings 	"%LOCALAPPDATA%\Frontier Developments\Elite Dangerous"
+Horizons Base	"%LOCALAPPDATA%\Frontier_Developments\Products\elite-dangerous-64"
+Odyssey Base	"%LOCALAPPDATA%\Frontier_Developments\Products\elite-dangerous-odyssey-64"
