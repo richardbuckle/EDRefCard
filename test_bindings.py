@@ -34,17 +34,17 @@ class ConfigTests(TestCase):
         self.assertEqual(configPathStr, expectedPathStr)
     
     def testPathWithSuffix(self):
-        configPathStr = str(self.config.pathWithSuffix('.jpg'))
-        expectedPathStr = str(self.expectedConfigPath) + '.jpg'
+        configPathStr = str(self.config.pathWithSuffix('.svg'))
+        expectedPathStr = str(self.expectedConfigPath) + '.svg'
         self.assertEqual(configPathStr, expectedPathStr)
     
     def testSuffixMustStartWithDot(self):
         with self.assertRaises(ValueError):
-            configPathStr = self.config.pathWithSuffix('jpg')
+            configPathStr = self.config.pathWithSuffix('svg')
     
     def testPathWithNameAndSuffix(self):
-        configPathStr = str(self.config.pathWithNameAndSuffix('spam', '.jpg'))
-        expectedPathStr = str(self.expectedConfigPath) + '-spam.jpg'
+        configPathStr = str(self.config.pathWithNameAndSuffix('spam', '.svg'))
+        expectedPathStr = str(self.expectedConfigPath) + '-spam.svg'
         self.assertEqual(configPathStr, expectedPathStr)
     
     def testRefCardURL(self):

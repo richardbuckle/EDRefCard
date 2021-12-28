@@ -212,12 +212,12 @@ def writeUrlToDrawing(config, drawing, public):
 # Create a keyboard image from the template plus bindings
 def createKeyboardImage(physicalKeys, modifiers, source, imageDevices, biggestFontSize, displayGroups, runId, public):
     config = Config(runId)
-    filePath = config.pathWithNameAndSuffix(source, '.jpg')
+    filePath = config.pathWithNameAndSuffix(source, '.svg')
 
     # See if it already exists or if we need to recreate it
     if filePath.exists():
         return True
-    with Image(filename='../res/' + source + '.jpg') as sourceImg:
+    with Image(filename='../res/' + source + '.svg') as sourceImg:
         with Drawing() as context:
 
             # Defaults for the font
@@ -370,9 +370,9 @@ def createBlockImage(supportedDeviceKey, strokeColor='Red', fillColor='LightGree
     templateName = supportedDevice['Template']
     config = Config(templateName)
     config.makeDir()
-    filePath = config.pathWithSuffix('.jpg')
+    filePath = config.pathWithSuffix('.svg')
     
-    with Image(filename='../res/' + supportedDevice['Template'] + '.jpg') as sourceImg:
+    with Image(filename='../res/' + supportedDevice['Template'] + '.svg') as sourceImg:
         with Drawing() as context:
             if not dryRun:        
                 context.font = getFontPath('Regular', 'Normal')
@@ -420,12 +420,12 @@ def createHOTASImage(physicalKeys, modifiers, source, imageDevices, biggestFontS
         name = source
     else:
         name = '%s-%s' % (source, deviceIndex)
-    filePath = config.pathWithNameAndSuffix(name, '.jpg')
+    filePath = config.pathWithNameAndSuffix(name, '.svg')
     
     # See if it already exists or if we need to recreate it
     if filePath.exists():
         return True
-    with Image(filename='../res/' + source + '.jpg') as sourceImg:
+    with Image(filename='../res/' + source + '.svg') as sourceImg:
         with Drawing() as context:
 
             # Defaults for the font
@@ -825,11 +825,11 @@ def printRefCard(config, public, createdImages, deviceForBlockImage, errors):
                 device = createdImage
                 deviceIndex = 0
             if deviceIndex == 0:
-                print('<img width="100%%" src="../configs/%s/%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
+                print('<img width="100%%" src="../configs/%s/%s-%s.svg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template']))
             else:
-                print('<img width="100%%" src="../configs/%s/%s-%s-%s.jpg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
+                print('<img width="100%%" src="../configs/%s/%s-%s-%s.svg"/><br/>' % (runId[:2], runId, supportedDevices[device]['Template'], deviceIndex))
         if deviceForBlockImage is not None:
-            print('<img width="100%%" src="../configs/%s/%s.jpg"/><br/>' % (supportedDevices[deviceForBlockImage]['Template'][:2], supportedDevices[deviceForBlockImage]['Template']))
+            print('<img width="100%%" src="../configs/%s/%s.svg"/><br/>' % (supportedDevices[deviceForBlockImage]['Template'][:2], supportedDevices[deviceForBlockImage]['Template']))
         if deviceForBlockImage is None and public is True:
             linkURL = config.refcardURL()
             bindsURL = config.bindsURL()
