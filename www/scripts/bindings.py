@@ -907,6 +907,10 @@ def parseBindings(runId, xml, displayGroups, errors):
     for xmlBinding in xmlBindings:
         controlName = xmlBinding.getparent().tag
 
+        hasHoldModifier = False
+        if xmlBinding.find("Hold") != None:
+            hasHoldModifier = True
+
         device = xmlBinding.get('Device')
         if device == '{NoDevice}':
             continue
@@ -932,10 +936,16 @@ def parseBindings(runId, xml, displayGroups, errors):
                 modifierDevice = 'T16000MFCS'
             modifierKey = '%s::%s::%s' % (modifierDevice, modifierInfo.get('DeviceIndex', 0), modifierInfo.get('Key'))
             return modifierKey
-            
+
+        # Use a fake modifier that says "hold that button."
+        if hasHoldModifier:
+            fakeentry = '<Modifier Device="%s" DeviceIndex="%s" Key="HOLD" />' % (device, deviceIndex)
+            xmlBinding.append(etree.XML(fakeentry))
+
         modifiersInfo = xmlBinding.findall('Modifier')
         modifiersInfo = sorted(modifiersInfo, key=modifierSortKey)
         modifiersKey = 'Unmodified'
+
         if modifiersInfo:
             modifiersKey = ''
             for modifierInfo in modifiersInfo:
