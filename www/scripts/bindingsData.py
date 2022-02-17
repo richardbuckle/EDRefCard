@@ -173,10 +173,12 @@ controls = {
     'FocusRightPanel_Buggy': {'Group': 'SRV', 'Order': 404, 'Name': 'Systems Panel', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['FocusRightPanel']},
     'QuickCommsPanel_Buggy': {'Group': 'SRV', 'Order': 405, 'Name': 'Quick Comms', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['QuickCommsPanel']},
     'UIFocus_Buggy': {'Group': 'SRV', 'Order': 406, 'Name': 'UI Focus', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['UIFocus']},
+    'PlayerHUDModeToggle_Buggy': {'Group': 'Ship', 'Category': 'General', 'Order': 407, 'Name': 'HUD Mode', 'Type': 'Digital',  'HideIfSameAs': ['PlayerHUDModeToggle']},
 
      # Misc
     'EjectAllCargo_Buggy': {'Group': 'SRV', 'Order': 501, 'Name': 'Eject All Cargo', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['EjectAllCargo']},
     'HeadLookToggle_Buggy': {'Group': 'SRV', 'Order': 502, 'Name': 'Toggle Headlook', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['HeadLookToggle']},
+    'OpenCodexGoToDiscovery_Buggy': {'Group': 'SRV', 'Category': 'General', 'Order': 503, 'Name': 'Codex', 'Type': 'Digital', 'HideIfSameAs': ['OpenCodexGoToDiscovery']},
 
     #
     # Controls only available in the ship
@@ -357,6 +359,8 @@ controls = {
     'SAAThirdPersonFovAxisRaw': {'Group': 'Scanners', 'Category': 'General', 'Order': 287, 'Name': 'DSS Field of View', 'Type': 'Analogue', 'HideIfSameAs': []},
     'SAAThirdPersonFovOutButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 288, 'Name': 'DSS Field of View Out', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
     'SAAThirdPersonFovInButton': {'Group': 'Scanners', 'Category': 'General', 'Order': 289, 'Name': 'DSS Field of View In', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
+    'ExplorationSAANextGenus': {'Group': 'Scanners', 'Category': 'General', 'Order': 290, 'Name': 'DSS Next Filter', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
+    'ExplorationSAAPreviousGenus': {'Group': 'Scanners', 'Category': 'General', 'Order': 291, 'Name': 'DSS Previous Filter', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
 
     # Misc
     'EjectAllCargo': {'Group': 'Ship', 'Category': 'General', 'Order': 701, 'Name': 'Eject All Cargo', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
@@ -497,6 +501,12 @@ controls = {
     'HumanoidToggleToolModeButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 132, 'Name': 'Tool Mode', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
     'HumanoidToggleWeaponBoosterModuleButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 134, 'Name': 'Weapon Booster', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
     'HumanoidZoomButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 135, 'Name': 'ZoomButton', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidHealthPack': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 136, 'Name': 'Medkit', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidBattery': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 137, 'Name': 'Energy Cell', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectFragGrenade': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 138, 'Name': 'Frag Grenade', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectEMPGrenade': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 139, 'Name': 'Shield Disruptor', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidSelectShieldGrenade': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 140, 'Name': 'Shield Projector', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
+    'HumanoidClearAuthorityLevel': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 141, 'Name': 'Clear Authority Level', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': []},
 
     # Managing power
     'HumanoidResetPowerDistributionButton': {'Group': 'OnFoot', 'Category': 'Combat', 'Order': 201, 'Name': 'RST', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['ResetPowerDistribution']},
@@ -520,9 +530,21 @@ controls = {
     'HumanoidItemWheelButton_YAxis': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 705, 'Name': 'Item Up/Dn', 'Type': 'Analogue', 'HideIfSameAs': []},
     'HumanoidItemWheelButton_YDown': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 706, 'Name': 'Item Down', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
     'HumanoidItemWheelButton_YUp': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 707, 'Name': 'Item Up', 'Type': 'Digital', 'HasAnalogue': True, 'HideIfSameAs': []},
-    
+    'HumanoidUtilityWheelCycleMode': {'Group': 'OnFoot', 'Category': 'Navigation', 'Order': 708, 'Name': 'Cycle Utility Wheel Mode', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+
     # Camera
     'PhotoCameraToggle_Humanoid': {'Group': 'Camera', 'Category': 'Camera', 'Order': 801, 'Name': 'External Cam', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+
+    # Emote Wheel
+    'HumanoidEmoteWheelButton': {'Group': 'OnFoot', 'Category': 'General', 'Order': 901, 'Name': 'Open Emote Wheel', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+    'HumanoidEmoteSlot1': {'Group': 'OnFoot', 'Category': 'General', 'Order': 903, 'Name': 'Point', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+    'HumanoidEmoteSlot2': {'Group': 'OnFoot', 'Category': 'General', 'Order': 904, 'Name': 'Wave', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+    'HumanoidEmoteSlot3': {'Group': 'OnFoot', 'Category': 'General', 'Order': 905, 'Name': 'Agree', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+    'HumanoidEmoteSlot4': {'Group': 'OnFoot', 'Category': 'General', 'Order': 906, 'Name': 'Disagree', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+    'HumanoidEmoteSlot5': {'Group': 'OnFoot', 'Category': 'General', 'Order': 907, 'Name': 'Go', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+    'HumanoidEmoteSlot6': {'Group': 'OnFoot', 'Category': 'General', 'Order': 908, 'Name': 'Stop', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+    'HumanoidEmoteSlot7': {'Group': 'OnFoot', 'Category': 'General', 'Order': 909, 'Name': 'Applaud', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
+    'HumanoidEmoteSlot8': {'Group': 'OnFoot', 'Category': 'General', 'Order': 910, 'Name': 'Salute', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['PhotoCameraToggle']},
 }
 
 # default height is 54 (px)
