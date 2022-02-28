@@ -173,9 +173,9 @@ controls = {
     'FocusRightPanel_Buggy': {'Group': 'SRV', 'Order': 404, 'Name': 'Systems Panel', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['FocusRightPanel']},
     'QuickCommsPanel_Buggy': {'Group': 'SRV', 'Order': 405, 'Name': 'Quick Comms', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['QuickCommsPanel']},
     'UIFocus_Buggy': {'Group': 'SRV', 'Order': 406, 'Name': 'UI Focus', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['UIFocus']},
-    'PlayerHUDModeToggle_Buggy': {'Group': 'Ship', 'Category': 'General', 'Order': 407, 'Name': 'HUD Mode', 'Type': 'Digital',  'HideIfSameAs': ['PlayerHUDModeToggle']},
+    'PlayerHUDModeToggle_Buggy': {'Group': 'SRV', 'Category': 'General', 'Order': 407, 'Name': 'HUD Mode', 'Type': 'Digital',  'HideIfSameAs': ['PlayerHUDModeToggle']},
 
-     # Misc
+    # Misc
     'EjectAllCargo_Buggy': {'Group': 'SRV', 'Order': 501, 'Name': 'Eject All Cargo', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['EjectAllCargo']},
     'HeadLookToggle_Buggy': {'Group': 'SRV', 'Order': 502, 'Name': 'Toggle Headlook', 'Type': 'Digital', 'HasAnalogue': False, 'HideIfSameAs': ['HeadLookToggle']},
     'OpenCodexGoToDiscovery_Buggy': {'Group': 'SRV', 'Category': 'General', 'Order': 503, 'Name': 'Codex', 'Type': 'Digital', 'HideIfSameAs': ['OpenCodexGoToDiscovery']},
