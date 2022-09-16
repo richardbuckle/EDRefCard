@@ -13,6 +13,8 @@ supportedDevices = OrderedDict([
     ('LogitechG940', {'Template': 'g940', 'HandledDevices': ['LogitechG940Joystick', 'LogitechG940Throttle']}),
     ('T16000M', {'Template': 't16000m', 'HandledDevices': ['T16000M']}),
     ('T16000MFCS', {'Template': 't16000mfcs', 'HandledDevices': ['T16000MFCS', 'T16000MTHROTTLE']}),
+    ('TCASidestickLeft', {'Template': 'tca-left', 'HandledDevices': ['044F0406']}),
+    ('TCASidestickRight', {'Template': 'tca-right', 'HandledDevices': ['044F0405']}),
     ('TFlightHOTASX', {'Template': 'hotasx', 'HandledDevices': ['ThrustMasterTFlightHOTASX']}),
     ('ThrustMasterHOTAS4', {'Template': 'hotas4', 'HandledDevices': ['ThrustMasterHOTAS4']}),
     ('T-Rudder', {'Template': 'tfrp', 'HandledDevices': ['T-Rudder']}),
