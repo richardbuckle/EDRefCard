@@ -623,9 +623,9 @@ hotasDetails = {
         'Joy_2': {'Type': 'Digital', 'x': 474, 'y': 624, 'width': 1092}, # Bottom button
         'Joy_3': {'Type': 'Digital', 'x': 474, 'y': 494, 'width': 1092}, # Left-hand button
         'Joy_4': {'Type': 'Digital', 'x': 2124, 'y': 494, 'width': 1092}, # Right-hand button
-        'Joy_5': {'Type': 'Digital', 'x': 2164, 'y': 1104, 'width': 542, 'height': 108}, # Right bank top-left button
+        'Joy_5': {'Type': 'Digital', 'x': 3264, 'y': 1104, 'width': 542, 'height': 108}, # Right bank top-right button
         'Joy_6': {'Type': 'Digital', 'x': 2714, 'y': 1104, 'width': 542, 'height': 108}, # Right bank top-middle button
-        'Joy_7': {'Type': 'Digital', 'x': 3264, 'y': 1104, 'width': 542, 'height': 108}, # Right bank top-right button
+        'Joy_7': {'Type': 'Digital', 'x': 2164, 'y': 1104, 'width': 542, 'height': 108}, # Right bank top-left button
         'Joy_8': {'Type': 'Digital', 'x': 2164, 'y': 1220, 'width': 542, 'height': 108}, # Right bank bottom-left button
         'Joy_9': {'Type': 'Digital', 'x': 2714, 'y': 1220, 'width': 542, 'height': 108}, # Right bank bottom-middle button
         'Joy_10': {'Type': 'Digital', 'x': 3264, 'y': 1220, 'width': 542, 'height': 108}, # Right bank bottom-right button
