@@ -2405,7 +2405,7 @@ hotasDetails = {
         # Pinky button
         'Joy_31': {'Type': 'Digital', 'x': 120, 'y': 1900, 'width': 1180},
         # Break axis
-        'Joy_33': {'Type': 'Digital', 'x': 120, 'y': 1750, 'width': 1180},
+        'Joy_32': {'Type': 'Digital', 'x': 120, 'y': 1750, 'width': 1180},
         'Joy_UAxis': {'Type': 'Analogue', 'x': 120, 'y': 1690, 'width': 1180},
 	# Joystick axis
         'Joy_XAxis': {'Type': 'Analogue', 'x': 2610, 'y': 1860, 'width': 1180},
