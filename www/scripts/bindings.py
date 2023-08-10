@@ -903,6 +903,13 @@ def parseBindings(runId, xml, displayGroups, errors):
     else:
         hasT16000MThrottle = False
 
+    # VPC MongoosT-50CM3 Throttle 32 Button mode detection
+    if len(tree.findall(".//*[@Device='33448197']")) > 0:
+        if len(tree.findall(".//*[@DeviceIndex='2']")) > 0:
+            vpcCM3Throttle32buttonmode = True
+        else:
+            vpcCM3Throttle32buttonmode = False
+
     xmlBindings = tree.findall(".//Binding") + tree.findall(".//Primary") + tree.findall(".//Secondary")
     for xmlBinding in xmlBindings:
         controlName = xmlBinding.getparent().tag
@@ -916,6 +923,17 @@ def parseBindings(runId, xml, displayGroups, errors):
             device = 'T16000MFCS'
 
         deviceIndex = xmlBinding.get('DeviceIndex', 0)
+
+        # Rewrite the device if it's a VPC MongoosT-50CM3 Throttle running 32 button split mode
+        if device == "33448197" and vpcCM3Throttle32buttonmode == True:
+            if deviceIndex == "0":
+                device = "VPC-MongoosT-50CM3-Throttle-32B0"
+            if deviceIndex == "1":
+                device = "VPC-MongoosT-50CM3-Throttle-32B1"
+                deviceIndex = "0"
+            if deviceIndex == "2":
+                device = "VPC-MongoosT-50CM3-Throttle-32B2"
+                deviceIndex = "0"
 
         key = xmlBinding.get('Key')
         # Remove the Neg_ and Pos_ headers to put digital buttons on analogue devices
