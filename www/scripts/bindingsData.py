@@ -50,6 +50,8 @@ supportedDevices = OrderedDict([
     ('VPC-ALPHA-Right', {'Template': 'vpc-alpha-right', 'HandledDevices': ['03EB2048']}),
     ('VPC-ALPHA-Left-Custom', {'Template': 'vpc-alpha-left', 'HandledDevices': ['03EB9901']}),
     ('VPC-ALPHA-Right-Custom', {'Template': 'vpc-alpha-right', 'HandledDevices': ['03EB9902']}),
+    ('VPC-MongoosT-50CM3-Throttle', {'Template': 'vpc-mongoost-50cm3-throttle', 'HandledDevices': ['33448197']}),
+    ('VPC-MongoosT-50CM3-Throttle-32B', {'Template': 'vpc-mongoost-50cm3-throttle-32b', 'KeyDevices': ['VPC-MongoosT-50CM3-Throttle-32B0', 'VPC-MongoosT-50CM3-Throttle-32B1', 'VPC-MongoosT-50CM3-Throttle-32B2'], 'HandledDevices': ['VPC-MongoosT-50CM3-Throttle-32B0', 'VPC-MongoosT-50CM3-Throttle-32B1', 'VPC-MongoosT-50CM3-Throttle-32B2']}),
     ('VKB-Kosmosima-SCG-Left', {'Template': 'vkb-kosmosima-scg-left', 'HandledDevices': ['231D0127']}),
     ('VKB-Kosmosima-SCG-Right', {'Template': 'vkb-kosmosima-scg-right', 'HandledDevices': ['231D0126']}),
     ('VKB-Gladiator-NXT-Premium-Right', {'Template': 'vkb-gladiator-nxt-premium-right', 'HandledDevices': ['231D0200']}),
@@ -2362,6 +2364,146 @@ hotasDetails = {
         'Joy_RXAxis': {'Type': 'Analogue', 'x': 120, 'y': 510, 'width': 1180},
         'Joy_RYAxis': {'Type': 'Analogue', 'x': 120, 'y': 570, 'width': 1180},
     },
+
+ '33448197': { # VPC MongoosT-50CM3 Throttle
+        'displayName': 'VPC MongoosT-50CM3 Throttle',
+        'Joy_1': {'Type': 'Digital', 'x': 2066, 'y': 602, 'width': 450},       # Throttle Left Encoder Button
+        'Joy_2': {'Type': 'Digital', 'x': 2066, 'y': 546, 'width': 450},        # Throttle Left Encoder Backwards
+        'Joy_3': {'Type': 'Digital', 'x': 2066, 'y': 492, 'width': 450},        # Throttle Left Encoder Forwards
+        'Joy_4': {'Type': 'Digital', 'x': 1440, 'y': 622, 'width': 450},        # Throttle Left Pinkie Button
+        'Joy_5': {'Type': 'Digital', 'x': 1988, 'y': 348, 'width': 450},        # Throttle Left 2W Hat Button
+        'Joy_6': {'Type': 'Digital', 'x': 1988, 'y': 292, 'width': 450},        # Throttle Left 2W Hat Down
+        'Joy_7': {'Type': 'Digital', 'x': 1988, 'y': 238, 'width': 450},        # Throttle Left 2W Hat Up
+        'Joy_8': {'Type': 'Digital', 'x': 804, 'y': 710, 'width': 450},         # Throttle Middle 4W HAT Button
+        'Joy_9': {'Type': 'Digital', 'x': 804, 'y': 602, 'width': 450},         # Throttle Middle 4W HAT Down
+        'Joy_10': {'Type': 'Digital', 'x': 804, 'y': 546, 'width': 450},        # Throttle Middle 4W HAT Right
+        'Joy_11': {'Type': 'Digital', 'x': 804, 'y': 491, 'width': 450},        # Throttle Middle 4W HAT Up
+        'Joy_12': {'Type': 'Digital', 'x': 804, 'y': 656, 'width': 450},        # Throttle Middle 4W HAT Left
+        'Joy_13': {'Type': 'Digital', 'x': 170, 'y': 480, 'width': 474},        # Throttle Analog Stick Button
+        'Joy_14': {'Type': 'Digital', 'x': 2238, 'y': 1016, 'width': 450},      # Throttle Right Encoder forwards
+        'Joy_15': {'Type': 'Digital', 'x': 2238, 'y': 1070, 'width': 450},      # Throttle Right Encoder backwards
+        'Joy_16': {'Type': 'Digital', 'x': 2238, 'y': 960, 'width': 450},       # Throttle Right 4W HAT 1 Button
+        'Joy_17': {'Type': 'Digital', 'x': 2238, 'y': 795, 'width': 450},       # Throttle Right 4W HAT 1 Forwards
+        'Joy_18': {'Type': 'Digital', 'x': 2238, 'y': 850, 'width': 450},       # Throttle Right 4W HAT 1 Down
+        'Joy_19': {'Type': 'Digital', 'x': 2238, 'y': 906, 'width': 450},       # Throttle Right 4W HAT 1 Backwards
+        'Joy_20': {'Type': 'Digital', 'x': 2238, 'y': 740, 'width': 450},       # Throttle Right 4W HAT 1 Up
+        'Joy_21': {'Type': 'Digital', 'x': 2170, 'y': 1508, 'width': 425},      # Throttle Right Forward Button
+        'Joy_22': {'Type': 'Digital', 'x': 1624, 'y': 974, 'width': 450},       # Throttle Right 4W HAT 2 Button
+        'Joy_23': {'Type': 'Digital', 'x': 1624, 'y': 864, 'width': 450},       # Throttle Right 4W HAT 2 Down
+        'Joy_24': {'Type': 'Digital', 'x': 1624, 'y': 918, 'width': 450},       # Throttle Right 4W HAT 2 Backwards
+        'Joy_25': {'Type': 'Digital', 'x': 1624, 'y': 754, 'width': 450},       # Throttle Right 4W HAT 2 Up
+        'Joy_26': {'Type': 'Digital', 'x': 1624, 'y': 808, 'width': 450},       # Throttle Right 4W HAT 2 Forwards
+        'Joy_27': {'Type': 'Digital', 'x': 2210, 'y': 1432, 'width': 450},      # Throttle Right 4W HAT 3 Button
+        'Joy_28': {'Type': 'Digital', 'x': 2210, 'y': 1322, 'width': 450},      # Throttle Right 4W HAT 3 Down
+        'Joy_29': {'Type': 'Digital', 'x': 2210, 'y': 1378, 'width': 450},      # Throttle Right 4W HAT 3 Backwards
+        'Joy_30': {'Type': 'Digital', 'x': 2210, 'y': 1212, 'width': 450},      # Throttle Right 4W HAT 3 Up
+        'Joy_31': {'Type': 'Digital', 'x': 2210, 'y': 1268, 'width': 450},      # Throttle Right 4W HAT 3 Forwards
+        'Joy_32': {'Type': 'Digital', 'x': 842, 'y': 814, 'width': 380},        # Throttle Right Back Button
+        # Elite doesn't see more than 32 buttons so point in adding the rest
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 170, 'y': 370, 'width': 474},    # Throttle Analog Stick
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 170, 'y': 425, 'width': 474},    # Throttle Analog Stick
+        'Joy_ZAxis': {'Type': 'Analogue', 'x': 1435, 'y': 194, 'width': 394},   # Throttle Handle Slider
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 50, 'y': 1850, 'width': 450},   # Throttle Left
+        'Joy_RYAxis': {'Type': 'Analogue', 'x': 50, 'y': 1900, 'width': 450},   # Throttle Right
+        'Joy_RZAxis': {'Type': 'Analogue', 'x': 2200, 'y': 1594, 'width': 350}, # Flaps
+    },
+
+        'VPC-MongoosT-50CM3-Throttle-32B0': { # VPC MongoosT-50CM3 Throttle - 32 Button Split Mode - Device 0
+        'displayName': 'VPC MongoosT-50CM3 Throttle - 32 Button Split',
+        'Joy_1': {'Type': 'Digital', 'x': 842, 'y': 894, 'width': 380},     # Throttle Right Back Button Lower
+        'Joy_2': {'Type': 'Digital', 'x': 2200, 'y': 1731, 'width': 325},   # T1
+        'Joy_3': {'Type': 'Digital', 'x': 2200, 'y': 1914, 'width': 325},   # T2
+        'Joy_4': {'Type': 'Digital', 'x': 720, 'y': 1046, 'width': 370},    # T3
+        'Joy_5': {'Type': 'Digital', 'x': 720, 'y': 1238, 'width': 370},    # T4
+        'Joy_6': {'Type': 'Digital', 'x': 2732, 'y': 340, 'width': 180},    # B1 - Mode 1
+        'Joy_7': {'Type': 'Digital', 'x': 2920, 'y': 340, 'width': 180},    # B2 - Mode 1
+        'Joy_8': {'Type': 'Digital', 'x': 3110, 'y': 340, 'width': 180},    # B3 - Mode 1
+        'Joy_9': {'Type': 'Digital', 'x': 2732, 'y': 470, 'width': 180},    # B4 - Mode 1
+        'Joy_10': {'Type': 'Digital', 'x': 2920, 'y': 470, 'width': 180},   # B5 - Mode 1
+        'Joy_11': {'Type': 'Digital', 'x': 3110, 'y': 470, 'width': 180},   # B6 - Mode 1
+        'Joy_12': {'Type': 'Digital', 'x': 672, 'y': 1464, 'width': 300},   # T5 Forwards
+        'Joy_13': {'Type': 'Digital', 'x': 672, 'y': 1518, 'width': 300},   # T5 Backwards
+        'Joy_14': {'Type': 'Digital', 'x': 672, 'y': 1660, 'width': 300},   # T6 Forwards
+        'Joy_15': {'Type': 'Digital', 'x': 672, 'y': 1716, 'width': 300},   # T6 Backwards
+        'Joy_16': {'Type': 'Digital', 'x': 672, 'y': 1856, 'width': 300},   # T7 Forwards
+        'Joy_17': {'Type': 'Digital', 'x': 672, 'y': 1910, 'width': 300},   # T7 Backwards
+        'Joy_18': {'Type': 'Digital', 'x': 1196, 'y': 2074, 'width': 325},  # E1 Button
+        'Joy_19': {'Type': 'Digital', 'x': 1196, 'y': 1964, 'width': 325},  # E1 Anti-Clockwise
+        'Joy_20': {'Type': 'Digital', 'x': 1196, 'y': 2020, 'width': 325},  # E1 Clockwise
+        'Joy_21': {'Type': 'Digital', 'x': 1662, 'y': 2076, 'width': 325},  # E2 Button
+        'Joy_22': {'Type': 'Digital', 'x': 1662, 'y': 1966, 'width': 325},  # E2 Anti-Clockwise
+        'Joy_23': {'Type': 'Digital', 'x': 1662, 'y': 2022, 'width': 325},  # E2 Clockwise
+        'Joy_24': {'Type': 'Digital', 'x': 2732, 'y': 710, 'width': 180},   # B1 - Mode 2
+        'Joy_25': {'Type': 'Digital', 'x': 2920, 'y': 710, 'width': 180},   # B2 - Mode 2
+        'Joy_26': {'Type': 'Digital', 'x': 3110, 'y': 710, 'width': 180},   # B3 - Mode 2
+        'Joy_27': {'Type': 'Digital', 'x': 2732, 'y': 860, 'width': 180},   # B4 - Mode 2
+        'Joy_28': {'Type': 'Digital', 'x': 2920, 'y': 860, 'width': 180},   # B5 - Mode 2
+        'Joy_29': {'Type': 'Digital', 'x': 3110, 'y': 860, 'width': 180},   # B6 - Mode 2
+        'Joy_30': {'Type': 'Digital', 'x': 2732, 'y': 1090, 'width': 180},  # B1 - Mode 3
+        'Joy_31': {'Type': 'Digital', 'x': 2920, 'y': 1090, 'width': 180},  # B2 - Mode 3
+        'Joy_32': {'Type': 'Digital', 'x': 3110, 'y': 1090, 'width': 180},  # B3 - Mode 3
+
+    },
+
+    'VPC-MongoosT-50CM3-Throttle-32B1': { # VPC MongoosT-50CM3 Throttle - 32 Button Split Mode - Device 1
+        'Joy_1': {'Type': 'Digital', 'x': 2066, 'y': 602, 'width': 450},        # Throttle Left Encoder Button
+        'Joy_2': {'Type': 'Digital', 'x': 2066, 'y': 546, 'width': 450},        # Throttle Left Encoder Backwards
+        'Joy_3': {'Type': 'Digital', 'x': 2066, 'y': 492, 'width': 450},        # Throttle Left Encoder Forwards
+        'Joy_4': {'Type': 'Digital', 'x': 1440, 'y': 622, 'width': 450},        # Throttle Left Pinkie Button
+        'Joy_5': {'Type': 'Digital', 'x': 1988, 'y': 348, 'width': 450},        # Throttle Left 2W Hat Button
+        'Joy_6': {'Type': 'Digital', 'x': 1988, 'y': 292, 'width': 450},        # Throttle Left 2W Hat Down
+        'Joy_7': {'Type': 'Digital', 'x': 1988, 'y': 238, 'width': 450},        # Throttle Left 2W Hat Up
+        'Joy_8': {'Type': 'Digital', 'x': 804, 'y': 710, 'width': 450},         # Throttle Middle 4W HAT Button
+        'Joy_9': {'Type': 'Digital', 'x': 804, 'y': 602, 'width': 450},         # Throttle Middle 4W HAT Down
+        'Joy_10': {'Type': 'Digital', 'x': 804, 'y': 546, 'width': 450},        # Throttle Middle 4W HAT Right
+        'Joy_11': {'Type': 'Digital', 'x': 804, 'y': 491, 'width': 450},        # Throttle Middle 4W HAT Up
+        'Joy_12': {'Type': 'Digital', 'x': 804, 'y': 656, 'width': 450},        # Throttle Middle 4W HAT Left
+        'Joy_13': {'Type': 'Digital', 'x': 170, 'y': 480, 'width': 474},        # Throttle Analog Stick Button
+        'Joy_14': {'Type': 'Digital', 'x': 2238, 'y': 1016, 'width': 450},      # Throttle Right Encoder forwards
+        'Joy_15': {'Type': 'Digital', 'x': 2238, 'y': 1070, 'width': 450},      # Throttle Right Encoder backwards
+        'Joy_16': {'Type': 'Digital', 'x': 2238, 'y': 960, 'width': 450},       # Throttle Right 4W HAT 1 Button
+        'Joy_17': {'Type': 'Digital', 'x': 2238, 'y': 795, 'width': 450},       # Throttle Right 4W HAT 1 Forwards
+        'Joy_18': {'Type': 'Digital', 'x': 2238, 'y': 850, 'width': 450},       # Throttle Right 4W HAT 1 Down
+        'Joy_19': {'Type': 'Digital', 'x': 2238, 'y': 906, 'width': 450},       # Throttle Right 4W HAT 1 Backwards
+        'Joy_20': {'Type': 'Digital', 'x': 2238, 'y': 740, 'width': 450},       # Throttle Right 4W HAT 1 Up
+        'Joy_21': {'Type': 'Digital', 'x': 2170, 'y': 1508, 'width': 425},      # Throttle Right Forward Button
+        'Joy_22': {'Type': 'Digital', 'x': 1624, 'y': 974, 'width': 450},       # Throttle Right 4W HAT 2 Button
+        'Joy_23': {'Type': 'Digital', 'x': 1624, 'y': 864, 'width': 450},       # Throttle Right 4W HAT 2 Down
+        'Joy_24': {'Type': 'Digital', 'x': 1624, 'y': 918, 'width': 450},       # Throttle Right 4W HAT 2 Backwards
+        'Joy_25': {'Type': 'Digital', 'x': 1624, 'y': 754, 'width': 450},       # Throttle Right 4W HAT 2 Up
+        'Joy_26': {'Type': 'Digital', 'x': 1624, 'y': 808, 'width': 450},       # Throttle Right 4W HAT 2 Forwards
+        'Joy_27': {'Type': 'Digital', 'x': 2210, 'y': 1432, 'width': 450},      # Throttle Right 4W HAT 3 Button
+        'Joy_28': {'Type': 'Digital', 'x': 2210, 'y': 1322, 'width': 450},      # Throttle Right 4W HAT 3 Down
+        'Joy_29': {'Type': 'Digital', 'x': 2210, 'y': 1378, 'width': 450},      # Throttle Right 4W HAT 3 Backwards
+        'Joy_30': {'Type': 'Digital', 'x': 2210, 'y': 1212, 'width': 450},      # Throttle Right 4W HAT 3 Up
+        'Joy_31': {'Type': 'Digital', 'x': 2210, 'y': 1268, 'width': 450},      # Throttle Right 4W HAT 3 Forwards
+        'Joy_32': {'Type': 'Digital', 'x': 842, 'y': 814, 'width': 380},        # Throttle Right Back Button
+        'Joy_XAxis': {'Type': 'Analogue', 'x': 170, 'y': 370, 'width': 474},    # Throttle Analog Stick
+        'Joy_YAxis': {'Type': 'Analogue', 'x': 170, 'y': 425, 'width': 474},    # Throttle Analog Stick
+        'Joy_ZAxis': {'Type': 'Analogue', 'x': 1435, 'y': 194, 'width': 394},   # Throttle Handle Slider
+        'Joy_RXAxis': {'Type': 'Analogue', 'x': 50, 'y': 1850, 'width': 450},   # Throttle Left
+        'Joy_RYAxis': {'Type': 'Analogue', 'x': 50, 'y': 1900, 'width': 450},   # Throttle Right
+        'Joy_RZAxis': {'Type': 'Analogue', 'x': 2200, 'y': 1594, 'width': 350}, # Flaps
+    },
+
+    'VPC-MongoosT-50CM3-Throttle-32B2': { # VPC MongoosT-50CM3 Throttle - 32 Button Split Mode - Device 2
+        'Joy_1': {'Type': 'Digital', 'x': 2732, 'y': 1220, 'width': 180},  # B4 - Mode 3
+        'Joy_2': {'Type': 'Digital', 'x': 2920, 'y': 1220, 'width': 180},  # B5 - Mode 3
+        'Joy_3': {'Type': 'Digital', 'x': 3110, 'y': 1220, 'width': 180},  # B6 - Mode 3
+        'Joy_4': {'Type': 'Digital', 'x': 2732, 'y': 1470, 'width': 180},  # B1 - Mode 4
+        'Joy_5': {'Type': 'Digital', 'x': 2920, 'y': 1470, 'width': 180},  # B2 - Mode 4
+        'Joy_6': {'Type': 'Digital', 'x': 3110, 'y': 1470, 'width': 180},  # B3 - Mode 4
+        'Joy_7': {'Type': 'Digital', 'x': 2732, 'y': 1600, 'width': 180},  # B4 - Mode 4
+        'Joy_8': {'Type': 'Digital', 'x': 2920, 'y': 1600, 'width': 180},  # B5 - Mode 4
+        'Joy_9': {'Type': 'Digital', 'x': 3110, 'y': 1600, 'width': 180},  # B6 - Mode 4
+        'Joy_10': {'Type': 'Digital', 'x': 2732, 'y': 1840, 'width': 180}, # B1 - Mode 5
+        'Joy_11': {'Type': 'Digital', 'x': 2920, 'y': 1840, 'width': 180}, # B2 - Mode 5
+        'Joy_12': {'Type': 'Digital', 'x': 3110, 'y': 1840, 'width': 180}, # B3 - Mode 5
+        'Joy_13': {'Type': 'Digital', 'x': 2732, 'y': 1980, 'width': 180}, # B4 - Mode 5
+        'Joy_14': {'Type': 'Digital', 'x': 2920, 'y': 1980, 'width': 180}, # B5 - Mode 5
+        'Joy_15': {'Type': 'Digital', 'x': 3110, 'y': 1980, 'width': 180}, # B6 - Mode 5
+    },
+
     '231D0127': { # VKB Kosmosima SCG Left
         'displayName': 'VKB Kosmosima SCG Left',
         'Joy_1': {'Type': 'Digital', 'x': 2052, 'y': 1798, 'width': 739, 'height': 68}, # Fire first stage
